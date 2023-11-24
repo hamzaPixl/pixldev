@@ -23,9 +23,7 @@ export default function ContactForm({ formSuccess, handleSubmit, formError }) {
         </label>
       </p>
       <div className='flex flex-col gap-2 items-left'>
-        <label htmlFor='first-name' className='text-sm my-2 text-white/50'>
-          {t('contact.form.firstName')}
-        </label>
+        <label className='text-sm my-2 text-white/50'>{t('contact.form.firstName')}</label>
         <input
           type='text'
           name='first-name'
@@ -34,9 +32,7 @@ export default function ContactForm({ formSuccess, handleSubmit, formError }) {
         />
       </div>
       <div className='flex flex-col gap-2 items-left'>
-        <label htmlFor='last-name' className='text-sm my-2 text-white/50'>
-          {t('contact.form.lastName')}
-        </label>
+        <label className='text-sm my-2 text-white/50'>{t('contact.form.lastName')}</label>
         <input
           type='text'
           name='last-name'
@@ -45,9 +41,7 @@ export default function ContactForm({ formSuccess, handleSubmit, formError }) {
         />
       </div>
       <div className='col-span-2 flex flex-col gap-2 items-left'>
-        <label htmlFor='email' className='text-sm my-2 text-white/50'>
-          {t('contact.form.email')}
-        </label>
+        <label className='text-sm my-2 text-white/50'>{t('contact.form.email')}</label>
         <input
           type='email'
           name='email'
@@ -56,9 +50,7 @@ export default function ContactForm({ formSuccess, handleSubmit, formError }) {
         />
       </div>
       <div className='col-span-2 flex flex-col gap-2 items-left'>
-        <label htmlFor='phone-number' className='text-sm my-2 text-white/50'>
-          {t('contact.form.phoneNumber')}
-        </label>
+        <label className='text-sm my-2 text-white/50'>{t('contact.form.phoneNumber')}</label>
         <input
           type='tel'
           name='phone-number'
@@ -67,9 +59,7 @@ export default function ContactForm({ formSuccess, handleSubmit, formError }) {
         />
       </div>
       <div className='col-span-2'>
-        <label htmlFor='message' className='text-sm my-2 text-white/50'>
-          {t('contact.form.message')}
-        </label>
+        <label className='text-sm my-2 text-white/50'>{t('contact.form.message')}</label>
         <textarea
           name='message'
           rows='6'
