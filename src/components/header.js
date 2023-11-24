@@ -8,6 +8,7 @@ import { useScrollPosition } from '../hooks/useScrollPostition'
 import { cn } from '../utils/cn'
 import ChatIcon from '../icons/chat'
 import getIcon from '../icons/icon'
+import BurgerIcon from './burger'
 
 export default function Header() {
   const scrollPosition = useScrollPosition()
@@ -41,7 +42,45 @@ export default function Header() {
                 </Link>
               ))}
           </div>
-          <Button message={t('header.contact')} link='/contact' primary={true}>
+          <div className='block sm:hidden'>
+            <button
+              data-collapse-toggle='navbar-hamburger'
+              type='button'
+              className='inline-flex items-center justify-center p-2 focus:outline-none focus:ring-0'
+              aria-controls='navbar-hamburger'
+              aria-expanded='false'
+            >
+              <BurgerIcon />
+            </button>
+          </div>
+          <div className='hidden sm:block'>
+            <Button message={t('header.contact')} link='/contact' primary={true}>
+              <ChatIcon />
+            </Button>
+          </div>
+        </div>
+        <div
+          className='hidden w-full mt-10 pb-5 border-primary-500 border-b-2 text-center'
+          id='navbar-hamburger'
+        >
+          {injected.pages
+            .filter((i) => !i.hideHeader)
+            .map((item, index) => (
+              <Link
+                href={item.link}
+                key={index}
+                className='text-white font-normal mb-2 text-lg leading-normal flex flex-row gap-10 items-center py-2 hover:text-primary-600 transition-all ease-in-out duration-300'
+              >
+                {item.icon && getIcon(item.icon)}
+                {t(item.title)}
+              </Link>
+            ))}
+          <Button
+            message={t('header.contact')}
+            link='/contact'
+            primary={true}
+            className='mt-5 w-full'
+          >
             <ChatIcon />
           </Button>
         </div>
