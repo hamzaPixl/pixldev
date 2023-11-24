@@ -22,7 +22,6 @@ export default function Projects({ projects }) {
           <Link key={index} href={project.link} className='m-2'>
             <div className='rounded-xl border-2 border-white/50'>
               <Image
-                loading='lazy'
                 width={600}
                 height={200}
                 src={project.image}

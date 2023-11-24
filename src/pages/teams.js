@@ -19,7 +19,6 @@ export default function Team() {
         {injected.teams.map((member, index) => (
           <div key={index} className='rounded-xl border-2 border-white/50 m-2'>
             <Image
-              loading='lazy'
               width={600}
               height={100}
               src={member.image}

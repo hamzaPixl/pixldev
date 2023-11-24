@@ -25,7 +25,6 @@ export default function Blog() {
             className='text-white font-bold flex flex-col gap-4'
           >
             <Image
-              loading='lazy'
               width={900}
               height={300}
               src={article.image}

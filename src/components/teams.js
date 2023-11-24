@@ -23,7 +23,6 @@ export default function Teams({ teams }) {
         {teams.map((member, index) => (
           <div key={index} className='rounded-xl border-2 border-white/50 m-2 sm:m-0'>
             <Image
-              loading='lazy'
               width={600}
               height={100}
               src={member.image}

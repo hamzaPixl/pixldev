@@ -22,10 +22,10 @@ export default function Header() {
       <div className={`py-5 px-5 w-full max-w-screen-xl mx-auto`}>
         <div className='font-bold leading-normal w-full flex flex-row gap-2 items-center justify-between'>
           <Link href={'/'} className='md:hidden block'>
-            <Image loading='lazy' width={100} height={60} src='/logo-inverted.png' alt={`Logo`} />
+            <Image width={100} height={60} src='/logo-inverted.png' alt={`Logo`} />
           </Link>
           <Link href={'/'} className='hidden md:block'>
-            <Image loading='lazy' width={80} height={60} src='/logo-inverted.png' alt={`Logo`} />
+            <Image width={80} height={60} src='/logo-inverted.png' alt={`Logo`} />
           </Link>
           <div className='md:flex md:flex-row gap-4 hidden'>
             {injected.pages

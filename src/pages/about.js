@@ -21,7 +21,6 @@ export default function About() {
             height={500}
             alt='About'
             className='rounded-xl w-screen'
-            loading='lazy'
           />
           <div className='text-white flex flex-col sm:flex-row justify-between text-center sm:text-start gap-5 pt-10'>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

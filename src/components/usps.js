@@ -9,7 +9,6 @@ export default function Usps({ usps }) {
         {usps.map((usp, index) => (
           <div className='rounded-xl border-2 border-white/50 m-2' key={index}>
             <Image
-              loading='lazy'
               width={600}
               height={200}
               src={usp.image}

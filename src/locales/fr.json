@@ -10,6 +10,16 @@
   "link.terms": "Terms",
   "link.cookies": "Cookies",
 
+  "contact.form.firstName": "First name",
+  "contact.form.lastName": "Last name",
+  "contact.form.email": "Email",
+  "contact.form.phoneNumber": "Phone",
+
+  "contact.form.message": "Message",
+  "contact.form.submit": "Send message",
+  "contact.form.success": "Your message has been sent successfully.",
+  "contact.form.error": "An error occurred while sending your message. Please try again later.",
+
   "header.contact": "Get in touch",
 
   "teams.meta.title": "Our Team | Meet the Pixl Team",

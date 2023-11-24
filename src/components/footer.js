@@ -14,7 +14,7 @@ export default function Footer() {
         <div className='my-20 grid gap-8 md:gap-4 grid-cols-1 md:grid-cols-4'>
           <div className='flex flex-col gap-4 text-white/70'>
             <Link href={'/'}>
-              <Image loading='lazy' width={80} height={60} src='/logo-inverted.png' alt={`Logo`} />
+              <Image width={80} height={60} src='/logo-inverted.png' alt={`Logo`} />
             </Link>
           </div>
           <div className='flex flex-col gap-4 text-white/70'>

@@ -26,7 +26,6 @@ export default function Projects() {
             className='text-white font-bold flex flex-col gap-4 px-5 py-5 rounded-xl relative overflow-hidden'
           >
             <Image
-              loading='lazy'
               width={900}
               height={300}
               src={project.image}

@@ -27,7 +27,6 @@ export default function Contact() {
           height={500}
           alt='About'
           className='rounded-xl w-screen'
-          loading='lazy'
         />
         <p className='text-2xl font-bold'>Get in touch</p>
         <ContactHandler />

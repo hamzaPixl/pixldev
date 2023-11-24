@@ -20,7 +20,6 @@ export default function Blog({ articles }) {
           <Link key={index} href={article.link}>
             <div className='rounded-xl border-2 border-white/50 m-2'>
               <Image
-                loading='lazy'
                 width={600}
                 height={200}
                 src={article.image}

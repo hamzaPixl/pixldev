@@ -26,7 +26,6 @@ export default function Services() {
             className='text-white font-bold flex flex-col gap-4 px-5 py-5 rounded-xl relative'
           >
             <Image
-              loading='lazy'
               width={900}
               height={300}
               src={service.image}
