@@ -30,7 +30,6 @@ export default function Footer() {
                 {injected.email}
               </div>
             </Link>
-            <div>{injected.address.address}</div>
           </div>
           <div className='flex flex-col gap-4 text-white/70'>
             <div className='font-bold text-white'>{t('footer.navigation')}</div>
