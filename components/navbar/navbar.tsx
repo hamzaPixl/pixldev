@@ -3,6 +3,7 @@ import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
 import ThemeToggle from "../theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const Navbar = () => {
   return (
@@ -14,6 +15,7 @@ const Navbar = () => {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher variant="icon" />
           <ThemeToggle />
           <Button variant="outline" className="hidden sm:inline-flex">
             Sign In

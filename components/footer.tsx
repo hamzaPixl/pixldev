@@ -8,6 +8,7 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 const footerLinks = [
   {
@@ -69,6 +70,12 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+            
+            {/* Language Switcher */}
+            <div className="mt-6">
+              <h6 className="font-semibold mb-3 text-sm">Language</h6>
+              <LanguageSwitcher variant="full" />
+            </div>
           </div>
 
           {/* Subscribe Newsletter */}
