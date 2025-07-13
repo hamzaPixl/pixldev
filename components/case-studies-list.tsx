@@ -66,22 +66,27 @@ export default function CaseStudiesList({ caseStudies }: CaseStudiesListProps) {
               >
                 {/* Featured image */}
                 {caseStudy.frontmatter.image && (
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={caseStudy.frontmatter.image}
-                      alt={caseStudy.frontmatter.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    {caseStudy.frontmatter.industry && (
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-pixl-teal/90 text-black">
-                          {caseStudy.frontmatter.industry}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
+                  <Link
+                    href={`/case-studies/${caseStudy.slug}`}
+                    className="block"
+                  >
+                    <div className="relative h-48 w-full overflow-hidden cursor-pointer">
+                      <Image
+                        src={caseStudy.frontmatter.image}
+                        alt={caseStudy.frontmatter.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {caseStudy.frontmatter.industry && (
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-pixl-teal/90 text-black">
+                            {caseStudy.frontmatter.industry}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
                 )}
 
                 <CardContent className="p-6">
@@ -103,9 +108,11 @@ export default function CaseStudiesList({ caseStudies }: CaseStudiesListProps) {
 
                   {/* Title and description */}
                   <div className="space-y-3 mb-4">
-                    <h2 className="text-xl font-bold text-foreground group-hover:text-pixl-teal transition-colors">
-                      {caseStudy.frontmatter.title}
-                    </h2>
+                    <Link href={`/case-studies/${caseStudy.slug}`}>
+                      <h2 className="text-xl font-bold text-foreground group-hover:text-pixl-teal transition-colors cursor-pointer">
+                        {caseStudy.frontmatter.title}
+                      </h2>
+                    </Link>
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
                       {caseStudy.frontmatter.description}
                     </p>

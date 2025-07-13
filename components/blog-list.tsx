@@ -64,22 +64,24 @@ export default function BlogList({ posts }: BlogListProps) {
               >
                 {/* Featured image */}
                 {post.frontmatter.image && (
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <Image
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    {post.frontmatter.category && (
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-pixl-teal/90 text-black">
-                          {post.frontmatter.category}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    <div className="relative h-48 w-full overflow-hidden cursor-pointer">
+                      <Image
+                        src={post.frontmatter.image}
+                        alt={post.frontmatter.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {post.frontmatter.category && (
+                        <div className="absolute top-4 left-4">
+                          <Badge className="bg-pixl-teal/90 text-black">
+                            {post.frontmatter.category}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
                 )}
 
                 <CardContent className="p-6">
@@ -96,9 +98,11 @@ export default function BlogList({ posts }: BlogListProps) {
 
                   {/* Title and description */}
                   <div className="space-y-3 mb-4">
-                    <h2 className="text-xl font-bold text-foreground group-hover:text-pixl-teal transition-colors">
-                      {post.frontmatter.title}
-                    </h2>
+                    <Link href={`/blog/${post.slug}`}>
+                      <h2 className="text-xl font-bold text-foreground group-hover:text-pixl-teal transition-colors cursor-pointer">
+                        {post.frontmatter.title}
+                      </h2>
+                    </Link>
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
                       {post.frontmatter.description}
                     </p>
