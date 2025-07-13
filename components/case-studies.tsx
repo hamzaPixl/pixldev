@@ -100,7 +100,7 @@ const CaseStudies = ({
                 carouselApi?.scrollPrev();
               }}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal"
+              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
             >
               <ArrowLeft className="size-5" />
             </Button>
@@ -111,7 +111,7 @@ const CaseStudies = ({
                 carouselApi?.scrollNext();
               }}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal"
+              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
             >
               <ArrowRight className="size-5" />
             </Button>
@@ -194,7 +194,7 @@ const CaseStudies = ({
                       
                       <Button 
                         variant="ghost" 
-                        className="w-full mt-4 group/btn hover:bg-pixl-teal/10 hover:text-pixl-teal"
+                        className="w-full mt-4 group/btn hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
                       >
                         Learn More 
                         <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />

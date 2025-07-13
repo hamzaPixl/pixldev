@@ -39,7 +39,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-colors"
+            className="h-8 w-8 p-0 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-colors rounded-full"
             title="Select Language"
           >
             <Globe className="h-4 w-4" />
@@ -66,7 +66,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 px-3 text-xs border-border/50 hover:border-pixl-teal/50 hover:text-pixl-teal hover:bg-pixl-teal/10 transition-colors">
+        <Button variant="outline" size="sm" className="h-8 px-3 text-xs border-border/50 hover:border-pixl-teal/50 hover:text-pixl-teal hover:bg-pixl-teal/10 transition-colors rounded-full">
           <Globe className="mr-2 h-3 w-3" />
           <span className="mr-1">{languageConfig[currentLanguage].flag}</span>
           {languageConfig[currentLanguage].name}
