@@ -1,60 +1,63 @@
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { getBlogPost, getAllBlogPosts } from "@/lib/content";
+"use client";
+
+import { useState, useEffect } from "react";
+import { notFound, useParams } from "next/navigation";
+import { ContentItem } from "@/lib/content";
 import { BlogContent } from "@/components/blog-content";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useLanguage } from "@/lib/language-context";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+export default function BlogPostPage() {
+  const params = useParams();
+  const { currentLanguage, isInitialized } = useLanguage();
+  const [blogPost, setBlogPost] = useState<ContentItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFoundError, setNotFoundError] = useState(false);
 
-export async function generateStaticParams() {
-  const blogPosts = await getAllBlogPosts();
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+  const slug = params.slug as string;
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const blogPost = await getBlogPost(slug);
+  useEffect(() => {
+    if (!isInitialized) return;
 
-  if (!blogPost) {
-    return {
-      title: "Blog Post Not Found",
+    const loadBlogPost = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `/api/blog/${slug}?lang=${currentLanguage}`
+        );
+        if (response.ok) {
+          const post = await response.json();
+          setBlogPost(post);
+          setNotFoundError(false);
+        } else {
+          setNotFoundError(true);
+        }
+      } catch (error) {
+        console.error("Error loading blog post:", error);
+        setNotFoundError(true);
+      }
+      setLoading(false);
     };
+
+    loadBlogPost();
+  }, [slug, currentLanguage, isInitialized]);
+
+  if (!isInitialized || loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-16 xs:pt-20 sm:pt-24">
+          <div className="max-w-4xl mx-auto px-6 py-16 text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+          <Footer />
+        </main>
+      </>
+    );
   }
 
-  return {
-    title: `${blogPost.frontmatter.title} | Pixl Blog`,
-    description: blogPost.frontmatter.description,
-    keywords: blogPost.frontmatter.keywords?.join(", "),
-    openGraph: {
-      title: blogPost.frontmatter.title,
-      description: blogPost.frontmatter.description,
-      images: blogPost.frontmatter.image ? [blogPost.frontmatter.image] : [],
-      type: "article",
-      publishedTime: blogPost.frontmatter.date,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blogPost.frontmatter.title,
-      description: blogPost.frontmatter.description,
-      images: blogPost.frontmatter.image ? [blogPost.frontmatter.image] : [],
-    },
-  };
-}
-
-export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
-  const blogPost = await getBlogPost(slug);
-
-  if (!blogPost) {
+  if (notFoundError) {
     notFound();
   }
 
@@ -62,7 +65,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <Navbar />
       <main className="pt-16 xs:pt-20 sm:pt-24">
-        <BlogContent blogPost={blogPost} />
+        {blogPost && <BlogContent blogPost={blogPost} />}
         <Footer />
       </main>
     </>

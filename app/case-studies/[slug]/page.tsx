@@ -1,60 +1,63 @@
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { getCaseStudy, getAllCaseStudies } from "@/lib/content";
+"use client";
+
+import { useState, useEffect } from "react";
+import { notFound, useParams } from "next/navigation";
+import { ContentItem } from "@/lib/content";
 import { CaseStudyContent } from "@/components/case-study-content";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useLanguage } from "@/lib/language-context";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-}
+export default function CaseStudyPage() {
+  const params = useParams();
+  const { currentLanguage, isInitialized } = useLanguage();
+  const [caseStudy, setCaseStudy] = useState<ContentItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFoundError, setNotFoundError] = useState(false);
 
-export async function generateStaticParams() {
-  const caseStudies = await getAllCaseStudies();
-  return caseStudies.map((study) => ({
-    slug: study.slug,
-  }));
-}
+  const slug = params.slug as string;
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const caseStudy = await getCaseStudy(slug);
+  useEffect(() => {
+    if (!isInitialized) return;
 
-  if (!caseStudy) {
-    return {
-      title: "Case Study Not Found",
+    const loadCaseStudy = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `/api/case-studies/${slug}?lang=${currentLanguage}`
+        );
+        if (response.ok) {
+          const study = await response.json();
+          setCaseStudy(study);
+          setNotFoundError(false);
+        } else {
+          setNotFoundError(true);
+        }
+      } catch (error) {
+        console.error("Error loading case study:", error);
+        setNotFoundError(true);
+      }
+      setLoading(false);
     };
+
+    loadCaseStudy();
+  }, [slug, currentLanguage, isInitialized]);
+
+  if (!isInitialized || loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-16 xs:pt-20 sm:pt-24">
+          <div className="max-w-4xl mx-auto px-6 py-16 text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+          <Footer />
+        </main>
+      </>
+    );
   }
 
-  return {
-    title: `${caseStudy.frontmatter.title} | Pixl Case Studies`,
-    description: caseStudy.frontmatter.description,
-    keywords: caseStudy.frontmatter.keywords?.join(", "),
-    openGraph: {
-      title: caseStudy.frontmatter.title,
-      description: caseStudy.frontmatter.description,
-      images: caseStudy.frontmatter.image ? [caseStudy.frontmatter.image] : [],
-      type: "article",
-      publishedTime: caseStudy.frontmatter.date,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: caseStudy.frontmatter.title,
-      description: caseStudy.frontmatter.description,
-      images: caseStudy.frontmatter.image ? [caseStudy.frontmatter.image] : [],
-    },
-  };
-}
-
-export default async function CaseStudyPage({ params }: PageProps) {
-  const { slug } = await params;
-  const caseStudy = await getCaseStudy(slug);
-
-  if (!caseStudy) {
+  if (notFoundError) {
     notFound();
   }
 
@@ -62,7 +65,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <>
       <Navbar />
       <main className="pt-16 xs:pt-20 sm:pt-24">
-        <CaseStudyContent caseStudy={caseStudy} />
+        {caseStudy && <CaseStudyContent caseStudy={caseStudy} />}
         <Footer />
       </main>
     </>
