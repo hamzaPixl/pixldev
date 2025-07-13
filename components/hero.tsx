@@ -17,8 +17,8 @@ const Hero = () => {
       
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
-          <span className="block text-white mb-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">Fix. Build.</span>
-          <span className="block text-white mb-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">Automate.</span>
+          <span className="block text-black dark:text-white mb-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">Fix. Build.</span>
+          <span className="block text-black dark:text-white mb-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards]">Automate.</span>
           <span className="block text-pixl-teal opacity-0 animate-[fadeInUp_0.8s_ease-out_0.6s_forwards,scaleDemo_3s_cubic-bezier(0.25,0.46,0.45,0.94)_1.4s_forwards] hover:scale-110 transition-transform duration-300 cursor-default">Scale.</span>
         </h1>
         

@@ -6,25 +6,25 @@
 
 @layer base {
   :root {
-    /* Light mode - kept for fallback */
+    /* Light mode - clean white theme */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
+    --card: 0 0% 100%; /* Pure white for cards */
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 180 100% 42.7%; /* Teal #0dd7d7 */
     --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 0 0% 98%; /* Very light instead of grey */
     --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
+    --muted: 0 0% 98%; /* Very light instead of grey */
     --muted-foreground: 0 0% 45.1%;
     --accent: 180 100% 42.7%; /* Teal */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    --border: 0 0% 92%; /* Lighter border */
+    --input: 0 0% 92%; /* Lighter input */
     --ring: 180 100% 42.7%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
