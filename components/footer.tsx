@@ -115,7 +115,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex items-center gap-4 text-muted-foreground">
             <Link
-              href="https://linkedin.com/company/pixl-dev"
+              href="https://www.linkedin.com/company/pixl-srl"
               target="_blank"
               className="hover:text-pixl-teal transition-colors"
               aria-label={t("footer.socialLinks.linkedinLabel")}

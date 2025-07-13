@@ -48,23 +48,23 @@ const getAllContent = async (
   const languageDirectory = path.join(directory, language);
   ensureDirectoryExists(languageDirectory);
 
-  if (!fs.existsSync(languageDirectory)) {
-    // Fallback to default language if requested language doesn't exist
-    const defaultDirectory = path.join(directory, DEFAULT_LANGUAGE);
-    if (!fs.existsSync(defaultDirectory)) {
-      return [];
-    }
+  let fileNames: string[] = [];
+  
+  if (fs.existsSync(languageDirectory)) {
+    fileNames = fs.readdirSync(languageDirectory).filter(fileName => fileName.endsWith(".md"));
+  }
+
+  // If no markdown files found and not using default language, fallback to default language
+  if (fileNames.length === 0 && language !== DEFAULT_LANGUAGE) {
+    console.log(`No content found for language ${language}, falling back to ${DEFAULT_LANGUAGE}`);
     return getAllContent(directory, DEFAULT_LANGUAGE);
   }
 
-  const fileNames = fs.readdirSync(languageDirectory);
   const allContent = await Promise.all(
-    fileNames
-      .filter((fileName) => fileName.endsWith(".md"))
-      .map(async (fileName) => {
-        const slug = fileName.replace(/\.md$/, "");
-        return await getContent(directory, slug, language);
-      })
+    fileNames.map(async (fileName) => {
+      const slug = fileName.replace(/\.md$/, "");
+      return await getContent(directory, slug, language);
+    })
   );
 
   return allContent
