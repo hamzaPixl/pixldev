@@ -2,6 +2,7 @@
 
 import { Bot, BarChart3, Workflow, Layers, Heart, Users, Server, Wrench } from "lucide-react";
 import React, { useRef, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const capabilities = [
   {
@@ -75,7 +76,7 @@ const WhatWeBuild = () => {
   }, []);
 
   return (
-    <div id="capabilities" className="w-full py-16 xs:py-24 px-6 bg-pixl-dark-alt/30">
+    <div id="capabilities" className="w-full py-16 xs:py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight mb-6 text-foreground">
@@ -85,14 +86,14 @@ const WhatWeBuild = () => {
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {capabilities.map((capability, index) => (
-            <div
+            <Card
               key={capability.title}
-              className="group p-6 rounded-xl border border-border/20 bg-card/10 backdrop-blur-lg transition-all duration-300 hover:border-pixl-teal/30 hover:bg-card/20"
+              className="group border-border/20 backdrop-blur-lg transition-all duration-300 hover:border-pixl-teal/30 cursor-pointer"
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
             >
-              <div>
+              <CardContent className="p-6">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-pixl-teal/10 border border-pixl-teal/20 mb-4 group-hover:bg-pixl-teal/20 transition-all duration-300">
                   <capability.icon className="h-6 w-6 text-pixl-teal" />
                 </div>
@@ -104,9 +105,8 @@ const WhatWeBuild = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {capability.description}
                 </p>
-              </div>
-              
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
