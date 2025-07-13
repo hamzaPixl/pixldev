@@ -98,9 +98,9 @@ const BlogCarousel = ({ title, description, posts }: BlogCarouselProps) => {
                 carouselApi?.scrollPrev();
               }}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
+              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full group"
             >
-              <ArrowLeft className="size-5" />
+              <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
             </Button>
             <Button
               size="icon"
@@ -109,9 +109,9 @@ const BlogCarousel = ({ title, description, posts }: BlogCarouselProps) => {
                 carouselApi?.scrollNext();
               }}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
+              className="disabled:pointer-events-auto hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full group"
             >
-              <ArrowRight className="size-5" />
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>
@@ -248,10 +248,10 @@ const BlogCarousel = ({ title, description, posts }: BlogCarouselProps) => {
                         <Button
                           variant="outline"
                           size="lg"
-                          className="border-white/30 text-white bg-white/5 hover:bg-white/15 hover:border-white/50 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
+                          className="border-white/30 text-white bg-white/5 hover:bg-white/15 hover:border-white/50 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 group"
                         >
                           View All Articles
-                          <ArrowRight className="ml-2 h-5 w-5" />
+                          <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </Link>
                     </div>

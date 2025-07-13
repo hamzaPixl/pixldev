@@ -29,9 +29,10 @@ const CTACard = () => {
             <Button
               size="lg"
               onClick={scrollToContact}
-              className="bg-pixl-teal hover:bg-pixl-teal/90 text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pixl-teal/25"
+              className="bg-pixl-teal hover:bg-pixl-teal/90 text-black font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pixl-teal/25 group"
             >
-              {t("common.getStarted")} <ArrowUpRight className="ml-2 h-5 w-5" />
+              {t("common.getStarted")}{" "}
+              <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Button>
           </div>
 

@@ -77,9 +77,9 @@ export function BlogContent({ blogPost }: BlogContentProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="gap-2 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-all duration-300"
+            className="gap-2 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-all duration-300 group"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             {t("common.backToBlog")}
           </Button>
         </Link>
@@ -169,9 +169,9 @@ export function BlogContent({ blogPost }: BlogContentProps) {
             </div>
             <div className="flex gap-4">
               <Link href="/#contact">
-                <Button className="bg-pixl-teal hover:bg-pixl-teal/90 text-black font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pixl-teal/25 gap-2">
+                <Button className="bg-pixl-teal hover:bg-pixl-teal/90 text-black font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pixl-teal/25 gap-2 group">
                   {t("common.getInTouch")}
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/blog">

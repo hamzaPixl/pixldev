@@ -50,10 +50,10 @@ export default function NotFound() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-black dark:hover:text-white hover:border-pixl-teal/60 px-8 py-3 rounded-full transition-all duration-300"
+                  className="border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-black dark:hover:text-white hover:border-pixl-teal/60 px-8 py-3 rounded-full transition-all duration-300 group"
                   onClick={() => window.history.back()}
                 >
-                  <ArrowLeft className="mr-2 h-5 w-5" />
+                  <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
                   {t("error.notFound.goBack")}
                 </Button>
               </div>
