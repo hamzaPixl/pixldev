@@ -2,6 +2,8 @@
 
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -100,6 +102,18 @@ const CaseStudies = ({
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {defaultDescription}
           </p>
+          <div className="mt-8">
+            <Link href="/case-studies">
+              <Button
+                variant="outline"
+                size="lg"
+                className="gap-2 hover:bg-pixl-teal/10 hover:text-pixl-teal hover:border-pixl-teal/30"
+              >
+                {t("common.viewMore")}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
         <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
           <div className="flex-1"></div>
@@ -154,10 +168,11 @@ const CaseStudies = ({
               >
                 <Card className="group backdrop-blur-lg border-border/20 hover:border-pixl-teal/30 transition-all duration-300 h-[600px] flex flex-col shadow-none">
                   <div className="relative h-[200px] w-full overflow-hidden rounded-t-xl flex-shrink-0">
-                    <img
+                    <Image
                       src={item.image}
                       alt={t(item.title)}
-                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 left-4">
@@ -199,6 +214,9 @@ const CaseStudies = ({
                       <Button
                         variant="ghost"
                         className="w-full mt-4 group/btn hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
+                        onClick={() => {
+                          window.location.href = `/case-studies/${item.id}`;
+                        }}
                       >
                         {t("common.learnMore")}
                         <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
