@@ -1,75 +1,76 @@
 export const nl = {
   // Common
   common: {
-    startProject: "Start Uw Project",
-    startMyProject: "Start Mijn Project",
-    getStarted: "Aan de Slag",
-    sendMessage: "Bericht Versturen",
-    sending: "Versturen...",
-    learnMore: "Meer Leren",
-    readMore: "Lees meer",
-    contactUs: "Contact",
+    startProject: "Start Je Project",
+    startMyProject: "Mijn Project Starten",
+    getStarted: "Begin Nu",
+    sendMessage: "Verstuur Bericht",
+    sending: "Verzenden...",
+    learnMore: "Meer Weten",
+    readMore: "Lees Verder",
+    contactUs: "Contacteer Ons",
     close: "Sluiten",
     next: "Volgende",
     previous: "Vorige",
     loading: "Laden...",
-    success: "Succes!",
+    success: "Gelukt!",
     error: "Fout",
     required: "*",
     company: "Bedrijf",
-    email: "Email",
+    email: "E-mail",
     name: "Naam",
     message: "Bericht",
-    replyTime: "We reageren binnen 24u",
+    replyTime: "We antwoorden binnen 24u",
     language: "Taal",
-    links: "Links",
+    links: "Handige Links",
   },
 
   // Navigation
   navigation: {
     about: "Over Ons",
-    coreValues: "Kernwaarden",
-    capabilities: "Mogelijkheden",
-    caseStudies: "Case Studies",
-    faq: "FAQ",
+    coreValues: "Onze Kernwaarden",
+    capabilities: "Wat We Doen",
+    caseStudies: "Casestudies",
+    faq: "Veelgestelde Vragen",
     contact: "Contact",
   },
 
   // Hero section
   hero: {
     title: {
-      line1: "Repareren. Bouwen.",
-      line2: "Automatiseren.",
-      line3: "Schalen.",
+      line1: "Droom Het.",
+      line2: "Bouw Het.",
+      line3: "Verover Het.",
     },
-    subtitle: "AI-gedreven software die echt werkt — geen hype.",
+    subtitle: "AI-gestuurde software die écht werkt – geen loze beloftes.",
   },
 
   // About section
   about: {
-    title: "Over Pixl",
-    description: "",
+    title: "Over Pixl: Waar Innovatie Sprankelt",
+    description:
+      "We zijn niet zomaar een techbedrijf; we zijn jouw partner in het creëren van intelligente, toekomstbestendige software die echt een verschil maakt. Bij Pixl combineren we geavanceerde AI met een speelse geest om complexe uitdagingen om te zetten in fantastische oplossingen.",
     mainImage: {
-      alt: "Team samenwerking",
+      alt: "Team van briljante geesten die enthousiast samenwerken",
     },
     breakout: {
-      title: "Echte Tools, Geen AI-Ruis",
+      title: "Echte Tools, Geen Onzin",
       description:
-        "We bouwen praktische oplossingen die werken. Geen buzzwords, geen trucs — gewoon intelligente software die echte bedrijfsproblemen oplost.",
+        "Vergeet de modewoordenbingo! Wij maken concrete, praktische oplossingen die gewoon werken. Denk aan intelligente software die je echte zakelijke problemen aanpakt met slimheid en charme, en de gimmicks ver achter zich laat.",
     },
     expertCraftsmanship: {
-      title: "Expert Vakmanschap",
+      title: "Vakmanschap met een Knipoog",
       description:
-        "Elke oplossing wordt handgemaakt door ons team van experts. We combineren diepe technische kennis met zakelijk inzicht om software te leveren die echt het verschil maakt.",
+        "Elke oplossing is een meesterwerk, handgemaakt door ons team van briljante koppen. We combineren diepgaande technische kennis met scherp zakelijk inzicht om software te leveren die niet alleen functioneert, maar transformeert en verrast.",
     },
     achievements: {
-      title: "Onze Impact in Cijfers",
+      title: "Onze Impact: Waar de Cijfers Dansen van Plezier",
       description:
-        "Echte resultaten van echte projecten. Deze statistieken vertegenwoordigen de tastbare waarde die we hebben geleverd aan bedrijven in verschillende industrieën.",
+        "Echte resultaten van echte projecten! Dit zijn geen loze statistieken; het zijn sprekende voorbeelden van de tastbare, geweldige waarde die we hebben gecreëerd voor bedrijven in elke denkbare sector.",
       items: {
         projectsDelivered: "Projecten Opgeleverd",
-        timeSaved: "Tijd Bespaard (Uren)",
-        clientSatisfaction: "Klanttevredenheid",
+        timeSaved: "Uren Plezier Gewonnen",
+        clientSatisfaction: "Klanttevredenheidsscore",
         efficiencyGain: "Gemiddelde Efficiëntiewinst",
       },
     },
@@ -77,221 +78,225 @@ export const nl = {
 
   // Core Values section
   coreValues: {
-    badge: "ONZE KERNWAARDEN",
+    badge: "ONZE GEHEIME SAUS",
     title: "Waarom Kiezen voor Pixl?",
     items: {
       realTools: {
-        title: "Echte Tools, Geen AI-Ruis",
+        title: "Geen Hype, Alleen Oplossingen",
         description:
-          "We bouwen praktische, effectieve oplossingen die werken. Geen buzzwords, geen trucs — gewoon intelligente software die echte bedrijfsproblemen oplost en meetbare resultaten levert.",
+          "We bouwen praktische, effectieve oplossingen die écht werken. Vergeet de eindeloze buzzwords en kortstondige trends – wij leveren intelligente software die je echte zakelijke uitdagingen direct aanpakt en meetbare, glimlach-opwekkende resultaten oplevert.",
       },
       launchFast: {
-        title: "Snel Lanceren",
+        title: "Snel Naar Succes",
         description:
-          "Ons 3-stappen proces zorgt voor snelle levering en waarde. Van audit tot lancering, we bewegen snel zonder kwaliteit te compromitteren, waardoor uw oplossingen snel live en werkend zijn.",
+          "Ons razendsnelle, 3-stappenproces zorgt ervoor dat je snel enorme waarde krijgt! Van de eerste brainstorm tot de grote lancering, we bewegen met agile precisie, waardoor je briljante oplossingen in recordtijd live en sprankelend zijn, zonder ooit in te boeten aan kwaliteit.",
       },
       fullSolution: {
-        title: "Volledige Oplossingslevering",
+        title: "End-to-End Geweldig",
         description:
-          "We kunnen uw project volledig bezitten en leveren, van begin tot eind. Van planning tot deployment tot doorlopende ondersteuning — u krijgt een complete oplossing, niet alleen code.",
+          "Beschouw je project als volledig in handen! We omarmen het hele traject, van briljante initiële planning tot feilloze implementatie en onwrikbare, doorlopende ondersteuning. Je krijgt een complete, krachtige oplossing, niet zomaar een stukje code. We staan voor je klaar!",
       },
     },
   },
 
   // Capabilities section
   capabilities: {
-    title: "Wat We Bouwen",
+    title: "Welke Magie Weven Wij?",
     items: {
       aiChatbots: {
-        title: "AI Chatbots",
+        title: "Slimme Chatbots",
         description:
-          "Intelligente assistenten voor klantenservice en interne workflows.",
+          "Intelligente, vrolijke assistenten die klaarstaan om je klanten te charmeren en je interne workflows te stroomlijnen.",
       },
       smartDashboards: {
-        title: "Slimme Dashboards",
+        title: "Verbluffende Dashboards",
         description:
-          "Real-time inzichten en datavisualisatie voor geïnformeerde beslissingen.",
+          "Kristalheldere, real-time inzichten en levendige datavisualisaties die beslissingen omtoveren tot fijne momenten.",
       },
       workflowAutomation: {
-        title: "Workflow Automatisering",
-        description: "Stroomlijn operaties en elimineer repetitieve taken.",
+        title: "Workflow Wizards",
+        description:
+          "Zwaai saaie taken vaarwel! We automatiseren processen en laten repetitief werk als sneeuw voor de zon verdwijnen.",
       },
       saasProducts: {
-        title: "SaaS Producten",
-        description: "Custom software als service, gebouwd voor uw markt.",
+        title: "SaaS Producten op Maat",
+        description:
+          "Software as a service op maat, van de grond af opgebouwd om jouw specifieke markt te veroveren.",
       },
       patientTools: {
-        title: "Beveiligingsfunctie",
+        title: "Beveiliging van Topniveau",
         description:
-          "Geavanceerde beveiligingstools en authenticatiesystemen voor uw applicaties.",
+          "IJzersterke beveiligingstools en authenticatiesystemen die je applicaties veilig en superbeveiligd houden.",
       },
       businessPortals: {
-        title: "Bedrijfsportalen",
+        title: "Levendige Bedrijfsportalen",
         description:
-          "Gecentraliseerde hubs voor interne teams en externe partners.",
+          "Gecentraliseerde, intuïtieve hubs waar je interne teams en externe partners verbinden, samenwerken en successen boeken.",
       },
       scalableInfrastructure: {
-        title: "Schaalbare Infrastructuur",
-        description: "Robuuste, veilige fundamenten voor uw digitale toekomst.",
+        title: "Toekomstbestendige Infrastructuur",
+        description:
+          "Robuuste, veerkrachtige en groei-klare infrastructuur die jouw digitale toekomst een boost geeft.",
       },
       internalTools: {
-        title: "Interne Tools",
+        title: "Productiviteitsboosters",
         description:
-          "Op maat gemaakte applicaties om teamproductiviteit te verhogen.",
+          "Op maat gemaakte applicaties ontworpen om de efficiëntie van je team te laten exploderen en werk leuk te maken.",
       },
     },
   },
 
   // Case Studies section
   caseStudies: {
-    title: "Case Studies",
+    title: "Onze Eregalerij: Succesverhalen",
     description:
-      "Echte resultaten van echte bedrijven. Zie hoe we bedrijven hebben geholpen hun operaties te transformeren met AI-gedreven oplossingen.",
+      "Ervaar echte transformaties! Ontdek hoe we geweldige bedrijven hebben geholpen hun spel te revolutioneren met onze AI-gestuurde oplossingen. Laat je inspireren!",
     items: {
       logisticsDashboard: {
-        title: "Slim Logistiek Dashboard",
+        title: "Logistiek: Het Super-Slimme Dashboard",
         description:
-          "Real-time supply chain zichtbaarheid die leveringsvertragingen met 60% reduceerde",
+          "Real-time supply chain zichtbaarheid die leveringsvertragingen met maar liefst 60% verminderde – logistiek heeft zojuist een upgrade gekregen!",
         keywords: [
-          "Real-time Tracking",
-          "IoT Integratie",
-          "Voorspellende Analyses",
-          "Route Optimalisatie",
+          "Live Tracking",
+          "IoT Genius",
+          "Voorspellende Analyse",
+          "Route Nirvana",
         ],
         industry: "Logistiek",
       },
       financeAutomation: {
-        title: "Financiële Verwerkingsautomatisering",
+        title: "Financiën: Automatisering die Rijkelijk Betaalt!",
         description:
-          "Geautomatiseerde factuurverwerking bespaart 15 uur per week",
+          "Geautomatiseerde factuurverwerking die op magische wijze 15 uur per week bespaart – want wie houdt er niet van meer vrije tijd?",
         keywords: [
           "OCR Technologie",
-          "Geautomatiseerde Categorisering",
-          "Data Verwerking",
-          "Financiële Integratie",
+          "Geautomatiseerde Categorisatie",
+          "Data Dynamo",
+          "Naadloze Financiële Flow",
         ],
         industry: "Financiën",
       },
     },
     youreNext: {
-      title: "U Bent de Volgende",
+      title: "Klaar om Ons Volgende Succesverhaal te Zijn?",
       description:
-        "Klaar om deel uit te maken van onze succesverhalen? Laten we uw project bespreken en samen de volgende case study creëren.",
-      readyToStart: "Klaar om te Beginnen?",
-      tellUs: "Vertel ons over uw uitdaging en we bouwen de oplossing",
+        "Enthousiast om deel te worden van onze league van buitengewone succesverhalen? Laten we brainstormen over jouw project en samen het volgende epische verhaal creëren!",
+      readyToStart: "Klaar voor de Lancering?",
+      tellUs:
+        "Vertel ons over je uitdaging, en wij bouwen de ultieme oplossing!",
     },
   },
 
   // FAQ section
   faq: {
-    badge: "FAQ",
-    title: "Veelgestelde Vragen & Antwoorden",
+    badge: "JOUW CURIOSITEIT GESTILD",
+    title: "Brandende Vragen? Wij Hebben de Antwoorden!",
     description:
-      "Ons leveringsproces, belangrijke stappen, en hoe we succes meten voor elk project.",
-    getInTouch: "Neem contact op met ons team →",
+      "Benieuwd naar ons innovatieve leveringsproces, de geheime saus achter ons succes, en hoe we plezier (én resultaten!) meten voor elk project? Lees verder!",
+    getInTouch: "Nog steeds vragen? Stuur ons geweldige team een berichtje! →",
     items: {
       howDeliver: {
-        question: "Hoe leveren we uw AI-oplossing?",
+        question: "Hoe brengen we jouw AI-oplossing tot leven?",
         answer:
-          "We volgen een gestroomlijnd 3-stappen proces: Audit uw uitdaging en definieer de visie, Bouw met AI en expert precisie, vervolgens Lever en optimaliseer voor blijvende impact. De meeste projecten lanceren in 4-8 weken met duidelijke mijlpalen doorheen.",
+          "We volgen een super gestroomlijnd, 3-stappen avontuur: Eerst, we analyseren je uitdaging en ontwerpen een oogverblindende visie. Vervolgens bouwen we met geavanceerde AI en expertnauwkeurigheid. Tot slot, we leveren en fine-tunen voor blijvende impact! De meeste projecten lanceren binnen 4-8 weken, met spannende mijlpalen bij elke stap.",
       },
       keySteps: {
-        question: "Wat zijn de belangrijke stappen in ons proces?",
+        question: "Wat is ons geheime recept? (De belangrijkste stappen!)",
         answer:
-          "Stap 1: Audit - We analyseren uw huidige workflow en identificeren kansen. Stap 2: Bouwen - We ontwikkelen aangepaste AI-oplossingen geïntegreerd met uw bestaande systemen. Stap 3: Leveren - We lanceren, trainen uw team en bieden doorlopende optimalisatie.",
+          "Stap 1: Ontdekken. We duiken diep in jouw wereld, analyseren workflows en ontdekken gouden kansen. Stap 2: Creëren. We maken op maat gemaakte AI-oplossingen die perfect aansluiten op je bestaande systemen. Stap 3: Verheffen. We lanceren met een knal, empoweren je team met geweldige training, en blijven optimaliseren voor continue perfectie!",
       },
       measureSuccess: {
-        question: "Hoe meten we succes?",
+        question: "Hoe weten we dat we geslaagd zijn?",
         answer:
-          "We volgen concrete statistieken zoals tijd bespaard, kostenreductie en efficiëntiewinsten. Onze oplossingen leveren typisch 40-80% verbeteringen in doelprocessen. We stellen succescriteria vooraf vast en bieden regelmatige voortgangsrapporten met meetbare resultaten.",
+          "Het draait bij ons om tastbare overwinningen! We zijn geobsedeerd door concrete statistieken zoals gewonnen tijd, kostenreductie en stijgende efficiëntie. Onze oplossingen leveren doorgaans indrukwekkende verbeteringen van 40-80% in de beoogde processen. We stellen vanaf dag één duidelijke succescriteria vast en houden je op de hoogte met fijne voortgangsrapporten vol meetbare resultaten. Succes, gegarandeerd!",
       },
     },
   },
 
   // CTA section
   cta: {
-    title: "Klaar om Iets Geweldigs te Bouwen?",
+    title: "Klaar om Iets Spectaculairs te Creëren?",
     description:
-      "Klaar om uw bedrijf te transformeren? Laten we praten over uw project.",
+      "Wil je jouw bedrijf transformeren in een powerhouse van innovatie? Laten we praten over je wildste projectdromen!",
   },
 
   // Contact section
   contact: {
-    title: "Laten We Praten",
+    title: "Laten We Ideeën Brouwen",
     form: {
-      nameLabel: "Naam",
-      namePlaceholder: "Uw naam",
-      emailLabel: "Email",
-      emailPlaceholder: "uw@email.com",
-      companyLabel: "Bedrijf",
-      companyPlaceholder: "Uw bedrijfsnaam",
-      messageLabel: "Bericht",
-      messagePlaceholder: "Vertel ons over uw project...",
+      nameLabel: "Jouw Naam",
+      namePlaceholder: "Vertel ons wie je bent!",
+      emailLabel: "Jouw E-mail",
+      emailPlaceholder: "jouw.briljante@email.com",
+      companyLabel: "Jouw Bedrijf (Optioneel, maar cool!)",
+      companyPlaceholder: "De naam van je geweldige bedrijf",
+      messageLabel: "Jouw Bericht",
+      messagePlaceholder: "Beschrijf hier jouw projectvisie...",
     },
     success: {
-      title: "Bericht Verzonden!",
+      title: "Bericht Verzonden! Hoera!",
       description:
-        "Bedankt voor het contact. We nemen binnen 24 uur contact met u op.",
+        "Bedankt voor je bericht! Ons team bruist al van enthousiasme. We nemen binnen 24 uur contact met je op – bereid je voor op goed nieuws!",
     },
   },
 
   // Footer
   footer: {
     companyInfo: {
-      name: "Pixl SRL",
+      name: "Pixl SRL: Jouw Toekomst Innoveren",
       vatNumber: "BTW: BE 0805.449.693",
-      email: "contact@pixldev.be",
+      email: "hallo@pixldev.be",
       phone: "+32 488 20 35 67",
     },
-    copyright: "Alle rechten voorbehouden.",
+    copyright: "Alle rechten voorbehouden. Gemaakt met Pixl magie.",
     socialLinks: {
-      linkedinLabel: "LinkedIn",
-      twitterLabel: "Twitter",
+      linkedinLabel: "Connecteer op LinkedIn",
+      twitterLabel: "Volg Onze Tweets",
     },
   },
 
   // Error pages
   error: {
     serverError: {
-      title: "Serverfout",
+      title: "Oeps! Serverhikje!",
       description:
-        "Er is iets misgegaan aan onze kant. Onze AI werkt al aan een oplossing!",
+        "Het lijkt erop dat onze server een kleine valpartij heeft gehad. Maar geen paniek, onze AI is al bezig met het oplossen van de bugs!",
       explanation:
-        "We zijn op de hoogte gebracht van dit probleem en ons team onderzoekt het. Ondertussen kunt u proberen de pagina te vernieuwen of terug te keren naar onze homepage.",
-      tryAgain: "Opnieuw Proberen",
-      backToHome: "Terug naar Home",
+        "We zijn op de hoogte gebracht van dit kleine probleem, en ons super-slimme team is er als de kippen bij. Ondertussen kun je proberen de pagina te verversen, of gewoon teruggaan naar onze homepage voor meer geweldigheid.",
+      tryAgain: "Probeer Opnieuw!",
+      backToHome: "Terug naar Pixl HQ",
       supportText:
-        "Als dit probleem aanhoudt, neem dan contact op met ons supportteam:",
-      developmentTitle: "Foutdetails (Ontwikkeling)",
+        "Als dit lastige probleem blijft aanhouden, neem dan contact op met ons supportteam:",
+      developmentTitle: "Foutdetails (Voor Onze Tech Wizards)",
       errorId: "Fout ID:",
     },
     notFound: {
       title: "Pagina Niet Gevonden",
       description:
-        "Oeps! De pagina die u zoekt lijkt verdwaald te zijn in de digitale leegte.",
+        "Oeps! De pagina die je zoekt lijkt te zijn afgedwaald naar de digitale leegte.",
       explanation:
-        "Maak u geen zorgen - zelfs onze AI kan niet elke klik voorspellen. Laten we u terug op het juiste spoor zetten met intelligente navigatie.",
-      backToHome: "Terug naar Home",
-      goBack: "Ga Terug",
+        "Maar maak je geen zorgen – zelfs onze briljante AI kan niet elke klik voorspellen. Laten we je weer op het juiste spoor krijgen met slimme navigatie – geen kosmische omwegen deze keer!",
+      backToHome: "Terug naar Start",
+      goBack: "Terug",
       helpfulLinksText:
-        "Zoekt u iets specifieks? Probeer deze populaire pagina's:",
+        "Op zoek naar iets specifieks? Probeer deze populaire pagina's:",
       links: {
-        about: "Over Ons",
-        caseStudies: "Case Studies",
-        contact: "Contact",
+        about: "Ontdek Pixl",
+        caseStudies: "Onze Epische Successen",
+        contact: "Zeg Hallo",
       },
     },
   },
 
   // Language switcher
   languageSwitcher: {
-    selectLanguage: "Selecteer Taal",
+    selectLanguage: "Kies Je Taalavontuur",
   },
 
   // Navigation sheet
   navigationSheet: {
-    signIn: "Inloggen",
-    getStarted: "Aan de Slag",
+    signIn: "Log In voor het Plezier",
+    getStarted: "Start Je Avontuur",
   },
 };
 

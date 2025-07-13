@@ -19,7 +19,6 @@ export interface CaseStudyItem {
   description: string;
   keywords: string[];
   industry: string;
-  technologies: string[];
   image: string;
 }
 
@@ -35,7 +34,6 @@ const caseStudiesData: CaseStudyItem[] = [
       "Route Optimization",
     ],
     industry: "caseStudies.items.logisticsDashboard.industry",
-    technologies: ["React", "Python", "MongoDB", "IoT Integration"],
     image:
       "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=600&fit=crop",
   },
@@ -50,7 +48,6 @@ const caseStudiesData: CaseStudyItem[] = [
       "Financial Integration",
     ],
     industry: "caseStudies.items.financeAutomation.industry",
-    technologies: ["OCR APIs", "Next.js", "TypeScript", "PostgreSQL"],
     image:
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
   },
@@ -196,22 +193,6 @@ const CaseStudies = ({
                               </span>
                             )
                           )}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">
-                          Technologies
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {item.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="bg-muted text-muted-foreground px-2 py-1 rounded text-xs font-medium border border-border"
-                            >
-                              {tech}
-                            </span>
-                          ))}
                         </div>
                       </div>
 

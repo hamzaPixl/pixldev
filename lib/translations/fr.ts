@@ -1,14 +1,14 @@
 export const fr = {
   // Common
   common: {
-    startProject: "Démarrer Votre Projet",
-    startMyProject: "Démarrer Mon Projet",
-    getStarted: "Commencer",
+    startProject: "Lancez Votre Projet",
+    startMyProject: "Démarrons Mon Projet",
+    getStarted: "C'est Parti !",
     sendMessage: "Envoyer le Message",
     sending: "Envoi en cours...",
     learnMore: "En Savoir Plus",
-    readMore: "Lire la suite",
-    contactUs: "Contact",
+    readMore: "Lire la Suite",
+    contactUs: "Nous Contacter",
     close: "Fermer",
     next: "Suivant",
     previous: "Précédent",
@@ -22,14 +22,14 @@ export const fr = {
     message: "Message",
     replyTime: "Nous répondons sous 24h",
     language: "Langue",
-    links: "Liens",
+    links: "Liens Utiles",
   },
 
   // Navigation
   navigation: {
     about: "À Propos",
-    coreValues: "Valeurs Fondamentales",
-    capabilities: "Capacités",
+    coreValues: "Nos Valeurs",
+    capabilities: "Nos Services",
     caseStudies: "Études de Cas",
     faq: "FAQ",
     contact: "Contact",
@@ -38,40 +38,41 @@ export const fr = {
   // Hero section
   hero: {
     title: {
-      line1: "Réparer. Construire.",
-      line2: "Automatiser.",
-      line3: "Évoluer.",
+      line1: "Imaginez.",
+      line2: "Créez.",
+      line3: "Réalisez.",
     },
     subtitle:
-      "Logiciels alimentés par l'IA, vraiment réels — pas de battage médiatique.",
+      "Des logiciels basés sur l'IA, concrets et efficaces — pas juste du vent.",
   },
 
   // About section
   about: {
-    title: "À Propos de Pixl",
-    description: "",
+    title: "À Propos de Pixl : L'Innovation à l'État Pur",
+    description:
+      "Nous ne sommes pas juste une entreprise technologique ; nous sommes vos partenaires pour créer des logiciels intelligents et durables qui font une réelle différence. Chez Pixl, nous combinons l'IA de pointe avec un esprit créatif pour transformer les défis complexes en solutions agréables.",
     mainImage: {
-      alt: "Collaboration d'équipe",
+      alt: "Équipe de brillants esprits collaborant avec enthousiasme",
     },
     breakout: {
-      title: "De Vrais Outils, Pas de Bruit IA",
+      title: "Des Outils Concrets, Sans Blabla",
       description:
-        "Nous construisons des solutions pratiques qui fonctionnent. Pas de mots à la mode, pas d'artifices — juste des logiciels intelligents qui résolvent de vrais problèmes d'entreprise.",
+        "Oubliez les mots à la mode ! Nous concevons des solutions pratiques et efficaces qui fonctionnent, tout simplement. Imaginez des logiciels intelligents qui résolvent vos problèmes commerciaux réels avec ingéniosité et une touche de charme, laissant les gadgets loin derrière.",
     },
     expertCraftsmanship: {
-      title: "Artisanat Expert",
+      title: "Un Savoir-Faire d'Expert (avec le Sourire)",
       description:
-        "Chaque solution est façonnée à la main par notre équipe d'experts. Nous combinons des connaissances techniques approfondies avec un sens des affaires pour livrer des logiciels qui font vraiment la différence.",
+        "Chaque solution est une œuvre d'art, façonnée à la main par notre équipe de brillants esprits. Nous associons une connaissance technique approfondie à un sens aigu des affaires pour livrer des logiciels qui ne se contentent pas de fonctionner, ils transforment et enchantent.",
     },
     achievements: {
-      title: "Notre Impact en Chiffres",
+      title: "Notre Impact : Quand les Chiffres Dansent de Joie",
       description:
-        "Des résultats réels issus de projets réels. Ces métriques représentent la valeur tangible que nous avons apportée aux entreprises de diverses industries.",
+        "De vrais résultats issus de vrais projets ! Ce ne sont pas que des statistiques ; ce sont des exemples éclatants de la valeur concrète et impressionnante que nous avons apportée aux entreprises de tous les secteurs imaginables.",
       items: {
-        projectsDelivered: "Projets Livrés",
-        timeSaved: "Temps Économisé (Heures)",
+        projectsDelivered: "Projets Réalisés",
+        timeSaved: "Heures de Plaisir Gagnées",
         clientSatisfaction: "Satisfaction Client",
-        efficiencyGain: "Gain d'Efficacité Moyen",
+        efficiencyGain: "Gain d'Efficacité (Moy.)",
       },
     },
   },
@@ -82,220 +83,221 @@ export const fr = {
     title: "Pourquoi Choisir Pixl ?",
     items: {
       realTools: {
-        title: "De Vrais Outils, Pas de Bruit IA",
+        title: "Pas de Bla-bla, Juste des Solutions",
         description:
-          "Nous construisons des solutions pratiques et efficaces qui fonctionnent. Pas de mots à la mode, pas d'artifices — juste des logiciels intelligents qui résolvent de vrais problèmes d'entreprise et livrent des résultats mesurables.",
+          "Nous nous engageons à construire des solutions pratiques et efficaces qui fonctionnent vraiment. Oubliez les mots à la mode et les tendances passagères – nous livrons des logiciels intelligents qui s'attaquent de front à vos défis commerciaux réels, apportant des résultats mesurables et qui donnent le sourire.",
       },
       launchFast: {
-        title: "Lancement Rapide",
+        title: "Lancez Rapidement",
         description:
-          "Notre processus en 3 étapes assure une livraison rapide et de la valeur. De l'audit au lancement, nous agissons rapidement sans compromettre la qualité, mettant vos solutions en ligne et opérationnelles rapidement.",
+          "Notre processus ultra-rapide en 3 étapes vous assure une valeur ajoutée massive, et ce, sans attendre ! De la première idée au grand lancement, nous avançons avec une précision agile, mettant vos solutions brillantes en ligne et en action en un temps record, sans jamais compromettre la qualité.",
       },
       fullSolution: {
-        title: "Livraison de Solution Complète",
+        title: "Solution Complète Clé en Main",
         description:
-          "Nous pouvons posséder et livrer entièrement votre projet, de bout en bout. De la planification au déploiement au support continu — vous obtenez une solution complète, pas seulement du code.",
+          "Considérez votre projet entièrement pris en charge ! Nous embrassons l'ensemble du parcours, de la planification initiale brillante au déploiement impeccable et à un support continu et inébranlable. Vous obtenez une solution complète et puissante, pas seulement un extrait de code. Nous sommes là pour vous !",
       },
     },
   },
 
   // Capabilities section
   capabilities: {
-    title: "Ce Que Nous Construisons",
+    title: "Ce Que Nous Créons",
     items: {
       aiChatbots: {
-        title: "Chatbots IA",
+        title: "Chatbots Intelligents",
         description:
-          "Assistants intelligents pour le support client et les flux de travail internes.",
+          "Des assistants intelligents et astucieux, prêts à charmer vos clients et à optimiser vos processus internes.",
       },
       smartDashboards: {
-        title: "Tableaux de Bord Intelligents",
+        title: "Tableaux de Bord Intuitifs",
         description:
-          "Insights en temps réel et visualisation de données pour des décisions éclairées.",
+          "Des aperçus clairs en temps réel et des visualisations de données éclatantes qui transforment les décisions en moments agréables.",
       },
       workflowAutomation: {
-        title: "Automatisation des Flux de Travail",
+        title: "Automatisation des Flux",
         description:
-          "Rationaliser les opérations et éliminer les tâches répétitives.",
+          "Dites adieu aux tâches ennuyeuses ! Nous automatisons les opérations et faisons disparaître le travail répétitif.",
       },
       saasProducts: {
-        title: "Produits SaaS",
+        title: "Produits SaaS Sur Mesure",
         description:
-          "Logiciels personnalisés en tant que service, construits pour votre marché.",
+          "Des logiciels en tant que service personnalisés, conçus de A à Z pour conquérir votre marché spécifique.",
       },
       patientTools: {
-        title: "Fonctionnalité de Sécurité",
+        title: "Sécurité Renforcée",
         description:
-          "Outils de sécurité avancés et systèmes d'authentification pour vos applications.",
+          "Des outils de sécurité robustes et des systèmes d'authentification qui protègent vos applications, en toute sérénité.",
       },
       businessPortals: {
-        title: "Portails d'Entreprise",
+        title: "Portails d'Entreprise Dynamiques",
         description:
-          "Centres centralisés pour les équipes internes et les partenaires externes.",
+          "Des plateformes centralisées et intuitives où vos équipes internes et partenaires externes se connectent, collaborent et réussissent.",
       },
       scalableInfrastructure: {
         title: "Infrastructure Évolutive",
         description:
-          "Fondations robustes et sécurisées pour votre avenir numérique.",
+          "Des fondations robustes, sécurisées et prêtes à croître qui propulsent votre avenir numérique.",
       },
       internalTools: {
-        title: "Outils Internes",
+        title: "Outils Internes sur Mesure",
         description:
-          "Applications sur mesure pour stimuler la productivité de l'équipe.",
+          "Des applications conçues spécifiquement pour augmenter la productivité de votre équipe et rendre le travail plus ludique.",
       },
     },
   },
 
   // Case Studies section
   caseStudies: {
-    title: "Études de Cas",
+    title: "Nos Réussites : Les Études de Cas",
     description:
-      "Des résultats réels d'entreprises réelles. Découvrez comment nous avons aidé les entreprises à transformer leurs opérations avec des solutions alimentées par l'IA.",
+      "Soyez témoin de vraies transformations ! Découvrez comment nous avons aidé des entreprises exceptionnelles à révolutionner leur activité grâce à nos solutions basées sur l'IA. Laissez-vous inspirer !",
     items: {
       logisticsDashboard: {
-        title: "Tableau de Bord Logistique Intelligent",
+        title: "Logistique : Le Tableau de Bord Ultra-Intelligent",
         description:
-          "Visibilité de la chaîne d'approvisionnement en temps réel qui a réduit les retards de livraison de 60%",
+          "Une visibilité en temps réel de la chaîne d'approvisionnement qui a réduit les retards de livraison de 60 % – la logistique vient d'être améliorée !",
         keywords: [
-          "Suivi Temps Réel",
+          "Suivi en Temps Réel",
           "Intégration IoT",
-          "Analyses Prédictives",
-          "Optimisation Routes",
+          "Analyse Prédictive",
+          "Optimisation d'Itinéraire",
         ],
         industry: "Logistique",
       },
       financeAutomation: {
-        title: "Automatisation du Traitement Financier",
+        title: "Finance : L'Automatisation Qui Rapporte (Énormément !)",
         description:
-          "Traitement automatisé des factures économisant 15 heures par semaine",
+          "Automatisation du traitement des factures, économisant 15 heures par semaine – car qui n'aime pas avoir plus de temps libre ?",
         keywords: [
           "Technologie OCR",
           "Catégorisation Automatisée",
-          "Traitement Données",
+          "Traitement de Données",
           "Intégration Financière",
         ],
         industry: "Finance",
       },
     },
     youreNext: {
-      title: "Vous Êtes le Prochain",
+      title: "Prêt(e) à Être Notre Prochaine Success Story ?",
       description:
-        "Prêt à rejoindre nos histoires de succès ? Discutons de votre projet et créons ensemble la prochaine étude de cas.",
-      readyToStart: "Prêt à Commencer ?",
-      tellUs: "Parlez-nous de votre défi et nous construirons la solution",
+        "Envie de rejoindre notre ligue de réussites extraordinaires ? Discutons de votre projet et créons ensemble la prochaine histoire épique !",
+      readyToStart: "Prêt à Démarrer ?",
+      tellUs:
+        "Racontez-nous votre défi, et nous construirons la solution ultime !",
     },
   },
 
   // FAQ section
   faq: {
-    badge: "FAQ",
-    title: "Questions et Réponses Communes",
+    badge: "VOS QUESTIONS, NOS RÉPONSES",
+    title: "Questions Fréquentes et Réponses",
     description:
-      "Notre processus de livraison, les étapes clés, et comment nous mesurons le succès pour chaque projet.",
-    getInTouch: "Contactez notre équipe →",
+      "Curieux de notre processus de livraison innovant, du secret de notre succès, et de la façon dont nous mesurons la joie (et les résultats !) pour chaque projet ? Lisez la suite !",
+    getInTouch: "Toujours des questions ? Contactez notre super équipe ! →",
     items: {
       howDeliver: {
         question: "Comment livrons-nous votre solution IA ?",
         answer:
-          "Nous suivons un processus rationalisé en 3 étapes : Auditer votre défi et définir la vision, Construire avec l'IA et la précision d'expert, puis Livrer et optimiser pour un impact durable. La plupart des projets sont lancés en 4-8 semaines avec des jalons clairs tout au long.",
+          "Nous suivons une aventure super simplifiée en 3 étapes : D'abord, nous auditons votre défi et élaborons une vision éblouissante. Ensuite, nous construisons avec une IA de pointe et une précision experte. Enfin, nous livrons et ajustons pour un impact durable ! La plupart des projets sont lancés en 4 à 8 semaines, avec des étapes clés passionnantes à chaque tournant.",
       },
       keySteps: {
         question: "Quelles sont les étapes clés de notre processus ?",
         answer:
-          "Étape 1 : Audit - Nous analysons votre flux de travail actuel et identifions les opportunités. Étape 2 : Construction - Nous développons des solutions IA personnalisées intégrées à vos systèmes existants. Étape 3 : Livraison - Nous lançons, formons votre équipe et fournissons une optimisation continue.",
+          "Étape 1 : Audit - Nous analysons votre flux de travail actuel et identifions les opportunités. Étape 2 : Construction - Nous développons des solutions IA personnalisées intégrées à vos systèmes existants. Étape 3 : Livraison - Nous lançons, formons votre équipe et assurons une optimisation continue.",
       },
       measureSuccess: {
         question: "Comment mesurons-nous le succès ?",
         answer:
-          "Nous suivons des métriques concrètes comme le temps économisé, la réduction des coûts et les gains d'efficacité. Nos solutions livrent typiquement 40-80% d'améliorations dans les processus ciblés. Nous établissons des critères de succès dès le départ et fournissons des rapports de progrès réguliers avec des résultats mesurables.",
+          "Nous nous concentrons sur des indicateurs concrets comme le temps gagné, la réduction des coûts et les gains d'efficacité. Nos solutions apportent généralement des améliorations impressionnantes de 40 à 80 % dans les processus ciblés. Nous définissons les critères de succès dès le départ et vous fournissons des rapports d'avancement réguliers avec des résultats mesurables. Succès garanti !",
       },
     },
   },
 
   // CTA section
   cta: {
-    title: "Prêt à Construire Quelque Chose d'Incroyable ?",
+    title: "Prêt(e) à Créer Quelque Chose d'Époustouflant ?",
     description:
-      "Prêt à transformer votre entreprise ? Parlons de votre projet.",
+      "Envie de transformer votre entreprise en une puissance d'innovation ? Discutons de vos rêves de projet les plus fous !",
   },
 
   // Contact section
   contact: {
-    title: "Parlons",
+    title: "Parlons de Votre Projet",
     form: {
-      nameLabel: "Nom",
-      namePlaceholder: "Votre nom",
-      emailLabel: "Email",
-      emailPlaceholder: "votre@email.com",
-      companyLabel: "Entreprise",
-      companyPlaceholder: "Nom de votre entreprise",
-      messageLabel: "Message",
-      messagePlaceholder: "Parlez-nous de votre projet...",
+      nameLabel: "Votre Nom",
+      namePlaceholder: "Dites-nous qui vous êtes !",
+      emailLabel: "Votre Email",
+      emailPlaceholder: "votre.email@example.com",
+      companyLabel: "Votre Entreprise (Optionnel, mais cool !)",
+      companyPlaceholder: "Le nom de votre entreprise géniale",
+      messageLabel: "Votre Message",
+      messagePlaceholder: "Décrivez votre vision de projet ici...",
     },
     success: {
-      title: "Message Envoyé !",
+      title: "Message Envoyé ! Génial !",
       description:
-        "Merci de nous avoir contactés. Nous vous répondrons sous 24 heures.",
+        "Merci de nous avoir contactés ! Notre équipe est déjà pleine d'enthousiasme. Nous vous recontacterons sous 24 heures – préparez-vous à de bonnes nouvelles !",
     },
   },
 
   // Footer
   footer: {
     companyInfo: {
-      name: "Pixl SRL",
+      name: "Pixl SRL : Innover Votre Futur",
       vatNumber: "TVA : BE 0805.449.693",
-      email: "contact@pixldev.be",
+      email: "hello@pixldev.be",
       phone: "+32 488 20 35 67",
     },
-    copyright: "Tous droits réservés.",
+    copyright: "Tous droits réservés. Créé avec la magie de Pixl.",
     socialLinks: {
-      linkedinLabel: "LinkedIn",
-      twitterLabel: "Twitter",
+      linkedinLabel: "Connectez-vous sur LinkedIn",
+      twitterLabel: "Suivez-nous sur Twitter",
     },
   },
 
   // Error pages
   error: {
     serverError: {
-      title: "Erreur Serveur",
+      title: "Oups ! Problème Serveur !",
       description:
-        "Quelque chose s'est mal passé de notre côté. Notre IA travaille déjà sur une correction !",
+        "On dirait que notre serveur a fait une petite chute. Mais ne vous inquiétez pas, notre IA est déjà sur le coup pour résoudre ça !",
       explanation:
-        "Nous avons été notifiés de ce problème et notre équipe enquête. En attendant, vous pouvez essayer de rafraîchir la page ou retourner à notre page d'accueil.",
-      tryAgain: "Réessayer",
-      backToHome: "Retour à l'Accueil",
+        "Nous avons été informés de ce petit pépin, et notre équipe super intelligente est dessus. En attendant, un rafraîchissement rapide pourrait faire l'affaire, ou revenez simplement à notre page d'accueil pour plus d'incroyables choses.",
+      tryAgain: "Réessayez !",
+      backToHome: "Retour à la Page d'Accueil Pixl",
       supportText:
-        "Si ce problème persiste, veuillez contacter notre équipe de support :",
-      developmentTitle: "Détails de l'Erreur (Développement)",
-      errorId: "ID d'Erreur :",
+        "Si ce problème persistant vous ennuie, n'hésitez pas à contacter notre équipe de support :",
+      developmentTitle: "Détails de l'Erreur (Pour Nos Magiciens Tech)",
+      errorId: "ID de l'Erreur :",
     },
     notFound: {
-      title: "Page Non Trouvée",
+      title: "Page Introuvable",
       description:
-        "Oups ! La page que vous cherchez semble s'être égarée dans le vide numérique.",
+        "Oh là là ! La page que vous cherchez semble s'être égarée dans le vide numérique.",
       explanation:
-        "Ne vous inquiétez pas - même notre IA ne peut pas prédire chaque clic. Remettons-vous sur la bonne voie avec une navigation intelligente.",
-      backToHome: "Retour à l'Accueil",
+        "Mais pas d'inquiétude ! Même notre brillante IA ne peut pas prédire chaque clic. Laissez-nous vous remettre sur la bonne voie avec une navigation intelligente – pas de détours cosmiques cette fois !",
+      backToHome: "Retour à la Page d'Accueil",
       goBack: "Retour",
       helpfulLinksText:
         "Vous cherchez quelque chose de spécifique ? Essayez ces pages populaires :",
       links: {
-        about: "À Propos",
-        caseStudies: "Études de Cas",
-        contact: "Contact",
+        about: "Découvrir Pixl",
+        caseStudies: "Nos Victoires Épiques",
+        contact: "Dites Bonjour",
       },
     },
   },
 
   // Language switcher
   languageSwitcher: {
-    selectLanguage: "Sélectionner la Langue",
+    selectLanguage: "Choisissez Votre Langue",
   },
 
   // Navigation sheet
   navigationSheet: {
-    signIn: "Se Connecter",
-    getStarted: "Commencer",
+    signIn: "Connectez-vous à l'Amusant",
+    getStarted: "Commencez Votre Aventure",
   },
 };
 
