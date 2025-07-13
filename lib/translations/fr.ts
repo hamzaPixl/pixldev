@@ -39,6 +39,7 @@ export const fr = {
     blogTitle: "Notre Blog",
     blogSubtitle:
       "Insights, tutoriels et réflexions sur le développement web moderne et la technologie.",
+    settings: "Paramètres",
   },
 
   // Navigation
@@ -311,6 +312,7 @@ export const fr = {
 
   // Navigation sheet
   navigationSheet: {
+    title: "Menu de navigation",
     signIn: "Connectez-vous à l'Amusant",
     getStarted: "Commencez Votre Aventure",
   },

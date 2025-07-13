@@ -20,20 +20,23 @@ const Navbar = () => {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
-          <LanguageSwitcher variant="icon" />
-          <ThemeToggle />
-          <Button
-            variant="outline"
-            className="hidden xs:inline-flex border-pixl-teal/40 text-pixl-teal bg-pixl-teal/5 hover:bg-pixl-teal/15 hover:border-pixl-teal/60 hover:text-black dark:hover:text-white rounded-full"
-            onClick={() => {
-              const contactSection = document.getElementById("contact");
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            {t("common.contactUs")}
-          </Button>
+          {/* Desktop Only Items */}
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher variant="icon" />
+            <ThemeToggle />
+            <Button
+              variant="outline"
+              className="border-pixl-teal/40 text-pixl-teal bg-pixl-teal/5 hover:bg-pixl-teal/15 hover:border-pixl-teal/60 hover:text-black dark:hover:text-white rounded-full"
+              onClick={() => {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
+              {t("common.contactUs")}
+            </Button>
+          </div>
 
           {/* Mobile Menu */}
           <div className="md:hidden">

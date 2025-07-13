@@ -38,6 +38,7 @@ export const en = {
     blogTitle: "Our Blog",
     blogSubtitle:
       "Insights, tutorials, and thoughts on modern web development and technology.",
+    settings: "Settings",
   },
 
   // Navigation
@@ -310,6 +311,7 @@ export const en = {
 
   // Navigation sheet
   navigationSheet: {
+    title: "Navigation Menu",
     signIn: "Log In to the Fun",
     getStarted: "Start Your Adventure",
   },
