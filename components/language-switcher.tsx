@@ -1,38 +1,38 @@
-'use client';
+"use client";
 
-import { useLanguage } from '@/lib/language-context';
-import { Button } from '@/components/ui/button';
+import { useLanguage } from "@/lib/language-context";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Globe } from 'lucide-react';
+} from "@/components/ui/dropdown-menu";
+import { Globe } from "lucide-react";
 
 const languageConfig = {
   en: {
-    name: 'English',
-    flag: '🇺🇸',
+    name: "English",
+    flag: "🇺🇸",
   },
   fr: {
-    name: 'Français', 
-    flag: '🇫🇷',
+    name: "Français",
+    flag: "🇫🇷",
   },
   nl: {
-    name: 'Nederlands',
-    flag: '🇳🇱',
+    name: "Nederlands",
+    flag: "🇳🇱",
   },
 };
 
 interface LanguageSwitcherProps {
-  variant?: 'icon' | 'full';
+  variant?: "icon" | "full";
 }
 
-export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
-  const { currentLanguage, setLanguage, supportedLanguages } = useLanguage();
+export function LanguageSwitcher({ variant = "full" }: LanguageSwitcherProps) {
+  const { currentLanguage, setLanguage, supportedLanguages, t } = useLanguage();
 
-  if (variant === 'icon') {
+  if (variant === "icon") {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -40,7 +40,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
             variant="ghost"
             size="sm"
             className="h-8 w-8 p-0 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-colors rounded-full"
-            title="Select Language"
+            title={t("languageSwitcher.selectLanguage")}
           >
             <Globe className="h-4 w-4" />
           </Button>
@@ -51,7 +51,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
               key={lang}
               onClick={() => setLanguage(lang)}
               className={`flex items-center gap-2 hover:!bg-pixl-teal/10 hover:!text-pixl-teal focus:!bg-pixl-teal/10 focus:!text-pixl-teal transition-colors ${
-                currentLanguage === lang ? 'bg-pixl-teal/20 text-pixl-teal' : ''
+                currentLanguage === lang ? "bg-pixl-teal/20 text-pixl-teal" : ""
               }`}
             >
               <span className="text-sm">{languageConfig[lang].flag}</span>
@@ -66,7 +66,11 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 px-3 text-xs border-border/50 hover:border-pixl-teal/50 hover:text-pixl-teal hover:bg-pixl-teal/10 transition-colors rounded-full">
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-8 px-3 text-xs border-border/50 hover:border-pixl-teal/50 hover:text-pixl-teal hover:bg-pixl-teal/10 transition-colors rounded-full"
+        >
           <Globe className="mr-2 h-3 w-3" />
           <span className="mr-1">{languageConfig[currentLanguage].flag}</span>
           {languageConfig[currentLanguage].name}
@@ -78,7 +82,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
             key={lang}
             onClick={() => setLanguage(lang)}
             className={`flex items-center gap-2 hover:!bg-pixl-teal/10 hover:!text-pixl-teal focus:!bg-pixl-teal/10 focus:!text-pixl-teal transition-colors ${
-              currentLanguage === lang ? 'bg-pixl-teal/20 text-pixl-teal' : ''
+              currentLanguage === lang ? "bg-pixl-teal/20 text-pixl-teal" : ""
             }`}
           >
             <span className="text-sm">{languageConfig[lang].flag}</span>
