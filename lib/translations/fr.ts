@@ -268,7 +268,6 @@ export const fr = {
     copyright: "Tous droits réservés.",
     socialLinks: {
       linkedinLabel: "Connectez-vous sur LinkedIn",
-      twitterLabel: "Suivez-nous sur Twitter",
     },
   },
 

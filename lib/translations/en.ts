@@ -267,7 +267,6 @@ export const en = {
     copyright: "All rights reserved. Crafted with Pixl magic.",
     socialLinks: {
       linkedinLabel: "Connect on LinkedIn",
-      twitterLabel: "Follow Our Tweets",
     },
   },
 

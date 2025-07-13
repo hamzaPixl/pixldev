@@ -266,7 +266,6 @@ export const nl = {
     copyright: "Alle rechten voorbehouden. Gemaakt met Pixl magie.",
     socialLinks: {
       linkedinLabel: "Connecteer op LinkedIn",
-      twitterLabel: "Volg Onze Tweets",
     },
   },
 
