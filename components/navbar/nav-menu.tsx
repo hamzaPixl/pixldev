@@ -12,22 +12,44 @@ export const NavMenu = (props: NavigationMenuProps) => (
     <NavigationMenuList className="gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#features">Features</Link>
+          <Link href="#core-values" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            Core Values
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#pricing">Pricing</Link>
+          <Link href="#about" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            About
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#faq">FAQ</Link>
+          <Link href="#capabilities" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            Capabilities
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#testimonials">Testimonials</Link>
+          <Link href="#case-studies" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            Case Studies
+          </Link>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuLink asChild>
+          <Link href="#faq" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            FAQ
+          </Link>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuLink asChild>
+          <Link href="#contact" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            Contact
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

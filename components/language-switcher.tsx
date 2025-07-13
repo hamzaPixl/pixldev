@@ -39,7 +39,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0"
+            className="h-8 w-8 p-0 hover:bg-pixl-teal/10 hover:text-pixl-teal transition-colors"
             title="Select Language"
           >
             <Globe className="h-4 w-4" />
@@ -50,8 +50,8 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
             <DropdownMenuItem
               key={lang}
               onClick={() => setLanguage(lang)}
-              className={`flex items-center gap-2 ${
-                currentLanguage === lang ? 'bg-accent' : ''
+              className={`flex items-center gap-2 hover:!bg-pixl-teal/10 hover:!text-pixl-teal focus:!bg-pixl-teal/10 focus:!text-pixl-teal transition-colors ${
+                currentLanguage === lang ? 'bg-pixl-teal/20 text-pixl-teal' : ''
               }`}
             >
               <span className="text-sm">{languageConfig[lang].flag}</span>
@@ -66,7 +66,7 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 px-3 text-xs">
+        <Button variant="outline" size="sm" className="h-8 px-3 text-xs border-border/50 hover:border-pixl-teal/50 hover:text-pixl-teal hover:bg-pixl-teal/10 transition-colors">
           <Globe className="mr-2 h-3 w-3" />
           <span className="mr-1">{languageConfig[currentLanguage].flag}</span>
           {languageConfig[currentLanguage].name}
@@ -77,8 +77,8 @@ export function LanguageSwitcher({ variant = 'full' }: LanguageSwitcherProps) {
           <DropdownMenuItem
             key={lang}
             onClick={() => setLanguage(lang)}
-            className={`flex items-center gap-2 ${
-              currentLanguage === lang ? 'bg-accent' : ''
+            className={`flex items-center gap-2 hover:!bg-pixl-teal/10 hover:!text-pixl-teal focus:!bg-pixl-teal/10 focus:!text-pixl-teal transition-colors ${
+              currentLanguage === lang ? 'bg-pixl-teal/20 text-pixl-teal' : ''
             }`}
           >
             <span className="text-sm">{languageConfig[lang].flag}</span>
