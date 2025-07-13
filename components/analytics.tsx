@@ -1,16 +1,35 @@
-'use client';
+"use client";
 
-import Script from 'next/script';
-import { analyticsConfig } from '@/lib/analytics';
+import Script from "next/script";
+import { analyticsConfig, checkAnalyticsConfig } from "@/lib/analytics";
+import { useEffect } from "react";
 
 export const GoogleAnalytics = () => {
-  if (!analyticsConfig.googleAnalyticsId) return null;
+  useEffect(() => {
+    // Debug analytics configuration in development
+    if (process.env.NODE_ENV === "development") {
+      checkAnalyticsConfig();
+    }
+  }, []);
+
+  if (!analyticsConfig.googleAnalyticsId) {
+    console.warn(
+      "Google Analytics ID not configured. Set NEXT_PUBLIC_GA_ID environment variable."
+    );
+    return null;
+  }
 
   return (
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.googleAnalyticsId}`}
         strategy="afterInteractive"
+        onLoad={() => {
+          console.log("Google Analytics script loaded successfully");
+        }}
+        onError={(e) => {
+          console.error("Failed to load Google Analytics script:", e);
+        }}
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
@@ -20,6 +39,7 @@ export const GoogleAnalytics = () => {
           gtag('config', '${analyticsConfig.googleAnalyticsId}', {
             page_path: window.location.pathname,
           });
+          console.log('Google Analytics configured with ID: ${analyticsConfig.googleAnalyticsId}');
         `}
       </Script>
     </>

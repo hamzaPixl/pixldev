@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Send, Clock } from "lucide-react";
 import React, { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
+import { trackContactFormSubmit, trackEvent } from "@/lib/analytics";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -43,6 +44,13 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        // Track successful form submission
+        trackContactFormSubmit();
+        trackEvent("contact_form_success", {
+          form_name: "contact",
+          form_location: "main_contact_section",
+        });
+
         setIsSubmitting(false);
         setIsSubmitted(true);
 
@@ -56,6 +64,13 @@ const Contact = () => {
       }
     } catch (error) {
       console.error("Form submission error:", error);
+
+      // Track form submission error
+      trackEvent("contact_form_error", {
+        form_name: "contact",
+        error_message: error instanceof Error ? error.message : "Unknown error",
+      });
+
       setIsSubmitting(false);
       alert("There was an error submitting the form. Please try again.");
     }
