@@ -23,6 +23,21 @@ export const en = {
     replyTime: "We'll hit you back within 24 hours, tops!",
     language: "Language",
     links: "Quick Jumps",
+    goBack: "Back to Case Studies",
+    viewMore: "View More Cases",
+    home: "Home",
+    blog: "Blog",
+    share: "Share",
+    backToBlog: "Back to Blog",
+    morePosts: "More Articles",
+    getInTouch: "Get In Touch",
+    enjoyedArticle: "Enjoyed this article?",
+    checkOtherPosts:
+      "Check out our other blog posts or get in touch to discuss your project.",
+    noBlogPosts: "No blog posts available yet. Check back soon!",
+    blogTitle: "Our Blog",
+    blogSubtitle:
+      "Insights, tutorials, and thoughts on modern web development and technology.",
   },
 
   // Navigation

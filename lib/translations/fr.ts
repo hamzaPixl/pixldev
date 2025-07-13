@@ -23,6 +23,22 @@ export const fr = {
     replyTime: "Nous répondons sous 24h",
     language: "Langue",
     links: "Liens Utiles",
+    goBack: "Retour aux Études de Cas",
+    viewMore: "Voir Plus d'Études",
+    home: "Accueil",
+    blog: "Blog",
+    share: "Partager",
+    backToBlog: "Retour au Blog",
+    morePosts: "Plus d'Articles",
+    getInTouch: "Nous Contacter",
+    enjoyedArticle: "Vous avez aimé cet article ?",
+    checkOtherPosts:
+      "Découvrez nos autres articles ou contactez-nous pour discuter de votre projet.",
+    noBlogPosts:
+      "Aucun article de blog disponible pour le moment. Revenez bientôt !",
+    blogTitle: "Notre Blog",
+    blogSubtitle:
+      "Insights, tutoriels et réflexions sur le développement web moderne et la technologie.",
   },
 
   // Navigation
@@ -50,24 +66,24 @@ export const fr = {
   about: {
     title: "À Propos de Pixl : L'Innovation à l'État Pur",
     description:
-      "Nous ne sommes pas juste une entreprise technologique ; nous sommes vos partenaires pour créer des logiciels intelligents et durables qui font une réelle différence. Chez Pixl, nous combinons l'IA de pointe avec un esprit créatif pour transformer les défis complexes en solutions agréables.",
+      "Nous créons des logiciels intelligents qui transforment réellement votre business. Chez Pixl, nous combinons l'IA de pointe avec un esprit créatif pour résoudre vos défis les plus complexes.",
     mainImage: {
       alt: "Équipe de brillants esprits collaborant avec enthousiasme",
     },
     breakout: {
       title: "Des Outils Concrets, Sans Blabla",
       description:
-        "Oubliez les mots à la mode ! Nous concevons des solutions pratiques et efficaces qui fonctionnent, tout simplement. Imaginez des logiciels intelligents qui résolvent vos problèmes commerciaux réels avec ingéniosité et une touche de charme, laissant les gadgets loin derrière.",
+        "Nous concevons des solutions pratiques qui fonctionnent vraiment. Des logiciels intelligents qui résolvent vos problèmes avec ingéniosité et efficacité.",
     },
     expertCraftsmanship: {
-      title: "Un Savoir-Faire d'Expert (avec le Sourire)",
+      title: "Un Savoir-Faire d'Expert",
       description:
-        "Chaque solution est une œuvre d'art, façonnée à la main par notre équipe de brillants esprits. Nous associons une connaissance technique approfondie à un sens aigu des affaires pour livrer des logiciels qui ne se contentent pas de fonctionner, ils transforment et enchantent.",
+        "Chaque solution est une œuvre d'art créée par notre équipe de brillants esprits. Nous associons expertise technique et sens des affaires pour des résultats exceptionnels.",
     },
     achievements: {
-      title: "Notre Impact : Quand les Chiffres Dansent de Joie",
+      title: "Notre Impact : Quand les Chiffres Parlent",
       description:
-        "De vrais résultats issus de vrais projets ! Ce ne sont pas que des statistiques ; ce sont des exemples éclatants de la valeur concrète et impressionnante que nous avons apportée aux entreprises de tous les secteurs imaginables.",
+        "Des résultats concrets issus de vrais projets ! Voici la valeur impressionnante que nous avons apportée aux entreprises de tous secteurs.",
       items: {
         projectsDelivered: "Projets Réalisés",
         timeSaved: "Heures de Plaisir Gagnées",
@@ -249,7 +265,7 @@ export const fr = {
       email: "hello@pixldev.be",
       phone: "+32 488 20 35 67",
     },
-    copyright: "Tous droits réservés. Créé avec la magie de Pixl.",
+    copyright: "Tous droits réservés.",
     socialLinks: {
       linkedinLabel: "Connectez-vous sur LinkedIn",
       twitterLabel: "Suivez-nous sur Twitter",

@@ -23,6 +23,21 @@ export const nl = {
     replyTime: "We antwoorden binnen 24u",
     language: "Taal",
     links: "Handige Links",
+    goBack: "Terug naar Casestudies",
+    viewMore: "Meer Cases Bekijken",
+    home: "Home",
+    blog: "Blog",
+    share: "Delen",
+    backToBlog: "Terug naar Blog",
+    morePosts: "Meer Artikelen",
+    getInTouch: "Neem Contact Op",
+    enjoyedArticle: "Artikel bevallen?",
+    checkOtherPosts:
+      "Bekijk onze andere blogposts of neem contact op om je project te bespreken.",
+    noBlogPosts: "Nog geen blogposts beschikbaar. Kom binnenkort terug!",
+    blogTitle: "Onze Blog",
+    blogSubtitle:
+      "Inzichten, tutorials en gedachten over moderne webontwikkeling en technologie.",
   },
 
   // Navigation
