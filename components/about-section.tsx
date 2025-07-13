@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import { useLanguage } from "@/lib/language-context";
@@ -90,35 +91,39 @@ const AboutSection = ({
           delay={200}
           className="grid gap-6 lg:grid-cols-3 mb-16"
         >
-          <img
-            src={defaultMainImage.src}
-            alt={defaultMainImage.alt}
-            className="size-full max-h-[400px] lg:max-h-[500px] rounded-xl object-cover lg:col-span-2"
-          />
-          <div className="flex flex-col gap-6 md:flex-row lg:flex-col">
-            <div className="flex flex-col justify-between gap-6 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 md:w-1/2 lg:w-auto">
+          <div className="relative w-full h-[400px] lg:h-[500px] lg:col-span-2">
+            <Image
+              src={defaultMainImage.src}
+              alt={defaultMainImage.alt}
+              fill
+              className="rounded-xl object-cover"
+            />
+          </div>
+          <div className="grid gap-6 lg:grid-rows-2">
+            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 h-full">
               <div>
-                <p className="mb-3 text-lg font-bold text-foreground">
+                <p className="mb-3 text-lg font-bold text-foreground line-clamp-2">
                   {defaultBreakout.title}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-sm line-clamp-4">
                   {defaultBreakout.description}
                 </p>
               </div>
               <Button
                 variant="outline"
-                className="mr-auto border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-black dark:hover:text-white hover:border-pixl-teal/60 rounded-full"
+                size="sm"
+                className="mr-auto border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-black dark:hover:text-white hover:border-pixl-teal/60 rounded-full mt-auto"
                 onClick={defaultBreakout.onClick}
               >
                 {defaultBreakout.buttonText}
               </Button>
             </div>
-            <div className="flex flex-col justify-between gap-6 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 md:w-1/2 lg:w-auto">
+            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 h-full">
               <div>
-                <p className="mb-3 text-lg font-bold text-foreground">
+                <p className="mb-3 text-lg font-bold text-foreground line-clamp-2">
                   {t("about.expertCraftsmanship.title")}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-sm line-clamp-4">
                   {t("about.expertCraftsmanship.description")}
                 </p>
               </div>

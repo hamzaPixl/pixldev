@@ -1,7 +1,7 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import { LinkedinIcon, TwitterIcon } from "lucide-react";
+import { LinkedinIcon } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "./navbar/logo";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -121,14 +121,6 @@ const Footer = () => {
               aria-label={t("footer.socialLinks.linkedinLabel")}
             >
               <LinkedinIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="https://twitter.com/pixldev"
-              target="_blank"
-              className="hover:text-pixl-teal transition-colors"
-              aria-label={t("footer.socialLinks.twitterLabel")}
-            >
-              <TwitterIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>
