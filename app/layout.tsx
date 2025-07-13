@@ -16,6 +16,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pixl.dev"),
   title: "Pixl — Real Software. Built with AI.",
   description:
     "Pixl builds smart, AI-powered software and automations that solve real business problems, fast. From dashboards to full SaaS apps — we deliver solutions, not hype.",
