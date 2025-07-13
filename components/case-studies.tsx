@@ -141,7 +141,7 @@ const CaseStudies = ({
                 key={item.id}
                 className="pl-2 md:pl-4 basis-full md:basis-1/3"
               >
-                <Card className="group backdrop-blur-lg border-border/20 hover:border-pixl-teal/30 transition-all duration-300 h-[560px] flex flex-col">
+                <Card className="group backdrop-blur-lg border-border/20 hover:border-pixl-teal/30 transition-all duration-300 h-[580px] flex flex-col shadow-none">
                   <div className="relative h-56 w-full overflow-hidden rounded-t-xl">
                     <img
                       src={item.image}
@@ -156,7 +156,7 @@ const CaseStudies = ({
                     </div>
                   </div>
                   
-                  <CardContent className="p-6 flex-1 flex flex-col">
+                  <CardContent className="p-6 pt-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-pixl-teal transition-colors duration-300">
                       {item.title}
                     </h3>
@@ -208,7 +208,7 @@ const CaseStudies = ({
             {/* You're Next Card */}
             <CarouselItem className="pl-2 md:pl-4 basis-full md:basis-1/3">
               <Card 
-                className="group bg-pixl-teal backdrop-blur-lg border-pixl-teal hover:bg-pixl-teal/90 transition-all duration-300 cursor-pointer h-[560px] flex flex-col"
+                className="group bg-pixl-teal backdrop-blur-lg border-pixl-teal hover:bg-pixl-teal/90 transition-all duration-300 cursor-pointer h-[580px] flex flex-col shadow-none"
                 onClick={() => {
                   const contactSection = document.getElementById('contact');
                   if (contactSection) {
@@ -216,7 +216,7 @@ const CaseStudies = ({
                   }
                 }}
               >
-                <CardContent className="p-8 text-center flex-1 flex flex-col justify-center items-center">
+                <CardContent className="p-8 pt-8 text-center flex-1 flex flex-col justify-center items-center">
                   <div className="space-y-6">
                     <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white">
                       You&apos;re Next
