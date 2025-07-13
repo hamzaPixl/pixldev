@@ -1,1 +1,23 @@
-{"name":"","short_name":"","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+  "name": "Pixl — Real Software. Built with AI.",
+  "short_name": "Pixl",
+  "description": "AI-powered software and automations that solve real business problems. From dashboards to full SaaS apps — we deliver solutions, not hype.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#44b75e"
+}
