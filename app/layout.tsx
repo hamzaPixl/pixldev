@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
+import NetlifyForm from "@/components/netlify-form";
 import {
   GoogleAnalytics,
   FacebookPixel,
@@ -116,7 +117,10 @@ export default function RootLayout({
       <body className={`${geistSans.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LanguageProvider>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              {children}
+              <NetlifyForm />
+            </TooltipProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

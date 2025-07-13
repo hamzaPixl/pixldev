@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import React from "react";
 import { useLanguage } from "@/lib/language-context";
+import Image from "next/image";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -18,6 +19,28 @@ const Hero = () => {
   return (
     <div className="min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden">
       <div className="relative z-10 text-center max-w-4xl mx-auto">
+        {/* Centered Logo above title */}
+        <div className="text-center mb-12 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.1s_forwards]">
+          <div className="inline-block">
+            <Image
+              src="/Logo Color.svg"
+              alt="Pixl Logo"
+              width={120}
+              height={42}
+              className="mx-auto mb-6 dark:hidden"
+              priority
+            />
+            <Image
+              src="/Logo White.svg"
+              alt="Pixl Logo"
+              width={120}
+              height={42}
+              className="mx-auto mb-6 hidden dark:block"
+              priority
+            />
+          </div>
+        </div>
+
         <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
           <span className="block text-black dark:text-white mb-2 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
             {t("hero.title.line1")}

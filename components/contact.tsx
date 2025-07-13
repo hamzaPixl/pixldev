@@ -27,21 +27,38 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Create form data for Netlify
+      const form = e.target as HTMLFormElement;
+      const formDataToSend = new FormData(form);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      // Submit to Netlify
+      const response = await fetch("/", {
+        method: "POST",
+        body: formDataToSend,
+      });
 
-    // Reset form after success animation
-    setTimeout(() => {
-      setFormData({ name: "", email: "", company: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+
+        // Reset form after success animation
+        setTimeout(() => {
+          setFormData({ name: "", email: "", company: "", message: "" });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setIsSubmitting(false);
+      alert("There was an error submitting the form. Please try again.");
+    }
   };
 
   const canSubmit = formData.name && formData.email && formData.message;
@@ -58,7 +75,16 @@ const Contact = () => {
         <div className="max-w-2xl mx-auto">
           <div className="bg-background/30 backdrop-blur-2xl border border-pixl-teal/20 shadow-xl shadow-pixl-teal/10 rounded-2xl p-8 before:absolute before:inset-0 before:bg-gradient-to-r before:from-pixl-teal/8 before:via-transparent before:to-pixl-teal/8 before:rounded-2xl before:-z-10 relative">
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                {/* Hidden input for Netlify form detection */}
+                <input type="hidden" name="form-name" value="contact" />
+
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label
