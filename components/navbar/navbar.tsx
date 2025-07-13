@@ -21,7 +21,7 @@ const Navbar = () => {
           <ThemeToggle />
           <Button 
             variant="outline" 
-            className="hidden xs:inline-flex border-pixl-teal/40 text-pixl-teal bg-pixl-teal/5 hover:bg-pixl-teal/15 hover:border-pixl-teal/60 hover:text-white"
+            className="hidden xs:inline-flex border-pixl-teal/40 text-pixl-teal bg-pixl-teal/5 hover:bg-pixl-teal/15 hover:border-pixl-teal/60 hover:text-black dark:hover:text-white"
             onClick={() => {
               const contactSection = document.getElementById('contact');
               if (contactSection) {

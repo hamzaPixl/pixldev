@@ -81,7 +81,7 @@ const AboutSection = ({
               </div>
               <Button 
                 variant="outline" 
-                className="mr-auto border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-white hover:border-pixl-teal/60"
+                className="mr-auto border-pixl-teal/40 text-pixl-teal hover:bg-pixl-teal/10 hover:text-black dark:hover:text-white hover:border-pixl-teal/60"
                 onClick={breakout.onClick}
               >
                 {breakout.buttonText}

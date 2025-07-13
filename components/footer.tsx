@@ -10,6 +10,14 @@ const footerLinks = [
     href: "#about",
   },
   {
+    title: "Core Values",
+    href: "#core-values",
+  },
+  {
+    title: "Capabilities",
+    href: "#capabilities",
+  },
+  {
     title: "Case Studies",
     href: "#case-studies",
   },

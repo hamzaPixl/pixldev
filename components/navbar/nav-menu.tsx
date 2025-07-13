@@ -12,15 +12,15 @@ export const NavMenu = (props: NavigationMenuProps) => (
     <NavigationMenuList className="gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#core-values" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
-            Core Values
+          <Link href="#about" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            About
           </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="#about" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
-            About
+          <Link href="#core-values" className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal">
+            Core Values
           </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>

@@ -84,7 +84,7 @@ const FaqSection = ({
                 contactSection.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="text-pixl-teal hover:text-white font-medium transition-colors duration-300"
+            className="text-pixl-teal hover:text-black dark:hover:text-white font-medium transition-colors duration-300"
           >
             Get in touch with our team →
           </button>
