@@ -86,7 +86,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
                 <CardContent className="p-6">
                   {/* Meta information */}
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground mb-4 flex-wrap">
                     {post.frontmatter.date && (
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />

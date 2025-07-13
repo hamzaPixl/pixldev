@@ -166,64 +166,63 @@ const CaseStudies = ({
                 key={item.id}
                 className="pl-2 md:pl-4 basis-full md:basis-1/3"
               >
-                <Card className="group backdrop-blur-lg border-border/20 hover:border-pixl-teal/30 transition-all duration-300 h-[600px] flex flex-col shadow-none">
-                  <div className="relative h-[200px] w-full overflow-hidden rounded-t-xl flex-shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={t(item.title)}
-                      fill
-                      className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-pixl-teal/90 text-black px-3 py-1 rounded-full text-sm font-medium">
-                        {t(item.industry)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <CardContent className="p-6 pt-6 flex-1 flex flex-col">
-                    <div className="mb-4">
-                      <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-pixl-teal transition-colors duration-300">
-                        {t(item.title)}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                        {t(item.description)}
-                      </p>
+                <Link href={`/case-studies/${item.id}`} className="block group">
+                  <Card className="backdrop-blur-lg border-border/20 hover:border-pixl-teal/30 transition-all duration-300 h-[600px] flex flex-col shadow-none cursor-pointer">
+                    <div className="relative h-[200px] w-full overflow-hidden rounded-t-xl flex-shrink-0">
+                      <Image
+                        src={item.image}
+                        alt={t(item.title)}
+                        fill
+                        className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-pixl-teal text-white px-3 py-1 rounded-full text-sm font-medium">
+                          {t(item.industry)}
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="flex-1 space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-2">
-                          Keywords
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {item.keywords.map(
-                            (keyword: string, index: number) => (
-                              <span
-                                key={index}
-                                className="bg-pixl-teal/10 text-pixl-teal px-2 py-1 rounded text-xs font-medium border border-pixl-teal/20"
-                              >
-                                {keyword}
-                              </span>
-                            )
-                          )}
-                        </div>
+                    <CardContent className="p-6 pt-6 flex-1 flex flex-col">
+                      <div className="mb-4">
+                        <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-pixl-teal transition-colors duration-300">
+                          {t(item.title)}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                          {t(item.description)}
+                        </p>
                       </div>
 
-                      <Button
-                        variant="ghost"
-                        className="w-full mt-4 group/btn hover:bg-pixl-teal/10 hover:text-pixl-teal rounded-full"
-                        onClick={() => {
-                          window.location.href = `/case-studies/${item.id}`;
-                        }}
-                      >
-                        {t("common.learnMore")}
-                        <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="flex-1 space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-2">
+                            Keywords
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {item.keywords.map(
+                              (keyword: string, index: number) => (
+                                <span
+                                  key={index}
+                                  className="bg-pixl-teal/10 text-pixl-teal px-2 py-1 rounded text-xs font-medium border border-pixl-teal/20"
+                                >
+                                  {keyword}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Read more indicator */}
+                        <div className="flex items-center justify-between pt-2">
+                          <span className="text-pixl-teal text-sm font-medium group-hover:text-pixl-teal/80 transition-colors">
+                            {t("common.learnMore")}
+                          </span>
+                          <ExternalLink className="h-4 w-4 text-pixl-teal transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </CarouselItem>
             ))}
 
@@ -232,20 +231,20 @@ const CaseStudies = ({
               <Card className="group bg-pixl-teal backdrop-blur-lg border-pixl-teal hover:bg-pixl-teal/90 transition-all duration-300 cursor-pointer h-[600px] flex flex-col shadow-none">
                 <CardContent className="p-8 pt-8 text-center flex-1 flex flex-col justify-center items-center">
                   <div className="space-y-6">
-                    <h3 className="text-3xl md:text-4xl font-bold text-black dark:text-white">
+                    <h3 className="text-3xl md:text-4xl font-bold text-white">
                       {t("caseStudies.youreNext.title")}
                     </h3>
 
-                    <p className="text-black/80 dark:text-white/80 text-lg leading-relaxed max-w-sm mx-auto">
+                    <p className="text-white/80 text-lg leading-relaxed max-w-sm mx-auto">
                       {t("caseStudies.youreNext.description")}
                     </p>
 
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-bold text-black dark:text-white mb-2">
+                        <h4 className="font-bold text-white mb-2">
                           {t("caseStudies.youreNext.readyToStart")}
                         </h4>
-                        <p className="text-black/70 dark:text-white/70 leading-relaxed">
+                        <p className="text-white/70 leading-relaxed">
                           {t("caseStudies.youreNext.tellUs")}
                         </p>
                       </div>
@@ -253,7 +252,7 @@ const CaseStudies = ({
                       <Button
                         variant="outline"
                         size="lg"
-                        className="border-black/30 dark:border-white/30 text-black dark:text-white bg-black/5 dark:bg-white/5 hover:bg-black/15 dark:hover:bg-white/15 hover:border-black/50 dark:hover:border-white/50 hover:text-black dark:hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
+                        className="border-white/30 text-white bg-white/5 hover:bg-white/15 hover:border-white/50 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
                         onClick={(e) => {
                           e.stopPropagation();
                           const contactSection =
