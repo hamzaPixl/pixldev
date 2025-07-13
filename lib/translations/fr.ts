@@ -65,7 +65,7 @@ export const fr = {
 
   // About section
   about: {
-    title: "À Propos de Pixl : L'Innovation à l'État Pur",
+    title: "L'Innovation à l'État Pur",
     description:
       "Nous créons des logiciels intelligents qui transforment réellement votre business. Chez Pixl, nous combinons l'IA de pointe avec un esprit créatif pour résoudre vos défis les plus complexes.",
     mainImage: {

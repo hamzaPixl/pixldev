@@ -76,9 +76,9 @@ const AboutSection = ({
       <div className="max-w-6xl mx-auto">
         <ScrollAnimation
           direction="up"
-          className="mb-16 grid gap-8 text-center md:grid-cols-2 md:text-left md:items-end"
+          className="mb-16 grid gap-8 text-center md:grid-cols-2 md:text-end md:items-start"
         >
-          <h2 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
+          <h2 className="text-3xl xs:text-4xl sm:text-5xl font-bold tracking-tight text-foreground md:text-start">
             {defaultTitle}
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed">
@@ -100,7 +100,7 @@ const AboutSection = ({
             />
           </div>
           <div className="grid gap-6 lg:grid-rows-2">
-            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 h-full">
+            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/70 p-6 h-full">
               <div>
                 <p className="mb-3 text-lg font-bold text-foreground line-clamp-2">
                   {defaultBreakout.title}
@@ -118,7 +118,7 @@ const AboutSection = ({
                 {defaultBreakout.buttonText}
               </Button>
             </div>
-            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/20 p-6 h-full">
+            <div className="flex flex-col justify-between gap-4 rounded-xl bg-card/10 backdrop-blur-lg border border-border/70 p-6 h-full">
               <div>
                 <p className="mb-3 text-lg font-bold text-foreground line-clamp-2">
                   {t("about.expertCraftsmanship.title")}
