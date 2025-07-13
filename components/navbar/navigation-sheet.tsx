@@ -53,10 +53,6 @@ export const NavigationSheet = () => {
           >
             {t("common.contactUs")}
           </Button>
-          <Button variant="outline" className="w-full">
-            {t("navigationSheet.signIn")}
-          </Button>
-          <Button className="w-full">{t("navigationSheet.getStarted")}</Button>
         </div>
       </SheetContent>
     </Sheet>
