@@ -51,6 +51,13 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        // Pixl brand colors
+        pixl: {
+          teal: "hsl(var(--pixl-teal))",
+          gold: "hsl(var(--pixl-gold))",
+          dark: "hsl(var(--pixl-dark))",
+          "dark-alt": "hsl(var(--pixl-dark-alt))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

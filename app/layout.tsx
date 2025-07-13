@@ -3,6 +3,12 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
+import {
+  GoogleAnalytics,
+  FacebookPixel,
+  Hotjar,
+  Plausible,
+} from "@/components/analytics";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,49 +16,48 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "PureLanding - Beautiful Shadcn UI Landing Page",
+  title: "Pixl — Real Software. Built with AI.",
   description:
-    "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+    "Pixl builds smart, AI-powered software and automations that solve real business problems, fast. From dashboards to full SaaS apps — we deliver solutions, not hype.",
   keywords: [
-    "PureLanding",
-    "PureLanding Landing Page",
-    "PureLanding Landing Page Template",
-    "PureLanding Page",
-    "Shadcn UI Landing Page",
-    "Shadcn UI Blocks",
-    "Shadcn UI",
-    "Landing Page",
-    "Tailwind CSS Landing Page",
-    "Beautiful Shadcn UI Landing Page",
-    "Next.js 15 Landing Page",
-    "Simple Landing Page",
-    "Landing Page Template",
-    "Landing Page Design",
+    "AI software agency",
+    "digital transformation",
+    "automation tools",
+    "custom SaaS",
+    "AI chatbot",
+    "internal apps",
+    "business productivity",
+    "AI dashboards",
+    "workflow automation",
+    "smart dashboards",
+    "business portals",
+    "scalable infrastructure",
+    "AI-powered solutions",
+    "custom software development",
   ],
   openGraph: {
     type: "website",
-    siteName: "PureLanding",
+    siteName: "Pixl",
     locale: "en_US",
-    url: "https://shadcn-landing-page.vercel.app",
-    title: "PureLanding - Beautiful Shadcn UI Landing Page",
-    description:
-      "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+    url: "https://pixl.dev",
+    title: "Pixl — AI software that actually works",
+    description: "Start your project in 3 steps. We'll handle the rest.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/pixl-hero-og.png",
         width: 1200,
         height: 630,
-        alt: "PureLanding Preview",
+        alt: "Pixl - AI Software Agency",
       },
     ],
   },
   authors: [
     {
-      name: "Akash Moradiya",
-      url: "https://shadcnui-blocks.com",
+      name: "Pixl Team",
+      url: "https://pixl.dev",
     },
   ],
-  creator: "Akash Moradiya",
+  creator: "Pixl",
   icons: [
     {
       rel: "icon",
@@ -101,8 +106,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <GoogleAnalytics />
+        <FacebookPixel />
+        <Hotjar />
+        <Plausible />
+      </head>
       <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LanguageProvider>
             <TooltipProvider>{children}</TooltipProvider>
           </LanguageProvider>
