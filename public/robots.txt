@@ -1,0 +1,40 @@
+User-agent: *
+Allow: /
+
+# Block access to admin areas and API endpoints
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /_vercel/
+
+# Block access to development and config files
+Disallow: /*.json$
+Disallow: /*.env$
+Disallow: /*.config.*
+Disallow: /node_modules/
+
+# Allow access to important pages
+Allow: /blog
+Allow: /case-studies
+Allow: /contact
+Allow: /fr/
+Allow: /nl/
+
+# Allow CSS and JS for better rendering in search results
+Allow: /_next/static/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://pixldev.be/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

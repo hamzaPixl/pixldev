@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import { LanguageProvider } from "@/lib/language-context";
 import NetlifyForm from "@/components/netlify-form";
+import StructuredData from "@/components/structured-data";
 import {
   GoogleAnalytics,
   FacebookPixel,
@@ -17,7 +18,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pixl.dev"),
+  metadataBase: new URL("https://pixldev.be"),
   title: "Pixl — Real Software. Built with AI.",
   description:
     "Pixl builds smart, AI-powered software and automations that solve real business problems, fast. From dashboards to full SaaS apps — we deliver solutions, not hype.",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Pixl",
     locale: "en_US",
-    url: "https://pixl.dev",
+    url: "https://pixldev.be",
     title: "Pixl — AI software that actually works",
     description: "Start your project in 3 steps. We'll handle the rest.",
     images: [
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Pixl Team",
-      url: "https://pixl.dev",
+      url: "https://pixldev.be",
     },
   ],
   creator: "Pixl",
@@ -98,6 +99,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://pixldev.be",
+    languages: {
+      en: "https://pixldev.be",
+      fr: "https://pixldev.be/fr",
+      nl: "https://pixldev.be/nl",
+    },
+  },
   manifest: "/site.webmanifest",
 };
 
@@ -115,6 +124,8 @@ export default function RootLayout({
         <Plausible />
       </head>
       <body className={`${geistSans.className} antialiased`}>
+        <StructuredData type="Organization" />
+        <StructuredData type="WebSite" />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <LanguageProvider>
             <TooltipProvider>

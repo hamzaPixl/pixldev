@@ -1,71 +1,103 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { notFound, useParams } from "next/navigation";
-import { ContentItem } from "@/lib/content";
+import { notFound } from "next/navigation";
+import {
+  getBlogPost,
+  getAllBlogPosts,
+  SUPPORTED_LANGUAGES,
+} from "@/lib/content";
 import { BlogContent } from "@/components/blog-content";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
-import { useLanguage } from "@/lib/language-context";
+import StructuredData from "@/components/structured-data";
+import { Metadata } from "next";
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const { currentLanguage, isInitialized } = useLanguage();
-  const [blogPost, setBlogPost] = useState<ContentItem | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [notFoundError, setNotFoundError] = useState(false);
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-  const slug = params.slug as string;
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blogPost = await getBlogPost(slug);
 
-  useEffect(() => {
-    if (!isInitialized) return;
-
-    const loadBlogPost = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `/api/blog/${slug}?lang=${currentLanguage}`
-        );
-        if (response.ok) {
-          const post = await response.json();
-          setBlogPost(post);
-          setNotFoundError(false);
-        } else {
-          setNotFoundError(true);
-        }
-      } catch (error) {
-        console.error("Error loading blog post:", error);
-        setNotFoundError(true);
-      }
-      setLoading(false);
+  if (!blogPost) {
+    return {
+      title: "Blog Post Not Found | Pixl",
+      description: "The requested blog post could not be found.",
     };
-
-    loadBlogPost();
-  }, [slug, currentLanguage, isInitialized]);
-
-  if (!isInitialized || loading) {
-    return (
-      <>
-        <Navbar />
-        <main className="pt-16 xs:pt-20 sm:pt-24">
-          <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-            <div className="animate-pulse">Loading...</div>
-          </div>
-          <Footer />
-        </main>
-      </>
-    );
   }
 
-  if (notFoundError) {
+  const { frontmatter } = blogPost;
+
+  return {
+    title: `${frontmatter.title} | Pixl Blog`,
+    description: frontmatter.description,
+    keywords: frontmatter.keywords,
+    authors: [{ name: "Pixl Team", url: "https://pixldev.be" }],
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      type: "article",
+      publishedTime: frontmatter.date,
+      images: frontmatter.image
+        ? [
+            {
+              url: frontmatter.image,
+              width: 1200,
+              height: 630,
+              alt: frontmatter.title,
+            },
+          ]
+        : undefined,
+      siteName: "Pixl",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: frontmatter.image ? [frontmatter.image] : undefined,
+    },
+    robots: {
+      index: frontmatter.published !== false,
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://pixldev.be/blog/${slug}`,
+      languages: Object.fromEntries(
+        SUPPORTED_LANGUAGES.map((lang) => [
+          lang,
+          lang === "en"
+            ? `https://pixldev.be/blog/${slug}`
+            : `https://pixldev.be/${lang}/blog/${slug}`,
+        ])
+      ),
+    },
+  };
+}
+
+// Generate static params for ISR
+export async function generateStaticParams() {
+  const blogPosts = await getAllBlogPosts();
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params;
+  const blogPost = await getBlogPost(slug);
+
+  if (!blogPost) {
     notFound();
   }
 
   return (
     <>
+      <StructuredData type="BlogPosting" data={blogPost} />
       <Navbar />
       <main className="pt-16 xs:pt-20 sm:pt-24">
-        {blogPost && <BlogContent blogPost={blogPost} />}
+        <BlogContent blogPost={blogPost} />
         <Footer />
       </main>
     </>
