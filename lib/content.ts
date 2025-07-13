@@ -49,14 +49,18 @@ const getAllContent = async (
   ensureDirectoryExists(languageDirectory);
 
   let fileNames: string[] = [];
-  
+
   if (fs.existsSync(languageDirectory)) {
-    fileNames = fs.readdirSync(languageDirectory).filter(fileName => fileName.endsWith(".md"));
+    fileNames = fs
+      .readdirSync(languageDirectory)
+      .filter((fileName) => fileName.endsWith(".md"));
   }
 
   // If no markdown files found and not using default language, fallback to default language
   if (fileNames.length === 0 && language !== DEFAULT_LANGUAGE) {
-    console.log(`No content found for language ${language}, falling back to ${DEFAULT_LANGUAGE}`);
+    console.log(
+      `No content found for language ${language}, falling back to ${DEFAULT_LANGUAGE}`
+    );
     return getAllContent(directory, DEFAULT_LANGUAGE);
   }
 
