@@ -1,15 +1,13 @@
 "use client";
 
-export const Logo = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+import Link from "next/link";
 
+export const Logo = () => {
   return (
-    <button
-      onClick={scrollToTop}
+    <Link
+      href="/"
       className="flex items-center focus:outline-none transition-transform hover:scale-105"
-      aria-label="Scroll to top"
+      aria-label="Go to homepage"
     >
       <svg
         width="96"
@@ -40,6 +38,6 @@ export const Logo = () => {
           className="fill-pixl-teal"
         />
       </svg>
-    </button>
+    </Link>
   );
 };

@@ -1,23 +1,52 @@
-import { Metadata } from "next";
-import { getAllCaseStudies } from "@/lib/content";
+"use client";
+
+import { useState, useEffect } from "react";
+import { ContentItem } from "@/lib/content";
 import CaseStudiesList from "@/components/case-studies-list";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
+import { useLanguage } from "@/lib/language-context";
 
-export const metadata: Metadata = {
-  title: "Case Studies | Pixl - Real Success Stories",
-  description:
-    "Explore our portfolio of successful AI-powered solutions. See how we've helped businesses transform with intelligent software and measurable results.",
-  openGraph: {
-    title: "Case Studies | Pixl - Real Success Stories",
-    description:
-      "Explore our portfolio of successful AI-powered solutions. See how we've helped businesses transform with intelligent software and measurable results.",
-    type: "website",
-  },
-};
+export default function CaseStudiesPage() {
+  const { currentLanguage, isInitialized } = useLanguage();
+  const [caseStudies, setCaseStudies] = useState<ContentItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default async function CaseStudiesPage() {
-  const caseStudies = await getAllCaseStudies();
+  useEffect(() => {
+    if (!isInitialized) return;
+
+    const loadCaseStudies = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(
+          `/api/case-studies?lang=${currentLanguage}`
+        );
+        if (response.ok) {
+          const studies = await response.json();
+          setCaseStudies(studies);
+        }
+      } catch (error) {
+        console.error("Error loading case studies:", error);
+      }
+      setLoading(false);
+    };
+
+    loadCaseStudies();
+  }, [currentLanguage, isInitialized]);
+
+  if (!isInitialized || loading) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-16 xs:pt-20 sm:pt-24">
+          <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+            <div className="animate-pulse">Loading...</div>
+          </div>
+          <Footer />
+        </main>
+      </>
+    );
+  }
 
   return (
     <>

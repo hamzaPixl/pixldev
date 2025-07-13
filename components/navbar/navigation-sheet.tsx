@@ -13,9 +13,25 @@ import { NavMenu } from "./nav-menu";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import ThemeToggle from "../theme-toggle";
 import { useLanguage } from "@/lib/language-context";
+import { usePathname } from "next/navigation";
 
 export const NavigationSheet = () => {
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const handleContactClick = () => {
+    if (isHomePage) {
+      // If on home page, scroll to contact section
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If not on home page, navigate to home page contact section
+      window.location.href = "/#contact";
+    }
+  };
 
   return (
     <Sheet>
@@ -44,12 +60,7 @@ export const NavigationSheet = () => {
           <Button
             variant="outline"
             className="w-full border-pixl-teal/40 text-pixl-teal bg-pixl-teal/5 hover:bg-pixl-teal/15 hover:border-pixl-teal/60 hover:text-black dark:hover:text-white"
-            onClick={() => {
-              const contactSection = document.getElementById("contact");
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
+            onClick={handleContactClick}
           >
             {t("common.contactUs")}
           </Button>
