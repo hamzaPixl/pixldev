@@ -192,15 +192,15 @@ export default function SlidePage({ params }: SlidePageProps) {
           {/* Slide Container */}
           <div className="relative w-full h-full flex flex-col pt-16 md:pt-20">
             {/* Slide Content */}
-            <div className="flex-1 flex flex-col justify-center items-center text-center p-6 md:p-12 lg:p-16">
+            <div className="flex-1 flex flex-col justify-center items-start text-left p-6 md:p-12 lg:p-16">
               <div className="w-full max-w-5xl">
-                <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 lg:mb-8 leading-tight">
+                <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 lg:mb-8 leading-tight text-left">
                   {slides[currentSlide].title}
                 </h1>
-                <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-pixl-teal mb-6 md:mb-8 lg:mb-12 leading-relaxed">
+                <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold text-pixl-teal mb-6 md:mb-8 lg:mb-12 leading-relaxed text-left">
                   {slides[currentSlide].subtitle}
                 </h2>
-                <div className="text-base md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+                <div className="text-base md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-4xl text-left">
                   {slides[currentSlide].content}
                 </div>
               </div>

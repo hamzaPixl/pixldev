@@ -71,6 +71,12 @@ export default {
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "fade-in-right": "fade-in-right 0.8s ease-out forwards",
+        "spin-slow": "spin-slow 3s linear infinite",
+        wiggle: "wiggle 2s ease-in-out infinite",
+        wave: "wave 2s ease-in-out infinite",
+        shake: "shake 1s ease-in-out infinite",
       },
       keyframes: {
         marquee: {
@@ -87,6 +93,67 @@ export default {
           },
           to: {
             transform: "translateY(calc(-100% - var(--gap)))",
+          },
+        },
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "fade-in-right": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
+        "spin-slow": {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        wiggle: {
+          "0%, 100%": {
+            transform: "rotate(-3deg)",
+          },
+          "50%": {
+            transform: "rotate(3deg)",
+          },
+        },
+        wave: {
+          "0%, 100%": {
+            transform: "translateX(0) translateY(0)",
+          },
+          "25%": {
+            transform: "translateX(5px) translateY(-5px)",
+          },
+          "50%": {
+            transform: "translateX(0) translateY(-10px)",
+          },
+          "75%": {
+            transform: "translateX(-5px) translateY(-5px)",
+          },
+        },
+        shake: {
+          "0%, 100%": {
+            transform: "translateX(0)",
+          },
+          "10%, 30%, 50%, 70%, 90%": {
+            transform: "translateX(-5px)",
+          },
+          "20%, 40%, 60%, 80%": {
+            transform: "translateX(5px)",
           },
         },
       },
