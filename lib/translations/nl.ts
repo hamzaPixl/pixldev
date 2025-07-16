@@ -47,6 +47,7 @@ export const nl = {
     coreValues: "Onze Kernwaarden",
     capabilities: "Wat We Doen",
     caseStudies: "Casestudies",
+    playground: "Speeltuin",
     faq: "Veelgestelde Vragen",
     contact: "Contact",
   },
@@ -313,6 +314,50 @@ export const nl = {
     title: "Navigatiemenu",
     signIn: "Log In voor het Plezier",
     getStarted: "Start Je Avontuur",
+  },
+
+  // Playground section
+  playground: {
+    title: "Interactieve Speeltuin",
+    subtitle:
+      "Verken onze collectie van interactieve tools en ervaringen ontworpen om te tonen wat we voor u kunnen bouwen.",
+    searchPlaceholder: "Zoek tools en ervaringen...",
+    categories: {
+      all: "Alle",
+      content: "Inhoud",
+      design: "Design",
+      utility: "Utiliteit",
+      interactive: "Interactief",
+    },
+    difficulties: {
+      all: "Alle",
+      beginner: "Makkelijk",
+      intermediate: "Gemiddeld",
+      advanced: "Geavanceerd",
+    },
+    buttons: {
+      launchTool: "Proberen",
+      backToPlayground: "Terug naar Speeltuin",
+      requestCustom: "Aangepaste Tool Aanvragen",
+    },
+    noResults: {
+      title: "Geen tools gevonden die voldoen aan uw criteria.",
+      subtitle: "Probeer uw zoekopdracht of filters aan te passen.",
+    },
+    comingSoon: "Binnenkort Beschikbaar",
+    ctaSection: {
+      title: "Iets Op Maat Nodig?",
+      description:
+        "Kunt u niet vinden wat u zoekt? We bouwen aangepaste tools en ervaringen op maat voor uw specifieke behoeften.",
+      button: "Neem Contact Op",
+    },
+    tools: {
+      markdownEditor: {
+        title: "Live Markdown Editor",
+        description:
+          "Schrijf en bekijk Markdown met realtime rendering en export opties",
+      },
+    },
   },
 };
 

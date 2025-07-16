@@ -47,6 +47,7 @@ export const en = {
     coreValues: "Our Vibe",
     capabilities: "What We Cook Up",
     caseStudies: "Success Stories",
+    playground: "Playground",
     faq: "Burning Questions",
     contact: "Connect",
   },
@@ -314,6 +315,50 @@ export const en = {
     title: "Navigation Menu",
     signIn: "Log In to the Fun",
     getStarted: "Start Your Adventure",
+  },
+
+  // Playground section
+  playground: {
+    title: "Interactive Playground",
+    subtitle:
+      "Explore our collection of interactive tools and experiences designed to showcase what we can build for you.",
+    searchPlaceholder: "Search tools and experiences...",
+    categories: {
+      all: "All",
+      content: "Content",
+      design: "Design",
+      utility: "Utility",
+      interactive: "Interactive",
+    },
+    difficulties: {
+      all: "All",
+      beginner: "Easy",
+      intermediate: "Medium",
+      advanced: "Advanced",
+    },
+    buttons: {
+      launchTool: "Try It Out",
+      backToPlayground: "Back to Playground",
+      requestCustom: "Request Custom Tool",
+    },
+    noResults: {
+      title: "No tools found matching your criteria.",
+      subtitle: "Try adjusting your search or filters.",
+    },
+    comingSoon: "Coming Soon",
+    ctaSection: {
+      title: "Need Something Custom?",
+      description:
+        "Can't find what you're looking for? We build custom tools and experiences tailored to your specific needs.",
+      button: "Get In Touch",
+    },
+    tools: {
+      markdownEditor: {
+        title: "Live Markdown Editor",
+        description:
+          "Write and preview Markdown with real-time rendering and export options",
+      },
+    },
   },
 };
 

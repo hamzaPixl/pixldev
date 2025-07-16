@@ -48,6 +48,7 @@ export const fr = {
     coreValues: "Nos Valeurs",
     capabilities: "Nos Services",
     caseStudies: "Études de Cas",
+    playground: "Terrain de Jeu",
     faq: "FAQ",
     contact: "Contact",
   },
@@ -315,6 +316,50 @@ export const fr = {
     title: "Menu de navigation",
     signIn: "Connectez-vous à l'Amusant",
     getStarted: "Commencez Votre Aventure",
+  },
+
+  // Playground section
+  playground: {
+    title: "Terrain de Jeu Interactif",
+    subtitle:
+      "Explorez notre collection d'outils et d'expériences interactives conçus pour présenter ce que nous pouvons construire pour vous.",
+    searchPlaceholder: "Rechercher des outils et expériences...",
+    categories: {
+      all: "Tout",
+      content: "Contenu",
+      design: "Design",
+      utility: "Utilitaire",
+      interactive: "Interactif",
+    },
+    difficulties: {
+      all: "Tout",
+      beginner: "Facile",
+      intermediate: "Moyen",
+      advanced: "Avancé",
+    },
+    buttons: {
+      launchTool: "Essayer",
+      backToPlayground: "Retour au Terrain de Jeu",
+      requestCustom: "Demander un Outil Personnalisé",
+    },
+    noResults: {
+      title: "Aucun outil trouvé correspondant à vos critères.",
+      subtitle: "Essayez d'ajuster votre recherche ou vos filtres.",
+    },
+    comingSoon: "Bientôt Disponible",
+    ctaSection: {
+      title: "Besoin de Quelque Chose de Personnalisé ?",
+      description:
+        "Vous ne trouvez pas ce que vous cherchez ? Nous créons des outils et expériences personnalisés adaptés à vos besoins spécifiques.",
+      button: "Nous Contacter",
+    },
+    tools: {
+      markdownEditor: {
+        title: "Éditeur Markdown en Direct",
+        description:
+          "Écrivez et prévisualisez du Markdown avec rendu en temps réel et options d'export",
+      },
+    },
   },
 };
 

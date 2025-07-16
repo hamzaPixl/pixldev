@@ -66,6 +66,16 @@ export const NavMenu = (props: NavigationMenuProps) => {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link
+              href="/playground"
+              className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal"
+            >
+              {t("navigation.playground")}
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link
               href={getNavHref("faq")}
               className="text-sm font-medium transition-colors text-foreground/90 hover:text-pixl-teal"
             >
