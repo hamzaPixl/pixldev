@@ -1,7 +1,7 @@
 export const en = {
   meta: {
-    title: "Pixl Ecosystem | All-in-One Business Tools",
-    description: "Discover the Pixl ecosystem - interconnected business tools for accounting, marketing, leads, branding, and more. One account, all your business needs.",
+    title: "Pixl Ecosystem | Turn Your Idea Into a Business",
+    description: "Everything you need to launch, run, and grow your business. Accounting, marketing, leads, branding, analytics — all connected. Your vision, our tools.",
   },
   common: {
     backToEcosystem: "Back to Ecosystem",
@@ -17,10 +17,10 @@ export const en = {
   },
   home: {
     version: "Ecosystem v1.0",
-    heroTitle1: "One Account.",
-    heroTitle2: "All Business Tools.",
-    heroSubtitle: "Create a single Pixl account and access all our products. Your data stays centralized, secure, and connected across accounting, marketing, leads, and more.",
-    selectModule: "Select a module below to explore",
+    heroTitle1: "Your Idea.",
+    heroTitle2: "Your Business. Ready.",
+    heroSubtitle: "We believe everyone with a great idea deserves the tools to make it real. Pixl gives you everything to launch, run, and grow your business — accounting, marketing, leads, branding, analytics — all connected, all in one place. Use them together or pick what you need. Your vision, our tools.",
+    selectModule: "Explore our modules",
     modulesTitle: "MODULES",
     stats: {
       online: "online",

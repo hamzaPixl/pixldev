@@ -2,8 +2,8 @@
 
 export const fr = {
   meta: {
-    title: "Pixl Ecosystem | Outils Business Tout-en-Un",
-    description: "Découvrez l'écosystème Pixl - des outils business interconnectés pour la comptabilité, le marketing, la prospection, le branding et plus encore. Un compte, tous vos besoins professionnels.",
+    title: "Pixl Ecosystem | Transformez Votre Idée en Business",
+    description: "Tout ce dont vous avez besoin pour lancer, gérer et développer votre entreprise. Comptabilité, marketing, prospection, branding, analytics — tout connecté. Votre vision, nos outils.",
   },
   common: {
     backToEcosystem: "Retour à l'Écosystème",
@@ -19,10 +19,10 @@ export const fr = {
   },
   home: {
     version: "Ecosystem v1.0",
-    heroTitle1: "Un Compte.",
-    heroTitle2: "Tous les Outils.",
-    heroSubtitle: "Créez un seul compte Pixl et accédez à tous nos produits. Vos données restent centralisées, sécurisées et connectées entre la comptabilité, le marketing, la prospection et plus encore.",
-    selectModule: "Sélectionnez un module ci-dessous pour explorer",
+    heroTitle1: "Votre Idée.",
+    heroTitle2: "Votre Business. Prêt.",
+    heroSubtitle: "Nous croyons que chacun avec une bonne idée mérite les outils pour la concrétiser. Pixl vous donne tout pour lancer, gérer et développer votre entreprise — comptabilité, marketing, prospection, branding, analytics — tout connecté, tout au même endroit. Utilisez-les ensemble ou choisissez ce dont vous avez besoin. Votre vision, nos outils.",
+    selectModule: "Explorez nos modules",
     modulesTitle: "MODULES",
     stats: {
       online: "en ligne",

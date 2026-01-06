@@ -2,8 +2,8 @@
 
 export const nl = {
   meta: {
-    title: "Pixl Ecosystem | Alles-in-Eén Bedrijfstools",
-    description: "Ontdek het Pixl ecosysteem - onderling verbonden bedrijfstools voor boekhouding, marketing, leads, branding en meer. Eén account, al uw zakelijke behoeften.",
+    title: "Pixl Ecosystem | Van Idee naar Business",
+    description: "Alles wat u nodig heeft om uw bedrijf te lanceren, te runnen en te laten groeien. Boekhouding, marketing, leads, branding, analytics — allemaal verbonden. Uw visie, onze tools.",
   },
   common: {
     backToEcosystem: "Terug naar Ecosysteem",
@@ -19,10 +19,10 @@ export const nl = {
   },
   home: {
     version: "Ecosystem v1.0",
-    heroTitle1: "Eén Account.",
-    heroTitle2: "Alle Bedrijfstools.",
-    heroSubtitle: "Maak één Pixl account aan en krijg toegang tot al onze producten. Uw gegevens blijven gecentraliseerd, beveiligd en verbonden tussen boekhouding, marketing, leads en meer.",
-    selectModule: "Selecteer een module hieronder om te verkennen",
+    heroTitle1: "Uw Idee.",
+    heroTitle2: "Uw Business. Klaar.",
+    heroSubtitle: "Wij geloven dat iedereen met een goed idee de tools verdient om het werkelijkheid te maken. Pixl geeft u alles om uw bedrijf te lanceren, te runnen en te laten groeien — boekhouding, marketing, leads, branding, analytics — allemaal verbonden, allemaal op één plek. Gebruik ze samen of kies wat u nodig heeft. Uw visie, onze tools.",
+    selectModule: "Ontdek onze modules",
     modulesTitle: "MODULES",
     stats: {
       online: "online",
