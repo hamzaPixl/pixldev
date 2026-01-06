@@ -1,0 +1,10 @@
+# Robots.txt for pixldev.be
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pixldev.be/sitemap.xml
+
+# LLM-specific
+# See llms.txt for AI/LLM crawler guidance

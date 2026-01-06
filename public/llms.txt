@@ -1,0 +1,84 @@
+# Pixl Ecosystem - LLM Context File
+# https://pixldev.be
+
+## About
+Pixl is a Belgian software company (Pixl SRL) building interconnected business tools for SMEs, freelancers, and accountants. The Pixl Ecosystem provides a unified platform where users can access all products with a single account.
+
+## Company Information
+- Name: Pixl SRL
+- VAT: BE 0805.449.693
+- Location: Belgium
+- Contact: hello@pixldev.be
+- Phone: +32 488 20 35 67
+
+## Products
+
+### Feen (Live)
+AI-powered accounting automation platform for Belgian SMEs.
+- Smart invoicing with automatic numbering
+- AI document processing with 99% OCR accuracy
+- Multi-bank integration via PSD2
+- Automatic transaction reconciliation
+- Peppol-ready for B2B invoicing (mandatory Jan 2026)
+- Pricing: 19 EUR/month all-inclusive
+- URL: https://feen.be
+
+### Feen Lookup (Live)
+Belgian company intelligence tool.
+- Company search by name or VAT number
+- Owner and director information
+- Financial data from published accounts
+- Company status verification
+- Data from KBO/BCE and National Bank of Belgium
+- URL: https://feen.be/company-lookup
+
+### Feen Marketing (Coming Q1 2025)
+AI-driven content generation engine.
+- Blog posts in EN/FR/NL
+- LinkedIn content for company and personal profiles
+- Social media cards with visual previews
+- 14-day posting calendar with ICS export
+
+### Feen Lead (Coming Q1 2025)
+Intelligent lead generation and prospect management.
+- Smart company discovery
+- AI-powered lead scoring
+- Contact enrichment
+- Pipeline management
+
+### Feen Branding (Planned Q2 2025)
+AI brand studio for identity creation.
+- Logo generation
+- Color palette creation
+- Typography selection
+- Brand guidelines generation
+
+### Feen Web (Planned Q2 2025)
+No-code website builder.
+- Modern templates
+- Drag & drop editor
+- SEO built-in
+- Hosting included
+
+### Feen Analytics (Planned Q2 2025)
+Unified business intelligence dashboard.
+- Revenue tracking
+- Expense analysis
+- Client insights
+- Marketing ROI
+- Cross-tool data integration
+
+## Key Value Propositions
+1. One account for all business tools
+2. Belgian market focus with multilingual support (EN/FR/NL)
+3. GDPR compliant, EU data centers
+4. AI-powered automation
+5. Peppol compliance for upcoming B2B invoicing mandate
+
+## Technical Stack
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- AI: GPT-4 for document processing, Gemini for content generation
+- Compliance: PSD2, GDPR, Peppol
+
+## Sitemap
+https://pixldev.be/sitemap.xml

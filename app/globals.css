@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 120 70% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 120 50% 15%;
+    --accent-foreground: 120 100% 50%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 120 100% 50%;
+    --radius: 0px;
+
+    --gold: 45 100% 50%;
+    --gold-foreground: 0 0% 0%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle glow effect */
+.glow {
+  text-shadow:
+    0 0 10px hsl(120 100% 50% / 0.6),
+    0 0 20px hsl(120 100% 50% / 0.3);
+}
+
+.glow-gold {
+  text-shadow:
+    0 0 10px hsl(45 100% 50% / 0.6),
+    0 0 20px hsl(45 100% 50% / 0.3);
+}
+
+/* Pixel border effect - cleaner */
+.pixel-border {
+  box-shadow:
+    inset -3px -3px 0 0 hsl(0 0% 15%),
+    inset 3px 3px 0 0 hsl(0 0% 25%);
+}
+
+.pixel-border-active {
+  box-shadow:
+    inset -3px -3px 0 0 hsl(120 100% 30%),
+    inset 3px 3px 0 0 hsl(120 100% 50%);
+}
+
+.pixel-border-gold {
+  box-shadow:
+    inset -3px -3px 0 0 hsl(45 100% 35%),
+    inset 3px 3px 0 0 hsl(45 100% 60%),
+    0 0 20px hsl(45 100% 50% / 0.3);
+}
+
+/* Card hover */
+.pixel-card {
+  transition: all 0.2s ease;
+}
+
+.pixel-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 8px 0 0 hsl(120 100% 50% / 0.2),
+    inset -3px -3px 0 0 hsl(120 100% 30%),
+    inset 3px 3px 0 0 hsl(120 100% 50%);
+}
+
+/* Gold shimmer for featured */
+.gold-glow {
+  animation: gold-pulse 3s ease-in-out infinite;
+}
+
+@keyframes gold-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 10px hsl(45 100% 50% / 0.3),
+      inset -3px -3px 0 0 hsl(45 100% 35%),
+      inset 3px 3px 0 0 hsl(45 100% 60%);
+  }
+  50% {
+    box-shadow:
+      0 0 25px hsl(45 100% 50% / 0.5),
+      inset -3px -3px 0 0 hsl(45 100% 35%),
+      inset 3px 3px 0 0 hsl(45 100% 60%);
+  }
+}
+
+/* Pixel font for headings */
+.font-pixel {
+  font-family: 'Jersey 15', cursive;
+}
+
+/* Grid pattern - subtle */
+.grid-dots {
+  background-image: radial-gradient(
+    hsl(120 100% 50% / 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* Blink animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Pixel underline link effect */
+.pixel-link {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.pixel-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.pixel-link:hover::after {
+  width: 100%;
+  animation: pixel-draw 0.3s steps(6) forwards;
+}
+
+@keyframes pixel-draw {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Pixel button hover effect for dark bg */
+.pixel-btn-dark {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.pixel-btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+}
