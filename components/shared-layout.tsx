@@ -101,7 +101,13 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
             {/* Links */}
             <div>
               <h4 className="font-pixel text-sm sm:text-base text-primary-foreground mb-4">{t("footer.connectTitle")}</h4>
-              <div className="space-y-3 text-sm">
+              <div className="flex flex-col gap-3 text-sm">
+                <Link
+                  href="/blog"
+                  className="pixel-link text-primary-foreground/90 hover:text-primary-foreground transition-colors"
+                >
+                  {t("blog.footerLink")}
+                </Link>
                 <a
                   href="https://www.linkedin.com/company/pixl-srl"
                   target="_blank"
