@@ -1,0 +1,39 @@
+{
+  "type": "review",
+  "version": "1.0",
+  "metadata": {
+    "skill": "self-review-fix-loop",
+    "project": "hub",
+    "created_at": "2026-03-04T01:15:00Z",
+    "iteration": 1,
+    "result": "pass"
+  },
+  "payload": {
+    "findings": [
+      {
+        "severity": "P0",
+        "file": "lib/translations/fr.ts, lib/translations/nl.ts",
+        "description": "Missing 7 new translation keys (story*, compare*, modelPrimary)",
+        "status": "fixed"
+      },
+      {
+        "severity": "P2",
+        "file": "components/pitch-pdf.tsx",
+        "description": "gap:20 unsupported in some react-pdf versions — replaced with marginRight",
+        "status": "fixed"
+      },
+      {
+        "severity": "P2",
+        "file": "components/pitch-pdf.tsx",
+        "description": "4 unused style definitions (flowStep, flowNum, flowText, arrow) — dead code removed",
+        "status": "fixed"
+      },
+      {
+        "severity": "P3",
+        "file": "page.tsx",
+        "description": "Accessibility aria-labels on decorative icons",
+        "status": "skipped — decorative, out of scope"
+      }
+    ]
+  }
+}
