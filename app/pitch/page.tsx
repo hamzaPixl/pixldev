@@ -58,6 +58,8 @@ export default function PitchPage() {
   const timeline = tObject<TimelineItem[]>("pitch.marketTimeline") ?? [];
   const streams = tObject<RevenueStream[]>("pitch.modelStreams") ?? [];
   const tractionBlocks = tObject<(TractionBlock & { accent?: string })[]>("pitch.tractionBlocks") ?? [];
+  const compareWithout = tObject<string[]>("pitch.compareWithout") ?? [];
+  const compareWith = tObject<string[]>("pitch.compareWith") ?? [];
 
   const handleDownloadPdf = useCallback(async () => {
     setGenerating(true);
@@ -74,6 +76,12 @@ export default function PitchPage() {
           storyLabel: t("pitch.storyLabel"),
           storyTitle: t("pitch.storyTitle"),
           storyBody: t("pitch.storyBody"),
+          compareLabel: t("pitch.compareLabel"),
+          compareTitle: t("pitch.compareTitle"),
+          compareWithout: compareWithout,
+          compareWithoutTitle: t("pitch.compareWithoutTitle"),
+          compareWith: compareWith,
+          compareWithTitle: t("pitch.compareWithTitle"),
           insightLabel: t("pitch.insightLabel"),
           insightTitle: t("pitch.insightTitle"),
           insightBody: t("pitch.insightBody"),
@@ -95,6 +103,7 @@ export default function PitchPage() {
           marketTimeline: timeline,
           modelLabel: t("pitch.modelLabel"),
           modelTitle: t("pitch.modelTitle"),
+          modelPrimary: t("pitch.modelPrimary"),
           modelStreams: streams,
           modelColStream: t("pitch.modelColStream"),
           modelColModel: t("pitch.modelColModel"),
@@ -206,6 +215,52 @@ export default function PitchPage() {
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
             {t("pitch.storyBody")}
           </p>
+        </div>
+      </section>
+
+      {/* Section 1c: Comparison diagram */}
+      <section className="px-4 sm:px-6 py-10 sm:py-16 border-b border-border">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs text-primary tracking-[0.2em] mb-3">
+            {t("pitch.compareLabel")}
+          </p>
+          <h2 className="font-pixel text-xl sm:text-2xl md:text-3xl text-foreground mb-8">
+            {t("pitch.compareTitle")}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
+            {/* Without Pixl */}
+            <div className="border-2 border-border bg-card p-6">
+              <p className="text-xs font-semibold text-muted-foreground tracking-wider mb-4">
+                {t("pitch.compareWithoutTitle")}
+              </p>
+              <div className="space-y-2">
+                {compareWithout.map((step, i) => (
+                  <div key={i}>
+                    <p className="text-sm text-muted-foreground">{step}</p>
+                    {i < compareWithout.length - 1 && (
+                      <p className="text-xs text-muted-foreground/50 my-1">↓</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* With Pixl */}
+            <div className="border-2 border-primary bg-primary/5 p-6">
+              <p className="text-xs font-semibold text-primary tracking-wider mb-4">
+                {t("pitch.compareWithTitle")}
+              </p>
+              <div className="space-y-2">
+                {compareWith.map((step, i) => (
+                  <div key={i}>
+                    <p className="text-sm text-primary font-semibold">{step}</p>
+                    {i < compareWith.length - 1 && (
+                      <p className="text-xs text-primary/50 my-1">↓</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -386,7 +441,10 @@ export default function PitchPage() {
           <h2 className="font-pixel text-xl sm:text-2xl md:text-3xl text-foreground mb-8">
             {t("pitch.modelTitle")}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <p className="text-sm sm:text-base text-primary font-semibold mb-6">
+            {t("pitch.modelPrimary")}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {streams.map((stream, i) => (
               <div
                 key={i}

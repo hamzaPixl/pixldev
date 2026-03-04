@@ -82,6 +82,12 @@ export interface PitchPdfProps {
   storyLabel: string;
   storyTitle: string;
   storyBody: string;
+  compareLabel: string;
+  compareTitle: string;
+  compareWithout: string[];
+  compareWithoutTitle: string;
+  compareWith: string[];
+  compareWithTitle: string;
   insightLabel: string;
   insightTitle: string;
   insightBody: string;
@@ -104,6 +110,7 @@ export interface PitchPdfProps {
   modelLabel: string;
   modelTitle: string;
   modelStreams: { name: string; model: string; price: string }[];
+  modelPrimary: string;
   modelColStream: string;
   modelColModel: string;
   modelColPricing: string;
@@ -139,6 +146,35 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <Text style={s.labelGold}>{p.storyLabel}</Text>
         <Text style={s.title}>{p.storyTitle}</Text>
         <Text style={s.body}>{p.storyBody}</Text>
+      </Page>
+
+      {/* Slide 1c: Comparison */}
+      <Page size="A4" orientation="landscape" style={s.page}>
+        <View style={s.topBar} />
+        <Text style={s.label}>{p.compareLabel}</Text>
+        <Text style={s.title}>{p.compareTitle}</Text>
+        <View style={{ flexDirection: "row", gap: 20 }}>
+          {/* Without */}
+          <View style={[s.cardBox, { flex: 1 }]}>
+            <Text style={{ fontSize: 9, fontWeight: 700, color: c.gray, letterSpacing: 2, marginBottom: 12 }}>{p.compareWithoutTitle}</Text>
+            {p.compareWithout.map((step, i) => (
+              <View key={i}>
+                <Text style={{ fontSize: 10, color: c.gray, marginBottom: 2 }}>{step}</Text>
+                {i < p.compareWithout.length - 1 && <Text style={{ fontSize: 8, color: c.dimGray, marginBottom: 2 }}>↓</Text>}
+              </View>
+            ))}
+          </View>
+          {/* With */}
+          <View style={[s.cardBox, { flex: 1, borderColor: c.green, backgroundColor: "#001a00" }]}>
+            <Text style={{ fontSize: 9, fontWeight: 700, color: c.green, letterSpacing: 2, marginBottom: 12 }}>{p.compareWithTitle}</Text>
+            {p.compareWith.map((step, i) => (
+              <View key={i}>
+                <Text style={{ fontSize: 10, fontWeight: 700, color: c.green, marginBottom: 2 }}>{step}</Text>
+                {i < p.compareWith.length - 1 && <Text style={{ fontSize: 8, color: c.green, marginBottom: 2 }}>↓</Text>}
+              </View>
+            ))}
+          </View>
+        </View>
       </Page>
 
       {/* Slide 2: Insight */}
@@ -236,6 +272,7 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <View style={s.topBar} />
         <Text style={s.label}>{p.modelLabel}</Text>
         <Text style={s.title}>{p.modelTitle}</Text>
+        <Text style={{ fontSize: 10, fontWeight: 700, color: c.green, marginBottom: 16 }}>{p.modelPrimary}</Text>
         {/* Table header */}
         <View style={s.tableRow}>
           <View style={[s.tableHeader, { flex: 2 }]}><Text style={s.tableHeaderText}>{p.modelColStream}</Text></View>
