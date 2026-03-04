@@ -54,10 +54,6 @@ const s = StyleSheet.create({
   statValue: { fontSize: 28, fontWeight: 700, color: c.green, textAlign: "center" as const },
   statValueGold: { fontSize: 28, fontWeight: 700, color: c.gold, textAlign: "center" as const },
   statLabel: { fontSize: 8, color: c.gray, textAlign: "center" as const, marginTop: 4 },
-  flowStep: { flex: 1, border: `1.5pt solid ${c.border}`, padding: 10, alignItems: "center" as const },
-  flowNum: { fontSize: 8, fontWeight: 700, color: c.green, marginBottom: 2 },
-  flowText: { fontSize: 8, color: c.white },
-  arrow: { fontSize: 12, color: c.green, alignSelf: "center" as const, marginHorizontal: 4 },
   bullet: { fontSize: 8, color: c.gray, marginBottom: 3 },
   bulletMarker: { fontSize: 8, color: c.green, marginRight: 6 },
   bulletMarkerGold: { fontSize: 8, color: c.gold, marginRight: 6 },
@@ -153,9 +149,9 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <View style={s.topBar} />
         <Text style={s.label}>{p.compareLabel}</Text>
         <Text style={s.title}>{p.compareTitle}</Text>
-        <View style={{ flexDirection: "row", gap: 20 }}>
+        <View style={{ flexDirection: "row" }}>
           {/* Without */}
-          <View style={[s.cardBox, { flex: 1 }]}>
+          <View style={[s.cardBox, { flex: 1, marginRight: 10 }]}>
             <Text style={{ fontSize: 9, fontWeight: 700, color: c.gray, letterSpacing: 2, marginBottom: 12 }}>{p.compareWithoutTitle}</Text>
             {p.compareWithout.map((step, i) => (
               <View key={i}>
