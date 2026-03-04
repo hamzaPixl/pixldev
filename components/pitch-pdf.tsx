@@ -35,38 +35,38 @@ const c = {
 const s = StyleSheet.create({
   page: {
     backgroundColor: c.bg,
-    padding: 40,
+    padding: 48,
     fontFamily: FONT_FAMILY,
     color: c.white,
   },
-  topBar: { height: 3, backgroundColor: c.green, marginBottom: 24 },
-  topBarGold: { height: 3, backgroundColor: c.gold, marginBottom: 24 },
-  label: { fontSize: 8, color: c.green, letterSpacing: 3, marginBottom: 8 },
-  labelGold: { fontSize: 8, color: c.gold, letterSpacing: 3, marginBottom: 8 },
-  title: { fontSize: 24, fontWeight: 700, color: c.white, marginBottom: 16 },
-  titleLg: { fontSize: 28, fontWeight: 700, color: c.white, marginBottom: 16 },
-  body: { fontSize: 10, color: c.gray, lineHeight: 1.6 },
-  row: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  cardBox: { border: `1.5pt solid ${c.border}`, padding: 14 },
-  cardName: { fontSize: 10, fontWeight: 700, color: c.green, marginBottom: 4 },
-  cardNameGold: { fontSize: 10, fontWeight: 700, color: c.gold, marginBottom: 4 },
-  cardDesc: { fontSize: 8, color: c.gray, lineHeight: 1.5 },
-  statValue: { fontSize: 28, fontWeight: 700, color: c.green, textAlign: "center" as const },
-  statValueGold: { fontSize: 28, fontWeight: 700, color: c.gold, textAlign: "center" as const },
-  statLabel: { fontSize: 8, color: c.gray, textAlign: "center" as const, marginTop: 4 },
-  bullet: { fontSize: 8, color: c.gray, marginBottom: 3 },
-  bulletMarker: { fontSize: 8, color: c.green, marginRight: 6 },
-  bulletMarkerGold: { fontSize: 8, color: c.gold, marginRight: 6 },
+  topBar: { height: 3, backgroundColor: c.green, marginBottom: 28 },
+  topBarGold: { height: 3, backgroundColor: c.gold, marginBottom: 28 },
+  label: { fontSize: 10, color: c.green, letterSpacing: 3, marginBottom: 10 },
+  labelGold: { fontSize: 10, color: c.gold, letterSpacing: 3, marginBottom: 10 },
+  title: { fontSize: 28, fontWeight: 700, color: c.white, marginBottom: 20 },
+  titleLg: { fontSize: 32, fontWeight: 700, color: c.white, marginBottom: 20 },
+  body: { fontSize: 14, color: c.gray, lineHeight: 1.7 },
+  row: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
+  cardBox: { border: `1.5pt solid ${c.border}`, padding: 16 },
+  cardName: { fontSize: 12, fontWeight: 700, color: c.green, marginBottom: 6 },
+  cardNameGold: { fontSize: 12, fontWeight: 700, color: c.gold, marginBottom: 6 },
+  cardDesc: { fontSize: 10, color: c.gray, lineHeight: 1.6 },
+  statValue: { fontSize: 32, fontWeight: 700, color: c.green, textAlign: "center" as const },
+  statValueGold: { fontSize: 32, fontWeight: 700, color: c.gold, textAlign: "center" as const },
+  statLabel: { fontSize: 10, color: c.gray, textAlign: "center" as const, marginTop: 4 },
+  bullet: { fontSize: 10, color: c.gray, marginBottom: 4 },
+  bulletMarker: { fontSize: 10, color: c.green, marginRight: 8 },
+  bulletMarkerGold: { fontSize: 10, color: c.gold, marginRight: 8 },
   tableRow: { flexDirection: "row", borderBottom: `1pt solid ${c.border}` },
-  tableHeader: { backgroundColor: c.green, padding: 8 },
-  tableHeaderText: { fontSize: 9, fontWeight: 700, color: c.bg },
-  tableCell: { padding: 8, backgroundColor: c.card },
-  tableCellText: { fontSize: 8, color: c.gray },
+  tableHeader: { backgroundColor: c.green, padding: 10 },
+  tableHeaderText: { fontSize: 11, fontWeight: 700, color: c.bg },
+  tableCell: { padding: 10, backgroundColor: c.card },
+  tableCellText: { fontSize: 10, color: c.gray },
   centerText: { textAlign: "center" as const },
-  quote: { fontSize: 10, color: c.gold, textAlign: "center" as const, marginTop: 12 },
-  visionStatement: { fontSize: 12, color: c.green, textAlign: "center" as const, marginBottom: 24, lineHeight: 1.6 },
-  ctaText: { fontSize: 16, fontWeight: 700, color: c.gold, textAlign: "center" as const, marginBottom: 6 },
-  emailText: { fontSize: 10, color: c.gray, textAlign: "center" as const },
+  quote: { fontSize: 13, color: c.gold, textAlign: "center" as const, marginTop: 16 },
+  visionStatement: { fontSize: 16, color: c.green, textAlign: "center" as const, marginBottom: 28, lineHeight: 1.7 },
+  ctaText: { fontSize: 20, fontWeight: 700, color: c.gold, textAlign: "center" as const, marginBottom: 8 },
+  emailText: { fontSize: 12, color: c.gray, textAlign: "center" as const },
 });
 
 // We accept translated content as props to keep this component pure
@@ -152,21 +152,21 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <View style={{ flexDirection: "row" }}>
           {/* Without */}
           <View style={[s.cardBox, { flex: 1, marginRight: 10 }]}>
-            <Text style={{ fontSize: 9, fontWeight: 700, color: c.gray, letterSpacing: 2, marginBottom: 12 }}>{p.compareWithoutTitle}</Text>
+            <Text style={{ fontSize: 12, fontWeight: 700, color: c.gray, letterSpacing: 2, marginBottom: 16 }}>{p.compareWithoutTitle}</Text>
             {p.compareWithout.map((step, i) => (
               <View key={i}>
-                <Text style={{ fontSize: 10, color: c.gray, marginBottom: 2 }}>{step}</Text>
-                {i < p.compareWithout.length - 1 && <Text style={{ fontSize: 8, color: c.dimGray, marginBottom: 2 }}>↓</Text>}
+                <Text style={{ fontSize: 14, color: c.gray, marginBottom: 4 }}>{step}</Text>
+                {i < p.compareWithout.length - 1 && <Text style={{ fontSize: 12, color: c.dimGray, marginBottom: 4 }}>↓</Text>}
               </View>
             ))}
           </View>
           {/* With */}
           <View style={[s.cardBox, { flex: 1, borderColor: c.green, backgroundColor: "#001a00" }]}>
-            <Text style={{ fontSize: 9, fontWeight: 700, color: c.green, letterSpacing: 2, marginBottom: 12 }}>{p.compareWithTitle}</Text>
+            <Text style={{ fontSize: 12, fontWeight: 700, color: c.green, letterSpacing: 2, marginBottom: 16 }}>{p.compareWithTitle}</Text>
             {p.compareWith.map((step, i) => (
               <View key={i}>
-                <Text style={{ fontSize: 10, fontWeight: 700, color: c.green, marginBottom: 2 }}>{step}</Text>
-                {i < p.compareWith.length - 1 && <Text style={{ fontSize: 8, color: c.green, marginBottom: 2 }}>↓</Text>}
+                <Text style={{ fontSize: 14, fontWeight: 700, color: c.green, marginBottom: 4 }}>{step}</Text>
+                {i < p.compareWith.length - 1 && <Text style={{ fontSize: 12, color: c.green, marginBottom: 4 }}>↓</Text>}
               </View>
             ))}
           </View>
@@ -194,7 +194,7 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <View style={s.topBar} />
         <Text style={s.label}>{p.solutionLabel}</Text>
         <Text style={s.title}>{p.solutionTitle}</Text>
-        <Text style={{ fontSize: 10, color: c.green, marginBottom: 20, lineHeight: 1.8 }}>
+        <Text style={{ fontSize: 13, color: c.green, marginBottom: 24, lineHeight: 1.8 }}>
           {p.solutionSteps.map((step, i) =>
             i < p.solutionSteps.length - 1 ? `${step}  →  ` : step
           ).join("")}
@@ -249,14 +249,14 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <Text style={s.title}>{p.marketTitle}</Text>
         <View style={{ marginBottom: 20 }}>
           {p.marketTimeline.map((item, i) => (
-            <View key={i} style={{ flexDirection: "row", alignItems: "center", marginBottom: 8 }}>
-              <Text style={{ fontSize: 9, color: i === p.marketTimeline.length - 1 ? c.green : c.gray, width: 40 }}>
+            <View key={i} style={{ flexDirection: "row", alignItems: "center", marginBottom: 12 }}>
+              <Text style={{ fontSize: 12, color: i === p.marketTimeline.length - 1 ? c.green : c.gray, width: 50 }}>
                 {item.year}
               </Text>
-              <Text style={{ fontSize: 11, fontWeight: 700, color: i === p.marketTimeline.length - 1 ? c.green : c.white, width: 60 }}>
+              <Text style={{ fontSize: 14, fontWeight: 700, color: i === p.marketTimeline.length - 1 ? c.green : c.white, width: 70 }}>
                 {item.name}
               </Text>
-              <Text style={{ fontSize: 9, color: c.gray }}>{item.desc}</Text>
+              <Text style={{ fontSize: 12, color: c.gray }}>{item.desc}</Text>
             </View>
           ))}
         </View>
@@ -268,7 +268,7 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         <View style={s.topBar} />
         <Text style={s.label}>{p.modelLabel}</Text>
         <Text style={s.title}>{p.modelTitle}</Text>
-        <Text style={{ fontSize: 10, fontWeight: 700, color: c.green, marginBottom: 16 }}>{p.modelPrimary}</Text>
+        <Text style={{ fontSize: 13, fontWeight: 700, color: c.green, marginBottom: 20 }}>{p.modelPrimary}</Text>
         {/* Table header */}
         <View style={s.tableRow}>
           <View style={[s.tableHeader, { flex: 2 }]}><Text style={s.tableHeaderText}>{p.modelColStream}</Text></View>
@@ -278,13 +278,13 @@ export function PitchPdfDocument(p: PitchPdfProps) {
         {p.modelStreams.map((stream, i) => (
           <View key={i} style={s.tableRow}>
             <View style={[s.tableCell, { flex: 2 }]}>
-              <Text style={{ fontSize: 9, fontWeight: 700, color: c.green }}>{stream.name}</Text>
+              <Text style={{ fontSize: 11, fontWeight: 700, color: c.green }}>{stream.name}</Text>
             </View>
             <View style={[s.tableCell, { flex: 3 }]}>
               <Text style={s.tableCellText}>{stream.model}</Text>
             </View>
             <View style={[s.tableCell, { flex: 2 }]}>
-              <Text style={{ fontSize: 9, color: c.gold }}>{stream.price}</Text>
+              <Text style={{ fontSize: 11, color: c.gold }}>{stream.price}</Text>
             </View>
           </View>
         ))}
