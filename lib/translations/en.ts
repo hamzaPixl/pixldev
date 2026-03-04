@@ -400,12 +400,12 @@ export const en = {
         ],
       },
       {
-        title: "Aremis — Client Proof",
-        subtitle: "Enterprise website modernization",
+        title: "Enterprise Client — Client Proof",
+        subtitle: "Website modernization & feature delivery",
         accent: "green",
         metrics: [
-          "Budget calculator — originally scoped as multi-week by an external agency",
-          "Delivered and integrated into production using Pixl",
+          "Complex feature — originally scoped as multi-week by an external agency",
+          "Delivered and integrated into production using Pixl workflows",
           "All outputs reviewed by senior engineers before deployment",
         ],
       },

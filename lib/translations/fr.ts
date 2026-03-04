@@ -400,9 +400,9 @@ export const fr = {
       metrics: ["35 clients payants", "Rentable, 0 financement externe", "Stack complète construite avec les patterns agents de Pixl"],
     },
     tractionAremis: {
-      title: "Aremis — Entreprise",
-      subtitle: "Modernisation legacy",
-      metrics: ["Entreprise logistique de 200 personnes", "Engagement de 6 mois", "Utilisant l'orchestration Pixl en interne"],
+      title: "Client Enterprise",
+      subtitle: "Modernisation de site web & livraison de fonctionnalités",
+      metrics: ["Fonctionnalité complexe — initialement estimée à plusieurs semaines par une agence externe", "Livrée et intégrée en production avec les workflows Pixl", "Tous les livrables revus par des ingénieurs seniors avant déploiement"],
     },
     marketLabel: "MARCHÉ",
     marketTitle: "La Couche Manquante",

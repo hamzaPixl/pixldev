@@ -400,9 +400,9 @@ export const nl = {
       metrics: ["35 betalende klanten", "Winstgevend, 0 externe financiering", "Volledige stack gebouwd met Pixl's agent-patronen"],
     },
     tractionAremis: {
-      title: "Aremis — Enterprise",
-      subtitle: "Legacy modernisering",
-      metrics: ["Logistiek bedrijf van 200 personen", "6 maanden engagement", "Gebruikt Pixl-orchestratie intern"],
+      title: "Enterprise Klant",
+      subtitle: "Website modernisering & feature levering",
+      metrics: ["Complex feature — oorspronkelijk geschat op meerdere weken door een extern bureau", "Geleverd en geïntegreerd in productie met Pixl workflows", "Alle output beoordeeld door senior engineers voor deployment"],
     },
     marketLabel: "MARKT",
     marketTitle: "De Ontbrekende Laag",
