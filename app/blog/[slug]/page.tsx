@@ -29,6 +29,8 @@ export default function BlogPostPage({ params }: PageProps) {
   }
 
   const Icon = post.icon;
+  const showBatonFlowDiagram = post.slug === "the-baton-pattern";
+  const showSystemsDiagram = post.slug === "ai-is-not-about-models-its-about-systems";
 
   return (
     <SharedLayout>
@@ -129,11 +131,21 @@ export default function BlogPostPage({ params }: PageProps) {
       </section>
 
       {/* Baton Flow Diagram */}
-      <section className="border-b border-border px-4 sm:px-6 py-12 sm:py-16 bg-card/50">
-        <div className="max-w-5xl mx-auto">
-          <BatonFlowDiagram t={t} />
-        </div>
-      </section>
+      {showBatonFlowDiagram ? (
+        <section className="border-b border-border px-4 sm:px-6 py-12 sm:py-16 bg-card/50">
+          <div className="max-w-5xl mx-auto">
+            <BatonFlowDiagram t={t} />
+          </div>
+        </section>
+      ) : null}
+
+      {showSystemsDiagram ? (
+        <section className="border-b border-border px-4 sm:px-6 py-12 sm:py-16 bg-card/50">
+          <div className="max-w-5xl mx-auto">
+            <AISystemsDiagram lang={currentLanguage} />
+          </div>
+        </section>
+      ) : null}
 
       {/* Content */}
       <main className="px-4 sm:px-6 py-8 sm:py-12">
@@ -174,6 +186,147 @@ export default function BlogPostPage({ params }: PageProps) {
 }
 
 // ─── Baton Flow Diagram (visual) ──────────────────────────────────────
+
+function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
+  const copy = {
+    en: {
+      title: "AI Works When It Sits Inside a System",
+      subtitle: "Reliable execution comes from connecting company knowledge, operating rules, delivery, and human review.",
+      inputsLabel: "System Inputs",
+      coreLabel: "AI Operating Layer",
+      outcomesLabel: "System Outcomes",
+      topCards: [
+        { title: "Knowledge", text: "Shared context, decisions, history" },
+        { title: "Guidelines", text: "Rules, constraints, quality standards" },
+      ],
+      bottomCards: [
+        { title: "Execution", text: "Tasks completed with structure" },
+        { title: "Human Validation", text: "Judgment, approval, accountability" },
+      ],
+      corePoints: ["Connects context", "Applies rules", "Guides work", "Keeps humans in control"],
+      footer: "Less friction. More alignment. Better outcomes.",
+    },
+    fr: {
+      title: "L'IA fonctionne quand elle s'inscrit dans un système",
+      subtitle: "Une exécution fiable naît de la connexion entre la connaissance, les règles, l'exécution et la validation humaine.",
+      inputsLabel: "Entrées du système",
+      coreLabel: "Couche opérante IA",
+      outcomesLabel: "Résultats du système",
+      topCards: [
+        { title: "Connaissance", text: "Contexte partagé, décisions, historique" },
+        { title: "Règles", text: "Contraintes, standards, qualité attendue" },
+      ],
+      bottomCards: [
+        { title: "Exécution", text: "Travail réalisé avec structure" },
+        { title: "Validation humaine", text: "Jugement, approbation, responsabilité" },
+      ],
+      corePoints: ["Relie le contexte", "Applique les règles", "Guide l'exécution", "Garde l'humain responsable"],
+      footer: "Moins de friction. Plus d'alignement. De meilleurs résultats.",
+    },
+    nl: {
+      title: "AI werkt wanneer het in een systeem zit",
+      subtitle: "Betrouwbare uitvoering ontstaat door kennis, regels, uitvoering en menselijke validatie te verbinden.",
+      inputsLabel: "Systeeminput",
+      coreLabel: "AI-laag",
+      outcomesLabel: "Systeemresultaten",
+      topCards: [
+        { title: "Kennis", text: "Gedeelde context, beslissingen, historiek" },
+        { title: "Richtlijnen", text: "Regels, beperkingen, kwaliteitsnormen" },
+      ],
+      bottomCards: [
+        { title: "Uitvoering", text: "Werk uitgevoerd met structuur" },
+        { title: "Menselijke validatie", text: "Oordeel, goedkeuring, verantwoordelijkheid" },
+      ],
+      corePoints: ["Verbindt context", "Past regels toe", "Stuurt werk", "Houdt mensen verantwoordelijk"],
+      footer: "Minder frictie. Meer afstemming. Betere resultaten.",
+    },
+  }[lang];
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="font-pixel text-lg sm:text-xl text-primary glow mb-2">
+          {copy.title}
+        </p>
+        <p className="text-sm sm:text-base text-muted-foreground">
+          {copy.subtitle}
+        </p>
+      </div>
+
+      <div className="border-2 border-border bg-background p-4 sm:p-6 md:p-8">
+        <div className="grid gap-4 sm:gap-5">
+          <div className="text-center">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {copy.inputsLabel}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {copy.topCards.map((card) => (
+              <div key={card.title} className="border-2 border-border bg-card p-4 sm:p-5 min-h-[120px]">
+                <p className="font-pixel text-sm sm:text-base text-foreground mb-2">{card.title}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center py-1 sm:py-2">
+            <div className="flex items-center gap-2 text-primary/70">
+              <div className="w-px h-5 sm:h-6 bg-primary/40" />
+              <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-primary/50" />
+            </div>
+          </div>
+
+          <div className="border-2 border-primary/30 bg-primary/5 p-5 sm:p-6">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div>
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-primary/80 mb-2">
+                  {copy.coreLabel}
+                </p>
+                <p className="font-pixel text-base sm:text-lg text-primary">
+                  AI
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full md:max-w-2xl">
+                {copy.corePoints.map((point) => (
+                  <div key={point} className="border border-primary/20 bg-background/70 px-3 py-2 text-xs sm:text-sm text-muted-foreground">
+                    {point}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center py-1 sm:py-2">
+            <div className="flex items-center gap-2 text-primary/70">
+              <div className="w-px h-5 sm:h-6 bg-primary/40" />
+              <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-primary/50" />
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {copy.outcomesLabel}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {copy.bottomCards.map((card) => (
+              <div key={card.title} className="border-2 border-border bg-card p-4 sm:p-5 min-h-[120px]">
+                <p className="font-pixel text-sm sm:text-base text-foreground mb-2">{card.title}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="border border-primary/20 bg-primary/5 px-4 sm:px-6 py-3 text-center">
+        <p className="text-sm sm:text-base text-muted-foreground">{copy.footer}</p>
+      </div>
+    </div>
+  );
+}
 
 function BatonFlowDiagram({ t }: { t: (key: string) => string }) {
   const stages = [
