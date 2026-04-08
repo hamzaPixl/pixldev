@@ -31,6 +31,7 @@ export default function BlogPostPage({ params }: PageProps) {
   const Icon = post.icon;
   const showBatonFlowDiagram = post.slug === "the-baton-pattern";
   const showSystemsDiagram = post.slug === "ai-is-not-about-models-its-about-systems";
+  const showTechnicalStackDiagrams = post.slug === "the-technical-stack-behind-my-ai-projects";
 
   return (
     <SharedLayout>
@@ -143,6 +144,14 @@ export default function BlogPostPage({ params }: PageProps) {
         <section className="border-b border-border px-4 sm:px-6 py-12 sm:py-16 bg-card/50">
           <div className="max-w-5xl mx-auto">
             <AISystemsDiagram lang={currentLanguage} />
+          </div>
+        </section>
+      ) : null}
+
+      {showTechnicalStackDiagrams ? (
+        <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
+          <div className="max-w-5xl mx-auto">
+            <TechnicalStackDiagrams lang={currentLanguage} />
           </div>
         </section>
       ) : null}
@@ -323,6 +332,99 @@ function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
 
       <div className="border border-primary/20 bg-primary/5 px-4 sm:px-6 py-3 text-center">
         <p className="text-sm sm:text-base text-muted-foreground">{copy.footer}</p>
+      </div>
+    </div>
+  );
+}
+
+function TechnicalStackDiagrams({ lang }: { lang: "en" | "fr" | "nl" }) {
+  const copy = {
+    en: {
+      title: "The Two Layers I Build On",
+      subtitle: "A compact view of the execution loop and the knowledge layer behind it.",
+      splitTitle: "System Split",
+      harnessTitle: "Harness",
+      harnessText: "Plan → Build → Evaluate → Gate",
+      memoryTitle: "Knowledge OS",
+      memoryText: "Ingest → Retrieve → Relate → Compile",
+      loopTitle: "Execution Loop",
+      loop: ["Plan", "Generate", "Evaluate", "Gate"],
+      knowledgeTitle: "Knowledge Pipeline",
+      knowledge: ["Docs", "Index", "Entities", "Graph", "Context"],
+    },
+    fr: {
+      title: "Les deux couches sur lesquelles je construis",
+      subtitle: "Une vue compacte de la boucle d'exécution et de la couche de connaissance derrière elle.",
+      splitTitle: "Séparation du système",
+      harnessTitle: "Harness",
+      harnessText: "Plan → Build → Evaluate → Gate",
+      memoryTitle: "Knowledge OS",
+      memoryText: "Ingest → Retrieve → Relate → Compile",
+      loopTitle: "Boucle d'exécution",
+      loop: ["Plan", "Generate", "Evaluate", "Gate"],
+      knowledgeTitle: "Pipeline de connaissance",
+      knowledge: ["Docs", "Index", "Entités", "Graphe", "Contexte"],
+    },
+    nl: {
+      title: "De twee lagen waarop ik bouw",
+      subtitle: "Een compacte kijk op de uitvoeringslus en de kennislaag erachter.",
+      splitTitle: "Systeemscheiding",
+      harnessTitle: "Harness",
+      harnessText: "Plan → Build → Evaluate → Gate",
+      memoryTitle: "Knowledge OS",
+      memoryText: "Ingest → Retrieve → Relate → Compile",
+      loopTitle: "Uitvoeringslus",
+      loop: ["Plan", "Generate", "Evaluate", "Gate"],
+      knowledgeTitle: "Kennispipeline",
+      knowledge: ["Docs", "Index", "Entiteiten", "Graf", "Context"],
+    },
+  }[lang];
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="font-pixel text-lg sm:text-xl text-primary glow mb-2">{copy.title}</p>
+        <p className="text-sm sm:text-base text-muted-foreground">{copy.subtitle}</p>
+      </div>
+
+      <div className="grid gap-4 sm:gap-5">
+        <div className="border-2 border-border bg-background p-4 sm:p-5">
+          <p className="font-pixel text-sm text-foreground mb-3">{copy.splitTitle}</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div className="border border-primary/30 bg-primary/5 p-4">
+              <p className="font-pixel text-sm text-primary mb-1">{copy.harnessTitle}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{copy.harnessText}</p>
+            </div>
+            <div className="border border-border bg-card p-4">
+              <p className="font-pixel text-sm text-foreground mb-1">{copy.memoryTitle}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{copy.memoryText}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
+          <div className="border-2 border-border bg-background p-4 sm:p-5">
+            <p className="font-pixel text-sm text-foreground mb-3">{copy.loopTitle}</p>
+            <div className="grid grid-cols-2 gap-2">
+              {copy.loop.map((step) => (
+                <div key={step} className="border border-border bg-card px-3 py-3 text-center text-xs sm:text-sm text-foreground">
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-2 border-border bg-background p-4 sm:p-5">
+            <p className="font-pixel text-sm text-foreground mb-3">{copy.knowledgeTitle}</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {copy.knowledge.map((step) => (
+                <div key={step} className="border border-border bg-card px-3 py-3 text-center text-xs sm:text-sm text-foreground">
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
