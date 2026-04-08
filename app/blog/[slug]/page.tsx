@@ -32,6 +32,7 @@ export default function BlogPostPage({ params }: PageProps) {
   const showBatonFlowDiagram = post.slug === "the-baton-pattern";
   const showSystemsDiagram = post.slug === "ai-is-not-about-models-its-about-systems";
   const showTechnicalStackDiagrams = post.slug === "the-technical-stack-behind-my-ai-projects";
+  const showDecadeFocusDiagram = post.slug === "a-practical-map-of-the-next-tech-decade";
 
   return (
     <SharedLayout>
@@ -152,6 +153,14 @@ export default function BlogPostPage({ params }: PageProps) {
         <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
           <div className="max-w-5xl mx-auto">
             <TechnicalStackDiagrams lang={currentLanguage} />
+          </div>
+        </section>
+      ) : null}
+
+      {showDecadeFocusDiagram ? (
+        <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
+          <div className="max-w-5xl mx-auto">
+            <NextDecadeFocusDiagram lang={currentLanguage} />
           </div>
         </section>
       ) : null}
@@ -430,6 +439,116 @@ function TechnicalStackDiagrams({ lang }: { lang: "en" | "fr" | "nl" }) {
   );
 }
 
+function NextDecadeFocusDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
+  const copy = {
+    en: {
+      title: "A Compact Map of the Next Tech Decade",
+      subtitle: "The sequence is simple: systems, structured execution, specialization, self-improvement, then embodied deployment.",
+      layersTitle: "Stack Progression",
+      layers: [
+        { title: "Systems", text: "AI becomes valuable when it sits inside operating structure." },
+        { title: "Harness + Knowledge OS", text: "Execution and memory become explicit layers." },
+        { title: "Fine-Tuned Local Models", text: "Repeated narrow tasks become specialized capability." },
+        { title: "Self-Improving Loops", text: "Execution data feeds better rules, routes, and models." },
+        { title: "Robotics", text: "The stack extends into physical products and services." },
+      ],
+      decadeTitle: "Where Value Moves",
+      decade: [
+        "From prompts to systems",
+        "From generality to specialization",
+        "From software-only to embodied service",
+        "From isolated tools to composable stacks",
+      ],
+      footer: "Know. Do. Improve. Act.",
+    },
+    fr: {
+      title: "Une carte compacte de la prochaine décennie technologique",
+      subtitle: "La séquence est simple : systèmes, exécution structurée, spécialisation, auto-amélioration, puis déploiement incarné.",
+      layersTitle: "Progression de la stack",
+      layers: [
+        { title: "Systèmes", text: "L'IA devient utile lorsqu'elle s'inscrit dans une structure opérante." },
+        { title: "Harness + Knowledge OS", text: "L'exécution et la mémoire deviennent des couches explicites." },
+        { title: "Modèles locaux fine-tunés", text: "Les tâches étroites et répétées deviennent des capacités spécialisées." },
+        { title: "Boucles auto-améliorantes", text: "Les données d'exécution nourrissent de meilleures règles, routes et modèles." },
+        { title: "Robotique", text: "La stack s'étend vers des produits et services physiques." },
+      ],
+      decadeTitle: "Où se déplace la valeur",
+      decade: [
+        "Des prompts vers les systèmes",
+        "De la généralité vers la spécialisation",
+        "Du logiciel seul vers le service incarné",
+        "Des outils isolés vers des stacks composables",
+      ],
+      footer: "Savoir. Faire. S'améliorer. Agir.",
+    },
+    nl: {
+      title: "Een compacte kaart van het volgende technologische decennium",
+      subtitle: "De sequentie is eenvoudig: systemen, gestructureerde uitvoering, specialisatie, zelfverbetering en daarna belichaamde deployment.",
+      layersTitle: "Stackprogressie",
+      layers: [
+        { title: "Systemen", text: "AI wordt waardevol wanneer het in operationele structuur zit." },
+        { title: "Harness + Knowledge OS", text: "Uitvoering en geheugen worden expliciete lagen." },
+        { title: "Fijn-afgestelde lokale modellen", text: "Repetitieve smalle taken worden gespecialiseerde capaciteit." },
+        { title: "Zelfverbeterende lussen", text: "Uitvoeringsdata voedt betere regels, routes en modellen." },
+        { title: "Robotica", text: "De stack breidt uit naar fysieke producten en diensten." },
+      ],
+      decadeTitle: "Waar waarde naartoe beweegt",
+      decade: [
+        "Van prompts naar systemen",
+        "Van generaliteit naar specialisatie",
+        "Van alleen software naar belichaamde service",
+        "Van geïsoleerde tools naar composable stacks",
+      ],
+      footer: "Weten. Doen. Verbeteren. Handelen.",
+    },
+  }[lang];
+
+  return (
+    <div className="max-w-5xl mx-auto space-y-4 sm:space-y-5">
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="font-pixel text-lg sm:text-xl text-primary glow mb-2">{copy.title}</p>
+        <p className="text-sm sm:text-base text-muted-foreground">{copy.subtitle}</p>
+      </div>
+
+      <div className="border-2 border-border bg-background p-4 sm:p-6 md:p-8">
+        <p className="font-pixel text-sm text-foreground mb-4">{copy.layersTitle}</p>
+        <div className="grid gap-3">
+          {copy.layers.map((layer, index) => (
+            <div key={layer.title} className="grid md:grid-cols-[96px_1fr] gap-3 items-start">
+              <div className="border border-primary/30 bg-primary/5 px-3 py-2 text-xs sm:text-sm font-pixel text-primary text-center">
+                0{index + 1}
+              </div>
+              <div className="border border-border bg-card p-4">
+                <p className="font-pixel text-sm text-foreground mb-1">{layer.title}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground">{layer.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
+        <div className="border-2 border-border bg-background p-4 sm:p-5">
+          <p className="font-pixel text-sm text-foreground mb-3">{copy.decadeTitle}</p>
+          <div className="space-y-2">
+            {copy.decade.map((item) => (
+              <div key={item} className="border border-border bg-card px-3 py-3 text-xs sm:text-sm text-muted-foreground">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-2 border-primary/30 bg-primary/5 p-5 sm:p-6 flex items-center justify-center">
+          <p className="font-pixel text-xl sm:text-2xl text-primary text-center leading-relaxed">
+            {copy.footer}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BatonFlowDiagram({ t }: { t: (key: string) => string }) {
   const stages = [
     { label: "Planner", num: "01" },
@@ -687,6 +806,45 @@ function InlineMarkdown({ text }: { text: string }) {
   let key = 0;
 
   while (remaining.length > 0) {
+    // Links [text](url)
+    const linkMatch = remaining.match(/^([\s\S]*?)\[([^\]]+)\]\(([^)]+)\)([\s\S]*)/);
+    if (linkMatch) {
+      if (linkMatch[1]) {
+        parts.push(
+          <BoldItalic key={key++} text={linkMatch[1]} />
+        );
+      }
+
+      const href = linkMatch[3];
+      const label = linkMatch[2];
+      const isInternal = href.startsWith("/");
+
+      parts.push(
+        isInternal ? (
+          <Link
+            key={key++}
+            href={href}
+            className="text-primary underline decoration-primary/40 underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            {label}
+          </Link>
+        ) : (
+          <a
+            key={key++}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline decoration-primary/40 underline-offset-4 hover:text-primary/80 transition-colors"
+          >
+            {label}
+          </a>
+        )
+      );
+
+      remaining = linkMatch[4];
+      continue;
+    }
+
     // Code `...`
     const codeMatch = remaining.match(/^([\s\S]*?)`([^`]+)`([\s\S]*)/);
     if (codeMatch) {

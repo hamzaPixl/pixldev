@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Workflow, Network, Cog } from "lucide-react";
+import { Workflow, Network, Cog, BrainCircuit } from "lucide-react";
 import type { SupportedLanguages } from "@/lib/translations";
 
 type Localized = Record<SupportedLanguages, string>;
@@ -46,6 +46,1824 @@ function resolve(post: BlogPostData, lang: SupportedLanguages): BlogPost {
 }
 
 const blogPosts: BlogPostData[] = [
+  {
+    slug: "a-practical-map-of-the-next-tech-decade",
+    icon: Network,
+    date: "2026-04-08",
+    authors: [
+      { name: "Hamza Mounir", linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/" },
+    ],
+    title: {
+      en: "A Practical Map of the Next Tech Decade",
+      fr: "Une carte pratique de la prochaine décennie technologique",
+      nl: "Een praktische kaart van het volgende technologische decennium",
+    },
+    description: {
+      en: "A capstone summary of the next tech decade: from systems and Knowledge OS to fine-tuned local models, robotics, and embodied products, with references to the earlier articles in the series.",
+      fr: "Une synthèse de la prochaine décennie technologique : des systèmes et du Knowledge OS jusqu'aux modèles locaux fine-tunés, à la robotique et aux produits incarnés, avec des références aux articles précédents de la série.",
+      nl: "Een samenvattend overzicht van het volgende technologische decennium: van systemen en Knowledge OS tot fijn-afgestelde lokale modellen, robotica en belichaamde producten, met referenties naar de eerdere artikels uit de reeks.",
+    },
+    category: {
+      en: "Vision",
+      fr: "Vision",
+      nl: "Visie",
+    },
+    tags: {
+      en: ["Next Decade", "AI Systems", "Robotics"],
+      fr: ["Prochaine décennie", "Systèmes IA", "Robotique"],
+      nl: ["Volgend decennium", "AI-systemen", "Robotica"],
+    },
+    readTime: {
+      en: "8 min",
+      fr: "10 min",
+      nl: "10 min",
+    },
+    content: {
+      en: `
+This article is the summary layer over the previous four:
+
+- [AI Is Not About Models. It's About Systems.](/blog/ai-is-not-about-models-its-about-systems)
+- [Under the Hood: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+- [Fine-Tuned Local Models Are the Next Layer](/blog/fine-tuned-local-models-are-the-next-layer)
+- [Robotics Is Where Agentic Systems Become Real](/blog/robotics-is-where-agentic-systems-become-real)
+
+Taken together, they describe the direction I believe matters most for the next tech decade.
+
+Not a decade centered on one model.
+Not a decade centered on one app category.
+
+But a decade centered on systems that can:
+
+- know
+- decide
+- execute
+- improve
+- and eventually act in the physical world
+
+This is the shortest way I can summarize that map.
+
+## Step 1: We Move From Tools to Systems
+
+The first shift is conceptual.
+
+AI will keep being discussed through model releases, benchmarks, and product demos. But the durable value will not come from isolated model access. It will come from system design.
+
+That was the core point of the first article.
+
+The important unit is no longer just the model.
+
+It is the operating system around the model:
+
+- context
+- rules
+- execution
+- validation
+
+That is the minimum structure required for reliability.
+
+## Step 2: Execution and Memory Become First-Class Layers
+
+Once you accept that AI is a system problem, the architecture becomes clearer.
+
+You need one layer responsible for moving work forward.
+You need another layer responsible for making the right context available.
+
+That is why I split the stack into:
+
+- a **harness** for execution
+- a **Knowledge OS** for structured memory
+
+The harness plans, generates, evaluates, and gates.
+The Knowledge OS ingests, retrieves, relates, and compiles.
+
+That split matters because execution without memory becomes shallow, and memory without execution remains passive.
+
+## Step 3: Prompting Stops Being Enough
+
+Prompting will remain useful, but it is not where the long-term architecture ends.
+
+As systems mature, repeated narrow tasks should not remain trapped inside ever-growing prompt scaffolding.
+
+That is why the next serious layer is specialization through training:
+
+- smaller local models
+- narrow responsibilities
+- lower latency
+- less prompt overhead
+- stronger operational alignment
+
+This is not about replacing reasoning.
+
+It is about reserving reasoning for the places where reasoning is actually needed, and stabilizing everything else.
+
+## Step 4: Self-Improvement Becomes Operational
+
+The phrase "self-improving systems" is often used too vaguely.
+
+What matters to me is not abstract reflection.
+
+What matters is execution producing evidence.
+
+From that evidence, the system can learn:
+
+- what failed repeatedly
+- what required too much prompting
+- what should become a rule
+- what should become training data
+- what should be assigned to a specialized model
+
+That is the practical loop.
+
+Improve the system by improving the architecture around repeated work.
+
+## Step 5: The Stack Extends Into Robotics
+
+If the first four steps work, then intelligence stops being confined to screens.
+
+That is where robotics enters.
+
+I do not see robotics as a separate field disconnected from agentic systems. I see it as the continuation of the same stack into the physical world.
+
+Once a system can reason, remember, evaluate, specialize, and improve, the next question is obvious:
+
+> what happens when it gains a body?
+
+That body does not need to be humanoid at first.
+
+In practice, much of the market will be built through:
+
+- robotic arms
+- drones
+- mobile inspection units
+- educational robots
+- narrow industrial machines
+
+Humanoids may become culturally important, but useful embodiment will arrive through many forms.
+
+## A Decade Structured in Layers
+
+If I compress the whole thesis into a simple schema, it looks like this:
+
+| Layer | What It Solves | Why It Matters |
+|---|---|---|
+| AI systems | Connect knowledge, rules, execution, and validation | Turns AI into operating structure |
+| Harness + Knowledge OS | Separate doing from knowing | Makes execution and memory reliable |
+| Fine-tuned local models | Stabilize narrow repeated tasks | Reduces prompt dependency |
+| Self-improving loops | Learn from real execution evidence | Increases reliability over time |
+| Robotics | Extend intelligence into physical action | Turns software capability into products and services |
+
+This is the architecture I expect to matter most.
+
+## Where Products and Services Will Move
+
+The product impact of this shift will not stay inside software categories.
+
+It will spread into services, operations, logistics, safety, education, industry, and physical assistance.
+
+That means the next decade is not only about better chat interfaces.
+
+It is about the convergence of:
+
+- AI
+- training
+- execution systems
+- open source ecosystems
+- cheaper hardware
+- embodied deployment
+
+That combination is what creates new product categories.
+
+## The Human Role Does Not Disappear
+
+One reason I care about this direction is that I do not see it as a story of human removal.
+
+In the near term, these systems help humans recover time, focus, creativity, and execution power.
+
+Humans still choose the direction.
+Humans still decide what matters.
+Humans still do the final matching between capability and meaning.
+
+The system makes imagination easier to turn into structure.
+Then structure becomes execution.
+Then execution becomes service.
+
+That is a much more interesting path than simple automation theater.
+
+## Final Thought
+
+If I had to reduce the next tech decade to one line, it would be this:
+
+we are moving from models to systems, from systems to reliable specialization, and from reliable specialization to embodied intelligence.
+
+That is the sequence.
+
+First the system learns to know.
+Then it learns to do.
+Then it learns to improve.
+Then it begins to act in the real world.
+
+That is where I think the real decade is heading.
+      `.trim(),
+
+      fr: `
+Cet article est la couche de synthèse des quatre précédents :
+
+- [L'IA n'est pas une affaire de modèles. C'est une affaire de systèmes.](/blog/ai-is-not-about-models-its-about-systems)
+- [La stack technique derrière mes projets IA : Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+- [Les modèles locaux fine-tunés sont la couche suivante](/blog/fine-tuned-local-models-are-the-next-layer)
+- [La robotique est l'endroit où les systèmes agentiques deviennent réels](/blog/robotics-is-where-agentic-systems-become-real)
+
+Pris ensemble, ils décrivent la direction qui me paraît la plus importante pour la prochaine décennie technologique.
+
+Pas une décennie centrée sur un seul modèle.
+Pas une décennie centrée sur une seule catégorie d'application.
+
+Mais une décennie centrée sur des systèmes capables de :
+
+- savoir
+- décider
+- exécuter
+- s'améliorer
+- et finalement agir dans le monde physique
+
+C'est la manière la plus courte que j'ai de résumer cette carte.
+
+## Étape 1 : passer des outils aux systèmes
+
+Le premier basculement est conceptuel.
+
+L'IA continuera d'être racontée à travers des sorties de modèles, des benchmarks et des démos produit. Mais la valeur durable ne viendra pas d'un accès isolé au modèle. Elle viendra du design système.
+
+C'était l'idée centrale du premier article.
+
+L'unité importante n'est plus seulement le modèle.
+
+C'est le système opérant autour du modèle :
+
+- le contexte
+- les règles
+- l'exécution
+- la validation
+
+C'est la structure minimale nécessaire à la fiabilité.
+
+## Étape 2 : l'exécution et la mémoire deviennent des couches de premier rang
+
+Dès qu'on accepte que l'IA soit un problème de système, l'architecture devient plus claire.
+
+Il faut une couche responsable de faire avancer le travail.
+Il faut une autre couche responsable de rendre le bon contexte disponible.
+
+C'est pourquoi je découpe la stack en :
+
+- un **harness** pour l'exécution
+- un **Knowledge OS** pour la mémoire structurée
+
+Le harness planifie, génère, évalue et gate.
+Le Knowledge OS ingère, retrouve, relie et compile.
+
+Cette séparation compte parce qu'une exécution sans mémoire reste superficielle, et qu'une mémoire sans exécution reste passive.
+
+## Étape 3 : le prompting cesse d'être suffisant
+
+Le prompting restera utile, mais ce n'est pas là que l'architecture de long terme s'arrête.
+
+À mesure que les systèmes mûrissent, les tâches étroites et répétées ne doivent pas rester enfermées dans un scaffolding de prompt toujours plus long.
+
+C'est pourquoi la couche suivante sérieuse est la spécialisation par l'entraînement :
+
+- des modèles locaux plus petits
+- des responsabilités étroites
+- moins de latence
+- moins d'overhead de prompt
+- plus d'alignement opérationnel
+
+Il ne s'agit pas de remplacer le raisonnement.
+
+Il s'agit de réserver le raisonnement aux endroits où il est réellement nécessaire, et de stabiliser le reste.
+
+## Étape 4 : l'auto-amélioration devient opérationnelle
+
+L'expression "systèmes auto-améliorants" est souvent utilisée de manière trop vague.
+
+Ce qui m'intéresse n'est pas la réflexion abstraite.
+
+Ce qui m'intéresse, c'est l'exécution qui produit des preuves.
+
+À partir de ces preuves, le système peut apprendre :
+
+- ce qui a échoué de manière répétée
+- ce qui a demandé trop de prompting
+- ce qui doit devenir une règle
+- ce qui doit devenir de la donnée d'entraînement
+- ce qui doit être confié à un modèle spécialisé
+
+C'est la boucle pratique.
+
+Améliorer le système en améliorant l'architecture autour du travail répétitif.
+
+## Étape 5 : la stack s'étend à la robotique
+
+Si les quatre premières étapes fonctionnent, alors l'intelligence cesse d'être confinée aux écrans.
+
+C'est là que la robotique entre en jeu.
+
+Je ne vois pas la robotique comme un champ séparé des systèmes agentiques. Je la vois comme la continuation de la même stack dans le monde physique.
+
+Une fois qu'un système sait raisonner, se souvenir, évaluer, se spécialiser et s'améliorer, la question suivante devient évidente :
+
+> que se passe-t-il lorsqu'il reçoit un corps ?
+
+Ce corps n'a pas besoin d'être humanoïde au départ.
+
+En pratique, une grande partie du marché se construira à travers :
+
+- des bras robotiques
+- des drones
+- des unités mobiles d'inspection
+- des robots éducatifs
+- des machines industrielles étroites
+
+Les humanoïdes deviendront peut-être culturellement importants, mais l'incarnation utile arrivera à travers de nombreuses formes.
+
+## Une décennie structurée par couches
+
+Si je compresse toute la thèse dans un schéma simple, cela ressemble à ceci :
+
+| Couche | Ce qu'elle résout | Pourquoi elle compte |
+|---|---|---|
+| Systèmes IA | Relier connaissance, règles, exécution et validation | Transforme l'IA en structure opérante |
+| Harness + Knowledge OS | Séparer le faire du savoir | Rend l'exécution et la mémoire fiables |
+| Modèles locaux fine-tunés | Stabiliser les tâches étroites et répétées | Réduit la dépendance au prompt |
+| Boucles auto-améliorantes | Apprendre à partir de l'exécution réelle | Augmente la fiabilité dans le temps |
+| Robotique | Étendre l'intelligence à l'action physique | Transforme des capacités logicielles en produits et services |
+
+C'est l'architecture que je m'attends à voir compter le plus.
+
+## Où vont bouger les produits et les services
+
+L'impact produit de ce basculement ne restera pas limité aux catégories logicielles.
+
+Il va se diffuser dans les services, les opérations, la logistique, la sécurité, l'éducation, l'industrie et l'assistance physique.
+
+Cela signifie que la prochaine décennie ne sera pas seulement celle de meilleures interfaces conversationnelles.
+
+Elle sera celle de la convergence entre :
+
+- l'IA
+- l'entraînement
+- les systèmes d'exécution
+- les écosystèmes open source
+- un hardware moins coûteux
+- le déploiement incarné
+
+C'est cette combinaison qui crée de nouvelles catégories produit.
+
+## Le rôle humain ne disparaît pas
+
+L'une des raisons pour lesquelles cette direction m'intéresse est que je ne la vois pas comme un récit de disparition de l'humain.
+
+À court terme, ces systèmes aident les humains à récupérer du temps, de la concentration, de la créativité et du pouvoir d'exécution.
+
+Les humains choisissent toujours la direction.
+Les humains décident toujours de ce qui compte.
+Les humains font toujours le matching final entre capacité et sens.
+
+Le système rend l'imagination plus facile à transformer en structure.
+Puis la structure devient exécution.
+Puis l'exécution devient service.
+
+C'est une trajectoire beaucoup plus intéressante qu'un simple théâtre de l'automatisation.
+
+## Dernière idée
+
+Si je devais réduire la prochaine décennie technologique à une seule phrase, je dirais ceci :
+
+nous passons des modèles aux systèmes, des systèmes à la spécialisation fiable, puis de la spécialisation fiable à l'intelligence incarnée.
+
+C'est la séquence.
+
+D'abord le système apprend à savoir.
+Ensuite il apprend à faire.
+Puis il apprend à s'améliorer.
+Enfin il commence à agir dans le monde réel.
+
+C'est là que je pense que la vraie décennie se dirige.
+      `.trim(),
+
+      nl: `
+Dit artikel is de samenvattende laag bovenop de vorige vier:
+
+- [AI draait niet om modellen. Het draait om systemen.](/blog/ai-is-not-about-models-its-about-systems)
+- [De technische stack achter mijn AI-projecten: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+- [Fijn-afgestelde lokale modellen zijn de volgende laag](/blog/fine-tuned-local-models-are-the-next-layer)
+- [Robotica is waar agentische systemen echt worden](/blog/robotics-is-where-agentic-systems-become-real)
+
+Samen beschrijven ze de richting die volgens mij het belangrijkst wordt voor het volgende technologische decennium.
+
+Geen decennium dat rond één model draait.
+Geen decennium dat rond één appcategorie draait.
+
+Maar een decennium dat draait rond systemen die kunnen:
+
+- weten
+- beslissen
+- uitvoeren
+- verbeteren
+- en uiteindelijk handelen in de fysieke wereld
+
+Dit is de kortste manier waarop ik die kaart kan samenvatten.
+
+## Stap 1: we bewegen van tools naar systemen
+
+De eerste verschuiving is conceptueel.
+
+AI zal nog lang besproken worden via modelreleases, benchmarks en productdemo's. Maar duurzame waarde zal niet komen uit geïsoleerde modeltoegang. Ze zal komen uit systeemontwerp.
+
+Dat was het kernpunt van het eerste artikel.
+
+De belangrijke eenheid is niet langer alleen het model.
+
+Het is het besturingssysteem rond het model:
+
+- context
+- regels
+- uitvoering
+- validatie
+
+Dat is de minimale structuur die nodig is voor betrouwbaarheid.
+
+## Stap 2: uitvoering en geheugen worden first-class lagen
+
+Zodra je aanvaardt dat AI een systeemprobleem is, wordt de architectuur helderder.
+
+Je hebt één laag nodig die verantwoordelijk is voor het vooruitduwen van werk.
+Je hebt een andere laag nodig die de juiste context beschikbaar maakt.
+
+Daarom splits ik de stack op in:
+
+- een **harness** voor uitvoering
+- een **Knowledge OS** voor gestructureerd geheugen
+
+De harness plant, genereert, evalueert en gate.
+De Knowledge OS neemt in, haalt op, relateert en compileert.
+
+Die splitsing is belangrijk omdat uitvoering zonder geheugen oppervlakkig blijft, en geheugen zonder uitvoering passief blijft.
+
+## Stap 3: prompting is niet langer genoeg
+
+Prompting blijft nuttig, maar daar eindigt de langetermijnarchitectuur niet.
+
+Naarmate systemen volwassener worden, mogen repetitieve smalle taken niet opgesloten blijven in steeds grotere prompt-scaffolding.
+
+Daarom is de volgende serieuze laag specialisatie via training:
+
+- kleinere lokale modellen
+- smalle verantwoordelijkheden
+- lagere latency
+- minder prompt-overhead
+- sterkere operationele alignment
+
+Het gaat niet om het vervangen van redeneren.
+
+Het gaat erom redeneren te reserveren voor de plaatsen waar het echt nodig is, en al de rest te stabiliseren.
+
+## Stap 4: zelfverbetering wordt operationeel
+
+De uitdrukking "zelfverbeterende systemen" wordt vaak te vaag gebruikt.
+
+Wat mij interesseert is geen abstracte reflectie.
+
+Wat mij interesseert is uitvoering die bewijs oplevert.
+
+Uit dat bewijs kan het systeem leren:
+
+- wat herhaaldelijk faalde
+- wat te veel prompting vereiste
+- wat een regel moet worden
+- wat trainingsdata moet worden
+- wat aan een gespecialiseerd model moet worden toegewezen
+
+Dat is de praktische lus.
+
+Verbeter het systeem door de architectuur rond repetitief werk te verbeteren.
+
+## Stap 5: de stack breidt uit naar robotica
+
+Als de eerste vier stappen werken, dan blijft intelligentie niet langer opgesloten in schermen.
+
+Daar komt robotica binnen.
+
+Ik zie robotica niet als een apart veld los van agentische systemen. Ik zie het als de voortzetting van dezelfde stack in de fysieke wereld.
+
+Zodra een systeem kan redeneren, onthouden, evalueren, specialiseren en verbeteren, wordt de volgende vraag vanzelfsprekend:
+
+> wat gebeurt er wanneer het een lichaam krijgt?
+
+Dat lichaam hoeft in het begin niet humanoid te zijn.
+
+In de praktijk zal een groot deel van de markt gebouwd worden via:
+
+- robotarmen
+- drones
+- mobiele inspectie-eenheden
+- educatieve robots
+- smalle industriële machines
+
+Humanoids kunnen cultureel belangrijk worden, maar nuttige belichaming zal via veel vormen arriveren.
+
+## Een decennium gestructureerd in lagen
+
+Als ik de hele these tot een eenvoudig schema samendruk, ziet het er zo uit:
+
+| Laag | Wat het oplost | Waarom het belangrijk is |
+|---|---|---|
+| AI-systemen | Kennis, regels, uitvoering en validatie verbinden | Zet AI om in operationele structuur |
+| Harness + Knowledge OS | Doen van weten scheiden | Maakt uitvoering en geheugen betrouwbaar |
+| Fijn-afgestelde lokale modellen | Smalle repetitieve taken stabiliseren | Vermindert promptafhankelijkheid |
+| Zelfverbeterende lussen | Leren uit echte uitvoeringsdata | Verhoogt betrouwbaarheid in de tijd |
+| Robotica | Intelligentie uitbreiden naar fysieke actie | Zet softwarecapaciteit om in producten en diensten |
+
+Dit is de architectuur die volgens mij het meest zal tellen.
+
+## Waar producten en diensten naartoe bewegen
+
+De productimpact van deze verschuiving zal niet binnen softwarecategorieën blijven.
+
+Ze zal zich verspreiden naar diensten, operations, logistiek, veiligheid, onderwijs, industrie en fysieke assistentie.
+
+Dat betekent dat het volgende decennium niet alleen over betere chatinterfaces gaat.
+
+Het gaat over de convergentie van:
+
+- AI
+- training
+- uitvoeringssystemen
+- open-source-ecosystemen
+- goedkopere hardware
+- belichaamde deployment
+
+Die combinatie creëert nieuwe productcategorieën.
+
+## De menselijke rol verdwijnt niet
+
+Een reden waarom deze richting mij interesseert, is dat ik ze niet zie als een verhaal van menselijke verwijdering.
+
+Op korte termijn helpen deze systemen mensen om tijd, focus, creativiteit en uitvoeringskracht terug te winnen.
+
+Mensen kiezen nog altijd de richting.
+Mensen beslissen nog altijd wat belangrijk is.
+Mensen doen nog altijd de finale matching tussen capaciteit en betekenis.
+
+Het systeem maakt het makkelijker om verbeelding in structuur om te zetten.
+Dan wordt structuur uitvoering.
+Dan wordt uitvoering service.
+
+Dat is een veel interessanter pad dan louter automatiseringstheater.
+
+## Slotgedachte
+
+Als ik het volgende technologische decennium tot één zin zou moeten reduceren, dan is het deze:
+
+we bewegen van modellen naar systemen, van systemen naar betrouwbare specialisatie, en van betrouwbare specialisatie naar belichaamde intelligentie.
+
+Dat is de sequentie.
+
+Eerst leert het systeem weten.
+Dan leert het doen.
+Dan leert het verbeteren.
+Dan begint het te handelen in de echte wereld.
+
+Daar denk ik dat het echte decennium naartoe gaat.
+      `.trim(),
+    },
+  },
+  {
+    slug: "robotics-is-where-agentic-systems-become-real",
+    icon: BrainCircuit,
+    date: "2026-04-08",
+    authors: [
+      { name: "Hamza Mounir", linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/" },
+    ],
+    title: {
+      en: "Robotics Is Where Agentic Systems Become Real",
+      fr: "La robotique est l'endroit où les systèmes agentiques deviennent réels",
+      nl: "Robotica is waar agentische systemen echt worden",
+    },
+    description: {
+      en: "Why I see robotics as the real destination of agentic systems, from educational companions and safety assistants to the broader convergence of AI, training, open source, and physical products.",
+      fr: "Pourquoi je vois la robotique comme la véritable destination des systèmes agentiques, des compagnons éducatifs aux assistants de sécurité, dans une convergence plus large entre IA, entraînement, open source et produits physiques.",
+      nl: "Waarom ik robotica zie als de echte bestemming van agentische systemen, van educatieve companions tot veiligheidsassistenten, binnen een bredere convergentie van AI, training, open source en fysieke producten.",
+    },
+    category: {
+      en: "Vision",
+      fr: "Vision",
+      nl: "Visie",
+    },
+    tags: {
+      en: ["Robotics", "Agentic Systems", "Embodiment"],
+      fr: ["Robotique", "Systèmes agentiques", "Embodiment"],
+      nl: ["Robotica", "Agentische systemen", "Embodiment"],
+    },
+    readTime: {
+      en: "7 min",
+      fr: "9 min",
+      nl: "9 min",
+    },
+    content: {
+      en: `
+My first articles were about systems, execution, memory, fine-tuning, and reliability.
+
+Those topics matter on their own.
+
+But for me, they also point toward something larger:
+
+robotics.
+
+If I zoom out, I do not see agentic systems as the final product category. I see them as the path toward embodied systems that can operate in the physical world.
+
+In other words:
+
+the broader vision is not only software that reasons.
+It is software, models, memory, training, and execution becoming able to act through machines.
+
+That is why robotics matters so much to me.
+
+## Agentic Systems Are a Bridge
+
+A lot of people talk about agents as if the destination were digital automation alone.
+
+I do not think that is the full picture.
+
+Agents matter because they force us to solve the right intermediate problems:
+
+- planning
+- memory
+- reasoning
+- specialization
+- evaluation
+- reliability
+- adaptation
+
+Those are exactly the capabilities you need before physical systems can become truly useful at scale.
+
+A robot without these layers is mostly hardware.
+
+A robot with them starts to become a system.
+
+## The Humanoid Question
+
+When people think about robotics, they often jump directly to humanoids.
+
+I understand why.
+
+There is something deeply human in the idea. We are naturally drawn to the possibility of building physical cousins of ourselves, almost in the same way that we imagine extraterrestrial life: not just tools, but other embodied intelligences we can relate to.
+
+That vision is powerful.
+
+But I do not think it should blind us to what robotics already is today.
+
+Most useful robots are not full humanoids.
+
+They are:
+
+- drones
+- robotic arms
+- wheeled machines
+- small educational companions
+- narrow industrial systems
+
+That matters because the market will not wait for perfect humanoids to start transforming work.
+
+It is already moving through smaller, more specialized bodies.
+
+## Embodiment Matters More Than Shape
+
+For me, the real question is not "Does it look human?"
+
+The more important question is:
+
+> Can it perceive, decide, and act reliably in the real world?
+
+That can happen through many forms.
+
+A Reachy Mini used by children or teachers.
+A safety assistant helping construction teams reduce risk.
+A robotic arm moving parts or materials.
+A mobile unit inspecting, transporting, or monitoring.
+
+These systems do not all need the same body.
+
+What they need is useful embodiment.
+
+The physical form should follow the task, not the mythology.
+
+## Why Robotics Will Drive Products and Services
+
+I think the coming decade will push robotics much deeper into real products and services.
+
+Not only because hardware keeps improving, but because the software layer around it is finally catching up.
+
+What changes the equation is the convergence of several forces:
+
+- better AI models
+- better training pipelines
+- better simulation and evaluation
+- cheaper hardware
+- more open source building blocks
+- stronger developer ecosystems
+
+This is why robotics now feels less like a distant moonshot and more like an emerging product category.
+
+The stack is becoming composable.
+
+And once the stack becomes composable, experimentation accelerates.
+
+## Open Source Will Matter More Than People Think
+
+One of the most important accelerants in this space will be open source.
+
+Not because open source solves everything, but because it lowers the cost of iteration and distribution.
+
+When models, training recipes, control systems, hardware interfaces, and simulation tools become easier to access, more people can build.
+
+That matters enormously.
+
+A robotics ecosystem does not grow only from large labs.
+
+It also grows from researchers, startups, schools, hackerspaces, developers, and niche product builders who keep shipping smaller experiments until the category matures.
+
+That is often how real technological markets are formed.
+
+## Near-Term Use: Humans Become Creative Again
+
+There is also a more immediate reason why I care about these first three articles and the systems behind them.
+
+In the near term, the purpose is not to replace people with machines.
+
+The purpose is to make humans more capable again.
+
+Better execution systems, better memory, better reasoning, and better specialization can help people recover time, focus, and creative bandwidth.
+
+Humans still do the matching.
+Humans still define the direction.
+Humans still decide what is meaningful.
+
+But AI can remove a large amount of friction between imagination and execution.
+
+That is already valuable, even before robotics reaches maturity.
+
+## From Imagination to Physical Service
+
+What excites me most is the continuity between these layers.
+
+First, AI helps humans think, organize, design, and execute better.
+
+Then those same systems become capable of guiding physical tools.
+
+Eventually, you get products and services that are not only digital, but embodied.
+
+That could mean robots that:
+
+- demonstrate concepts in classrooms
+- assist teachers and children in learning environments
+- improve safety in construction and industrial contexts
+- save time on repetitive physical handling
+- help people supervise or coordinate real-world operations
+
+That is where imagination becomes service.
+
+Not because the machine replaces human purpose, but because it extends human reach.
+
+## The Real Opportunity
+
+To me, robotics is not a side branch of AI.
+
+It is one of the most concrete destinations of the whole movement.
+
+If intelligence remains trapped inside screens, it will still be useful.
+
+But once intelligence can reliably connect to tools, bodies, sensors, and physical environments, the economic and social impact becomes much larger.
+
+That is when product categories multiply.
+That is when services become embodied.
+That is when AI starts to reshape daily life in visible ways.
+
+## Final Thought
+
+The first layers are about making systems able to think, know, decide, and improve.
+
+Robotics is what happens when those layers gain a body.
+
+Humanoids may become one part of that future.
+But the deeper shift is broader than humanoids.
+
+It is the emergence of useful embodied systems across education, industry, safety, logistics, assistance, and everyday work.
+
+That is why I see robotics not as a separate topic, but as the continuation of the same architecture.
+
+First the system learns to reason.
+Then it learns to act.
+Then it enters the physical world.
+      `.trim(),
+
+      fr: `
+Mes premiers articles portaient sur les systèmes, l'exécution, la mémoire, le fine-tuning et la fiabilité.
+
+Ces sujets comptent en eux-mêmes.
+
+Mais pour moi, ils pointent aussi vers quelque chose de plus large :
+
+la robotique.
+
+Si je prends un peu de recul, je ne vois pas les systèmes agentiques comme une catégorie de produit finale. Je les vois comme le chemin vers des systèmes incarnés capables d'opérer dans le monde physique.
+
+Autrement dit :
+
+la vision n'est pas seulement un logiciel qui raisonne.
+C'est un ensemble de logiciel, de modèles, de mémoire, d'entraînement et d'exécution capable d'agir à travers des machines.
+
+C'est pour cela que la robotique compte autant à mes yeux.
+
+## Les systèmes agentiques sont un pont
+
+Beaucoup de gens parlent des agents comme si la destination était uniquement l'automatisation digitale.
+
+Je ne pense pas que ce soit toute l'image.
+
+Les agents comptent parce qu'ils nous obligent à résoudre les bons problèmes intermédiaires :
+
+- la planification
+- la mémoire
+- le raisonnement
+- la spécialisation
+- l'évaluation
+- la fiabilité
+- l'adaptation
+
+Ce sont exactement les capacités qu'il faut résoudre avant que des systèmes physiques deviennent réellement utiles à grande échelle.
+
+Un robot sans ces couches reste surtout du hardware.
+
+Un robot avec elles commence à devenir un système.
+
+## La question du humanoïde
+
+Quand on pense à la robotique, on saute souvent directement aux humanoïdes.
+
+Je comprends pourquoi.
+
+Il y a quelque chose de profondément humain dans cette idée. Nous sommes naturellement attirés par la possibilité de construire des cousins physiques de nous-mêmes, presque de la même manière que nous imaginons des formes de vie extraterrestres : pas seulement des outils, mais d'autres intelligences incarnées auxquelles nous pourrions nous relier.
+
+Cette vision est puissante.
+
+Mais je ne pense pas qu'elle doive nous aveugler sur ce qu'est déjà la robotique aujourd'hui.
+
+La plupart des robots utiles ne sont pas des humanoïdes complets.
+
+Ce sont :
+
+- des drones
+- des bras robotiques
+- des machines roulantes
+- de petits compagnons éducatifs
+- des systèmes industriels étroits
+
+Cela compte parce que le marché n'attendra pas des humanoïdes parfaits pour commencer à transformer le travail.
+
+Il avance déjà à travers des corps plus petits et plus spécialisés.
+
+## L'incarnation compte plus que la forme
+
+Pour moi, la vraie question n'est pas : "Est-ce que cela ressemble à un humain ?"
+
+La question plus importante est :
+
+> Est-ce que cela peut percevoir, décider et agir de manière fiable dans le monde réel ?
+
+Cela peut prendre beaucoup de formes.
+
+Un Reachy Mini utilisé par des enfants ou des enseignants.
+Un assistant de sécurité aidant des équipes de construction à réduire les risques.
+Un bras robotique qui déplace des pièces ou des matériaux.
+Une unité mobile qui inspecte, transporte ou surveille.
+
+Tous ces systèmes n'ont pas besoin du même corps.
+
+Ils ont besoin d'une incarnation utile.
+
+La forme physique doit suivre la tâche, pas le mythe.
+
+## Pourquoi la robotique va tirer les produits et services
+
+Je pense que la décennie qui arrive va faire entrer la robotique beaucoup plus profondément dans les produits et les services réels.
+
+Pas seulement parce que le hardware progresse, mais parce que la couche logicielle autour de lui commence enfin à rattraper son retard.
+
+Ce qui change l'équation, c'est la convergence de plusieurs forces :
+
+- de meilleurs modèles d'IA
+- de meilleures pipelines d'entraînement
+- de meilleures simulations et évaluations
+- du hardware moins coûteux
+- plus de briques open source
+- des écosystèmes développeurs plus solides
+
+C'est pour cela que la robotique ressemble de moins en moins à un moonshot lointain, et de plus en plus à une catégorie produit émergente.
+
+La stack devient composable.
+
+Et dès que la stack devient composable, l'expérimentation accélère.
+
+## L'open source comptera plus qu'on ne le pense
+
+L'un des accélérateurs les plus importants dans cet espace sera l'open source.
+
+Pas parce que l'open source résout tout, mais parce qu'il réduit le coût de l'itération et de la diffusion.
+
+Quand les modèles, les recettes d'entraînement, les systèmes de contrôle, les interfaces hardware et les outils de simulation deviennent plus accessibles, davantage de gens peuvent construire.
+
+Cela compte énormément.
+
+Un écosystème robotique ne grandit pas uniquement depuis de grands laboratoires.
+
+Il grandit aussi grâce à des chercheurs, des startups, des écoles, des hackerspaces, des développeurs et des constructeurs de produits de niche qui continuent d'expédier de petites expériences jusqu'à maturation de la catégorie.
+
+C'est souvent ainsi que se forment les vrais marchés technologiques.
+
+## Usage à court terme : redonner de la créativité aux humains
+
+Il y a aussi une raison plus immédiate pour laquelle ces trois premiers articles et les systèmes derrière eux m'importent.
+
+À court terme, l'objectif n'est pas de remplacer les humains par des machines.
+
+L'objectif est de rendre les humains plus capables à nouveau.
+
+De meilleurs systèmes d'exécution, de meilleure mémoire, plus de raisonnement et plus de spécialisation peuvent aider les gens à récupérer du temps, de la concentration et de la capacité créative.
+
+Les humains font toujours le matching.
+Les humains définissent toujours la direction.
+Les humains décident toujours de ce qui a du sens.
+
+Mais l'IA peut retirer une grande partie de la friction entre l'imagination et l'exécution.
+
+C'est déjà précieux, même avant que la robotique n'atteigne sa maturité.
+
+## De l'imagination au service physique
+
+Ce qui m'enthousiasme le plus, c'est la continuité entre ces couches.
+
+D'abord, l'IA aide les humains à mieux penser, organiser, concevoir et exécuter.
+
+Ensuite, ces mêmes systèmes deviennent capables de guider des outils physiques.
+
+Finalement, on obtient des produits et des services qui ne sont plus seulement digitaux, mais incarnés.
+
+Cela peut vouloir dire des robots qui :
+
+- démontrent des concepts en classe
+- assistent les enseignants et les enfants dans des environnements d'apprentissage
+- améliorent la sécurité sur des chantiers ou en contexte industriel
+- font gagner du temps sur des manipulations physiques répétitives
+- aident les gens à superviser ou coordonner des opérations dans le monde réel
+
+C'est là que l'imagination devient service.
+
+Pas parce que la machine remplace la finalité humaine, mais parce qu'elle étend la portée humaine.
+
+## La vraie opportunité
+
+Pour moi, la robotique n'est pas une branche secondaire de l'IA.
+
+C'est l'une des destinations les plus concrètes de tout ce mouvement.
+
+Si l'intelligence reste enfermée dans des écrans, elle sera déjà utile.
+
+Mais dès que cette intelligence peut se connecter de manière fiable à des outils, des corps, des capteurs et des environnements physiques, l'impact économique et social devient beaucoup plus grand.
+
+C'est là que les catégories produit se multiplient.
+C'est là que les services deviennent incarnés.
+C'est là que l'IA commence à transformer la vie quotidienne d'une manière visible.
+
+## Dernière idée
+
+Les premières couches consistent à rendre les systèmes capables de penser, savoir, décider et s'améliorer.
+
+La robotique, c'est ce qui se produit lorsque ces couches reçoivent un corps.
+
+Les humanoïdes deviendront peut-être une partie de ce futur.
+Mais le basculement profond est plus large que les humanoïdes.
+
+C'est l'émergence de systèmes incarnés utiles dans l'éducation, l'industrie, la sécurité, la logistique, l'assistance et le travail quotidien.
+
+C'est pourquoi je vois la robotique non pas comme un sujet séparé, mais comme la continuation de la même architecture.
+
+D'abord le système apprend à raisonner.
+Ensuite il apprend à agir.
+Puis il entre dans le monde physique.
+      `.trim(),
+
+      nl: `
+Mijn eerste artikels gingen over systemen, uitvoering, geheugen, fine-tuning en betrouwbaarheid.
+
+Die onderwerpen zijn op zichzelf belangrijk.
+
+Maar voor mij wijzen ze ook naar iets groters:
+
+robotica.
+
+Als ik uitzoom, zie ik agentische systemen niet als de uiteindelijke productcategorie. Ik zie ze als het pad naar belichaamde systemen die in de fysieke wereld kunnen opereren.
+
+Met andere woorden:
+
+de bredere visie is niet alleen software die redeneert.
+Het is software, modellen, geheugen, training en uitvoering die via machines kunnen handelen.
+
+Daarom is robotica voor mij zo belangrijk.
+
+## Agentische systemen zijn een brug
+
+Veel mensen spreken over agents alsof de bestemming puur digitale automatisering is.
+
+Ik denk niet dat dat het volledige beeld is.
+
+Agents zijn belangrijk omdat ze ons dwingen de juiste tussenproblemen op te lossen:
+
+- planning
+- geheugen
+- redeneren
+- specialisatie
+- evaluatie
+- betrouwbaarheid
+- adaptatie
+
+Dat zijn precies de capaciteiten die je nodig hebt voordat fysieke systemen echt nuttig kunnen worden op schaal.
+
+Een robot zonder die lagen is vooral hardware.
+
+Een robot met die lagen begint een systeem te worden.
+
+## De humanoid-vraag
+
+Wanneer mensen aan robotica denken, springen ze vaak meteen naar humanoids.
+
+Ik begrijp waarom.
+
+Er zit iets diep menselijks in dat idee. We worden van nature aangetrokken door de mogelijkheid om fysieke neven van onszelf te bouwen, bijna op dezelfde manier waarop we zoeken naar buitenaards leven: niet alleen tools, maar andere belichaamde intelligenties waarmee we ons kunnen verhouden.
+
+Die visie is krachtig.
+
+Maar ik denk niet dat ze ons blind mag maken voor wat robotica vandaag al is.
+
+De meeste nuttige robots zijn geen volledige humanoids.
+
+Het zijn:
+
+- drones
+- robotarmen
+- rollende machines
+- kleine educatieve companions
+- smalle industriële systemen
+
+Dat is belangrijk, want de markt gaat niet wachten op perfecte humanoids om werk te beginnen transformeren.
+
+Ze beweegt nu al via kleinere en meer gespecialiseerde lichamen.
+
+## Belichaming is belangrijker dan vorm
+
+Voor mij is de echte vraag niet: "Lijkt het op een mens?"
+
+De belangrijkere vraag is:
+
+> Kan het betrouwbaar waarnemen, beslissen en handelen in de echte wereld?
+
+Dat kan via veel vormen.
+
+Een Reachy Mini gebruikt door kinderen of leerkrachten.
+Een veiligheidsassistent die bouwteams helpt risico's te verminderen.
+Een robotarm die onderdelen of materialen verplaatst.
+Een mobiel systeem dat inspecteert, transporteert of monitort.
+
+Die systemen hebben niet allemaal hetzelfde lichaam nodig.
+
+Wat ze nodig hebben is nuttige belichaming.
+
+De fysieke vorm moet de taak volgen, niet de mythologie.
+
+## Waarom robotica producten en diensten zal aandrijven
+
+Ik denk dat het komende decennium robotica veel dieper in echte producten en diensten zal duwen.
+
+Niet alleen omdat hardware blijft verbeteren, maar ook omdat de softwarelaag eromheen eindelijk begint bij te benen.
+
+Wat de vergelijking verandert, is de convergentie van meerdere krachten:
+
+- betere AI-modellen
+- betere trainingspijplijnen
+- betere simulatie en evaluatie
+- goedkopere hardware
+- meer open-sourcebouwstenen
+- sterkere ontwikkelaarsecosystemen
+
+Daarom voelt robotica nu minder als een verre moonshot en meer als een opkomende productcategorie.
+
+De stack wordt composable.
+
+En zodra de stack composable wordt, versnelt experimentatie.
+
+## Open source zal belangrijker zijn dan mensen denken
+
+Een van de belangrijkste versnellers in deze ruimte zal open source zijn.
+
+Niet omdat open source alles oplost, maar omdat het de kost van iteratie en distributie verlaagt.
+
+Wanneer modellen, trainingsrecepten, controlesystemen, hardware-interfaces en simulatietools toegankelijker worden, kunnen meer mensen bouwen.
+
+Dat is enorm belangrijk.
+
+Een robotica-ecosysteem groeit niet alleen uit grote labs.
+
+Het groeit ook uit onderzoekers, startups, scholen, hackerspaces, developers en nichebouwers die kleine experimenten blijven shippen tot de categorie volwassen wordt.
+
+Zo worden echte technologische markten vaak gevormd.
+
+## Nabije use case: mensen opnieuw creatief maken
+
+Er is ook een directere reden waarom ik om die eerste drie artikels en de systemen erachter geef.
+
+Op korte termijn is het doel niet om mensen door machines te vervangen.
+
+Het doel is om mensen opnieuw capabeler te maken.
+
+Betere uitvoeringssystemen, beter geheugen, beter redeneren en betere specialisatie kunnen mensen helpen tijd, focus en creatieve bandbreedte terug te winnen.
+
+Mensen doen nog altijd de matching.
+Mensen bepalen nog altijd de richting.
+Mensen beslissen nog altijd wat betekenisvol is.
+
+Maar AI kan een groot deel van de frictie tussen verbeelding en uitvoering wegnemen.
+
+Dat is nu al waardevol, nog voordat robotica volwassen wordt.
+
+## Van verbeelding naar fysieke service
+
+Wat mij het meest exciteert, is de continuïteit tussen die lagen.
+
+Eerst helpt AI mensen om beter te denken, organiseren, ontwerpen en uitvoeren.
+
+Daarna worden diezelfde systemen in staat om fysieke tools aan te sturen.
+
+Uiteindelijk krijg je producten en diensten die niet alleen digitaal zijn, maar belichaamd.
+
+Dat kan robots betekenen die:
+
+- concepten demonstreren in klaslokalen
+- leerkrachten en kinderen ondersteunen in leeromgevingen
+- veiligheid verbeteren in bouw- en industriële contexten
+- tijd besparen op repetitieve fysieke handelingen
+- mensen helpen echte operaties te superviseren of coördineren
+
+Daar wordt verbeelding service.
+
+Niet omdat de machine menselijk doel vervangt, maar omdat ze menselijk bereik uitbreidt.
+
+## De echte opportuniteit
+
+Voor mij is robotica geen zijtak van AI.
+
+Het is een van de meest concrete bestemmingen van de hele beweging.
+
+Als intelligentie binnen schermen opgesloten blijft, zal ze al nuttig zijn.
+
+Maar zodra intelligentie zich betrouwbaar kan verbinden met tools, lichamen, sensoren en fysieke omgevingen, wordt de economische en sociale impact veel groter.
+
+Dan vermenigvuldigen productcategorieën zich.
+Dan worden diensten belichaamd.
+Dan begint AI het dagelijkse leven zichtbaar te hervormen.
+
+## Slotgedachte
+
+De eerste lagen gaan erover systemen te leren denken, weten, beslissen en verbeteren.
+
+Robotica is wat er gebeurt wanneer die lagen een lichaam krijgen.
+
+Humanoids worden misschien een deel van die toekomst.
+Maar de diepere verschuiving is breder dan humanoids.
+
+Het is de opkomst van nuttige belichaamde systemen in onderwijs, industrie, veiligheid, logistiek, assistentie en dagelijks werk.
+
+Daarom zie ik robotica niet als een apart onderwerp, maar als de voortzetting van dezelfde architectuur.
+
+Eerst leert het systeem redeneren.
+Dan leert het handelen.
+Dan betreedt het de fysieke wereld.
+      `.trim(),
+    },
+  },
+  {
+    slug: "fine-tuned-local-models-are-the-next-layer",
+    icon: BrainCircuit,
+    date: "2026-04-08",
+    authors: [
+      { name: "Hamza Mounir", linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/" },
+    ],
+    title: {
+      en: "Fine-Tuned Local Models Are the Next Layer",
+      fr: "Les modèles locaux fine-tunés sont la couche suivante",
+      nl: "Fijn-afgestelde lokale modellen zijn de volgende laag",
+    },
+    description: {
+      en: "Why the next step after harnesses and Knowledge OS is a layer of specialized fine-tuned local models for narrow tasks, stronger alignment, and more reliable execution.",
+      fr: "Pourquoi, après le harness et le Knowledge OS, l'étape suivante est une couche de modèles locaux spécialisés et fine-tunés pour des tâches étroites, un meilleur alignement et une exécution plus fiable.",
+      nl: "Waarom na de harness en de Knowledge OS de volgende stap een laag gespecialiseerde, fijn-afgestelde lokale modellen is voor smalle taken, sterkere alignment en betrouwbaardere uitvoering.",
+    },
+    category: {
+      en: "Engineering",
+      fr: "Ingénierie",
+      nl: "Engineering",
+    },
+    tags: {
+      en: ["Fine-Tuning", "Local Models", "Reliability"],
+      fr: ["Fine-Tuning", "Modèles locaux", "Fiabilité"],
+      nl: ["Fine-tuning", "Lokale modellen", "Betrouwbaarheid"],
+    },
+    readTime: {
+      en: "7 min",
+      fr: "9 min",
+      nl: "9 min",
+    },
+    content: {
+      en: `
+My last two articles focused on systems first, then on the technical stack behind them.
+
+The first point was that AI becomes useful when it is part of a system.
+
+The second was that, in my case, this system is built on two main layers:
+
+- a **harness** for execution
+- a **Knowledge OS** for structured context
+
+I still believe those two layers are the foundation.
+
+But they are not the end state.
+
+If we want these systems to become more complete, more isolated, and more deployable across different environments, then the next layer is clear to me:
+
+> specialized, fine-tuned local models
+
+Not one giant model for everything.
+Not one giant prompt trying to hold the whole system together.
+
+I mean smaller models assigned to narrower tasks, trained for specific jobs, attached to real hardware constraints, and integrated into the execution system as reliable components.
+
+## Why Prompting Alone Eventually Hits a Wall
+
+Prompting is powerful. It is the fastest way to explore, prototype, and reach early usefulness.
+
+But prompting has limits.
+
+When too much behavior lives inside prompts, the system becomes expensive to maintain and difficult to stabilize. Instructions grow longer. Edge cases accumulate. The model still needs to infer too much each time.
+
+That is acceptable at the beginning.
+
+It is less acceptable when the goal is repeatable execution.
+
+If the same type of reasoning, formatting, routing, classification, extraction, or decision pattern happens over and over again, I do not want to pay the full prompt tax every single time. I want part of that behavior to move closer to the model itself.
+
+That is where fine-tuning starts to matter.
+
+## Fine-Tuning Is About Compression of Behavior
+
+People often talk about fine-tuning as if it were mainly about making a model smarter.
+
+That is not the framing I care about most.
+
+The more practical framing is this:
+
+fine-tuning is a way to compress repeated behavior into the model so the system needs less prompt scaffolding at runtime.
+
+Instead of explaining the same narrow task again and again, you train the model so that this behavior becomes more native to it.
+
+That reduces:
+
+- prompt length
+- orchestration overhead
+- latency in narrow workflows
+- variability in repeated tasks
+
+And in many cases, it improves reliability more than simply adding more prompt detail.
+
+## Why Smaller Models Matter
+
+I do not think the future of operational AI systems is one central frontier model doing every job.
+
+The more complete view is closer to a distributed architecture:
+
+- frontier models for broad reasoning and difficult synthesis
+- structured systems for memory, retrieval, and gating
+- smaller fine-tuned models for narrow and repeated tasks
+
+That last category matters a lot.
+
+A well-scoped smaller model can be extremely useful when its job is clearly defined. It does not need to be universally brilliant. It needs to be dependable inside a bounded responsibility.
+
+For example:
+
+- a model specialized for classification
+- a model specialized for extracting structured data
+- a model specialized for style enforcement
+- a model specialized for tool routing
+- a model specialized for domain-specific validation
+
+This is a much more serious path to reliability than asking one general model to improvise every layer of the stack.
+
+## Reasoning Should Stay Central
+
+This does not mean I want to replace reasoning with brittle automation.
+
+Quite the opposite.
+
+I think reasoning becomes more valuable when the rest of the system is cleaner.
+
+The harness still handles decisions, gating, iteration, escalation, and execution flow.
+The Knowledge OS still handles memory, context, structure, and retrieval.
+But now specialized models can take ownership of narrower jobs inside that larger loop.
+
+That means the higher-level system can rely on reasoning where reasoning is actually needed, instead of wasting expensive general intelligence on low-entropy tasks that should already be stabilized.
+
+So the shift is not from reasoning to training.
+
+It is from prompting everything to reasoning where necessary and training where repetition already exists.
+
+## Reliability Comes from Alignment With Real Work
+
+When people hear the word alignment, they often jump immediately to abstract safety discussions.
+
+That is not what I mean here.
+
+I mean operational alignment.
+
+Does the model behave in a way that actually matches the task, the domain, the rules, and the hardware environment where it runs?
+
+For production systems, this matters more than elegant demos.
+
+A narrow local model that is trained on the right examples, evaluated against the right failure modes, and constrained by the right harness can be far more valuable than a bigger model that is only loosely steered through prompts.
+
+Reliability is not magic. It is engineered alignment between:
+
+- the task
+- the training data
+- the evaluation loop
+- the execution environment
+
+## Self-Improvement Needs a System, Not a Myth
+
+I do think self-improvement is the next door.
+
+But I do not mean a vague fantasy where a model endlessly rewrites itself in the dark.
+
+I mean a structured process where the system learns from execution:
+
+- what failed
+- what repeated
+- what required too much prompting
+- what patterns became stable enough to encode
+
+From there, you can decide what should remain in prompts, what should move into rules, what should become training data, and what should be assigned to a smaller specialized model.
+
+That is a much more grounded version of self-improvement.
+
+The system does not become better because it "reflects" in the abstract.
+
+It becomes better because execution produces evidence, and that evidence is turned into better models, better routes, and better constraints.
+
+## Hardware Is Part of the Design
+
+Another reason I care about small local models is that hardware is real.
+
+If a system is meant to be deployable in different environments, then compute, memory, latency, privacy, and cost are architecture concerns, not afterthoughts.
+
+A complete AI system should be able to assign the right task to the right layer:
+
+- some tasks deserve large-model reasoning
+- some tasks should stay local for speed or privacy
+- some tasks should run on specialized smaller models because that is the most efficient option
+
+This is one of the main reasons I see fine-tuned local models as part of a serious operating architecture rather than just an optimization trick.
+
+They make the system more portable, more controllable, and in many cases more economically viable.
+
+## What the Complete Stack Starts to Look Like
+
+At a high level, the architecture becomes easier to describe:
+
+| Layer | Role |
+|---|---|
+| Harness | Orchestrate execution, iteration, evaluation, and gating |
+| Knowledge OS | Provide structured memory, retrieval, and evolving context |
+| Fine-tuned local models | Handle narrow, repeated, domain-shaped tasks reliably |
+| Frontier reasoning models | Tackle broad synthesis, ambiguity, and complex judgment |
+
+That is much closer to a complete system than "one model plus one prompt."
+
+It is also much closer to something that can be isolated, deployed, and adapted across different systems and hardware setups.
+
+## Final Thought
+
+If the harness helps the system **do**, and the Knowledge OS helps the system **know**, then fine-tuned local models help the system **stabilize**.
+
+They reduce prompt dependency.
+They turn repeated behavior into reusable capability.
+They create a better bridge between execution, reasoning, hardware, and alignment.
+
+To me, that is the next serious step.
+
+Not more prompting.
+
+Better specialization, better training, and better system design around where reasoning truly belongs.
+      `.trim(),
+
+      fr: `
+Mes deux derniers articles portaient d'abord sur les systèmes, puis sur la stack technique qui les soutient.
+
+Le premier point était simple : l'IA devient réellement utile lorsqu'elle est intégrée dans un système.
+
+Le second était que, dans mon cas, ce système repose sur deux couches principales :
+
+- un **harness** pour l'exécution
+- un **Knowledge OS** pour le contexte structuré
+
+Je continue à penser que ces deux couches sont la base.
+
+Mais elles ne sont pas l'état final.
+
+Si l'on veut que ces systèmes deviennent plus complets, plus isolés, et plus facilement déployables dans différents environnements, alors la couche suivante me paraît claire :
+
+> des modèles locaux spécialisés et fine-tunés
+
+Pas un seul grand modèle pour tout faire.
+Pas un seul immense prompt censé tenir tout le système ensemble.
+
+Je parle de modèles plus petits, assignés à des tâches plus étroites, entraînés pour des rôles précis, attachés à de vraies contraintes matérielles, et intégrés au système d'exécution comme des composants fiables.
+
+## Pourquoi le prompting seul finit par atteindre une limite
+
+Le prompting est puissant. C'est le moyen le plus rapide d'explorer, de prototyper et d'obtenir une première utilité.
+
+Mais il a ses limites.
+
+Quand trop de comportement vit dans les prompts, le système devient coûteux à maintenir et difficile à stabiliser. Les instructions s'allongent. Les cas limites s'accumulent. Le modèle doit encore inférer trop de choses à chaque exécution.
+
+Cela reste acceptable au début.
+
+Cela l'est beaucoup moins quand l'objectif devient une exécution répétable.
+
+Si le même type de raisonnement, de formatage, de routage, de classification, d'extraction ou de prise de décision revient encore et encore, je ne veux pas payer le coût complet du prompt à chaque fois. Je veux qu'une partie de ce comportement se rapproche du modèle lui-même.
+
+C'est là que le fine-tuning commence à compter.
+
+## Le fine-tuning comme compression de comportement
+
+On parle souvent du fine-tuning comme si l'enjeu principal était de rendre un modèle plus intelligent.
+
+Ce n'est pas l'angle qui m'intéresse le plus.
+
+L'angle le plus pratique est plutôt celui-ci :
+
+le fine-tuning est une manière de compresser un comportement répété dans le modèle afin que le système dépende de moins de scaffolding de prompt à l'exécution.
+
+Au lieu d'expliquer la même tâche étroite encore et encore, on entraîne le modèle pour que ce comportement devienne plus naturel pour lui.
+
+Cela réduit :
+
+- la longueur des prompts
+- l'overhead d'orchestration
+- la latence dans les workflows étroits
+- la variabilité sur les tâches répétées
+
+Et dans beaucoup de cas, cela améliore davantage la fiabilité qu'une simple accumulation d'instructions dans le prompt.
+
+## Pourquoi les petits modèles comptent
+
+Je ne pense pas que le futur des systèmes IA opérationnels soit un unique modèle frontier qui fait tout.
+
+La vision la plus sérieuse ressemble davantage à une architecture distribuée :
+
+- des modèles frontier pour le raisonnement large et la synthèse difficile
+- des systèmes structurés pour la mémoire, le retrieval et le gating
+- des modèles plus petits, fine-tunés, pour les tâches étroites et répétées
+
+Cette dernière catégorie compte énormément.
+
+Un petit modèle bien borné peut être extrêmement utile si son rôle est clairement défini. Il n'a pas besoin d'être universellement brillant. Il doit être fiable dans une responsabilité limitée.
+
+Par exemple :
+
+- un modèle spécialisé pour la classification
+- un modèle spécialisé pour l'extraction de données structurées
+- un modèle spécialisé pour l'application du style
+- un modèle spécialisé pour le routage d'outils
+- un modèle spécialisé pour une validation métier précise
+
+C'est une voie bien plus sérieuse vers la fiabilité que de demander à un modèle général d'improviser toutes les couches de la stack.
+
+## Le raisonnement doit rester central
+
+Cela ne signifie pas que je veux remplacer le raisonnement par une automatisation fragile.
+
+Au contraire.
+
+Je pense que le raisonnement devient plus précieux lorsque le reste du système est plus propre.
+
+Le harness continue de gérer les décisions, le gating, l'itération, l'escalade et le flux d'exécution.
+Le Knowledge OS continue de gérer la mémoire, le contexte, la structure et le retrieval.
+Mais désormais, des modèles spécialisés peuvent prendre en charge des tâches plus étroites à l'intérieur de cette boucle plus large.
+
+Cela signifie que le système de plus haut niveau peut réserver le raisonnement aux endroits où il est réellement nécessaire, au lieu de gaspiller une intelligence générale coûteuse sur des tâches à faible entropie qui auraient déjà dû être stabilisées.
+
+Le déplacement n'est donc pas du raisonnement vers l'entraînement.
+
+Il va d'un prompting généralisé vers du raisonnement là où c'est nécessaire, et de l'entraînement là où la répétition existe déjà.
+
+## La fiabilité vient de l'alignement avec le vrai travail
+
+Quand on entend le mot alignement, on saute souvent immédiatement vers des discussions abstraites de safety.
+
+Ce n'est pas le sens que je vise ici.
+
+Je parle d'alignement opérationnel.
+
+Le modèle se comporte-t-il d'une manière qui correspond réellement à la tâche, au domaine, aux règles et à l'environnement matériel dans lequel il tourne ?
+
+Pour des systèmes de production, cela compte plus que des démos élégantes.
+
+Un modèle local étroit, entraîné sur les bons exemples, évalué sur les bons modes d'échec, et contraint par le bon harness, peut avoir bien plus de valeur qu'un plus grand modèle seulement orienté par des prompts.
+
+La fiabilité n'a rien de magique. C'est un alignement conçu entre :
+
+- la tâche
+- les données d'entraînement
+- la boucle d'évaluation
+- l'environnement d'exécution
+
+## L'auto-amélioration a besoin d'un système, pas d'un mythe
+
+Oui, je pense que l'auto-amélioration est la porte suivante.
+
+Mais je ne parle pas d'un fantasme flou où un modèle se réécrit lui-même indéfiniment dans le noir.
+
+Je parle d'un processus structuré dans lequel le système apprend de l'exécution :
+
+- ce qui a échoué
+- ce qui s'est répété
+- ce qui a demandé trop de prompting
+- quels schémas sont devenus assez stables pour être encodés
+
+À partir de là, on peut décider ce qui doit rester dans les prompts, ce qui doit devenir une règle, ce qui doit devenir de la donnée d'entraînement, et ce qui doit être confié à un plus petit modèle spécialisé.
+
+C'est une version bien plus solide de l'auto-amélioration.
+
+Le système ne devient pas meilleur parce qu'il "réfléchit" au sens abstrait.
+
+Il devient meilleur parce que l'exécution produit des preuves, et que ces preuves sont transformées en meilleurs modèles, meilleurs routages et meilleures contraintes.
+
+## Le hardware fait partie du design
+
+Une autre raison pour laquelle je m'intéresse aux petits modèles locaux est simple : le hardware est réel.
+
+Si un système doit être déployable dans différents environnements, alors le compute, la mémoire, la latence, la confidentialité et le coût sont des sujets d'architecture, pas des détails.
+
+Un système IA complet devrait pouvoir affecter la bonne tâche à la bonne couche :
+
+- certaines tâches méritent le raisonnement de grands modèles
+- certaines tâches doivent rester locales pour la vitesse ou la confidentialité
+- certaines tâches doivent tourner sur de petits modèles spécialisés parce que c'est l'option la plus efficace
+
+C'est l'une des principales raisons pour lesquelles je vois les modèles locaux fine-tunés comme une partie d'une architecture sérieuse, et non comme une simple astuce d'optimisation.
+
+Ils rendent le système plus portable, plus contrôlable et, dans bien des cas, plus viable économiquement.
+
+## À quoi commence à ressembler la stack complète
+
+À haut niveau, l'architecture devient plus facile à décrire :
+
+| Couche | Rôle |
+|---|---|
+| Harness | Orchestrer l'exécution, l'itération, l'évaluation et le gating |
+| Knowledge OS | Fournir une mémoire structurée, du retrieval et un contexte évolutif |
+| Modèles locaux fine-tunés | Gérer de manière fiable les tâches étroites, répétées et métier |
+| Modèles de raisonnement frontier | Traiter la synthèse large, l'ambiguïté et le jugement complexe |
+
+Cela ressemble beaucoup plus à un système complet que "un modèle plus un prompt".
+
+Cela ressemble aussi beaucoup plus à quelque chose qui peut être isolé, déployé et adapté à différents systèmes et différentes contraintes matérielles.
+
+## Dernière idée
+
+Si le harness aide le système à **faire**, et le Knowledge OS aide le système à **savoir**, alors les modèles locaux fine-tunés aident le système à **stabiliser**.
+
+Ils réduisent la dépendance au prompt.
+Ils transforment des comportements répétés en capacités réutilisables.
+Ils créent un meilleur pont entre l'exécution, le raisonnement, le hardware et l'alignement.
+
+Pour moi, c'est la prochaine étape sérieuse.
+
+Pas plus de prompting.
+
+Mais plus de spécialisation, plus d'entraînement, et un meilleur design système autour des endroits où le raisonnement doit vraiment intervenir.
+      `.trim(),
+
+      nl: `
+Mijn laatste twee artikels gingen eerst over systemen, en daarna over de technische stack erachter.
+
+Het eerste punt was eenvoudig: AI wordt pas echt nuttig wanneer het deel wordt van een systeem.
+
+Het tweede punt was dat dit systeem in mijn geval rust op twee hoofdlagen:
+
+- een **harness** voor uitvoering
+- een **Knowledge OS** voor gestructureerde context
+
+Ik blijf geloven dat die twee lagen de basis vormen.
+
+Maar ze zijn niet het eindpunt.
+
+Als we willen dat deze systemen vollediger, meer geïsoleerd en makkelijker inzetbaar worden in verschillende omgevingen, dan is de volgende laag voor mij duidelijk:
+
+> gespecialiseerde, fijn-afgestelde lokale modellen
+
+Niet één gigantisch model voor alles.
+Niet één gigantische prompt die het hele systeem moet bijeenhouden.
+
+Ik bedoel kleinere modellen die aan smallere taken worden toegewezen, getraind zijn voor specifieke rollen, rekening houden met echte hardwarebeperkingen en als betrouwbare componenten in het uitvoeringssysteem worden geïntegreerd.
+
+## Waarom prompting alleen uiteindelijk tegen een muur botst
+
+Prompting is krachtig. Het is de snelste manier om te verkennen, te prototypen en snel eerste waarde te bereiken.
+
+Maar prompting heeft grenzen.
+
+Wanneer te veel gedrag in prompts leeft, wordt het systeem duur om te onderhouden en moeilijk om te stabiliseren. Instructies worden langer. Edge cases stapelen zich op. Het model moet nog altijd te veel afleiden bij elke run.
+
+Dat is aanvaardbaar in het begin.
+
+Dat is veel minder aanvaardbaar wanneer het doel herhaalbare uitvoering wordt.
+
+Als hetzelfde soort redenering, formatting, routing, classificatie, extractie of beslissingspatroon telkens terugkomt, wil ik niet telkens de volledige promptbelasting betalen. Ik wil dat een deel van dat gedrag dichter bij het model zelf komt te liggen.
+
+Daar begint fine-tuning belangrijk te worden.
+
+## Fine-tuning als compressie van gedrag
+
+Mensen spreken vaak over fine-tuning alsof het vooral gaat om een model slimmer te maken.
+
+Dat is niet het kader dat mij het meest interesseert.
+
+Het nuttigere kader is dit:
+
+fine-tuning is een manier om herhaald gedrag in het model te comprimeren zodat het systeem tijdens runtime minder prompt-scaffolding nodig heeft.
+
+In plaats van dezelfde smalle taak telkens opnieuw uit te leggen, train je het model zodat dat gedrag natuurlijker wordt.
+
+Dat vermindert:
+
+- promptlengte
+- orchestratie-overhead
+- latency in smalle workflows
+- variabiliteit bij repetitieve taken
+
+En in veel gevallen verbetert dat de betrouwbaarheid meer dan gewoon nog meer promptinstructies toevoegen.
+
+## Waarom kleinere modellen tellen
+
+Ik denk niet dat de toekomst van operationele AI-systemen één centraal frontier-model is dat elke taak uitvoert.
+
+Het serieuzere beeld lijkt meer op een gedistribueerde architectuur:
+
+- frontier-modellen voor breed redeneren en moeilijke synthese
+- gestructureerde systemen voor geheugen, retrieval en gating
+- kleinere fijn-afgestelde modellen voor smalle en repetitieve taken
+
+Die laatste categorie is bijzonder belangrijk.
+
+Een kleiner model met een goed afgebakende rol kan enorm nuttig zijn wanneer zijn verantwoordelijkheid helder is. Het hoeft niet universeel briljant te zijn. Het moet betrouwbaar zijn binnen een begrensde taak.
+
+Bijvoorbeeld:
+
+- een model gespecialiseerd in classificatie
+- een model gespecialiseerd in extractie van gestructureerde data
+- een model gespecialiseerd in stijlhandhaving
+- een model gespecialiseerd in tool routing
+- een model gespecialiseerd in domeinspecifieke validatie
+
+Dat is een veel serieuzere weg naar betrouwbaarheid dan één algemeen model vragen om elke laag van de stack te improviseren.
+
+## Redeneren moet centraal blijven
+
+Dat betekent niet dat ik redeneren wil vervangen door fragiele automatisering.
+
+Integendeel.
+
+Ik denk dat redeneren waardevoller wordt wanneer de rest van het systeem properder is.
+
+De harness blijft beslissingen, gating, iteratie, escalatie en uitvoeringsflow beheren.
+De Knowledge OS blijft geheugen, context, structuur en retrieval beheren.
+Maar gespecialiseerde modellen kunnen nu smallere taken opnemen binnen die grotere lus.
+
+Dat betekent dat het hogere systeem redeneren kan inzetten waar het echt nodig is, in plaats van dure algemene intelligentie te verspillen aan taken met lage entropie die al gestabiliseerd hadden moeten zijn.
+
+De verschuiving is dus niet van redeneren naar training.
+
+Ze gaat van alles prompten naar redeneren waar nodig en trainen waar herhaling al bestaat.
+
+## Betrouwbaarheid komt uit alignment met echt werk
+
+Wanneer mensen het woord alignment horen, springen ze vaak meteen naar abstracte veiligheidsdiscussies.
+
+Dat is niet wat ik hier bedoel.
+
+Ik bedoel operationele alignment.
+
+Gedraagt het model zich op een manier die echt overeenkomt met de taak, het domein, de regels en de hardware-omgeving waarin het draait?
+
+Voor productiesystemen is dat belangrijker dan elegante demo's.
+
+Een smal lokaal model dat op de juiste voorbeelden is getraind, op de juiste failure modes is geëvalueerd en door de juiste harness wordt begrensd, kan veel waardevoller zijn dan een groter model dat enkel losjes via prompts wordt gestuurd.
+
+Betrouwbaarheid is geen magie. Het is ontworpen alignment tussen:
+
+- de taak
+- de trainingsdata
+- de evaluatielus
+- de uitvoeringsomgeving
+
+## Zelfverbetering heeft een systeem nodig, geen mythe
+
+Ik denk wel degelijk dat zelfverbetering de volgende deur is.
+
+Maar ik bedoel niet een vage fantasie waarin een model zichzelf eindeloos in het donker herschrijft.
+
+Ik bedoel een gestructureerd proces waarin het systeem leert van uitvoering:
+
+- wat faalde
+- wat zich herhaalde
+- wat te veel prompting vereiste
+- welke patronen stabiel genoeg werden om te encoderen
+
+Van daaruit kun je beslissen wat in prompts moet blijven, wat naar regels moet verhuizen, wat trainingsdata moet worden en wat aan een kleiner gespecialiseerd model moet worden toegewezen.
+
+Dat is een veel gegrondere vorm van zelfverbetering.
+
+Het systeem wordt niet beter omdat het in abstracte zin "reflecteert".
+
+Het wordt beter omdat uitvoering bewijs oplevert, en dat bewijs wordt omgezet in betere modellen, betere routes en betere beperkingen.
+
+## Hardware maakt deel uit van het ontwerp
+
+Nog een reden waarom ik om kleine lokale modellen geef, is simpel: hardware is echt.
+
+Als een systeem in verschillende omgevingen inzetbaar moet zijn, dan zijn compute, geheugen, latency, privacy en kost architectuurkeuzes, geen bijzaken.
+
+Een compleet AI-systeem zou de juiste taak aan de juiste laag moeten kunnen toewijzen:
+
+- sommige taken verdienen redenering door grote modellen
+- sommige taken moeten lokaal blijven voor snelheid of privacy
+- sommige taken moeten op gespecialiseerde kleine modellen draaien omdat dat de efficiëntste optie is
+
+Dat is een van de belangrijkste redenen waarom ik fijn-afgestelde lokale modellen zie als onderdeel van een serieuze operating architecture, niet als een optimalisatietrick.
+
+Ze maken het systeem draagbaarder, beter controleerbaar en in veel gevallen economisch haalbaarder.
+
+## Hoe de volledige stack eruit begint te zien
+
+Op hoog niveau wordt de architectuur eenvoudiger te beschrijven:
+
+| Laag | Rol |
+|---|---|
+| Harness | Uitvoering, iteratie, evaluatie en gating orkestreren |
+| Knowledge OS | Gestructureerd geheugen, retrieval en evoluerende context leveren |
+| Fijn-afgestelde lokale modellen | Smalle, repetitieve en domeingevormde taken betrouwbaar uitvoeren |
+| Frontier-redeneermodellen | Brede synthese, ambiguïteit en complex oordeel behandelen |
+
+Dat staat veel dichter bij een compleet systeem dan "één model plus één prompt".
+
+Het staat ook veel dichter bij iets dat geïsoleerd, gedeployed en aangepast kan worden aan verschillende systemen en hardware-opstellingen.
+
+## Slotgedachte
+
+Als de harness het systeem helpt **doen**, en de Knowledge OS het systeem helpt **weten**, dan helpen fijn-afgestelde lokale modellen het systeem **stabiliseren**.
+
+Ze verminderen promptafhankelijkheid.
+Ze zetten herhaald gedrag om in herbruikbare capaciteit.
+Ze bouwen een betere brug tussen uitvoering, redenering, hardware en alignment.
+
+Voor mij is dat de volgende serieuze stap.
+
+Niet meer prompting.
+
+Maar betere specialisatie, betere training en beter systeemontwerp rond de plaatsen waar redeneren echt thuishoort.
+      `.trim(),
+    },
+  },
   {
     slug: "the-technical-stack-behind-my-ai-projects",
     icon: Cog,
