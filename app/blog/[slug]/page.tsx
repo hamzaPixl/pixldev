@@ -33,6 +33,7 @@ export default function BlogPostPage({ params }: PageProps) {
   const showSystemsDiagram = post.slug === "ai-is-not-about-models-its-about-systems";
   const showTechnicalStackDiagrams = post.slug === "the-technical-stack-behind-my-ai-projects";
   const showDecadeFocusDiagram = post.slug === "a-practical-map-of-the-next-tech-decade";
+  const showWhatsappSimEmbed = post.slug === "simulating-my-whatsapp-group-with-llm-personas";
 
   return (
     <SharedLayout>
@@ -161,6 +162,24 @@ export default function BlogPostPage({ params }: PageProps) {
         <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
           <div className="max-w-5xl mx-auto">
             <NextDecadeFocusDiagram lang={currentLanguage} />
+          </div>
+        </section>
+      ) : null}
+
+      {showWhatsappSimEmbed ? (
+        <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
+          <div className="max-w-5xl mx-auto">
+            <div className="border-2 border-border bg-background overflow-hidden">
+              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <iframe
+                  src="https://humanbordel.my.canva.site/"
+                  title="WhatsApp group LLM simulation — demo"
+                  className="absolute inset-0 w-full h-full"
+                  allow="fullscreen; autoplay"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </section>
       ) : null}
@@ -705,6 +724,26 @@ function BlogMarkdown({ content }: { content: string }) {
         <hr key={i} className="border-border my-8" />
       );
       i++;
+      continue;
+    }
+
+    // Fenced code block ```
+    if (line.startsWith("```")) {
+      const codeLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].startsWith("```")) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      i++;
+      elements.push(
+        <pre
+          key={`code-${i}`}
+          className="my-5 p-4 sm:p-5 border-2 border-border bg-background overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-foreground/80 whitespace-pre"
+        >
+          {codeLines.join("\n")}
+        </pre>
+      );
       continue;
     }
 

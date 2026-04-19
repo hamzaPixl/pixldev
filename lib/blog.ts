@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Workflow, Network, Cog, BrainCircuit } from "lucide-react";
+import { Workflow, Network, Cog, BrainCircuit, Users } from "lucide-react";
 import type { SupportedLanguages } from "@/lib/translations";
 
 type Localized = Record<SupportedLanguages, string>;
@@ -45,7 +45,1356 @@ function resolve(post: BlogPostData, lang: SupportedLanguages): BlogPost {
   };
 }
 
+const WHATSAPP_SIM_CONTENT_EN = `
+_Five LLM personas (each on a different model), goal: "become millionaires together". Budget: $10. Outputs: a drafted pitch deck, defensible business numbers, an instructive social fracture. A retrospective with the real stats pulled from the logs._
+
+---
+
+## The 30-second setup
+
+I have 5 friends in a tech boot-camp WhatsApp group. Nine thousand accumulated messages, plenty of SaaS ideas, zero shipped. I reconstituted them as LLM personas, each on a different OpenRouter model, grounded in their real messages (style, verbal tics, drives, triggers).
+
+**Shared goal** injected in every prompt: become millionaires together in 2 years by creating and launching products. **Constraint**: produce 6 structured deliverables (vision, PRD, business plan, exec plan, MVP scope, pricing). No code. No hasty pivot.
+
+\`\`\`
+┌─ 5 personas × 5 models ───────────────────────────┐
+│                                                    │
+│  Hamza     mistralai/mistral-nemo        $0.15/M  │
+│  Bouba     openai/gpt-4o-mini            $0.15/M  │
+│  Tarek     deepseek/deepseek-chat        $0.27/M  │
+│  Yacine    meta-llama/llama-3.3-70b      $0.12/M  │
+│  Sanou     google/gemini-2.5-flash       $0.10/M  │
+│                                                    │
+│  → 5 distinct voices at the token level            │
+└────────────────────────────────────────────────────┘
+\`\`\`
+
+Each has a **private goal** the others don't see (Hamza pushes to ship, Tarek owns the business plan, Yacine go-to-market, Bouba tech/dev lead, Sanou synthesizer). And **signature expressions** extracted from their real messages: "wsh"/"tkt"/"akhi"/"Starfirulah" that anchor the voice.
+
+---
+
+## What runs, every turn
+
+\`\`\`
+┌────────────────────────── PER TURN ──────────────────────────┐
+│                                                               │
+│  1. Inbox check      → drain user directives live             │
+│  2. News scout       → fetch real news (web plugin)           │
+│  3. Event inject     → probabilistic from the pool            │
+│  4. ELECTION         → 5 parallel LLM calls, willingness      │
+│     └─ winner = argmax(w - 0.08 × recent_speak)              │
+│  5. Filters          → anti-repeat, anti-domination           │
+│  6. Tools            → judge / web / read / vote (consensus)  │
+│  7. Winner speaks    → message in the chat                    │
+│  8. Every 8 turns    → observer + facts + filler (parallel)   │
+│  9. Every 20 turns   → judge + public directive               │
+│                                                               │
+│  Stop if: budget $ reached · max_turns · stagnation 5+ turns  │
+└───────────────────────────────────────────────────────────────┘
+\`\`\`
+
+4 memory layers injected in each actor prompt:
+1. **Last 20 messages** from the chat
+2. **25 established facts** (\`repo.created\`, \`cash.available=8k€\`, \`mvp.deadline=friday\`…)
+3. **\`project_state.md\`** (direction + % completion of the 6 deliverables + owners + blockers)
+4. **Last 10 private thoughts** of this actor (persisted to disk, reloaded each run)
+
+---
+
+## Raw numbers across 16 runs
+
+Cumulative state in \`world/state/\` (append-only JSONL + markdown).
+
+### Production
+
+| Metric | Value |
+|---|---|
+| Runs launched | **16** |
+| Chat messages produced | 49 |
+| Events injected | 1 |
+| Tool messages (📖 read, ⚖ judge, 🗳 vote, 📣 user) | 2 |
+| Decisions extracted by the observer | **12** |
+| Artifacts extracted | **12** |
+| Structured facts extracted | **35** |
+| Patches on deliverables | **43** |
+| Judge passes (scores) | 2 |
+| Total LLM calls | **269** |
+
+### Total cost: **$0.277** across 16 runs
+
+\`\`\`
+$ breakdown by agent:
+  Tarek           ████████████ $0.0942 (34%)
+  Bouba           ██████       $0.0534 (19%)
+  Hamza           █████        $0.0435 (16%)
+  Yacine Seroukh  █████        $0.0390 (14%)
+  Sanou           █████        $0.0373 (13%)
+  filler          ▏            $0.0038 (1.4%)
+  facts_extractor ▏            $0.0024 (0.9%)
+  observer        ▏            $0.0018 (0.6%)
+  news_scout      ·            $0.0009
+  judge           ·            $0.0009
+\`\`\`
+
+**The meta-agents (observer + filler + facts + judge + news_scout) cost 3% of the total.** 97% of the budget goes to the 5 personas. The internal models (Gemini Flash, Mistral Nemo) are so cheap that adding a 6th meta-agent would be invisible on the wallet.
+
+### Cost by model
+
+| Model | Cost | % |
+|---|---|---|
+| \`deepseek/deepseek-chat\` | $0.0942 | 34% |
+| \`openai/gpt-4o-mini\` | $0.0543 | 20% |
+| \`google/gemini-2.5-flash\` | $0.0453 | 16% |
+| \`mistralai/mistral-nemo\` | $0.0444 | 16% |
+| \`meta-llama/llama-3.3-70b-instruct\` | $0.0390 | 14% |
+
+DeepSeek dominates because it owns Tarek + the business plan + is the most vocal on numbers (longer messages). Not a bug — a signal that Tarek is doing his job.
+
+---
+
+## Speaking distribution — near-perfect balance
+
+This is the real test of the election mechanism + anti-domination handicap.
+
+| Persona | Public messages | Share | Win rate on bids |
+|---|---|---|---|
+| Bouba | 10 | 20.4% | 20.8% |
+| Hamza | 10 | 20.4% | 20.8% |
+| Yacine Seroukh | 10 | 20.4% | 20.8% |
+| Sanou | 10 | 20.4% | 20.8% |
+| Tarek | 9 | 18.4% | 18.8% |
+
+**The group is perfectly balanced.** Zero domination.
+
+As a reminder, without the anti-domination handicap, Hamza (the "forcing function" persona) won 4 turns out of 5. The \`-0.08 × recent_speak_count\` in adjusted willingness fully fixed that.
+
+### Mean willingness per persona (last run — 49 turns)
+
+\`\`\`
+avg    max
+Bouba           0.19  0.90   ▂▃▁▂▂▃▅▇▂▁▁▁▂▁▁▁▂▂▃▅▇▅
+Hamza           0.09  0.90   ▁▁▁▁▁▂▃▅▇▁▁▁▁▁▁▂▃▁▁▂▅▇
+Sanou           0.20  0.90   ▁▃▅▂▁▁▂▃▅▇▆▂▁▁▂▃▆▇▂▁▁
+Tarek           0.12  0.90   ▁▂▁▃▅▇▂▁▁▁▁▂▅▇▅▂▁▁▁▂▂
+Yacine Seroukh  0.26  0.80   ▃▅▇▃▂▂▃▅▆▅▃▂▂▃▅▇▃▂▂▃▃
+\`\`\`
+
+Low mean willingness (0.09–0.26) means **most turns the actors deliberately stay silent** because they have nothing new to say (the anti-repeat rule forces them to silence rather than paraphrase). That's exactly the intended behavior.
+
+The 0.80–0.90 spikes happen when an external event or a user directive lands, OR when the project_state shows a deliverable this actor owns that's not moving.
+
+---
+
+## The 12 decisions extracted by the observer
+
+The observer automatically extracts decisions by scanning the conversation every 8 turns.
+
+| # | Status | Decision | Proposed by |
+|---|---|---|---|
+| 1 | agreed | Lock the vision before discussing the MVP | Sanou |
+| 2 | pending | Validate the vision: "AI tool for FR SMBs with 10-50 employees" | Sanou |
+| 3 | proposed | Validate the vision (same) | Sanou |
+| 4 | proposed | Vote to validate CAC 50€ max and LTV 600€ min | Tarek |
+| 5 | proposed | Launch a formal vote for the vision | Sanou |
+| 6 | proposed | Launch a vote for CAC/LTV | Tarek |
+| 7 | proposed | Integrate 8k€ into the business plan | Bouba |
+| 8 | agreed | Launch a formal vote for the vision | Sanou |
+| 9 | pending | Integrate 8k€ into the business plan | Bouba |
+| 10 | agreed | Launch a vote for CAC/LTV | Tarek |
+| 11-12 | … | … | … |
+
+**Sanou = 4 proposed decisions** (the synthesizer refocusing). **Tarek = 3** (numbers). **Bouba = 1** (cash). **Hamza = 0** formally proposed decisions — he's the forcing function, he doesn't vote, he pushes.
+
+---
+
+## Artifacts produced
+
+Parallel artifact extraction — concrete objects (vision, PRD, MVP, business plan…) that emerge from the chat.
+
+\`\`\`
+By kind:
+  mvp_scope       ████ 4
+  prd             ████ 4
+  vision          ██   2
+  business_plan   █    1
+  pricing         █    1
+\`\`\`
+
+And here's the interesting bit: **a new deliverable auto-created itself** — \`funding\`. It wasn't in the 6 baseline templates. The filler spawned it when the conversation mentioned the 8k€ bootstrap and the topic didn't fit any existing deliverable. Capped at 12 max to avoid dilution, but genuine dynamic creation.
+
+Patches applied per deliverable:
+\`\`\`
+business_plan   ████████████████ 16
+mvp_scope       █████████         9
+vision          ████████          8
+prd             ████              4
+execution_plan  ███               3
+funding (new)   ██                2
+pricing         █                 1
+\`\`\`
+
+business_plan receives 16 patches because it has 10 sections (CAC, LTV, revenue, channels, first 10 customers, targets, breakeven, risks, etc.) and each section gains content incrementally.
+
+---
+
+## The 35 extracted facts
+
+The **facts extractor** is the feature that most changed the quality of conversations. It turns the chat into structured state the actors re-read on every bid.
+
+\`\`\`
+By kind:
+  status       ███████████████████ 19  ← "where we stand"
+  commitment    ████████            8  ← "X commits to Y before Z"
+  claim         ███████             7  ← "I did X"
+  resource      █                   1  ← "8k€ available"
+\`\`\`
+
+**Examples of real extracted facts**:
+- \`cash.bootstrap_available\` → \`8k€ personal freed for execution\`
+- \`dev.outsource_deadline\` → \`Tomorrow 6am\`
+- \`mvp.final_launch_deadline\` → \`Friday 6pm (solo with Upwork freelancer)\`
+- \`pricing.solo_tier\` → \`49€/month\`
+- \`cac.estimated\` → \`50€ max\`
+- \`ltv.estimated\` → \`600€ min\`
+- \`vision.target_market\` → \`FR SMBs 10-50 employees\`
+
+These facts appear in every actor prompt under \`## World Facts\`. **Actors no longer re-ask "what's the pricing?"** because the answer is there, attributed, timestamped.
+
+---
+
+## The deliverables — real extracted content
+
+Current snapshot of the 6+1 deliverables:
+
+### Vision (validated)
+> **One-liner**: AI tool to optimize productivity for FR SMBs with 10 to 50 employees.
+>
+> **ICP**: French SMBs with 10 to 50 employees.
+
+### PRD
+> **Must-have features (validated)**:
+> - LinkedIn profile import
+> - Data analysis for scoring
+> - PDF export of results
+
+### MVP Scope
+> **In-scope**:
+> - LinkedIn scraping (profile, company)
+> - Raw dashboard (no auth)
+> - Data analysis for scoring
+>
+> **Ship date**: In 2 weeks (validated)
+
+### Business plan
+> **CAC**: 50€ max (validated)
+>
+> **Revenue model**: Integration of the 8k€ cash to boost execution, cover infra costs and accelerate development.
+
+### Pricing
+> **Tiers**: Solo 49€/month
+
+### Funding (auto-created by the filler)
+> **Available Cash**: 8k€ (validated)
+>
+> **Use of Funds**: Infra, tooling, or compensation. Must go toward execution (validated).
+
+---
+
+## What the personas think (real private thoughts)
+
+Each turn, each persona produces a **private_thought** (max 250 chars) that's never public. It's their inner voice. Here's a sample from the last run (49 turns):
+
+**Hamza** (forcing + dev):
+> "We still haven't defined the MVP scope. I can propose a suggestion, so I'll do it."
+
+> "We still don't have a validated MVP scope. I'm proposing the MVP and I'll code the thing myself if it blocks."
+
+**Bouba** (tech sharer + dev lead):
+> "We have no deliverable yet, we need to structure fast. I'll take the dev lead and push the vision."
+
+> "I see the vision is set, now we need to move fast on the other deliverables. I've taken the dev lead."
+
+**Tarek** (business plan owner):
+> "I need to own the business plan and pricing. I should start by laying down concrete numbers."
+
+> "I need to put down the first business numbers to frame things. CAC at 50€ max and LTV at 600€ min to be viable."
+
+**Yacine Seroukh** (go-to-market):
+> "We need to start with the vision and PRD, then we can talk business plan and execution plan. I can own go-to-market and the first customers."
+
+**Sanou** (synthesizer):
+> "Hamza framed things well. Bouba proposes a vague vision. We need to specify the target and the problem solved before talking about AI optimization, otherwise we're just hacking together something with no market."
+
+> "Bouba proposes too generic a vision. We need to validate the vision first before talking about the rest. I need to refocus on vision and target, that's deliverable 1."
+
+**Note**: each persona has a private_thought that sticks perfectly to its private_goal. Yacine owns GTM, Tarek owns numbers, Sanou refocuses. Different models + grounded prompts produce distinct internal voices.
+
+---
+
+## The 2 judge passes
+
+The judge runs every 20 turns. It produces 4 scores + a rationale + **a public directive** posted in the chat as \`⚖ JUDGE\`.
+
+| Turn | Alignment | Velocity | Complete | Ready | Directive |
+|---|---|---|---|---|---|
+| 20 | 0.50 | 0.30 | 2/6 | 0.00 | Vision almost complete but not yet locked. PRD started but not detailed. |
+| 40 | 0.50 | 0.30 | 2/6 | 0.00 | Vision locked but PRD and business_plan incomplete. MVP scope in progress. |
+
+Alignment stable at 0.50 (the group is balanced). Velocity 0.30 (steady but not flashy progress). Completeness 2/6 (vision + mvp_scope drafted, the other 4 less advanced). Readiness 0.00 (we're far from a paying customer tomorrow).
+
+**The judge is honest.** It doesn't hand out complacent scores.
+
+---
+
+## What did NOT work (honest)
+
+### Loop on ejected Bouba (earlier run, V1)
+
+In an earlier simulation over 206 turns, Hamza **"ejected" Bouba from the group** after a clash over security vs speed. Measurable pattern in the scores:
+
+\`\`\`
+turn 40: alignment 0.62 · completeness 5/6 · ready 0.71
+turn 60: alignment 0.42 · completeness 6/6 · ready 0.61
+\`\`\`
+
+Alignment crashes from 0.62 → 0.42 while completeness climbs to 6/6. In other words: **the group finished the 6 deliverables by excluding the dissident.** A human reading the chat can miss that. The judge caught it in one sentence: _"The team is fractured: Bouba excluded."_
+
+### Root cause identified
+
+The Bouba persona extracted by the LLM overweighted his skeptical moments. In reality, Bouba is a good dev who brings tech info and takes the dev lead — not a blocker. Fix applied via a YAML overlay that boosts his positive drives and rebalances his mental principles. In subsequent runs (including the last), **Bouba speaks 10 times out of 49** (20.4%) — exactly the same share as Hamza. No more fracture.
+
+### Repetition loops
+
+In another run (V1), Bouba and Yacine looped for 40+ messages repeating the same sentences with slight variations. The anti-repeat filter was tightened from 55% → 40% token overlap, window 3 → 5 messages. Later runs no longer have this problem.
+
+---
+
+## Economics: how it compares
+
+How much does an IRL human boot-camp that produces these deliverables cost? Conservatively:
+- 5 people × 10h × 50€/h = **2500€**
+- Over several weeks
+- Result: often unfinished, no numbers, not preserved
+
+The simulation:
+- 16 runs, 269 LLM calls, **$0.28 total**
+- ~3 hours wall clock total
+- Result: 6 deliverables (+1 auto-created) drafted, defensible numbers, full audit trail, generated markdown report, live dashboard for demos
+
+**Ratio human cost / simulation: ~10,000 ×**.
+
+Not the same thing of course — real business decisions demand humans. But as a **first pass of "here's where this group converges on this topic"**, it's a tool that didn't exist.
+
+---
+
+## The 4 tools available to the actors
+
+Personas can invoke shared tools **by consensus** (2 supporters min). Each use logged in \`tool_calls.jsonl\`.
+
+| Tool | Icon | Cost | Observed usage |
+|---|---|---|---|
+| **⚖ judge** | external | $0.005/call | Validate a number, stress-test a choice |
+| **🌐 web** | OpenRouter web search | $0.01/call | Benchmark competitors, recent news |
+| **📖 read** | reads a deliverable's content | $0 | Re-ground a debate on real content |
+| **🗳 vote** | yes/no poll, tally after 3 turns | $0 | Settle a question without endless debate |
+
+The \`vote\` is probably the most useful in practice. It turns debates into recorded decisions.
+
+---
+
+## The dashboard (ASCII capture)
+
+\`\`\`
+┌─ 🌍 world · turn 42/300 · $0.18/$10.00 ████░░░░░░ ─────────────┐
+│  Goal: Become millionaires together in 2 years...               │
+├─────────────────────────────────────────┬──────────────────────┤
+│ 💬 conversation (full text, no crop)    │ 📋 deliverables      │
+│                                         │  Vision    ██████ 85%│
+│ 15:42  ★ Sanou: Bouba proposes vision...│  PRD       ███░░░ 40%│
+│ 15:43    Hamza: wsh let's attack...     │  Business  █░░░░░ 10%│
+│ 📰 15:43 [NEWS] Cursor 200M...          │  MVP       ████░░ 60%│
+│ 15:44  ⚖ JUDGE: "Vision OK, PRD..."     │  Pricing   ██░░░░ 33%│
+│ 15:46  🗳 VOTE OPEN: lock pricing?      │  Funding   ██████ 85%│
+│ 📣 15:47 USER: focus pricing!           ├─ ✨ recent fills ───┤
+│                                         │  📝 pricing.tiers    │
+├─ 💭 thoughts ──────────────────────────┤  📝 bp.cac           │
+│  Hamza → MVP not defined, I propose    ├─ ⚖ judge ──────────┤
+│  Tarek → CAC 50€ numbers laid down     │  align ▃▅ 0.50       │
+│  Sanou → Bouba vision too generic       │  veloc ▂▄ 0.30       │
+│                                         ├─ 👥 personas ──────┤
+│                                         │  ★ Sanou gemini 0.90 │
+│                                         │    Bouba gpt-4o 0.68 │
+├─────────────────────────────────────────┴──────────────────────┤
+│ status: ⚖ judge · 📝 fill · 🛰 news · 📣 directive            │
+└─────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+Refresh 4 Hz. Alternate screen buffer. 8 panels updating in real time.
+
+---
+
+## The 5 key lessons
+
+### 1. Parallel election + anti-domination handicap fix the "single voice"
+Without \`-0.08 × recent_speak\`, Hamza dominated 80% of turns. With it, the 5 actors speak at 18–20% each. Fundamentally necessary.
+
+### 2. Structured facts > chatty history
+The 35 extracted facts (\`cash.available=8k€\`, \`mvp.deadline=friday\`) have more impact on bid quality than the last 20 messages. Actors stop re-asking.
+
+### 3. Deliverable templates are a forcing function
+Showing "MVP scope: 70%" with named sections makes actors push content toward those sections, rather than debate in the void.
+
+### 4. The judge has to speak in the chat
+A private score is just a log. A judge that publishes \`"Vision OK, PRD empty, Tarek computes CAC/LTV in 15 min"\` reshapes the next 20 turns' behavior.
+
+### 5. Distinct voices demand distinct tics
+5 different models aren't enough. You need \`signature_expressions\` grounded in real messages ("wsh", "tkt", "akhi", "Starfirulah") for each persona to be recognizable by the second line.
+
+---
+
+## What's left to do
+
+- **Multi-project**: today 1 world = 1 project. A real group juggles 2–3 ideas in parallel.
+- **Persona calibration via replay**: take 20 "what would X say here?" from the real conversation, measure persona fidelity, iterate the overlay.
+- **Streaming**: all LLM calls are non-streaming. Adds ~2–3s per turn.
+- **Panel of 3 judges**: consensus or disagreement, more robust than a single score.
+- **Summon external voice**: a tool that injects a one-shot voice (investor, potential customer, mentor) to challenge the group.
+
+---
+
+## The key point
+
+An LLM group is the **cheapest focus group in the world** for a concrete business idea. Give them a goal, constraints, a cast of distinct voices and structured deliverables to fill — and in 30 minutes for $2, you see what 40h of human meetings would produce.
+
+The pitch deck is mostly noise. Sometimes, a real number drops.
+
+In my case, after 16 runs and $0.28 of compute, the group converged on:
+- **Locked vision**: AI tool for FR SMBs 10–50 employees
+- **Defined MVP**: LinkedIn scrape + scoring + PDF export, 2 weeks to ship
+- **Pricing set**: 49€/month solo
+- **Business model with numbers**: CAC 50€, LTV 600€
+- **Cash allocated**: 8k€ in funding (auto-created as a custom deliverable)
+
+Will the IRL group actually ship it? No idea. But now I have the deck they never wrote, for free, and as a bonus a quantified measure of their group dynamics.
+
+---
+
+_Open source, offline, no WhatsApp integration. Full audit trail in \`world/state/*.jsonl\`._
+`.trim();
+
+const WHATSAPP_SIM_CONTENT_FR = `
+_Cinq personas LLM (un modèle différent chacun), goal : "devenir millionnaires ensemble". Budget : 10 $. Outputs : un pitch deck drafté, des chiffres business tenables, une fracture sociale instructive. Retour d'expérience avec les stats réelles extraites des logs._
+
+---
+
+## Le setup en 30 secondes
+
+J'ai 5 amis dans un groupe WhatsApp boot-camp tech. Neuf mille messages accumulés, beaucoup d'idées de SaaS, zéro shippé. Je les ai reconstitués en personas LLM, chacun sur un modèle OpenRouter différent, grounded dans leurs vrais messages (style, tics langagiers, drives, déclencheurs).
+
+**Goal commun** injecté dans chaque prompt : devenir millionnaires ensemble en 2 ans en créant et lançant des produits. **Contrainte** : produire 6 livrables structurés (vision, PRD, business plan, exec plan, MVP scope, pricing). Pas de code. Pas de pivot hâtif.
+
+\`\`\`
+┌─ 5 personas × 5 modèles ──────────────────────────┐
+│                                                    │
+│  Hamza     mistralai/mistral-nemo        $0.15/M  │
+│  Bouba     openai/gpt-4o-mini            $0.15/M  │
+│  Tarek     deepseek/deepseek-chat        $0.27/M  │
+│  Yacine    meta-llama/llama-3.3-70b      $0.12/M  │
+│  Sanou     google/gemini-2.5-flash       $0.10/M  │
+│                                                    │
+│  → 5 voix distinctes au niveau token               │
+└────────────────────────────────────────────────────┘
+\`\`\`
+
+Chacun a un **goal privé** que les autres ne voient pas (Hamza pousse à shipper, Tarek owner business plan, Yacine go-to-market, Bouba tech/dev lead, Sanou synthétiseur). Et des **signature expressions** extraites de leurs vrais messages : "wsh"/"tkt"/"akhi"/"Starfirulah" qui ancrent la voix.
+
+---
+
+## Ce qui tourne, chaque tour
+
+\`\`\`
+┌────────────────────────── PER TURN ──────────────────────────┐
+│                                                               │
+│  1. Inbox check      → drain directives user en live          │
+│  2. News scout       → fetch actu réelle (web plugin)         │
+│  3. Event inject     → probabiliste depuis le pool            │
+│  4. ÉLECTION         → 5 LLM calls parallèles, willingness    │
+│     └─ winner = argmax(w - 0.08 × recent_speak)              │
+│  5. Filtres          → anti-répétition, anti-domination       │
+│  6. Tools            → judge / web / read / vote (consensus)  │
+│  7. Winner parle     → message dans le chat                   │
+│  8. Every 8 turns    → observer + facts + filler (parallèle)  │
+│  9. Every 20 turns   → judge + directive publique             │
+│                                                               │
+│  Stop si : budget $ atteint · max_turns · stagnation 5+ turns │
+└───────────────────────────────────────────────────────────────┘
+\`\`\`
+
+4 couches de mémoire injectées dans chaque prompt actor :
+1. **20 derniers messages** du chat
+2. **25 faits établis** (\`repo.created\`, \`cash.available=8k€\`, \`mvp.deadline=vendredi\`…)
+3. **\`project_state.md\`** (direction + % complétion des 6 livrables + owners + blockers)
+4. **10 dernières pensées privées** de cet actor (persistées sur disque, rechargées chaque run)
+
+---
+
+## Les chiffres bruts des 16 runs
+
+État cumulé dans \`world/state/\` (append-only JSONL + markdown).
+
+### Production
+
+| Métrique | Valeur |
+|---|---|
+| Runs lancés | **16** |
+| Messages chat produits | 49 |
+| Events injectés | 1 |
+| Messages tool (📖 read, ⚖ judge, 🗳 vote, 📣 user) | 2 |
+| Décisions extraites par l'observer | **12** |
+| Artifacts extraits | **12** |
+| Facts structurés extraits | **35** |
+| Patches sur livrables | **43** |
+| Passages du judge (scores) | 2 |
+| Appels LLM totaux | **269** |
+
+### Coût total : **$0.277** sur 16 runs
+
+\`\`\`
+$ breakdown par agent :
+  Tarek           ████████████ $0.0942 (34%)
+  Bouba           ██████       $0.0534 (19%)
+  Hamza           █████        $0.0435 (16%)
+  Yacine Seroukh  █████        $0.0390 (14%)
+  Sanou           █████        $0.0373 (13%)
+  filler          ▏            $0.0038 (1.4%)
+  facts_extractor ▏            $0.0024 (0.9%)
+  observer        ▏            $0.0018 (0.6%)
+  news_scout      ·            $0.0009
+  judge           ·            $0.0009
+\`\`\`
+
+**Les meta-agents (observer + filler + facts + judge + news_scout) coûtent 3% du total.** 97% du budget va aux 5 personas. Les modèles internes (Gemini Flash, Mistral Nemo) sont tellement cheap que rajouter un 6e meta-agent serait invisible au niveau du wallet.
+
+### Coût par modèle
+
+| Modèle | Cost | % |
+|---|---|---|
+| \`deepseek/deepseek-chat\` | $0.0942 | 34% |
+| \`openai/gpt-4o-mini\` | $0.0543 | 20% |
+| \`google/gemini-2.5-flash\` | $0.0453 | 16% |
+| \`mistralai/mistral-nemo\` | $0.0444 | 16% |
+| \`meta-llama/llama-3.3-70b-instruct\` | $0.0390 | 14% |
+
+DeepSeek domine parce qu'il owner Tarek + le business plan + il est le plus volubile sur les chiffres (messages plus longs). Pas un bug — un signal que Tarek fait son job.
+
+---
+
+## Distribution de parole — équilibre quasi-parfait
+
+C'est le vrai test du mécanisme d'élection + handicap anti-domination.
+
+| Persona | Messages publics | Part | Win rate sur bids |
+|---|---|---|---|
+| Bouba | 10 | 20.4% | 20.8% |
+| Hamza | 10 | 20.4% | 20.8% |
+| Yacine Seroukh | 10 | 20.4% | 20.8% |
+| Sanou | 10 | 20.4% | 20.8% |
+| Tarek | 9 | 18.4% | 18.8% |
+
+**Le groupe est parfaitement équilibré.** Zéro domination.
+
+Pour rappel, sans handicap anti-domination, Hamza (persona "forcing function") gagnait 4 tours sur 5. Le \`-0.08 × recent_speak_count\` en willingness adjusted a complètement réparé ça.
+
+### Willingness moyenne par persona (dernier run — 49 tours)
+
+\`\`\`
+avg    max
+Bouba           0.19  0.90   ▂▃▁▂▂▃▅▇▂▁▁▁▂▁▁▁▂▂▃▅▇▅
+Hamza           0.09  0.90   ▁▁▁▁▁▂▃▅▇▁▁▁▁▁▁▂▃▁▁▂▅▇
+Sanou           0.20  0.90   ▁▃▅▂▁▁▂▃▅▇▆▂▁▁▂▃▆▇▂▁▁
+Tarek           0.12  0.90   ▁▂▁▃▅▇▂▁▁▁▁▂▅▇▅▂▁▁▁▂▂
+Yacine Seroukh  0.26  0.80   ▃▅▇▃▂▂▃▅▆▅▃▂▂▃▅▇▃▂▂▃▃
+\`\`\`
+
+La willingness moyenne basse (0.09-0.26) veut dire que **la plupart des tours, les actors restent volontairement silencieux** parce qu'ils n'ont rien de nouveau à dire (la règle anti-répétition les force au silence plutôt que de reformuler). C'est exactement le comportement voulu.
+
+Les pics à 0.80-0.90 arrivent quand un event externe ou une directive user vient, OU quand le project_state montre un livrable que cet actor owne mais qui n'avance pas.
+
+---
+
+## Les 12 décisions extraites par l'observer
+
+L'observer extrait automatiquement les décisions en scannant la conversation toutes les 8 turns.
+
+| # | Status | Décision | Proposé par |
+|---|---|---|---|
+| 1 | agreed | Verrouiller la vision avant de discuter du MVP | Sanou |
+| 2 | pending | Valider la vision : "Outil IA pour PME/TPE FR de 10 à 50 salariés" | Sanou |
+| 3 | proposed | Valider la vision (même) | Sanou |
+| 4 | proposed | Voter pour valider CAC 50€ max et LTV 600€ min | Tarek |
+| 5 | proposed | Lancer un vote formel pour la vision | Sanou |
+| 6 | proposed | Lancer un vote pour CAC/LTV | Tarek |
+| 7 | proposed | Intégrer 8k€ dans le business plan | Bouba |
+| 8 | agreed | Lancer un vote formel pour la vision | Sanou |
+| 9 | pending | Intégrer 8k€ dans le business plan | Bouba |
+| 10 | agreed | Lancer un vote pour CAC/LTV | Tarek |
+| 11-12 | … | … | … |
+
+**Sanou = 4 décisions proposées** (synthétiseur qui recadre). **Tarek = 3** (chiffres). **Bouba = 1** (cash). **Hamza = 0** décisions formellement proposées — il est le forcing function, il ne vote pas, il pousse.
+
+---
+
+## Les artifacts produits
+
+Extraction parallèle des artefacts — objets concrets (vision, PRD, MVP, business plan…) qui émergent du chat.
+
+\`\`\`
+Par kind :
+  mvp_scope       ████ 4
+  prd             ████ 4
+  vision          ██   2
+  business_plan   █    1
+  pricing         █    1
+\`\`\`
+
+Et le truc intéressant : **un nouveau livrable s'est auto-créé** — \`funding\`. Il n'était pas dans les 6 templates baseline. Le filler l'a spawné quand la conversation a mentionné les 8k€ de bootstrap et que le domaine ne rentrait dans aucun livrable existant. Capped à 12 max pour éviter la dilution, mais genuine création dynamique.
+
+Patches appliqués par livrable :
+\`\`\`
+business_plan   ████████████████ 16
+mvp_scope       █████████         9
+vision          ████████          8
+prd             ████              4
+execution_plan  ███               3
+funding (nouveau) ██              2
+pricing         █                 1
+\`\`\`
+
+Le business_plan reçoit 16 patches parce qu'il a 10 sections (CAC, LTV, revenue, channels, first 10 customers, targets, breakeven, risks, etc.) et chaque section gagne du contenu incrémental.
+
+---
+
+## Les 35 facts extraits
+
+Le **facts extractor** est la feature qui a le plus changé la qualité des conversations. Il transforme le chat en état structuré que les actors relisent à chaque bid.
+
+\`\`\`
+Par kind :
+  status       ███████████████████ 19  ← "où on en est"
+  commitment    ████████            8  ← "X s'engage à Y avant Z"
+  claim         ███████             7  ← "J'ai fait X"
+  resource      █                   1  ← "8k€ dispo"
+\`\`\`
+
+**Exemples de vrais facts extraits** :
+- \`cash.bootstrap_available\` → \`8k€ personnel libérés pour exécution\`
+- \`dev.outsource_deadline\` → \`Demain 6h\`
+- \`mvp.final_launch_deadline\` → \`Vendredi 18h (solo avec freelance Upwork)\`
+- \`pricing.solo_tier\` → \`49€/mois\`
+- \`cac.estimated\` → \`50€ max\`
+- \`ltv.estimated\` → \`600€ min\`
+- \`vision.target_market\` → \`PME/TPE FR 10-50 salariés\`
+
+Ces facts apparaissent dans chaque prompt actor sous \`## Faits du monde\`. **Les actors ne re-demandent plus "c'est combien le pricing ?"** parce que la réponse est là, attribuée, timestampée.
+
+---
+
+## Les livrables — contenu réel extrait
+
+Snapshot actuel des 6+1 livrables :
+
+### Vision (validée)
+> **One-liner** : Outil IA pour optimiser la productivité des PME/TPE FR de 10 à 50 salariés.
+>
+> **ICP** : PME/TPE françaises de 10 à 50 salariés.
+
+### PRD
+> **Features must-have (validées)** :
+> - Importation de profils LinkedIn
+> - Analyse de données pour scoring
+> - Export PDF des résultats
+
+### MVP Scope
+> **In-scope** :
+> - Scraping LinkedIn (profil, entreprise)
+> - Dashboard brut (pas d'authentification)
+> - Analyse de données pour scoring
+>
+> **Ship date** : Dans 2 semaines (validée)
+
+### Business plan
+> **CAC** : 50€ max (validé)
+>
+> **Revenue model** : Intégration du cash de 8k€ pour booster l'exécution, couvrir les coûts d'infra et accélérer le développement.
+
+### Pricing
+> **Tiers** : Solo 49€/mois
+
+### Funding (auto-créé par le filler)
+> **Available Cash** : 8k€ (validé)
+>
+> **Use of Funds** : Infra, outillage, ou rémunération. Doit aller vers de l'exécution (validé).
+
+---
+
+## Ce que les personas pensent (vraies private thoughts)
+
+Chaque tour, chaque persona produit une **private_thought** (max 250 chars) qui n'est jamais publique. C'est leur voix intérieure. Voici un échantillon du dernier run (49 turns) :
+
+**Hamza** (forcing + dev) :
+> "On a pas encore défini le MVP scope. Je peux proposer une suggestion, donc je vais le faire."
+
+> "On a toujours pas de MVP scope validé. Je propose le MVP et je vais coder le truc moi-même si ça bloque."
+
+**Bouba** (tech sharer + dev lead) :
+> "On a aucun livrable encore, faut qu'on se structure vite. Je vais prendre le lead sur le dev et pousser la vision."
+
+> "Je vois que la vision est posée, mtn faut vite avancer sur les autres livrables. J'ai pris le dev lead."
+
+**Tarek** (business plan owner) :
+> "Je dois owner le business plan et le pricing. Faut que je commence par poser des chiffres concrets."
+
+> "Je dois poser les premiers chiffres business pour cadrer. CAC à 50€ max et LTV à 600€ minimum pour être viable."
+
+**Yacine Seroukh** (go-to-market) :
+> "Faut commencer par la vision et le PRD, après on pourra parler de business plan et de plan d'exécution. Moi je peux owner le go-to-market et les premiers clients."
+
+**Sanou** (synthétiseur) :
+> "Hamza a bien posé le cadre. Bouba propose une vision vague. Faut préciser la cible et le problème résolu avant de parler d'optimisation IA, sinon on va juste bricoler un truc sans marché."
+
+> "Bouba propose une vision trop générique. Il faut d'abord valider la vision avant de parler de reste. Je dois recadrer sur la vision et la cible, c'est le livrable 1."
+
+**Note** : chaque persona a une private_thought qui colle parfaitement à son private_goal. Yacine owner GTM, Tarek owner chiffres, Sanou recadre. Les modèles différents + les prompts grounded produisent des voix internes distinctes.
+
+---
+
+## Les 2 passages du judge
+
+Le judge tourne tous les 20 tours. Il produit 4 scores + un rationale + **une directive publique** postée dans le chat comme \`⚖ JUDGE\`.
+
+| Turn | Alignment | Velocity | Complete | Ready | Directive |
+|---|---|---|---|---|---|
+| 20 | 0.50 | 0.30 | 2/6 | 0.00 | Vision almost complete but not yet locked. PRD started but not detailed. |
+| 40 | 0.50 | 0.30 | 2/6 | 0.00 | Vision locked mais PRD et business_plan incomplets. MVP scope en cours. |
+
+Alignment stable à 0.50 (le groupe est équilibré). Velocity 0.30 (progression régulière mais pas flamboyante). Completeness 2/6 (vision + mvp_scope drafted, les 4 autres moins avancés). Readiness 0.00 (on est loin d'un client payant demain).
+
+**Le judge est honnête.** Il ne donne pas des scores de complaisance.
+
+---
+
+## Ce qui a NE PAS marché (honnête)
+
+### Loop sur Bouba éjecté (run précédent, V1)
+
+Dans une simulation antérieure sur 206 turns, Hamza a **"éjecté" Bouba du groupe** après un clash sur la sécurité vs la vitesse. Pattern mesurable dans les scores :
+
+\`\`\`
+turn 40 : alignment 0.62 · completeness 5/6 · ready 0.71
+turn 60 : alignment 0.42 · completeness 6/6 · ready 0.61
+\`\`\`
+
+Alignment crashe de 0.62 → 0.42 pendant que completeness monte à 6/6. Autrement dit : **le groupe a fini les 6 livrables en excluant le dissident.** Un humain qui lit le chat peut rater ça. Le judge l'a chopé en une phrase : _"L'équipe est fracturée : Bouba exclu."_
+
+### Cause racine identifiée
+
+La persona Bouba extraite par LLM sur-pondérait ses moments sceptiques. Dans la réalité, Bouba est un bon dev qui amène l'info tech et prend le dev lead — pas un blocker. Fix appliqué via un overlay YAML qui augmente ses drives positifs et rééquilibre ses mental principles. Dans les runs suivants (dont le dernier), **Bouba parle 10 fois sur 49** (20.4%) — exactement la même part que Hamza. Plus de fracture.
+
+### Loops sur répétition
+
+Dans un autre run (V1), Bouba et Yacine ont tourné 40+ messages en répétant les mêmes phrases avec variations légères. Le filtre anti-répétition a été durci de 55% → 40% token overlap, fenêtre 3 → 5 messages. Les runs suivants n'ont plus ce problème.
+
+---
+
+## Économique : comment ça se compare
+
+Un boot-camp humain IRL qui produit ces livrables coûte combien ? Conservativement :
+- 5 personnes × 10h × 50€/h = **2500€**
+- Sur plusieurs semaines
+- Résultat : souvent pas fini, pas chiffré, pas conservé
+
+La simulation :
+- 16 runs, 269 LLM calls, **$0.28 total**
+- ~3 heures wall clock total
+- Résultat : 6 livrables (+1 auto-créé) drafted, chiffres tenables, full audit trail, report markdown généré, dashboard live pour demos
+
+**Ratio coût humain / simulation : ~10 000 ×**.
+
+Pas la même chose évidemment — les vraies décisions business demandent des humains. Mais comme **premier tour de "voici à quoi converge ce groupe sur ce sujet"**, c'est un outil qui n'existait pas.
+
+---
+
+## Les 4 tools dispos pour les actors
+
+Les personas peuvent invoquer des outils partagés **par consensus** (2 supporters min). Chaque usage loggé dans \`tool_calls.jsonl\`.
+
+| Tool | Icône | Coût | Usage observé |
+|---|---|---|---|
+| **⚖ judge** | externe | $0.005/call | Valider un chiffre, stress-tester un choix |
+| **🌐 web** | recherche web OpenRouter | $0.01/call | Benchmark concurrents, news récente |
+| **📖 read** | lit contenu d'un livrable | $0 | Regrounder un débat sur le contenu réel |
+| **🗳 vote** | poll yes/no, tally après 3 tours | $0 | Trancher une question sans débat infini |
+
+Le \`vote\` est probablement le plus utile en pratique. Il transforme les débats en décisions enregistrées.
+
+---
+
+## Le dashboard (capture ASCII)
+
+\`\`\`
+┌─ 🌍 world · turn 42/300 · $0.18/$10.00 ████░░░░░░ ─────────────┐
+│  Goal: Devenir millionnaires ensemble en 2 ans...               │
+├─────────────────────────────────────────┬──────────────────────┤
+│ 💬 conversation (full text, no crop)    │ 📋 deliverables      │
+│                                         │  Vision    ██████ 85%│
+│ 15:42  ★ Sanou: Bouba propose vision... │  PRD       ███░░░ 40%│
+│ 15:43    Hamza: wsh on attaque...       │  Business  █░░░░░ 10%│
+│ 📰 15:43 [NEWS] Cursor 200M...          │  MVP       ████░░ 60%│
+│ 15:44  ⚖ JUDGE: "Vision OK, PRD..."     │  Pricing   ██░░░░ 33%│
+│ 15:46  🗳 VOTE OPEN: lock pricing?      │  Funding   ██████ 85%│
+│ 📣 15:47 USER: focus pricing!           ├─ ✨ recent fills ───┤
+│                                         │  📝 pricing.tiers    │
+├─ 💭 thoughts ──────────────────────────┤  📝 bp.cac           │
+│  Hamza → MVP pas défini, je propose    ├─ ⚖ judge ──────────┤
+│  Tarek → chiffres CAC 50€ posés        │  align ▃▅ 0.50       │
+│  Sanou → Bouba vision trop générique    │  veloc ▂▄ 0.30       │
+│                                         ├─ 👥 personas ──────┤
+│                                         │  ★ Sanou gemini 0.90 │
+│                                         │    Bouba gpt-4o 0.68 │
+├─────────────────────────────────────────┴──────────────────────┤
+│ status: ⚖ judge · 📝 fill · 🛰 news · 📣 directive            │
+└─────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+Refresh 4 Hz. Alternate screen buffer. 8 panneaux qui bougent en temps réel.
+
+---
+
+## Les 5 leçons clés
+
+### 1. L'élection parallèle + handicap anti-domination réparent le "single voice"
+Sans \`-0.08 × recent_speak\`, Hamza dominait 80% des tours. Avec, les 5 actors parlent à 18-20% chacun. Fundamentalement nécessaire.
+
+### 2. Facts structurés > historique bavard
+Les 35 facts extraits (\`cash.available=8k€\`, \`mvp.deadline=vendredi\`) ont plus d'impact sur la qualité des bids que les 20 derniers messages. Les actors arrêtent de re-demander.
+
+### 3. Les deliverables templates sont un forcing function
+Montrer "MVP scope : 70%" avec des sections nommées fait que les actors poussent du contenu vers ces sections, plutôt que débattre dans le vide.
+
+### 4. Le judge doit parler dans le chat
+Un score privé est juste un log. Un judge qui publie \`"Vision OK, PRD vide, Tarek calcule CAC/LTV dans 15 min"\` reshape le comportement des 20 turns suivants.
+
+### 5. Les voix distinctes demandent des tics distincts
+5 modèles différents ne suffisent pas. Il faut des \`signature_expressions\` grounded dans des vrais messages ("wsh", "tkt", "akhi", "Starfirulah") pour que chaque persona soit reconnaissable à la 2e ligne.
+
+---
+
+## Ce qui reste à faire
+
+- **Multi-project** : aujourd'hui 1 monde = 1 projet. Vrai groupe jongle 2-3 idées en parallèle.
+- **Persona calibration par replay** : prendre 20 "que dirait X ici ?" de la vraie conversation, mesurer la fidélité du persona, itérer l'overlay.
+- **Streaming** : tous les LLM calls sont non-streaming. Ajoute ~2-3s par turn.
+- **Panel de 3 judges** : consensus ou désaccord, plus robuste qu'un seul score.
+- **Summon external voice** : un tool qui injecte une voix ponctuelle (investisseur, client potentiel, mentor) pour challenger le groupe.
+
+---
+
+## Le point clé
+
+Un groupe LLM est le **focus group le moins cher au monde** pour une idée business concrète. Donne-leur un goal, des contraintes, une cast de voix distinctes et des livrables structurés à remplir — et en 30 minutes pour $2, tu vois ce que 40h de meetings humains produiraient.
+
+La pitch deck est principalement du bruit. Parfois, un vrai chiffre tombe.
+
+Dans mon cas, après 16 runs et $0.28 de compute, le groupe a convergé sur :
+- **Vision lockée** : outil IA pour PME/TPE FR 10-50 salariés
+- **MVP défini** : scrape LinkedIn + scoring + export PDF, 2 semaines de ship
+- **Pricing posé** : 49€/mois solo
+- **Business model chiffré** : CAC 50€, LTV 600€
+- **Cash alloué** : 8k€ en funding (auto-créé comme livrable custom)
+
+Le groupe IRL l'aura-t-il vraiment shippé ? Aucune idée. Mais maintenant j'ai le deck qu'ils n'ont jamais écrit, gratuitement, et en bonus une mesure quantifiée de leurs dynamiques de groupe.
+
+---
+
+_Open source, offline, no WhatsApp integration. Full audit trail dans \`world/state/*.jsonl\`._
+`.trim();
+
+const WHATSAPP_SIM_CONTENT_NL = `
+_Vijf LLM-persona's (elk op een ander model), doel: "samen miljonairs worden". Budget: $10. Output: een concept pitch deck, verdedigbare businesscijfers, een leerrijke sociale breuk. Een terugblik met de echte statistieken uit de logs._
+
+---
+
+## De setup in 30 seconden
+
+Ik heb 5 vrienden in een tech boot-camp WhatsApp-groep. Negenduizend opgestapelde berichten, veel SaaS-ideeën, nul verscheept. Ik heb ze gereconstrueerd als LLM-persona's, elk op een ander OpenRouter-model, gegrond in hun echte berichten (stijl, taalgewoonten, drives, triggers).
+
+**Gedeeld doel** geïnjecteerd in elke prompt: samen miljonairs worden in 2 jaar door producten te creëren en te lanceren. **Beperking**: 6 gestructureerde deliverables produceren (vision, PRD, business plan, exec plan, MVP scope, pricing). Geen code. Geen overhaaste pivot.
+
+\`\`\`
+┌─ 5 persona's × 5 modellen ────────────────────────┐
+│                                                    │
+│  Hamza     mistralai/mistral-nemo        $0.15/M  │
+│  Bouba     openai/gpt-4o-mini            $0.15/M  │
+│  Tarek     deepseek/deepseek-chat        $0.27/M  │
+│  Yacine    meta-llama/llama-3.3-70b      $0.12/M  │
+│  Sanou     google/gemini-2.5-flash       $0.10/M  │
+│                                                    │
+│  → 5 onderscheiden stemmen op tokenniveau          │
+└────────────────────────────────────────────────────┘
+\`\`\`
+
+Elk heeft een **privé-doel** dat de anderen niet zien (Hamza duwt om te verschepen, Tarek eigenaar businessplan, Yacine go-to-market, Bouba tech/dev lead, Sanou synthetiseerder). En **signature expressions** uit hun echte berichten: "wsh"/"tkt"/"akhi"/"Starfirulah" die de stem verankeren.
+
+---
+
+## Wat draait, elke beurt
+
+\`\`\`
+┌────────────────────────── PER BEURT ─────────────────────────┐
+│                                                               │
+│  1. Inbox check      → drain user directives live             │
+│  2. News scout       → haal echt nieuws op (web plugin)       │
+│  3. Event inject     → probabilistisch uit de pool            │
+│  4. VERKIEZING       → 5 parallelle LLM calls, willingness    │
+│     └─ winner = argmax(w - 0.08 × recent_speak)              │
+│  5. Filters          → anti-herhaling, anti-dominantie        │
+│  6. Tools            → judge / web / read / vote (consensus)  │
+│  7. Winnaar spreekt  → bericht in de chat                     │
+│  8. Elke 8 beurten   → observer + facts + filler (parallel)   │
+│  9. Elke 20 beurten  → judge + publieke directive             │
+│                                                               │
+│  Stop als: budget $ bereikt · max_turns · stagnatie 5+ beurten│
+└───────────────────────────────────────────────────────────────┘
+\`\`\`
+
+4 geheugenlagen geïnjecteerd in elke actor-prompt:
+1. **Laatste 20 berichten** uit de chat
+2. **25 gevestigde feiten** (\`repo.created\`, \`cash.available=8k€\`, \`mvp.deadline=vrijdag\`…)
+3. **\`project_state.md\`** (richting + % voltooiing van de 6 deliverables + owners + blockers)
+4. **Laatste 10 privégedachten** van deze actor (bewaard op schijf, elke run herladen)
+
+---
+
+## De ruwe cijfers over 16 runs
+
+Cumulatieve staat in \`world/state/\` (append-only JSONL + markdown).
+
+### Productie
+
+| Metriek | Waarde |
+|---|---|
+| Gestarte runs | **16** |
+| Geproduceerde chatberichten | 49 |
+| Geïnjecteerde events | 1 |
+| Tool-berichten (📖 read, ⚖ judge, 🗳 vote, 📣 user) | 2 |
+| Door observer geëxtraheerde beslissingen | **12** |
+| Geëxtraheerde artifacts | **12** |
+| Gestructureerd geëxtraheerde feiten | **35** |
+| Patches op deliverables | **43** |
+| Judge-passes (scores) | 2 |
+| Totaal LLM calls | **269** |
+
+### Totale kost: **$0.277** over 16 runs
+
+\`\`\`
+$ breakdown per agent:
+  Tarek           ████████████ $0.0942 (34%)
+  Bouba           ██████       $0.0534 (19%)
+  Hamza           █████        $0.0435 (16%)
+  Yacine Seroukh  █████        $0.0390 (14%)
+  Sanou           █████        $0.0373 (13%)
+  filler          ▏            $0.0038 (1.4%)
+  facts_extractor ▏            $0.0024 (0.9%)
+  observer        ▏            $0.0018 (0.6%)
+  news_scout      ·            $0.0009
+  judge           ·            $0.0009
+\`\`\`
+
+**De meta-agents (observer + filler + facts + judge + news_scout) kosten 3% van het totaal.** 97% van het budget gaat naar de 5 persona's. De interne modellen (Gemini Flash, Mistral Nemo) zijn zo goedkoop dat een 6e meta-agent toevoegen onzichtbaar zou zijn op de portemonnee.
+
+### Kost per model
+
+| Model | Cost | % |
+|---|---|---|
+| \`deepseek/deepseek-chat\` | $0.0942 | 34% |
+| \`openai/gpt-4o-mini\` | $0.0543 | 20% |
+| \`google/gemini-2.5-flash\` | $0.0453 | 16% |
+| \`mistralai/mistral-nemo\` | $0.0444 | 16% |
+| \`meta-llama/llama-3.3-70b-instruct\` | $0.0390 | 14% |
+
+DeepSeek domineert omdat het Tarek + het businessplan aanstuurt + het spraakzaamst is over cijfers (langere berichten). Geen bug — een signaal dat Tarek zijn werk doet.
+
+---
+
+## Verdeling van spreektijd — bijna-perfect evenwicht
+
+Dit is de echte test van het verkiezingsmechanisme + anti-dominantie handicap.
+
+| Persona | Publieke berichten | Aandeel | Win rate op bids |
+|---|---|---|---|
+| Bouba | 10 | 20.4% | 20.8% |
+| Hamza | 10 | 20.4% | 20.8% |
+| Yacine Seroukh | 10 | 20.4% | 20.8% |
+| Sanou | 10 | 20.4% | 20.8% |
+| Tarek | 9 | 18.4% | 18.8% |
+
+**De groep is perfect in balans.** Nul dominantie.
+
+Ter herinnering, zonder anti-dominantie handicap won Hamza (de "forcing function" persona) 4 beurten op 5. De \`-0.08 × recent_speak_count\` in adjusted willingness heeft dat volledig gerepareerd.
+
+### Gemiddelde willingness per persona (laatste run — 49 beurten)
+
+\`\`\`
+avg    max
+Bouba           0.19  0.90   ▂▃▁▂▂▃▅▇▂▁▁▁▂▁▁▁▂▂▃▅▇▅
+Hamza           0.09  0.90   ▁▁▁▁▁▂▃▅▇▁▁▁▁▁▁▂▃▁▁▂▅▇
+Sanou           0.20  0.90   ▁▃▅▂▁▁▂▃▅▇▆▂▁▁▂▃▆▇▂▁▁
+Tarek           0.12  0.90   ▁▂▁▃▅▇▂▁▁▁▁▂▅▇▅▂▁▁▁▂▂
+Yacine Seroukh  0.26  0.80   ▃▅▇▃▂▂▃▅▆▅▃▂▂▃▅▇▃▂▂▃▃
+\`\`\`
+
+Lage gemiddelde willingness (0.09–0.26) betekent dat **de meeste beurten de actors bewust stil blijven** omdat ze niets nieuws te zeggen hebben (de anti-herhalingsregel dwingt ze tot stilte in plaats van parafraseren). Dat is precies het gewenste gedrag.
+
+De pieken op 0.80–0.90 komen wanneer een extern event of een user-directive binnenkomt, OF wanneer de project_state een deliverable toont die deze actor bezit maar niet vordert.
+
+---
+
+## De 12 door de observer geëxtraheerde beslissingen
+
+De observer extraheert automatisch beslissingen door elke 8 beurten het gesprek te scannen.
+
+| # | Status | Beslissing | Voorgesteld door |
+|---|---|---|---|
+| 1 | agreed | Vergrendel de visie voor we de MVP bespreken | Sanou |
+| 2 | pending | Valideer de visie: "AI-tool voor FR KMO's van 10 tot 50 werknemers" | Sanou |
+| 3 | proposed | Valideer de visie (zelfde) | Sanou |
+| 4 | proposed | Stem om CAC 50€ max en LTV 600€ min te valideren | Tarek |
+| 5 | proposed | Formele stemming lanceren voor de visie | Sanou |
+| 6 | proposed | Stemming lanceren voor CAC/LTV | Tarek |
+| 7 | proposed | Integreer 8k€ in het businessplan | Bouba |
+| 8 | agreed | Formele stemming lanceren voor de visie | Sanou |
+| 9 | pending | Integreer 8k€ in het businessplan | Bouba |
+| 10 | agreed | Stemming lanceren voor CAC/LTV | Tarek |
+| 11-12 | … | … | … |
+
+**Sanou = 4 voorgestelde beslissingen** (synthetiseerder die herkadert). **Tarek = 3** (cijfers). **Bouba = 1** (cash). **Hamza = 0** formeel voorgestelde beslissingen — hij is de forcing function, hij stemt niet, hij duwt.
+
+---
+
+## De geproduceerde artifacts
+
+Parallelle extractie van artifacts — concrete objecten (vision, PRD, MVP, business plan…) die uit de chat ontstaan.
+
+\`\`\`
+Per soort:
+  mvp_scope       ████ 4
+  prd             ████ 4
+  vision          ██   2
+  business_plan   █    1
+  pricing         █    1
+\`\`\`
+
+En hier is het interessante: **een nieuwe deliverable heeft zichzelf auto-gecreëerd** — \`funding\`. Hij stond niet in de 6 baseline templates. De filler heeft hem gespawned toen het gesprek de 8k€ bootstrap noemde en het onderwerp niet in een bestaande deliverable paste. Gecapped op 12 max om verdunning te vermijden, maar echte dynamische creatie.
+
+Toegepaste patches per deliverable:
+\`\`\`
+business_plan   ████████████████ 16
+mvp_scope       █████████         9
+vision          ████████          8
+prd             ████              4
+execution_plan  ███               3
+funding (nieuw) ██                2
+pricing         █                 1
+\`\`\`
+
+Het business_plan krijgt 16 patches omdat het 10 secties heeft (CAC, LTV, revenue, channels, first 10 customers, targets, breakeven, risks, etc.) en elke sectie incrementeel content krijgt.
+
+---
+
+## De 35 geëxtraheerde feiten
+
+De **facts extractor** is de feature die de kwaliteit van gesprekken het meest heeft veranderd. Hij transformeert de chat in gestructureerde staat die de actors op elke bid herlezen.
+
+\`\`\`
+Per soort:
+  status       ███████████████████ 19  ← "waar we staan"
+  commitment    ████████            8  ← "X verbindt zich tot Y voor Z"
+  claim         ███████             7  ← "Ik heb X gedaan"
+  resource      █                   1  ← "8k€ beschikbaar"
+\`\`\`
+
+**Voorbeelden van echte geëxtraheerde feiten**:
+- \`cash.bootstrap_available\` → \`8k€ persoonlijk vrijgemaakt voor executie\`
+- \`dev.outsource_deadline\` → \`Morgen 6u\`
+- \`mvp.final_launch_deadline\` → \`Vrijdag 18u (solo met Upwork freelancer)\`
+- \`pricing.solo_tier\` → \`49€/maand\`
+- \`cac.estimated\` → \`50€ max\`
+- \`ltv.estimated\` → \`600€ min\`
+- \`vision.target_market\` → \`FR KMO's 10-50 werknemers\`
+
+Deze feiten verschijnen in elke actor-prompt onder \`## Wereldfeiten\`. **Actors vragen niet meer "wat is de pricing?"** omdat het antwoord er staat, geattribueerd, tijdgestempeld.
+
+---
+
+## De deliverables — echte geëxtraheerde inhoud
+
+Huidige snapshot van de 6+1 deliverables:
+
+### Vision (gevalideerd)
+> **One-liner**: AI-tool om de productiviteit van FR KMO's met 10 tot 50 werknemers te optimaliseren.
+>
+> **ICP**: Franse KMO's met 10 tot 50 werknemers.
+
+### PRD
+> **Must-have features (gevalideerd)**:
+> - LinkedIn-profielen importeren
+> - Data-analyse voor scoring
+> - PDF-export van resultaten
+
+### MVP Scope
+> **In-scope**:
+> - LinkedIn scrapen (profiel, bedrijf)
+> - Ruwe dashboard (geen authenticatie)
+> - Data-analyse voor scoring
+>
+> **Ship date**: Over 2 weken (gevalideerd)
+
+### Business plan
+> **CAC**: 50€ max (gevalideerd)
+>
+> **Revenue model**: Integratie van de 8k€ cash om de executie te boosten, infra-kosten te dekken en de ontwikkeling te versnellen.
+
+### Pricing
+> **Tiers**: Solo 49€/maand
+
+### Funding (auto-gecreëerd door de filler)
+> **Available Cash**: 8k€ (gevalideerd)
+>
+> **Use of Funds**: Infra, tooling, of vergoeding. Moet naar executie gaan (gevalideerd).
+
+---
+
+## Wat de persona's denken (echte private thoughts)
+
+Elke beurt produceert elke persona een **private_thought** (max 250 chars) die nooit publiek is. Het is hun innerlijke stem. Hier is een staal uit de laatste run (49 beurten):
+
+**Hamza** (forcing + dev):
+> "We hebben de MVP scope nog niet gedefinieerd. Ik kan een suggestie voorstellen, dus dat ga ik doen."
+
+> "We hebben nog altijd geen gevalideerde MVP scope. Ik stel de MVP voor en ga het zelf coden als het blokkeert."
+
+**Bouba** (tech sharer + dev lead):
+> "We hebben nog geen enkele deliverable, we moeten ons snel structureren. Ik ga de dev lead nemen en de vision pushen."
+
+> "Ik zie dat de vision staat, nu moeten we snel vooruit op de andere deliverables. Ik heb de dev lead genomen."
+
+**Tarek** (business plan owner):
+> "Ik moet het business plan en de pricing ownen. Ik moet beginnen met concrete cijfers neer te zetten."
+
+> "Ik moet de eerste business-cijfers neerzetten om te kaderen. CAC op 50€ max en LTV op 600€ minimum om leefbaar te zijn."
+
+**Yacine Seroukh** (go-to-market):
+> "We moeten beginnen met de vision en PRD, daarna kunnen we over business plan en execution plan praten. Ik kan go-to-market en de eerste klanten ownen."
+
+**Sanou** (synthetiseerder):
+> "Hamza heeft het kader goed neergezet. Bouba stelt een vage vision voor. We moeten de doelgroep en het opgeloste probleem preciseren voor we over AI-optimalisatie praten, anders knutselen we gewoon iets zonder markt."
+
+> "Bouba stelt een te generieke vision voor. We moeten eerst de vision valideren voor we over de rest praten. Ik moet herkaderen op vision en doel, dat is deliverable 1."
+
+**Noot**: elke persona heeft een private_thought die perfect bij zijn private_goal past. Yacine owner GTM, Tarek owner cijfers, Sanou herkadert. Verschillende modellen + gegronde prompts produceren onderscheiden interne stemmen.
+
+---
+
+## De 2 judge-passes
+
+De judge draait elke 20 beurten. Hij produceert 4 scores + een rationale + **een publieke directive** gepost in de chat als \`⚖ JUDGE\`.
+
+| Turn | Alignment | Velocity | Complete | Ready | Directive |
+|---|---|---|---|---|---|
+| 20 | 0.50 | 0.30 | 2/6 | 0.00 | Vision bijna klaar maar nog niet gelocked. PRD gestart maar niet gedetailleerd. |
+| 40 | 0.50 | 0.30 | 2/6 | 0.00 | Vision gelocked maar PRD en business_plan onvolledig. MVP scope lopende. |
+
+Alignment stabiel op 0.50 (de groep is in balans). Velocity 0.30 (regelmatige maar niet flamboyante progressie). Completeness 2/6 (vision + mvp_scope geschreven, de andere 4 minder gevorderd). Readiness 0.00 (we zijn ver van een betalende klant morgen).
+
+**De judge is eerlijk.** Hij geeft geen gemakzuchtige scores.
+
+---
+
+## Wat NIET heeft gewerkt (eerlijk)
+
+### Loop op geëjecteerde Bouba (eerdere run, V1)
+
+In een eerdere simulatie over 206 beurten heeft Hamza Bouba **"uit de groep geëjecteerd"** na een clash over veiligheid vs snelheid. Meetbaar patroon in de scores:
+
+\`\`\`
+turn 40: alignment 0.62 · completeness 5/6 · ready 0.71
+turn 60: alignment 0.42 · completeness 6/6 · ready 0.61
+\`\`\`
+
+Alignment crasht van 0.62 → 0.42 terwijl completeness stijgt naar 6/6. Met andere woorden: **de groep heeft de 6 deliverables afgemaakt door de dissident uit te sluiten.** Een mens die de chat leest kan dat missen. De judge heeft het in één zin gepakt: _"Het team is gebroken: Bouba uitgesloten."_
+
+### Geïdentificeerde oorzaak
+
+De Bouba-persona door de LLM geëxtraheerd overweegde zijn sceptische momenten. In werkelijkheid is Bouba een goede dev die tech-info aanbrengt en de dev lead neemt — geen blocker. Fix toegepast via een YAML-overlay die zijn positieve drives versterkt en zijn mental principles herbalanceert. In de volgende runs (inclusief de laatste) **spreekt Bouba 10 keer op 49** (20.4%) — exact hetzelfde aandeel als Hamza. Geen breuk meer.
+
+### Herhalingsloops
+
+In een andere run (V1) hebben Bouba en Yacine 40+ berichten rondgedraaid met dezelfde zinnen in lichte variaties. Het anti-herhalingsfilter is aangescherpt van 55% → 40% token overlap, window 3 → 5 berichten. Latere runs hebben dit probleem niet meer.
+
+---
+
+## Economisch: hoe het zich verhoudt
+
+Hoeveel kost een menselijke IRL boot-camp die deze deliverables produceert? Conservatief:
+- 5 mensen × 10u × 50€/u = **2500€**
+- Over meerdere weken
+- Resultaat: vaak niet af, geen cijfers, niet bewaard
+
+De simulatie:
+- 16 runs, 269 LLM calls, **$0.28 totaal**
+- ~3 uur wall clock totaal
+- Resultaat: 6 deliverables (+1 auto-gecreëerd) geschreven, verdedigbare cijfers, volledige audit trail, gegenereerd markdown-rapport, live dashboard voor demo's
+
+**Ratio menselijke kost / simulatie: ~10.000 ×**.
+
+Niet hetzelfde uiteraard — echte businessbeslissingen vragen mensen. Maar als **eerste pass van "hier is waar deze groep convergeert over dit onderwerp"** is het een tool die niet bestond.
+
+---
+
+## De 4 tools beschikbaar voor de actors
+
+Persona's kunnen gedeelde tools aanroepen **via consensus** (2 supporters min). Elk gebruik gelogd in \`tool_calls.jsonl\`.
+
+| Tool | Icoon | Kost | Waargenomen gebruik |
+|---|---|---|---|
+| **⚖ judge** | extern | $0.005/call | Een cijfer valideren, een keuze stress-testen |
+| **🌐 web** | OpenRouter websearch | $0.01/call | Concurrenten benchmarken, recent nieuws |
+| **📖 read** | leest de inhoud van een deliverable | $0 | Een debat hergronden op echte content |
+| **🗳 vote** | ja/nee poll, tally na 3 beurten | $0 | Een vraag beslechten zonder eindeloos debat |
+
+De \`vote\` is waarschijnlijk het nuttigst in de praktijk. Het transformeert debatten in geregistreerde beslissingen.
+
+---
+
+## Het dashboard (ASCII capture)
+
+\`\`\`
+┌─ 🌍 world · turn 42/300 · $0.18/$10.00 ████░░░░░░ ─────────────┐
+│  Goal: Samen miljonairs worden in 2 jaar...                     │
+├─────────────────────────────────────────┬──────────────────────┤
+│ 💬 gesprek (volledige tekst, no crop)   │ 📋 deliverables      │
+│                                         │  Vision    ██████ 85%│
+│ 15:42  ★ Sanou: Bouba stelt vision voor.│  PRD       ███░░░ 40%│
+│ 15:43    Hamza: wsh we vallen aan...    │  Business  █░░░░░ 10%│
+│ 📰 15:43 [NEWS] Cursor 200M...          │  MVP       ████░░ 60%│
+│ 15:44  ⚖ JUDGE: "Vision OK, PRD..."     │  Pricing   ██░░░░ 33%│
+│ 15:46  🗳 VOTE OPEN: lock pricing?      │  Funding   ██████ 85%│
+│ 📣 15:47 USER: focus pricing!           ├─ ✨ recent fills ───┤
+│                                         │  📝 pricing.tiers    │
+├─ 💭 gedachten ────────────────────────┤  📝 bp.cac           │
+│  Hamza → MVP niet gedef, ik stel voor  ├─ ⚖ judge ──────────┤
+│  Tarek → cijfers CAC 50€ neergezet     │  align ▃▅ 0.50       │
+│  Sanou → Bouba vision te generiek       │  veloc ▂▄ 0.30       │
+│                                         ├─ 👥 persona's ─────┤
+│                                         │  ★ Sanou gemini 0.90 │
+│                                         │    Bouba gpt-4o 0.68 │
+├─────────────────────────────────────────┴──────────────────────┤
+│ status: ⚖ judge · 📝 fill · 🛰 news · 📣 directive            │
+└─────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+Refresh 4 Hz. Alternate screen buffer. 8 panelen die in real time bewegen.
+
+---
+
+## De 5 kernlessen
+
+### 1. Parallelle verkiezing + anti-dominantie handicap repareren de "single voice"
+Zonder \`-0.08 × recent_speak\` domineerde Hamza 80% van de beurten. Daarmee spreken de 5 actors 18–20% elk. Fundamenteel noodzakelijk.
+
+### 2. Gestructureerde feiten > kletsende historiek
+De 35 geëxtraheerde feiten (\`cash.available=8k€\`, \`mvp.deadline=vrijdag\`) hebben meer impact op de kwaliteit van de bids dan de laatste 20 berichten. Actors stoppen met hervragen.
+
+### 3. Deliverable templates zijn een forcing function
+"MVP scope: 70%" tonen met benoemde secties zorgt dat actors content naar die secties duwen, in plaats van in het niets te debatteren.
+
+### 4. De judge moet in de chat spreken
+Een privéscore is gewoon een log. Een judge die \`"Vision OK, PRD leeg, Tarek berekent CAC/LTV binnen 15 min"\` publiceert, hervormt het gedrag van de volgende 20 beurten.
+
+### 5. Onderscheiden stemmen vragen onderscheiden tics
+5 verschillende modellen zijn niet genoeg. Je hebt \`signature_expressions\` nodig gegrond in echte berichten ("wsh", "tkt", "akhi", "Starfirulah") zodat elke persona vanaf de 2e regel herkenbaar is.
+
+---
+
+## Wat nog te doen
+
+- **Multi-project**: vandaag 1 wereld = 1 project. Een echte groep jongleert 2–3 ideeën parallel.
+- **Persona-kalibratie via replay**: neem 20 "wat zou X hier zeggen?" uit het echte gesprek, meet de persona-fideliteit, itereer de overlay.
+- **Streaming**: alle LLM calls zijn non-streaming. Voegt ~2–3s per beurt toe.
+- **Panel van 3 judges**: consensus of onenigheid, robuuster dan één score.
+- **Summon external voice**: een tool die een eenmalige stem injecteert (investeerder, potentiële klant, mentor) om de groep uit te dagen.
+
+---
+
+## Het kernpunt
+
+Een LLM-groep is de **goedkoopste focus group ter wereld** voor een concreet business-idee. Geef ze een doel, beperkingen, een cast van onderscheiden stemmen en gestructureerde deliverables om in te vullen — en in 30 minuten voor $2 zie je wat 40u menselijke meetings zouden produceren.
+
+De pitch deck is grotendeels ruis. Soms valt er een echt cijfer uit.
+
+In mijn geval, na 16 runs en $0.28 aan compute, convergeerde de groep op:
+- **Vision gelocked**: AI-tool voor FR KMO's 10–50 werknemers
+- **MVP gedefinieerd**: LinkedIn scrape + scoring + PDF export, 2 weken tot ship
+- **Pricing neergezet**: 49€/maand solo
+- **Business model met cijfers**: CAC 50€, LTV 600€
+- **Cash toegewezen**: 8k€ in funding (auto-gecreëerd als custom deliverable)
+
+Zal de IRL-groep het echt verschepen? Geen idee. Maar nu heb ik het deck dat ze nooit hebben geschreven, gratis, en als bonus een gekwantificeerde meting van hun groepsdynamiek.
+
+---
+
+_Open source, offline, geen WhatsApp-integratie. Volledige audit trail in \`world/state/*.jsonl\`._
+`.trim();
+
 const blogPosts: BlogPostData[] = [
+  {
+    slug: "simulating-my-whatsapp-group-with-llm-personas",
+    icon: Users,
+    date: "2026-04-19",
+    authors: [
+      { name: "Hamza Mounir", linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/" },
+    ],
+    title: {
+      en: "I simulated my WhatsApp group for 16 runs. Here are the real numbers.",
+      fr: "J'ai simulé mon groupe WhatsApp pendant 16 runs. Voici les vrais chiffres.",
+      nl: "Ik simuleerde mijn WhatsApp-groep gedurende 16 runs. Hier zijn de echte cijfers.",
+    },
+    description: {
+      en: "Five LLM personas (each on a different model), goal: become millionaires together. Budget: $10. A retrospective with the real stats pulled from the logs.",
+      fr: "Cinq personas LLM (un modèle différent chacun), goal : devenir millionnaires ensemble. Budget : 10 $. Retour d'expérience avec les stats réelles extraites des logs.",
+      nl: "Vijf LLM-persona's (elk op een ander model), doel: samen miljonairs worden. Budget: $10. Een terugblik met de echte statistieken uit de logs.",
+    },
+    category: {
+      en: "Experiments",
+      fr: "Expériences",
+      nl: "Experimenten",
+    },
+    tags: {
+      en: ["LLM", "Multi-Agent", "Personas"],
+      fr: ["LLM", "Multi-Agent", "Personas"],
+      nl: ["LLM", "Multi-Agent", "Persona's"],
+    },
+    readTime: {
+      en: "12 min",
+      fr: "12 min",
+      nl: "12 min",
+    },
+    content: {
+      en: WHATSAPP_SIM_CONTENT_EN,
+      fr: WHATSAPP_SIM_CONTENT_FR,
+      nl: WHATSAPP_SIM_CONTENT_NL,
+    },
+  },
   {
     slug: "a-practical-map-of-the-next-tech-decade",
     icon: Network,
