@@ -168,17 +168,25 @@ export default function BlogPostPage({ params }: PageProps) {
 
       {showWhatsappSimEmbed ? (
         <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto space-y-4">
             <div className="border-2 border-border bg-background overflow-hidden">
-              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                <iframe
-                  src="https://humanbordel.my.canva.site/"
-                  title="WhatsApp group LLM simulation — demo"
-                  className="absolute inset-0 w-full h-full"
-                  allow="fullscreen; autoplay"
-                  loading="lazy"
-                />
-              </div>
+              <img
+                src="/whatsapp-sim-dashboard.png"
+                alt="WhatsApp group LLM simulation dashboard — live turn view"
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+            </div>
+            <div className="flex justify-center">
+              <a
+                href="https://humanbordel.my.canva.site/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-primary/40 bg-primary/10 text-primary text-sm hover:bg-primary/20 transition-colors"
+              >
+                {"▶"} Voir la démo vidéo
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
         </section>
