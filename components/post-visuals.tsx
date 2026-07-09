@@ -63,7 +63,7 @@ export function ArticleCard({ post, locale }: { post: BlogPost; locale: string }
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group rounded-xl border border-white/10 bg-[#101216] p-5 sm:p-6 pixel-card hover:border-primary/40 hover:bg-elevated shadow-sm"
+      className="group block w-full rounded-xl border border-white/10 bg-[#101216] p-5 sm:p-6 pixel-card hover:border-primary/40 hover:bg-elevated shadow-sm"
     >
       <div className="flex flex-col-reverse sm:flex-row gap-5 items-stretch">
         {/* Content */}
