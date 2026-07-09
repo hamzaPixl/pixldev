@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink, MessageCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ProductStatic } from "@/lib/products";
 import { getProductTranslationKey } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
 import { cn } from "@/lib/utils";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
@@ -27,6 +28,7 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
   const productDescription = t(`${translationKey}.description`);
 
   const statusLabel = t(`status.${product.status === "coming-soon" ? "comingSoon" : product.status}`);
+  const b = getProductBrand(product.id);
 
   return (
     <SharedLayout>
@@ -37,7 +39,7 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
         url={product.url}
       />
       {/* Banner */}
-      <section className="px-4 sm:px-6 py-8 sm:py-12 border-b border-border">
+      <section className={cn("px-4 sm:px-6 py-10 sm:py-14 border-b border-border bg-gradient-to-br", b.gradient)}>
         <div className="max-w-4xl mx-auto">
           {/* Back button */}
           <Link
@@ -52,14 +54,14 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
             {/* Icon/Logo */}
             <div
               className={cn(
-                "w-16 h-16 sm:w-20 sm:h-20 rounded-lg flex items-center justify-center border border-border bg-card shrink-0",
-                product.featured && "border-gold/30"
+                "w-16 h-16 sm:w-20 sm:h-20 rounded-xl flex items-center justify-center border shrink-0",
+                b.tile
               )}
             >
               {product.logo ? (
                 <img src={product.logo} alt={productName} className="w-10 h-10 sm:w-14 sm:h-14 object-contain" />
               ) : (
-                <Icon className={cn("w-8 h-8 sm:w-10 sm:h-10 text-primary", product.featured && "text-gold")} />
+                <Icon className={cn("w-8 h-8 sm:w-10 sm:h-10", b.accentText)} />
               )}
             </div>
 
@@ -88,7 +90,7 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
                 </span>
               </div>
 
-              <p className="text-base md:text-lg text-primary mb-3">{productTagline}</p>
+              <p className={cn("text-base md:text-lg font-medium mb-3", b.accentText)}>{productTagline}</p>
 
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mb-6">{productDescription}</p>
 

@@ -5,54 +5,8 @@ import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ProductStatic } from "@/lib/products";
 import { getProductTranslationKey } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
 import { useLanguage } from "@/lib/language-context";
-
-/**
- * Per-product brand accents for the bento grid.
- * Feen uses its real brand kit (Feen Blue #0426A8, lime #B0F90E — fill only).
- * Others get one distinctive hue each until their own brands land.
- */
-const brand: Record<
-  string,
-  { gradient: string; hoverBorder: string; accentText: string; tile: string }
-> = {
-  feen: {
-    gradient: "from-[#0426A8]/40 via-[#0426A8]/10 to-card",
-    hoverBorder: "hover:border-[#5C7CFF]/50",
-    accentText: "text-[#8FA5FF]",
-    tile: "bg-[#0426A8]/30 border-[#5C7CFF]/30",
-  },
-  "company-data": {
-    gradient: "from-[#22D3EE]/15 via-card to-card",
-    hoverBorder: "hover:border-[#22D3EE]/40",
-    accentText: "text-[#67E8F9]",
-    tile: "bg-[#22D3EE]/10 border-[#22D3EE]/25",
-  },
-  bumpi: {
-    gradient: "from-[#A78BFA]/15 via-card to-card",
-    hoverBorder: "hover:border-[#A78BFA]/40",
-    accentText: "text-[#C4B5FD]",
-    tile: "bg-[#A78BFA]/10 border-[#A78BFA]/25",
-  },
-  syncco: {
-    gradient: "from-[#34D399]/15 via-card to-card",
-    hoverBorder: "hover:border-[#34D399]/40",
-    accentText: "text-[#6EE7B7]",
-    tile: "bg-[#34D399]/10 border-[#34D399]/25",
-  },
-  "pixl-web": {
-    gradient: "from-[#F472B6]/12 via-card to-card",
-    hoverBorder: "hover:border-[#F472B6]/40",
-    accentText: "text-[#F9A8D4]",
-    tile: "bg-[#F472B6]/10 border-[#F472B6]/25",
-  },
-  "pixl-branding": {
-    gradient: "from-[#FBBF24]/12 via-card to-card",
-    hoverBorder: "hover:border-[#FBBF24]/40",
-    accentText: "text-[#FCD34D]",
-    tile: "bg-[#FBBF24]/10 border-[#FBBF24]/25",
-  },
-};
 
 /** Illustration slot: real image when provided, quiet branded pattern until then. */
 function Illustration({ product, className }: { product: ProductStatic; className?: string }) {
@@ -89,13 +43,13 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
           className={cn(
             "group relative sm:col-span-2 lg:col-span-4 lg:row-span-2 flex flex-col rounded-xl border border-border p-6 sm:p-8 pixel-card overflow-hidden",
             "bg-gradient-to-br",
-            brand.feen.gradient,
-            brand.feen.hoverBorder
+            getProductBrand("feen").gradient,
+            getProductBrand("feen").hoverBorder
           )}
         >
           <div className="flex items-start justify-between gap-4 mb-5">
             <div className="flex items-center gap-3.5">
-              <div className={cn("w-11 h-11 rounded-lg border flex items-center justify-center", brand.feen.tile)}>
+              <div className={cn("w-11 h-11 rounded-lg border flex items-center justify-center", getProductBrand("feen").tile)}>
                 <img src="/feen-icon.svg" alt="" className="w-7 h-7 object-contain" />
               </div>
               <h3 className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground">
@@ -105,7 +59,7 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
             <ArrowUpRight className="w-5 h-5 text-muted-foreground transition-all group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
 
-          <p className={cn("text-base sm:text-lg font-medium mb-2", brand.feen.accentText)}>
+          <p className={cn("text-base sm:text-lg font-medium mb-2", getProductBrand("feen").accentText)}>
             {tagline(feen)}
           </p>
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md mb-6">
@@ -119,7 +73,7 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
 
       {/* Module cells */}
       {smalls.map((product) => {
-        const b = brand[product.id] ?? brand["company-data"];
+        const b = getProductBrand(product.id);
         const Icon = product.icon;
         return (
           <Link
