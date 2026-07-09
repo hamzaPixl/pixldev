@@ -55,6 +55,11 @@ export const nl = {
   },
   footer: {
     company: "Modellen zijn niet het product. Systemen wel.",
+    status: "We bouwen AI-systemen voor Belgische kmo's — vanuit België.",
+    clock: "Brusselse tijd",
+    stayTitle: "Blijf op de hoogte",
+    stayText: "Essays, experimentlogs en productupdates — recht uit de terminal.",
+    subscribe: "Abonneer via RSS",
     vat: "BTW: BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "VOLG ONS",

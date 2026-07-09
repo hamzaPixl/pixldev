@@ -55,6 +55,11 @@ export const fr = {
   },
   footer: {
     company: "Les modèles ne sont pas le produit. Les systèmes, oui.",
+    status: "Nous construisons des systèmes IA pour les PME belges — depuis la Belgique.",
+    clock: "Heure de Bruxelles",
+    stayTitle: "Restez au courant",
+    stayText: "Essais, journaux d'expériences et nouveautés produit — direct du terminal.",
+    subscribe: "S'abonner via RSS",
     vat: "TVA : BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "SUIVEZ-NOUS",

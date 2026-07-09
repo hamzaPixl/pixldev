@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ArrowUpRight, Linkedin, Mail, Phone, Rss } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
@@ -59,23 +60,48 @@ export function SharedLayout({ children }: SharedLayoutProps) {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border px-4 sm:px-6 py-10 sm:py-14">
+      <footer className="border-t border-border px-4 sm:px-6 py-14 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Logo & Company */}
+          {/* Top: wordmark + status/clock */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mb-14">
             <div>
-              <Link href="/" className="inline-flex items-center gap-3 mb-4">
-                <img src="/logo.svg" alt="Pixl" className="h-5 sm:h-6 w-auto" />
+              <Link href="/" className="inline-block">
+                <img src="/logo.svg" alt="Pixl" className="h-14 sm:h-20 w-auto" />
               </Link>
-              <p className="text-sm text-muted-foreground">
+              <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-sm">
                 {t("footer.company")}
               </p>
             </div>
+            <div className="lg:text-right">
+              <p className="text-lg sm:text-xl text-foreground/90 leading-snug max-w-md lg:ml-auto">
+                <span className="inline-block w-2 h-2 rounded-full bg-primary mr-3 align-middle" />
+                {t("footer.status")}
+              </p>
+              <div className="mt-6">
+                <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-1">
+                  {t("footer.clock")} (CET)
+                </p>
+                <BrusselsClock />
+              </div>
+            </div>
+          </div>
 
-            {/* Products */}
-            <div>
-              <h4 className="text-sm font-medium text-foreground mb-4">{t("footer.productsTitle")}</h4>
-              <div className="flex flex-col gap-2.5 text-sm">
+          {/* Middle: links + cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Link columns */}
+            <div className="grid grid-cols-2 gap-8 content-start">
+              <div className="flex flex-col gap-3 text-sm">
+                <Link href="/" className="pixel-link text-muted-foreground hover:text-foreground transition-colors">
+                  {t("blog.home")}
+                </Link>
+                <Link href="/#modules" className="pixel-link text-muted-foreground hover:text-foreground transition-colors">
+                  {t("footer.productsTitle")}
+                </Link>
+                <Link href="/blog" className="pixel-link text-muted-foreground hover:text-foreground transition-colors">
+                  {t("blog.footerLink")}
+                </Link>
+              </div>
+              <div className="flex flex-col gap-3 text-sm">
                 {products.map((product) => {
                   const translationKey = getProductTranslationKey(product.id);
                   return (
@@ -91,49 +117,63 @@ export function SharedLayout({ children }: SharedLayoutProps) {
               </div>
             </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="text-sm font-medium text-foreground mb-4">{t("footer.contactTitle")}</h4>
-              <div className="flex flex-col gap-2.5 text-sm">
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Stay in the loop */}
+              <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 flex flex-col">
+                <h4 className="font-display font-semibold tracking-tight text-lg text-foreground mb-2">
+                  {t("footer.stayTitle")}
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                  {t("footer.stayText")}
+                </p>
                 <a
-                  href="mailto:hello@pixldev.be"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
+                  href="/feed.xml"
+                  className="mt-auto inline-flex items-center justify-between gap-2 border-t border-border pt-3 text-sm text-primary font-medium group"
                 >
-                  hello@pixldev.be
-                </a>
-                <a
-                  href="tel:+32488203567"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  +32 488 20 35 67
+                  {t("footer.subscribe")}
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </div>
-            </div>
 
-            {/* Links */}
-            <div>
-              <h4 className="text-sm font-medium text-foreground mb-4">{t("footer.connectTitle")}</h4>
-              <div className="flex flex-col gap-2.5 text-sm">
-                <Link
-                  href="/blog"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {t("blog.footerLink")}
-                </Link>
+              {/* Contact rows */}
+              <div className="rounded-2xl border border-border bg-card overflow-hidden divide-y divide-border">
                 <a
                   href="https://www.linkedin.com/company/pixl-srl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-elevated transition-colors"
                 >
+                  <Linkedin className="w-4 h-4 text-muted-foreground" />
                   {t("footer.linkedin")}
+                </a>
+                <a
+                  href="mailto:hello@pixldev.be"
+                  className="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-elevated transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-muted-foreground" />
+                  hello@pixldev.be
+                </a>
+                <a
+                  href="tel:+32488203567"
+                  className="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-elevated transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-muted-foreground" />
+                  +32 488 20 35 67
+                </a>
+                <a
+                  href="/feed.xml"
+                  className="flex items-center gap-3 px-5 py-3.5 text-sm text-foreground hover:bg-elevated transition-colors"
+                >
+                  <Rss className="w-4 h-4 text-muted-foreground" />
+                  RSS
                 </a>
               </div>
             </div>
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="font-mono text-xs text-muted-foreground/70">
               © {new Date().getFullYear()} Pixl SRL ·{" "}
               <a
@@ -153,13 +193,34 @@ export function SharedLayout({ children }: SharedLayoutProps) {
               <a href="/llms.txt" className="text-muted-foreground/70 hover:text-foreground transition-colors">
                 llms.txt
               </a>
-              <a href="/feed.xml" className="text-muted-foreground/70 hover:text-foreground transition-colors">
-                feed.xml
-              </a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+  );
+}
+
+function BrusselsClock() {
+  const [time, setTime] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Brussels",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+    const tick = () => setTime(fmt.format(new Date()));
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <p className="font-mono text-4xl sm:text-5xl font-medium text-foreground tabular-nums">
+      {time ?? "--:--:--"}
+    </p>
   );
 }

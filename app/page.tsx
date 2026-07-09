@@ -23,41 +23,71 @@ export default function Home() {
       <HomePageStructuredData />
 
       {/* Hero */}
-      <section className="relative border-b border-border px-4 sm:px-6 grid-dots">
-        <div className="max-w-6xl mx-auto py-16 sm:py-24 lg:py-28">
-          <div className="max-w-3xl">
-            <div className="eyebrow mb-6 animate-fade-in opacity-0" style={{ animationDelay: "0ms" }}>
-              Pixl — Belgian AI studio
-            </div>
-            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.08] mb-6">
-              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "80ms" }}>
+      <section className="relative isolate overflow-hidden -mt-[60px] sm:-mt-[68px] min-h-[100svh] flex flex-col">
+        <img
+          src="/hero-horizon.jpg"
+          alt=""
+          fetchPriority="high"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Readability + blend overlays */}
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/30" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent" />
+
+        <div className="relative flex-1 flex items-center justify-center px-4 sm:px-6 pt-32 pb-24">
+          <div className="max-w-3xl mx-auto text-center">
+            {/* Announcement badge — latest post */}
+            {latestPosts[0] && (
+              <Link
+                href={`/blog/${latestPosts[0].slug}`}
+                className="inline-flex items-center gap-3 rounded-full bg-white/10 pl-1.5 pr-4 py-1.5 ring-1 ring-white/15 backdrop-blur-md mb-8 animate-fade-in opacity-0 hover:bg-white/15 transition-colors"
+                style={{ animationDelay: "0ms" }}
+              >
+                <span className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-primary-foreground font-medium">
+                  New
+                </span>
+                <span className="text-sm text-foreground/90 truncate max-w-[240px] sm:max-w-md">
+                  {latestPosts[0].title}
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+              </Link>
+            )}
+
+            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.06] mb-6">
+              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "100ms" }}>
                 {t("home.heroTitle1")}
               </span>
               <br />
-              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "200ms" }}>
+              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "220ms" }}>
                 <span className="text-primary">{t("home.heroTitle2")}</span>
                 <span className="animate-blink ml-1.5 font-mono font-normal">_</span>
               </span>
             </h1>
+
             <p
-              className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mb-10 animate-fade-in opacity-0"
-              style={{ animationDelay: "320ms" }}
+              className="text-base sm:text-lg text-foreground/75 leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-in opacity-0"
+              style={{ animationDelay: "340ms" }}
             >
               {t("home.heroSubtitle")}
             </p>
 
-            {/* CTA Buttons */}
             <div
-              className="flex flex-col sm:flex-row gap-3 animate-fade-in opacity-0"
-              style={{ animationDelay: "420ms" }}
+              className="flex flex-col sm:flex-row gap-3 items-center justify-center animate-fade-in opacity-0"
+              style={{ animationDelay: "460ms" }}
             >
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="rounded-full px-6">
                 <a href="mailto:hello@pixldev.be">
                   {t("common.buildWithUs")}
                   <ArrowRight />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-full px-6 bg-white/5 border-white/15 backdrop-blur-md hover:bg-white/10"
+              >
                 <a href="https://feen.be" target="_blank" rel="noopener noreferrer">
                   {t("common.tryFeen")}
                   <ExternalLink className="text-muted-foreground" />

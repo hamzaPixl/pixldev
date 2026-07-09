@@ -53,6 +53,11 @@ export const en = {
   },
   footer: {
     company: "Models are not the product. Systems are.",
+    status: "Building AI systems for Belgian SMEs — operating from Belgium.",
+    clock: "Brussels Time",
+    stayTitle: "Stay in the loop",
+    stayText: "Essays, experiment logs, and product updates — straight from the terminal.",
+    subscribe: "Subscribe via RSS",
     vat: "VAT: BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "CONNECT",
