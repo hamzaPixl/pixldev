@@ -42,6 +42,16 @@ export const MODEL_FALLBACK = "google/gemini-2.5-flash-image";
 export const illustrations = [
   // ── Blog posts (each a recognizable subject, not an abstract blob) ──
   {
+    id: "every-image-from-one-manifest",
+    kind: "blog",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "still-life",
+    concept:
+      "An editorial photographer's contact sheet laid on a dark light-table, a grid of small frames all sharing the same green-lit cinematic look, one frame in the grid glowing brighter than the rest — a whole visual system printed from one source.",
+    tags: ["contact-sheet", "system", "grid", "meta", "green"],
+  },
+  {
     id: "the-company-is-an-api-call",
     kind: "blog",
     accent: PIXL_GREEN,
