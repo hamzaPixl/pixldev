@@ -38,7 +38,7 @@ done
 # strip trailing ; and add fade in/out
 filter="${filter%;}"
 ffmpeg -y -loglevel error "${inputs[@]}" -filter_complex \
-  "${filter},fade=t=in:st=0:d=0.3,format=yuv420p[vout]" \
+  "${filter};[${prev}]fade=t=in:st=0:d=0.3,format=yuv420p[vout]" \
   -map "[vout]" -c:v libx264 -pix_fmt yuv420p "$WK/silent.mp4"
 
 # 3) pad video to the VO length (freeze last frame if VO is longer), mux VO, no music
