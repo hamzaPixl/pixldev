@@ -66,5 +66,8 @@ Posts:
 - AI: multi-provider via gateway routing (OpenRouter and others), narrow task-specific pipelines
 - Compliance: PSD2, GDPR, Peppol
 
+## Brand & design
+Visual identity, palette, voice, and art direction: https://pixldev.be/brand.md
+
 ## Sitemap
 https://pixldev.be/sitemap.xml

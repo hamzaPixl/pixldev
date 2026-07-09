@@ -7,6 +7,7 @@ import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { getAllBlogPosts } from "@/lib/blog";
 import { ArticleCard, AuthorAvatar, PostImage, formatPostDate } from "@/components/post-visuals";
+import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
 
 const dateLocaleMap = { en: "en-US", fr: "fr-BE", nl: "nl-BE" } as const;
@@ -82,8 +83,10 @@ export function BlogIndexClient() {
 
               {/* Article list */}
               <div className="lg:col-span-3 flex flex-col gap-4 lg:gap-5">
-                {rest.map((post) => (
-                  <ArticleCard key={post.slug} post={post} locale={locale} />
+                {rest.map((post, i) => (
+                  <Reveal key={post.slug} delay={i * 70}>
+                    <ArticleCard post={post} locale={locale} />
+                  </Reveal>
                 ))}
               </div>
             </div>

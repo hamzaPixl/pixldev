@@ -39,6 +39,10 @@ const nextConfig: NextConfig = {
         source: "/llms.txt",
         headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }],
       },
+      {
+        source: "/brand.md",
+        headers: [{ key: "Content-Type", value: "text/markdown; charset=utf-8" }],
+      },
     ];
   },
 };
