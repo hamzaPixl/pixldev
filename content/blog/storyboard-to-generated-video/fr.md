@@ -55,6 +55,6 @@ Pas de démo truquée ici. Ce qui suit, c'est ce que le système a réellement p
 
 ## L'exemple
 
-Voici un spot Pixl en cinq plans, construit exactement comme ça : storyboard d'abord, chaque plan généré dans le style maison, puis un keyframe amené à la vie en clip animé.
+Voici un storyboard Pixl en cinq plans, construit exactement comme ça : une ligne par plan, chaque frame générée dans le style maison. J'ai lancé la passe de motion aussi. Elle n'est pas assez bonne pour être montrée, alors tu as le storyboard, pas un mauvais clip.
 
 Le storyboard est la vidéo. Le reste, c'est du rendu.

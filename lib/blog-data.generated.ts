@@ -946,7 +946,7 @@ No faked demo here. What's below is what the system actually produced.
 
 ## The example
 
-Here's a five-shot Pixl spot, built exactly this way: storyboard first, each shot generated in the house style, each keyframe brought to life with an image-to-video model, cut to a voice-over.
+Here's a five-shot Pixl storyboard, built exactly this way: one line per shot, each frame generated in the house style. I ran the motion pass too. It isn't good enough to show yet, so you get the storyboard, not a bad clip.
 
 The storyboard is the video. The rest is rendering.
 `.trim(),
@@ -993,7 +993,7 @@ Pas de démo truquée ici. Ce qui suit, c'est ce que le système a réellement p
 
 ## L'exemple
 
-Voici un spot Pixl en cinq plans, construit exactement comme ça : storyboard d'abord, chaque plan généré dans le style maison, puis un keyframe amené à la vie en clip animé.
+Voici un storyboard Pixl en cinq plans, construit exactement comme ça : une ligne par plan, chaque frame générée dans le style maison. J'ai lancé la passe de motion aussi. Elle n'est pas assez bonne pour être montrée, alors tu as le storyboard, pas un mauvais clip.
 
 Le storyboard est la vidéo. Le reste, c'est du rendu.
 `.trim(),
@@ -1040,7 +1040,7 @@ Geen nep-demo hier. Wat hieronder staat, is wat het systeem echt heeft geproduce
 
 ## Het voorbeeld
 
-Hier is een Pixl-spot van vijf shots, precies zo gebouwd: eerst het storyboard, elke shot gegenereerd in de huisstijl, daarna één keyframe tot leven gebracht als bewegende clip.
+Hier is een Pixl-storyboard van vijf shots, precies zo gebouwd: één regel per shot, elke frame gegenereerd in de huisstijl. Ik draaide ook de motion-pass. Die is nog niet goed genoeg om te tonen, dus je krijgt het storyboard, geen slechte clip.
 
 Het storyboard is de video. De rest is rendering.
 `.trim(),

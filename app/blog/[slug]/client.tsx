@@ -688,22 +688,10 @@ function StoryboardExample() {
         ))}
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-xl border border-border bg-black">
-        <video
-          src="/video/pixl-spot.mp4"
-          poster="/illustrations/storyboard/spot-02-horizon.jpg"
-          controls
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="block h-auto w-full"
-        />
-      </div>
       <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
-        Five keyframes from one manifest, each brought to life with an image-to-video
-        model (OpenRouter), cut to a generated voice-over. Unmute to hear it. No stock,
-        no fake footage.
+        Five keyframes from one manifest, one house style. The motion pass isn&apos;t
+        good enough to ship yet, so I&apos;m showing the storyboard, not a bad clip.
+        That&apos;s the point: the storyboard is the film. No stock, no fake footage.
       </p>
     </section>
   );

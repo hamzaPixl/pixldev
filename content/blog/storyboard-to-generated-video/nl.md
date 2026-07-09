@@ -55,6 +55,6 @@ Geen nep-demo hier. Wat hieronder staat, is wat het systeem echt heeft geproduce
 
 ## Het voorbeeld
 
-Hier is een Pixl-spot van vijf shots, precies zo gebouwd: eerst het storyboard, elke shot gegenereerd in de huisstijl, daarna één keyframe tot leven gebracht als bewegende clip.
+Hier is een Pixl-storyboard van vijf shots, precies zo gebouwd: één regel per shot, elke frame gegenereerd in de huisstijl. Ik draaide ook de motion-pass. Die is nog niet goed genoeg om te tonen, dus je krijgt het storyboard, geen slechte clip.
 
 Het storyboard is de video. De rest is rendering.
