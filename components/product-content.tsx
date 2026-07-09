@@ -17,7 +17,7 @@ export function ProductContent({ productId }: ProductContentProps) {
 // Styled components for content
 function H1({ children }: { children: React.ReactNode }) {
   return (
-    <h1 className="font-pixel text-xl sm:text-2xl md:text-3xl text-foreground mb-4 sm:mb-6 leading-relaxed">
+    <h1 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-foreground mb-4 sm:mb-6">
       {children}
     </h1>
   );
@@ -25,39 +25,37 @@ function H1({ children }: { children: React.ReactNode }) {
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="font-pixel text-base sm:text-lg text-primary mt-8 sm:mt-10 mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-      <span className="text-primary/50">{">"}</span>
+    <h2 className="font-display font-semibold tracking-tight text-lg sm:text-xl text-foreground mt-10 mb-4 flex items-center gap-3">
+      <span className="w-2 h-2 rounded-sm bg-primary shrink-0" />
       {children}
-      <span className="flex-1 border-t border-primary/20" />
     </h2>
   );
 }
 
 function H3({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-base sm:text-lg font-semibold text-foreground mt-4 sm:mt-6 mb-2 sm:mb-3 flex items-center gap-2">
-      <span className="text-muted-foreground">▸</span>
+    <h3 className="text-base sm:text-lg font-semibold text-foreground mt-6 mb-3">
       {children}
     </h3>
   );
 }
 
 function P({ children }: { children: React.ReactNode }) {
-  return <p className="text-sm sm:text-base text-foreground/80 mb-3 sm:mb-4 leading-relaxed">{children}</p>;
+  return <p className="text-sm sm:text-base text-foreground/80 mb-4 leading-relaxed">{children}</p>;
 }
 
 function UL({ children }: { children: React.ReactNode }) {
-  return <ul className="mb-4 sm:mb-6 space-y-2">{children}</ul>;
+  return <ul className="mb-6 space-y-2.5">{children}</ul>;
 }
 
 function OL({ children }: { children: React.ReactNode }) {
-  return <ol className="mb-4 sm:mb-6 space-y-2">{children}</ol>;
+  return <ol className="mb-6 space-y-2.5">{children}</ol>;
 }
 
 function LI({ children }: { children: React.ReactNode }) {
   return (
-    <li className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-foreground/80">
-      <span className="text-muted-foreground mt-1">◦</span>
+    <li className="flex items-start gap-3 text-sm sm:text-base text-foreground/80">
+      <span className="w-1 h-1 rounded-full bg-primary/70 mt-2.5 shrink-0" />
       <span>{children}</span>
     </li>
   );
@@ -65,8 +63,8 @@ function LI({ children }: { children: React.ReactNode }) {
 
 function OLI({ children, num }: { children: React.ReactNode; num: number }) {
   return (
-    <li className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-foreground/80">
-      <span className="font-pixel text-xs sm:text-sm text-muted-foreground w-5 sm:w-6">{num}.</span>
+    <li className="flex items-start gap-3 text-sm sm:text-base text-foreground/80">
+      <span className="font-mono text-xs text-primary mt-1 w-5 shrink-0">{String(num).padStart(2, "0")}</span>
       <span>{children}</span>
     </li>
   );
@@ -78,27 +76,26 @@ function Strong({ children }: { children: React.ReactNode }) {
 
 function Quote({ children }: { children: React.ReactNode }) {
   return (
-    <blockquote className="my-4 sm:my-6 p-3 sm:p-4 border-l-4 border-border bg-muted/30">
-      <p className="text-sm sm:text-base text-foreground/80 italic">{children}</p>
+    <blockquote className="my-6 p-4 rounded-md border border-primary/20 border-l-2 border-l-primary bg-primary/5">
+      <p className="text-sm sm:text-base text-foreground/80">{children}</p>
     </blockquote>
   );
 }
 
 function FeatureCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="p-3 sm:p-4 border border-border bg-card mb-3 sm:mb-4">
-      <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1.5 sm:mb-2 flex items-center gap-2">
-        <span className="text-muted-foreground">◆</span>
+    <div className="p-4 rounded-lg border border-border bg-card mb-3">
+      <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1.5">
         {title}
       </h4>
-      <p className="text-xs sm:text-sm text-foreground/70">{children}</p>
+      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{children}</p>
     </div>
   );
 }
 
 function Highlight({ children }: { children: React.ReactNode }) {
   return (
-    <span className="px-1.5 sm:px-2 py-0.5 bg-muted text-foreground font-semibold text-sm sm:text-base">
+    <span className="px-1.5 py-0.5 rounded bg-primary/15 text-primary font-semibold text-sm">
       {children}
     </span>
   );

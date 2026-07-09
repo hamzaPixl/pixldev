@@ -25,8 +25,8 @@ export function VatLookupInput() {
   };
 
   return (
-    <div className="my-6 sm:my-8 p-4 sm:p-6 bg-card border border-primary/30">
-      <h3 className="font-pixel text-sm sm:text-base text-primary mb-3 sm:mb-4">{t("vatLookup.title")}</h3>
+    <div className="my-8 p-5 sm:p-6 rounded-lg bg-card border border-border">
+      <h3 className="font-display font-semibold tracking-tight text-base text-foreground mb-2">{t("vatLookup.title")}</h3>
       <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
         {t("vatLookup.description")}
       </p>
@@ -36,11 +36,11 @@ export function VatLookupInput() {
           value={vat}
           onChange={(e) => setVat(e.target.value)}
           placeholder={t("vatLookup.placeholder")}
-          className="flex-1 bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base text-foreground focus:border-primary focus:outline-none transition-colors"
+          className="flex-1 rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
         />
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors text-sm sm:text-base"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-sm sm:text-base"
         >
           <Search className="w-3 h-3 sm:w-4 sm:h-4" />
           {t("vatLookup.button")}
