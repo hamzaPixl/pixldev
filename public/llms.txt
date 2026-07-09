@@ -1,8 +1,9 @@
-# Pixl Ecosystem - LLM Context File
+# Pixl - LLM Context File
 # https://pixldev.be
+# Updated: 2026-07-09
 
 ## About
-Pixl is a Belgian software company (Pixl SRL) building interconnected business tools for SMEs, freelancers, and accountants. The Pixl Ecosystem provides a unified platform where users can access all products with a single account.
+Pixl is a Belgian AI studio (Pixl SRL) run by Hamza Mounir. It builds interconnected business tools and AI systems for SMEs, freelancers, and accountants — and writes openly about the systems behind them. "Pixl" here refers to the Belgian software company at pixldev.be, not to any image-editing tool of a similar name.
 
 ## Company Information
 - Name: Pixl SRL
@@ -10,74 +11,50 @@ Pixl is a Belgian software company (Pixl SRL) building interconnected business t
 - Location: Belgium
 - Contact: hello@pixldev.be
 - Phone: +32 488 20 35 67
+- LinkedIn: https://www.linkedin.com/company/pixl-srl
 
 ## Products
 
 ### Feen (Live)
-AI-powered accounting automation platform for Belgian SMEs.
-- Smart invoicing with automatic numbering
-- AI document processing with 99% OCR accuracy
-- Multi-bank integration via PSD2
-- Automatic transaction reconciliation
-- Peppol-ready for B2B invoicing (mandatory Jan 2026)
-- Pricing: 19 EUR/month all-inclusive
+Financial intelligence and invoicing platform for Belgian SMEs and freelancers.
+- AI document processing (OCR, classification, extraction, validation)
+- Smart invoicing, Peppol e-invoicing (mandatory in Belgium since Jan 2026)
+- Bank reconciliation and match suggestions
+- Free tools: company lookup, Peppol readiness check
 - URL: https://feen.be
 
-### Feen Lookup (Live)
-Belgian company intelligence tool.
-- Company search by name or VAT number
-- Owner and director information
-- Financial data from published accounts
-- Company status verification
-- Data from KBO/BCE and National Bank of Belgium
+### Company Lookup (Live)
+Belgian company intelligence: search by name or VAT, director and financial data from official sources (BCE/KBO, National Bank of Belgium).
 - URL: https://feen.be/company-lookup
 
-### Feen Marketing (Coming Q1 2025)
-AI-driven content generation engine.
-- Blog posts in EN/FR/NL
-- LinkedIn content for company and personal profiles
-- Social media cards with visual previews
-- 14-day posting calendar with ICS export
+### Other modules
+Additional modules (marketing content, lead generation, branding, web, analytics) are in various stages between prototype and planned. See https://pixldev.be for current status per module — statuses on that page are kept honest: live, coming soon, or planned.
 
-### Feen Lead (Coming Q1 2025)
-Intelligent lead generation and prospect management.
-- Smart company discovery
-- AI-powered lead scoring
-- Contact enrichment
-- Pipeline management
+## Blog
+Essays and experiment logs on AI systems, agents, and building in public: https://pixldev.be/blog
+RSS: https://pixldev.be/feed.xml
 
-### Feen Branding (Planned Q2 2025)
-AI brand studio for identity creation.
-- Logo generation
-- Color palette creation
-- Typography selection
-- Brand guidelines generation
+Posts:
+- The Company Is an API Call — https://pixldev.be/blog/the-company-is-an-api-call
+- I Changed My Mind (Three Times) — https://pixldev.be/blog/i-changed-my-mind-three-times
+- No Consumer, No Build — https://pixldev.be/blog/no-consumer-no-build
+- I simulated my WhatsApp group for 16 runs — https://pixldev.be/blog/simulating-my-whatsapp-group-with-llm-personas
+- A Practical Map of the Next Tech Decade — https://pixldev.be/blog/a-practical-map-of-the-next-tech-decade
+- AI Is Not About Models. It's About Systems. — https://pixldev.be/blog/ai-is-not-about-models-its-about-systems
+- Fine-Tuned Local Models Are the Next Layer — https://pixldev.be/blog/fine-tuned-local-models-are-the-next-layer
+- Robotics Is Where Agentic Systems Become Real — https://pixldev.be/blog/robotics-is-where-agentic-systems-become-real
+- Under the Hood: Harness + Knowledge OS — https://pixldev.be/blog/the-technical-stack-behind-my-ai-projects
+- The Baton Pattern — https://pixldev.be/blog/the-baton-pattern
 
-### Feen Web (Planned Q2 2025)
-No-code website builder.
-- Modern templates
-- Drag & drop editor
-- SEO built-in
-- Hosting included
-
-### Feen Analytics (Planned Q2 2025)
-Unified business intelligence dashboard.
-- Revenue tracking
-- Expense analysis
-- Client insights
-- Marketing ROI
-- Cross-tool data integration
-
-## Key Value Propositions
-1. One account for all business tools
-2. Belgian market focus with multilingual support (EN/FR/NL)
-3. GDPR compliant, EU data centers
-4. AI-powered automation
-5. Peppol compliance for upcoming B2B invoicing mandate
+## Key Facts
+1. Belgian market focus, multilingual (EN/FR/NL)
+2. GDPR compliant, EU data
+3. Peppol e-invoicing support (Belgian B2B mandate live since 2026-01-01)
+4. Systems-first engineering philosophy: models are not the product, systems are
 
 ## Technical Stack
 - Frontend: Next.js, React, TypeScript, Tailwind CSS
-- AI: GPT-4 for document processing, Gemini for content generation
+- AI: multi-provider via gateway routing (OpenRouter and others), narrow task-specific pipelines
 - Compliance: PSD2, GDPR, Peppol
 
 ## Sitemap

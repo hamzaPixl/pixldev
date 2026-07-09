@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -13,14 +12,9 @@ import {
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { getBlogPost } from "@/lib/blog";
-const dateLocaleMap = { en: "en-US", fr: "fr-FR", nl: "nl-NL" } as const;
+const dateLocaleMap = { en: "en-US", fr: "fr-BE", nl: "nl-BE" } as const;
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export default function BlogPostPage({ params }: PageProps) {
-  const { slug } = use(params);
+export function BlogPostClient({ slug }: { slug: string }) {
   const { t, currentLanguage } = useLanguage();
   const post = getBlogPost(slug, currentLanguage);
 
@@ -70,7 +64,7 @@ export default function BlogPostPage({ params }: PageProps) {
 
           {/* Title block */}
           <div className="flex gap-4 sm:gap-5 items-start mb-6">
-            <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary/30 bg-primary/10 flex items-center justify-center">
+            <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-md border border-primary/30 bg-primary/10 flex items-center justify-center">
               <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
             </div>
             <div>
@@ -85,7 +79,7 @@ export default function BlogPostPage({ params }: PageProps) {
 
           {/* Meta row */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider px-2 py-0.5 border text-primary border-primary/30 bg-primary/10">
+            <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider px-2 py-0.5 rounded border text-primary border-primary/30 bg-primary/10">
               {post.category}
             </span>
             <span className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground">
@@ -124,7 +118,7 @@ export default function BlogPostPage({ params }: PageProps) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] sm:text-xs text-muted-foreground border border-border px-1.5 py-0.5"
+                className="text-[10px] sm:text-xs text-muted-foreground rounded border border-border px-1.5 py-0.5"
               >
                 {tag}
               </span>
@@ -169,9 +163,9 @@ export default function BlogPostPage({ params }: PageProps) {
       {showWhatsappSimEmbed ? (
         <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14 bg-card/50">
           <div className="max-w-5xl mx-auto space-y-4">
-            <div className="border-2 border-border bg-background overflow-hidden">
+            <div className="rounded-lg border border-border bg-background overflow-hidden">
               <img
-                src="/whatsapp-sim-dashboard.png"
+                src="/whatsapp-sim-dashboard.jpg"
                 alt="WhatsApp group LLM simulation dashboard — live turn view"
                 className="w-full h-auto block"
                 loading="lazy"
@@ -182,7 +176,7 @@ export default function BlogPostPage({ params }: PageProps) {
                 href="https://humanbordel.my.canva.site/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-primary/40 bg-primary/10 text-primary text-sm hover:bg-primary/20 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-primary/40 bg-primary/10 text-primary text-sm hover:bg-primary/20 transition-colors"
               >
                 {"▶"} Voir la démo vidéo
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -195,12 +189,12 @@ export default function BlogPostPage({ params }: PageProps) {
       {/* Content */}
       <main className="px-4 sm:px-6 py-8 sm:py-12">
         <div className="max-w-4xl mx-auto">
-          <div className="border-2 border-border bg-card p-6 sm:p-8 md:p-10">
+          <div className="rounded-lg border border-border bg-card p-6 sm:p-8 md:p-10">
             <BlogMarkdown content={post.content} />
           </div>
 
           {/* Footer CTA */}
-          <div className="mt-8 sm:mt-12 border-2 border-border p-6 sm:p-8 text-center">
+          <div className="mt-8 sm:mt-12 rounded-lg border border-border p-6 sm:p-8 text-center">
             <p className="font-pixel text-lg sm:text-xl text-foreground mb-2">
               {t("blog.ctaTitle")}
             </p>
@@ -210,14 +204,14 @@ export default function BlogPostPage({ params }: PageProps) {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href="/#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors text-sm"
               >
                 {t("blog.ctaContact")}
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 border-2 border-border text-foreground hover:border-primary/50 transition-colors text-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md border border-border text-foreground hover:border-primary/50 transition-colors text-sm"
               >
                 <ArrowLeft className="w-4 h-4" />
                 {t("blog.allPosts")}
@@ -298,7 +292,7 @@ function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
         </p>
       </div>
 
-      <div className="border-2 border-border bg-background p-4 sm:p-6 md:p-8">
+      <div className="border border-border bg-background p-4 sm:p-6 md:p-8">
         <div className="grid gap-4 sm:gap-5">
           <div className="text-center">
             <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-muted-foreground">
@@ -308,7 +302,7 @@ function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {copy.topCards.map((card) => (
-              <div key={card.title} className="border-2 border-border bg-card p-4 sm:p-5 min-h-[120px]">
+              <div key={card.title} className="border border-border bg-card p-4 sm:p-5 min-h-[120px]">
                 <p className="font-pixel text-sm sm:text-base text-foreground mb-2">{card.title}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{card.text}</p>
               </div>
@@ -322,7 +316,7 @@ function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
             </div>
           </div>
 
-          <div className="border-2 border-primary/30 bg-primary/5 p-5 sm:p-6">
+          <div className="border border-primary/30 bg-primary/5 p-5 sm:p-6">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
               <div>
                 <p className="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-primary/80 mb-2">
@@ -357,7 +351,7 @@ function AISystemsDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {copy.bottomCards.map((card) => (
-              <div key={card.title} className="border-2 border-border bg-card p-4 sm:p-5 min-h-[120px]">
+              <div key={card.title} className="border border-border bg-card p-4 sm:p-5 min-h-[120px]">
                 <p className="font-pixel text-sm sm:text-base text-foreground mb-2">{card.title}</p>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{card.text}</p>
               </div>
@@ -424,7 +418,7 @@ function TechnicalStackDiagrams({ lang }: { lang: "en" | "fr" | "nl" }) {
       </div>
 
       <div className="grid gap-4 sm:gap-5">
-        <div className="border-2 border-border bg-background p-4 sm:p-5">
+        <div className="border border-border bg-background p-4 sm:p-5">
           <p className="font-pixel text-sm text-foreground mb-3">{copy.splitTitle}</p>
           <div className="grid sm:grid-cols-2 gap-3">
             <div className="border border-primary/30 bg-primary/5 p-4">
@@ -439,7 +433,7 @@ function TechnicalStackDiagrams({ lang }: { lang: "en" | "fr" | "nl" }) {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
-          <div className="border-2 border-border bg-background p-4 sm:p-5">
+          <div className="border border-border bg-background p-4 sm:p-5">
             <p className="font-pixel text-sm text-foreground mb-3">{copy.loopTitle}</p>
             <div className="grid grid-cols-2 gap-2">
               {copy.loop.map((step) => (
@@ -450,7 +444,7 @@ function TechnicalStackDiagrams({ lang }: { lang: "en" | "fr" | "nl" }) {
             </div>
           </div>
 
-          <div className="border-2 border-border bg-background p-4 sm:p-5">
+          <div className="border border-border bg-background p-4 sm:p-5">
             <p className="font-pixel text-sm text-foreground mb-3">{copy.knowledgeTitle}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {copy.knowledge.map((step) => (
@@ -537,7 +531,7 @@ function NextDecadeFocusDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
         <p className="text-sm sm:text-base text-muted-foreground">{copy.subtitle}</p>
       </div>
 
-      <div className="border-2 border-border bg-background p-4 sm:p-6 md:p-8">
+      <div className="border border-border bg-background p-4 sm:p-6 md:p-8">
         <p className="font-pixel text-sm text-foreground mb-4">{copy.layersTitle}</p>
         <div className="grid gap-3">
           {copy.layers.map((layer, index) => (
@@ -555,7 +549,7 @@ function NextDecadeFocusDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
-        <div className="border-2 border-border bg-background p-4 sm:p-5">
+        <div className="border border-border bg-background p-4 sm:p-5">
           <p className="font-pixel text-sm text-foreground mb-3">{copy.decadeTitle}</p>
           <div className="space-y-2">
             {copy.decade.map((item) => (
@@ -566,7 +560,7 @@ function NextDecadeFocusDiagram({ lang }: { lang: "en" | "fr" | "nl" }) {
           </div>
         </div>
 
-        <div className="border-2 border-primary/30 bg-primary/5 p-5 sm:p-6 flex items-center justify-center">
+        <div className="border border-primary/30 bg-primary/5 p-5 sm:p-6 flex items-center justify-center">
           <p className="font-pixel text-xl sm:text-2xl text-primary text-center leading-relaxed">
             {copy.footer}
           </p>
@@ -621,14 +615,14 @@ function BatonFlowDiagram({ t }: { t: (key: string) => string }) {
               )}
 
               {/* Stage card */}
-              <div className="border-2 border-border bg-background p-4 sm:p-5 text-center pixel-border group-hover:pixel-border-active transition-all relative overflow-hidden">
+              <div className="border border-border bg-background p-4 sm:p-5 text-center pixel-border group-hover:pixel-border-active transition-all relative overflow-hidden">
                 {/* Stage number */}
                 <div className="absolute top-2 left-2 font-mono text-[10px] text-muted-foreground/40">
                   {stage.num}
                 </div>
 
                 {/* Terminal prompt icon */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-primary/30 bg-primary/5 flex items-center justify-center mx-auto mb-3 group-hover:border-primary/60 transition-colors">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 border border-primary/30 bg-primary/5 flex items-center justify-center mx-auto mb-3 group-hover:border-primary/60 transition-colors">
                   <span className="font-pixel text-primary text-lg sm:text-xl glow">{">"}_</span>
                 </div>
 
@@ -649,7 +643,7 @@ function BatonFlowDiagram({ t }: { t: (key: string) => string }) {
       </div>
 
       {/* Baton object - big code block */}
-      <div className="border-2 border-border bg-background relative overflow-hidden">
+      <div className="border border-border bg-background relative overflow-hidden">
         {/* Header bar */}
         <div className="flex items-center gap-2 px-4 sm:px-6 py-3 border-b border-border bg-card/50">
           <div className="flex gap-1.5">
@@ -747,7 +741,7 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <pre
           key={`code-${i}`}
-          className="my-5 p-4 sm:p-5 border-2 border-border bg-background overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-foreground/80 whitespace-pre"
+          className="my-5 p-4 sm:p-5 border border-border bg-background overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-foreground/80 whitespace-pre"
         >
           {codeLines.join("\n")}
         </pre>
@@ -990,7 +984,7 @@ function MarkdownTable({ lines }: { lines: string[] }) {
 
   return (
     <div className="my-6 overflow-x-auto">
-      <table className="w-full text-sm border-2 border-border">
+      <table className="w-full text-sm border border-border">
         <thead>
           <tr className="border-b-2 border-border bg-card">
             {headers.map((h, i) => (

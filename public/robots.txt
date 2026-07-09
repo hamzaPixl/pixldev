@@ -2,9 +2,53 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /pitch
+Disallow: /invest
+
+# --- AI crawlers: explicitly welcome ---
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Claude-Web
+Allow: /
+Allow: /llms.txt
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /llms.txt
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Allow: /llms.txt
 
 # Sitemap
 Sitemap: https://pixldev.be/sitemap.xml
 
-# LLM-specific
-# See llms.txt for AI/LLM crawler guidance
+# LLM guidance: https://pixldev.be/llms.txt

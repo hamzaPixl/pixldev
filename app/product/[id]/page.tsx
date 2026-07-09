@@ -79,22 +79,22 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   const baseUrl = "https://pixldev.be";
   const productSeo = getProductSeo(id);
+  const ogImage = `/og?title=${encodeURIComponent(productSeo.title)}`;
 
   return {
     title: productSeo.title,
     description: productSeo.description,
-    keywords: productSeo.keywords,
     openGraph: {
       title: productSeo.title,
       description: productSeo.description,
       url: `${baseUrl}/product/${id}`,
-      siteName: "Pixl Ecosystem",
+      siteName: "Pixl",
       type: "website",
       images: [
         {
-          url: "/og-image.png",
-          width: 1536,
-          height: 1024,
+          url: ogImage,
+          width: 1200,
+          height: 630,
           alt: productSeo.title,
         },
       ],
@@ -103,7 +103,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       card: "summary_large_image",
       title: productSeo.title,
       description: productSeo.description,
-      images: ["/og-image.png"],
+      images: [ogImage],
     },
     alternates: {
       canonical: `${baseUrl}/product/${id}`,
@@ -119,5 +119,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  return <ProductPageClient productId={id} />;
+  const baseUrl = "https://pixldev.be";
+  const productSeo = getProductSeo(id);
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+      { "@type": "ListItem", position: 2, name: productSeo.title, item: `${baseUrl}/product/${id}` },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ProductPageClient productId={id} />
+    </>
+  );
 }

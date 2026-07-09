@@ -15,11 +15,12 @@ export function OrganizationSchema({
   name = "Pixl SRL",
   url = baseUrl,
   logo = `${baseUrl}/logo.svg`,
-  description = "Pixl builds interconnected business tools for accounting, marketing, leads, branding, and more. One account, all your business needs.",
+  description = "Pixl is a Belgian AI studio building interconnected business tools — accounting, company data, content — for SMEs, freelancers, and accountants.",
 }: OrganizationSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     name,
     url,
     logo,

@@ -1,56 +1,46 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@/components/analytics";
-import { HomePageStructuredData } from "@/components/structured-data";
+import { BASE_URL } from "@/lib/seo";
 
-const baseUrl = "https://pixldev.be";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#00ff00" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#08090A" },
+    { media: "(prefers-color-scheme: dark)", color: "#08090A" },
   ],
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "Pixl Ecosystem — All-in-One Business Tools for Belgian SMEs",
+    default: "Pixl — AI systems and business tools for Belgian SMEs",
     template: "%s | Pixl",
   },
   description:
-    "Discover the Pixl ecosystem - interconnected business tools for accounting, marketing, leads, branding, and more. One account, all your business needs. Built for Belgian SMEs and freelancers.",
-  keywords: [
-    // Primary keywords
-    "Pixl",
-    "business tools",
-    "Belgian SME software",
-    "freelancer tools Belgium",
-    // Accounting
-    "AI accounting software",
-    "automated bookkeeping",
-    "invoicing software Belgium",
-    "Feen accounting",
-    "OCR invoice extraction",
-    "Peppol ready",
-    // Marketing
-    "AI marketing automation",
-    "content generation",
-    "social media automation",
-    // Lead generation
-    "lead generation Belgium",
-    "prospection software",
-    "company lookup Belgium",
-    // General
-    "business automation",
-    "all-in-one business platform",
-    "SME software Belgium",
-    "startup tools",
-  ],
-  authors: [{ name: "Pixl SRL", url: baseUrl }],
+    "Pixl is a Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
+  authors: [{ name: "Pixl SRL", url: BASE_URL }],
   creator: "Pixl SRL",
   publisher: "Pixl SRL",
   robots: {
@@ -68,26 +58,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_BE",
     alternateLocale: ["fr_BE", "nl_BE"],
-    url: baseUrl,
-    siteName: "Pixl Ecosystem",
-    title: "Pixl Ecosystem — All-in-One Business Tools",
+    url: BASE_URL,
+    siteName: "Pixl",
+    title: "Pixl — AI systems and business tools for Belgian SMEs",
     description:
-      "Discover the Pixl ecosystem - interconnected business tools for accounting, marketing, leads, branding, and more. One account, all your business needs.",
+      "Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
     images: [
       {
-        url: "/og-image.png",
-        width: 1536,
-        height: 1024,
-        alt: "Pixl Ecosystem - All-in-One Business Tools for Belgian SMEs",
+        url: "/og?title=AI%20systems%20and%20business%20tools%20for%20Belgian%20SMEs",
+        width: 1200,
+        height: 630,
+        alt: "Pixl — AI systems and business tools for Belgian SMEs",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pixl Ecosystem — All-in-One Business Tools",
+    title: "Pixl — AI systems and business tools for Belgian SMEs",
     description:
-      "Discover the Pixl ecosystem - interconnected business tools for accounting, marketing, leads, branding, and more.",
-    images: ["/og-image.png"],
+      "Belgian AI studio building interconnected business tools and writing openly about the AI systems behind them.",
+    images: ["/og?title=AI%20systems%20and%20business%20tools%20for%20Belgian%20SMEs"],
     creator: "@pixl_be",
     site: "@pixl_be",
   },
@@ -96,19 +86,15 @@ export const metadata: Metadata = {
     { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
     { rel: "icon", type: "image/png", url: "/favicon-32x32.png", sizes: "32x32" },
     { rel: "icon", type: "image/png", url: "/favicon-16x16.png", sizes: "16x16" },
-    { rel: "icon", type: "image/png", url: "/android-chrome-192x192.png", sizes: "192x192" },
-    { rel: "icon", type: "image/png", url: "/android-chrome-512x512.png", sizes: "512x512" },
   ],
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: baseUrl,
-    languages: {
-      en: baseUrl,
-      fr: baseUrl,
-      nl: baseUrl,
+    canonical: BASE_URL,
+    types: {
+      "application/rss+xml": `${BASE_URL}/feed.xml`,
     },
   },
-  category: "business",
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -117,12 +103,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"
+        >
+          Skip to content
+        </a>
         <LanguageProvider>
           {children}
           <Analytics />
-          <HomePageStructuredData />
         </LanguageProvider>
       </body>
     </html>
