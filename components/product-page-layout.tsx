@@ -101,12 +101,11 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
                   </Button>
                 )}
                 {isContact && (
-                  <Button
-                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                    className="bg-gold text-gold-foreground hover:bg-gold/90"
-                  >
-                    <MessageCircle />
-                    {t("common.contactUs")}
+                  <Button asChild className="bg-gold text-gold-foreground hover:bg-gold/90">
+                    <a href="mailto:hello@pixldev.be">
+                      <MessageCircle />
+                      {t("common.contactUs")}
+                    </a>
                   </Button>
                 )}
                 {(product.status === "coming-soon" || product.status === "planned") && (

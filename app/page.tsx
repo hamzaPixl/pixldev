@@ -7,7 +7,7 @@ import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { getVisibleProductsStatic } from "@/lib/products";
 import { getAllBlogPosts } from "@/lib/blog";
-import { PostImage } from "@/components/post-visuals";
+import { ArticleCard } from "@/components/post-visuals";
 import { cn } from "@/lib/utils";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
@@ -75,13 +75,7 @@ export default function Home() {
               style={{ animationDelay: "420ms" }}
             >
               <Button asChild size="lg">
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
+                <a href="mailto:hello@pixldev.be">
                   {t("common.buildWithUs")}
                   <ArrowRight />
                 </a>
@@ -170,36 +164,10 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {latestPosts.map((post) => {
-              return (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group flex flex-col bg-card border border-border rounded-lg p-5 pixel-card hover:border-primary/40 hover:bg-elevated"
-                >
-                  <PostImage post={post} className="aspect-[16/9] w-full mb-4" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground mb-3">
-                    {post.category}
-                  </span>
-                  <h3 className="font-display text-base font-semibold tracking-tight text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                    {post.description}
-                  </p>
-                  <div className="mt-auto font-mono text-xs text-muted-foreground/70">
-                    {new Date(post.date).toLocaleDateString(dateLocaleMap[currentLanguage], {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                    <span className="mx-2">·</span>
-                    {post.readTime}
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="flex flex-col gap-4">
+            {latestPosts.map((post) => (
+              <ArticleCard key={post.slug} post={post} locale={dateLocaleMap[currentLanguage]} />
+            ))}
           </div>
         </div>
       </section>

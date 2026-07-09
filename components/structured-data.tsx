@@ -78,7 +78,7 @@ export function WebsiteSchema({
     potentialAction: {
       "@type": "ContactAction",
       name: "Contact Us",
-      target: `${baseUrl}/#contact`,
+      target: "mailto:hello@pixldev.be",
     },
   };
 

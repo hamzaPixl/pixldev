@@ -2,23 +2,14 @@
 
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { getAllBlogPosts } from "@/lib/blog";
-import { AuthorAvatar, PostImage } from "@/components/post-visuals";
+import { ArticleCard, AuthorAvatar, PostImage, formatPostDate } from "@/components/post-visuals";
 import { cn } from "@/lib/utils";
 
 const dateLocaleMap = { en: "en-US", fr: "fr-BE", nl: "nl-BE" } as const;
-
-function formatDate(date: string, locale: string) {
-  return new Date(date).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export function BlogIndexClient() {
   const { t, currentLanguage } = useLanguage();
@@ -82,7 +73,7 @@ export function BlogIndexClient() {
                         {featured.authors[0]?.name}
                       </p>
                       <p className="font-mono text-xs text-muted-foreground">
-                        {formatDate(featured.date, locale)} · {featured.readTime}
+                        {formatPostDate(featured.date, locale)} · {featured.readTime}
                       </p>
                     </div>
                   </div>
@@ -92,45 +83,7 @@ export function BlogIndexClient() {
               {/* Article list */}
               <div className="lg:col-span-3 flex flex-col gap-4 lg:gap-5">
                 {rest.map((post) => (
-                  <Link
-                    key={post.slug}
-                    href={`/blog/${post.slug}`}
-                    className="group rounded-xl border border-border bg-card p-5 sm:p-6 pixel-card hover:border-primary/40 hover:bg-elevated"
-                  >
-                    <div className="flex flex-col-reverse sm:flex-row gap-5">
-                      {/* Content */}
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <Badge
-                          variant="outline"
-                          className="w-fit font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-normal mb-3"
-                        >
-                          {post.category}
-                        </Badge>
-                        <h2 className="font-display font-semibold tracking-tight text-lg sm:text-xl text-foreground leading-snug mb-2 group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h2>
-                        <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                          {post.description}
-                        </p>
-                        <div className="mt-auto flex items-center gap-3">
-                          <AuthorAvatar name={post.authors[0]?.name ?? "Pixl"} />
-                          <div className="min-w-0">
-                            <p className="text-sm text-foreground font-medium truncate">
-                              {post.authors[0]?.name}
-                            </p>
-                            <p className="font-mono text-xs text-muted-foreground">
-                              {formatDate(post.date, locale)} · {post.readTime}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      {/* Visual */}
-                      <PostImage
-                        post={post}
-                        className="w-full sm:w-44 md:w-52 aspect-[16/9] sm:aspect-auto sm:self-stretch sm:min-h-[136px] shrink-0"
-                      />
-                    </div>
-                  </Link>
+                  <ArticleCard key={post.slug} post={post} locale={locale} />
                 ))}
               </div>
             </div>

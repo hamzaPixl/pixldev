@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { ContactForm } from "@/components/contact-form";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,7 +46,7 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
           <div className="flex items-center gap-2 sm:gap-3">
             <LanguageSwitcher variant="dark" />
             <Button asChild size="sm" className="hidden sm:inline-flex">
-              <a href="/#contact">{t("common.buildWithUs")}</a>
+              <a href="mailto:hello@pixldev.be">{t("common.buildWithUs")}</a>
             </Button>
             {/* Mobile menu */}
             <DropdownMenu>
@@ -64,7 +63,7 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
                   <Link href="/blog">{t("blog.footerLink")}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="/#contact" className="text-primary">
+                  <a href="mailto:hello@pixldev.be" className="text-primary">
                     {t("common.buildWithUs")}
                   </a>
                 </DropdownMenuItem>
@@ -78,9 +77,6 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
       <div id="main" className="flex-1">
         {children}
       </div>
-
-      {/* Contact Section */}
-      <ContactForm />
 
       {/* Footer */}
       <footer className="border-t border-border px-4 sm:px-6 py-10 sm:py-14">

@@ -2,17 +2,13 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  Calendar,
-  Clock,
-  ExternalLink,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { getBlogPost } from "@/lib/blog";
+import { AuthorAvatar, PostImage, formatPostDate } from "@/components/post-visuals";
+import { Button } from "@/components/ui/button";
 const dateLocaleMap = { en: "en-US", fr: "fr-BE", nl: "nl-BE" } as const;
 
 export function BlogPostClient({ slug }: { slug: string }) {
@@ -33,95 +29,70 @@ export function BlogPostClient({ slug }: { slug: string }) {
   return (
     <SharedLayout>
       {/* Header */}
-      <section className="border-b border-border px-4 sm:px-6 py-8 sm:py-12">
-        <div className="max-w-4xl mx-auto">
+      <section className="border-b border-border px-4 sm:px-6 py-10 sm:py-14">
+        <div className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-6">
-            <Link
-              href="/"
-              className="hover:text-primary transition-colors"
-            >
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mb-8">
+            <Link href="/" className="hover:text-primary transition-colors">
               {t("blog.home")}
             </Link>
-            <span>/</span>
-            <Link
-              href="/blog"
-              className="hover:text-primary transition-colors"
-            >
+            <span className="text-muted-foreground/50">/</span>
+            <Link href="/blog" className="hover:text-primary transition-colors">
               {t("blog.blog")}
             </Link>
-            <span>/</span>
-            <span className="text-foreground truncate">{post.title}</span>
-          </div>
-
-          {/* Back */}
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
-          >
-            <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4" />
-            {t("blog.allPosts")}
-          </Link>
-
-          {/* Title block */}
-          <div className="flex gap-4 sm:gap-5 items-start mb-6">
-            <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-md border border-primary/30 bg-primary/10 flex items-center justify-center">
-              <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
-            </div>
-            <div>
-              <h1 className="font-pixel text-2xl sm:text-3xl md:text-4xl text-foreground mb-2">
-                {post.title}
-              </h1>
-              <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
-                {post.description}
-              </p>
-            </div>
           </div>
 
           {/* Meta row */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <Badge variant="outline" className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] text-primary border-primary/30 bg-primary/10 font-medium">
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <Badge
+              variant="outline"
+              className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] text-primary border-primary/30 bg-primary/10 font-medium"
+            >
               {post.category}
             </Badge>
-            <span className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground">
-              <Calendar className="w-3.5 h-3.5" />
-              {new Date(post.date).toLocaleDateString(dateLocaleMap[currentLanguage], {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            <span className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground">
-              <Clock className="w-3.5 h-3.5" />
-              {post.readTime}
+            <span className="font-mono text-xs text-muted-foreground">
+              {formatPostDate(post.date, dateLocaleMap[currentLanguage])} · {post.readTime}
             </span>
           </div>
 
+          {/* Title */}
+          <h1 className="font-display font-semibold tracking-tight text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-5">
+            {post.title}
+          </h1>
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
+            {post.description}
+          </p>
+
           {/* Authors */}
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <span className="text-xs text-muted-foreground">{t("blog.by")}</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {post.authors.map((author) => (
               <a
                 key={author.name}
                 href={author.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs sm:text-sm text-foreground hover:text-primary transition-colors pixel-link"
+                className="group/author flex items-center gap-3"
               >
-                {author.name}
-                <ExternalLink className="w-3 h-3" />
+                <AuthorAvatar name={author.name} />
+                <span className="text-sm text-foreground font-medium group-hover/author:text-primary transition-colors inline-flex items-center gap-1">
+                  {author.name}
+                  <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                </span>
               </a>
             ))}
           </div>
 
           {/* Tags */}
-          <div className="mt-4 flex flex-wrap gap-1.5">
+          <div className="mt-6 flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline" className="text-[10px] sm:text-xs text-muted-foreground font-normal">
                 {tag}
               </Badge>
             ))}
           </div>
+
+          {/* Hero image (only when generated) */}
+          {post.image ? <PostImage post={post} className="mt-10 aspect-[2/1] w-full" /> : null}
         </div>
       </section>
 
@@ -185,35 +156,33 @@ export function BlogPostClient({ slug }: { slug: string }) {
       ) : null}
 
       {/* Content */}
-      <main className="px-4 sm:px-6 py-8 sm:py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-lg border border-border bg-card p-6 sm:p-8 md:p-10">
+      <main className="px-4 sm:px-6 py-10 sm:py-14">
+        <div className="max-w-3xl mx-auto">
+          <article>
             <BlogMarkdown content={post.content} />
-          </div>
+          </article>
 
           {/* Footer CTA */}
-          <div className="mt-8 sm:mt-12 rounded-lg border border-border p-6 sm:p-8 text-center">
-            <p className="font-pixel text-lg sm:text-xl text-foreground mb-2">
+          <div className="mt-12 rounded-xl border border-border bg-gradient-to-b from-primary/10 to-card p-6 sm:p-8 text-center">
+            <p className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground mb-2">
               {t("blog.ctaTitle")}
             </p>
             <p className="text-sm text-muted-foreground mb-6">
               {t("blog.ctaSubtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="/#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors text-sm"
-              >
-                {t("blog.ctaContact")}
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md border border-border text-foreground hover:border-primary/50 transition-colors text-sm"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                {t("blog.allPosts")}
-              </Link>
+              <Button asChild>
+                <a href="mailto:hello@pixldev.be">
+                  {t("blog.ctaContact")}
+                  <ArrowRight />
+                </a>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/blog">
+                  <ArrowLeft />
+                  {t("blog.allPosts")}
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -695,8 +664,9 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <h2
           key={i}
-          className="font-pixel text-xl sm:text-2xl text-primary mt-10 mb-4 first:mt-0"
+          className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground mt-12 mb-4 first:mt-0 flex items-center gap-3"
         >
+          <span className="w-2 h-2 rounded-sm bg-primary shrink-0" />
           {line.slice(3)}
         </h2>
       );
@@ -709,7 +679,7 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <h3
           key={i}
-          className="font-pixel text-lg sm:text-xl text-foreground mt-8 mb-3"
+          className="font-display font-semibold tracking-tight text-lg sm:text-xl text-foreground mt-8 mb-3"
         >
           {line.slice(4)}
         </h3>
@@ -721,7 +691,7 @@ function BlogMarkdown({ content }: { content: string }) {
     // Horizontal rule
     if (line.trim() === "---") {
       elements.push(
-        <hr key={i} className="border-border my-8" />
+        <hr key={i} className="border-border my-10" />
       );
       i++;
       continue;
@@ -739,7 +709,7 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <pre
           key={`code-${i}`}
-          className="my-5 p-4 sm:p-5 border border-border bg-background overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-foreground/80 whitespace-pre"
+          className="my-6 p-4 sm:p-5 rounded-lg border border-border bg-card overflow-x-auto font-mono text-[11px] sm:text-xs leading-relaxed text-foreground/80 whitespace-pre"
         >
           {codeLines.join("\n")}
         </pre>
@@ -768,8 +738,8 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <ul key={`ul-${i}`} className="space-y-2 my-4 ml-1">
           {listItems.map((item, j) => (
-            <li key={j} className="flex gap-2 text-sm sm:text-base text-muted-foreground">
-              <span className="text-primary shrink-0 mt-1">{">"}</span>
+            <li key={j} className="flex gap-3 text-sm sm:text-base text-foreground/80">
+              <span className="w-1 h-1 rounded-full bg-primary/70 mt-2.5 shrink-0" />
               <span>
                 <InlineMarkdown text={item} />
               </span>
@@ -786,7 +756,7 @@ function BlogMarkdown({ content }: { content: string }) {
       elements.push(
         <div
           key={i}
-          className="border-l-2 border-primary/30 pl-3 sm:pl-4 py-0.5 my-1 text-sm text-muted-foreground"
+          className="border-l-2 border-primary/60 bg-primary/5 rounded-r-md pl-4 pr-3 py-2 my-3 text-sm text-foreground/80"
         >
           <InlineMarkdown text={line.slice(prefix.length)} />
         </div>
@@ -798,7 +768,7 @@ function BlogMarkdown({ content }: { content: string }) {
     // Bold paragraph (**text**)
     if (line.startsWith("**") && !line.startsWith("**Stage")) {
       elements.push(
-        <p key={i} className="text-sm sm:text-base text-muted-foreground my-3 leading-relaxed">
+        <p key={i} className="text-sm sm:text-base text-foreground/80 my-4 leading-relaxed">
           <InlineMarkdown text={line} />
         </p>
       );
@@ -810,10 +780,21 @@ function BlogMarkdown({ content }: { content: string }) {
     if (line.startsWith("**Stage")) {
       elements.push(
         <div key={i} className="mt-4 mb-1">
-          <span className="font-pixel text-sm sm:text-base text-foreground">
+          <span className="font-display font-semibold text-sm sm:text-base text-foreground">
             <InlineMarkdown text={line} />
           </span>
         </div>
+      );
+      i++;
+      continue;
+    }
+
+    // Full-line italic (_..._) — lead/footnote paragraphs
+    if (/^_[^_]/.test(line.trim()) && line.trim().endsWith("_")) {
+      elements.push(
+        <p key={i} className="text-base sm:text-lg text-muted-foreground italic my-4 leading-relaxed">
+          <InlineMarkdown text={line.trim().slice(1, -1)} />
+        </p>
       );
       i++;
       continue;
@@ -827,7 +808,7 @@ function BlogMarkdown({ content }: { content: string }) {
 
     // Regular paragraph
     elements.push(
-      <p key={i} className="text-sm sm:text-base text-muted-foreground my-3 leading-relaxed">
+      <p key={i} className="text-sm sm:text-base text-foreground/80 my-4 leading-relaxed">
         <InlineMarkdown text={line} />
       </p>
     );
@@ -988,7 +969,7 @@ function MarkdownTable({ lines }: { lines: string[] }) {
             {headers.map((h, i) => (
               <th
                 key={i}
-                className="px-3 sm:px-4 py-2 text-left font-pixel text-primary text-xs sm:text-sm"
+                className="px-3 sm:px-4 py-2.5 text-left font-mono uppercase tracking-[0.1em] text-muted-foreground text-[11px]"
               >
                 <InlineMarkdown text={h} />
               </th>
@@ -1004,7 +985,7 @@ function MarkdownTable({ lines }: { lines: string[] }) {
               {row.map((cell, j) => (
                 <td
                   key={j}
-                  className="px-3 sm:px-4 py-2 text-muted-foreground text-xs sm:text-sm"
+                  className="px-3 sm:px-4 py-2.5 text-foreground/80 text-xs sm:text-sm"
                 >
                   <InlineMarkdown text={cell} />
                 </td>
