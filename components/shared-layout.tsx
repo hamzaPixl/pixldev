@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
@@ -12,50 +14,81 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/lib/language-context";
 import { getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
+import { cn } from "@/lib/utils";
 
 interface SharedLayoutProps {
   children: React.ReactNode;
   showEcosystemLabel?: boolean;
 }
 
-export function SharedLayout({ children, showEcosystemLabel = false }: SharedLayoutProps) {
+export function SharedLayout({ children }: SharedLayoutProps) {
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const products = getVisibleProductsStatic().filter((p) => p.status !== "contact");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navItems = [
+    { href: "/#modules", label: t("footer.productsTitle"), active: false },
+    { href: "/blog", label: t("blog.footerLink"), active: pathname.startsWith("/blog") },
+  ];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between h-14">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-3">
-              <img src="/logo.svg" alt="Pixl" className="h-5 sm:h-6 w-auto" />
-              {showEcosystemLabel && (
-                <span className="hidden sm:inline text-xs text-muted-foreground">{t("common.ecosystem")}</span>
-              )}
-            </Link>
-            <nav className="hidden md:flex items-center gap-5 text-sm text-muted-foreground">
-              <Link href="/#modules" className="hover:text-foreground transition-colors">
-                {t("footer.productsTitle")}
+      {/* Floating island navbar */}
+      <header className="sticky top-3 sm:top-4 z-40 px-3 sm:px-4">
+        <div
+          className={cn(
+            "relative max-w-4xl mx-auto flex items-center justify-between gap-3 h-12 sm:h-[52px] px-3 sm:px-4 rounded-2xl border",
+            "backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/55 bg-background/85",
+            "shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.05)]",
+            "transition-all duration-300",
+            scrolled ? "border-white/10" : "border-white/[0.06]"
+          )}
+        >
+          {/* Left: logo */}
+          <Link href="/" className="flex items-center pl-1 shrink-0">
+            <img src="/logo.svg" alt="Pixl" className="h-5 w-auto" />
+          </Link>
+
+          {/* Center: nav */}
+          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "px-3 py-1.5 rounded-lg text-sm transition-colors duration-200",
+                  item.active
+                    ? "text-foreground bg-white/[0.06]"
+                    : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+                )}
+              >
+                {item.label}
               </Link>
-              <Link href="/blog" className="hover:text-foreground transition-colors">
-                {t("blog.footerLink")}
-              </Link>
-            </nav>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-3">
+            ))}
+          </nav>
+
+          {/* Right: language + CTA */}
+          <div className="flex items-center gap-2 shrink-0">
             <LanguageSwitcher variant="dark" />
-            <Button asChild size="sm" className="hidden sm:inline-flex">
+            <Button asChild size="sm" className="hidden sm:inline-flex rounded-lg">
               <a href="mailto:hello@pixldev.be">{t("common.buildWithUs")}</a>
             </Button>
             {/* Mobile menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="md:hidden">
-                <Button variant="outline" size="icon" aria-label="Menu" className="h-8 w-8">
+                <Button variant="outline" size="icon" aria-label="Menu" className="h-8 w-8 rounded-lg">
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[180px] md:hidden">
+              <DropdownMenuContent align="end" className="min-w-[180px] md:hidden rounded-xl">
                 <DropdownMenuItem asChild>
                   <Link href="/#modules">{t("footer.productsTitle")}</Link>
                 </DropdownMenuItem>
