@@ -10,10 +10,10 @@ import { useEffect, useRef } from "react";
  * - scrims for text contrast over the green glow
  */
 export function HeroBackground() {
-  const imgRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = imgRef.current;
+    const el = parallaxRef.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -22,8 +22,11 @@ export function HeroBackground() {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const y = window.scrollY;
-        // move the image down at ~35% of scroll for depth
-        el.style.transform = `translate3d(0, ${y * 0.35}px, 0) scale(1.08)`;
+        // The image lags the scroll for depth. Factor 0.2 is matched to the
+        // -inset-y-[22%] headroom so the translate never uncovers an edge while
+        // the hero is on screen. Only translate here — scale/drift live on the
+        // child so the CSS animation and this transform never fight.
+        el.style.transform = `translate3d(0, ${y * 0.2}px, 0)`;
       });
     };
     onScroll();
@@ -36,14 +39,21 @@ export function HeroBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Parallax + drift image layer */}
-      <div ref={imgRef} className="absolute inset-0 will-change-transform hero-drift">
-        <img
-          src="/hero-horizon.jpg"
-          alt=""
-          fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover scale-110"
-        />
+      {/* Parallax layer (JS translateY) — oversized top/bottom for headroom */}
+      <div
+        ref={parallaxRef}
+        className="absolute -inset-y-[22%] inset-x-0 will-change-transform"
+      >
+        {/* Ambient drift (CSS) — a separate element so it never fights the
+            parallax transform above it. */}
+        <div className="absolute inset-0 hero-drift">
+          <img
+            src="/hero-horizon.jpg"
+            alt=""
+            fetchPriority="high"
+            className="absolute inset-0 w-full h-full object-cover scale-110"
+          />
+        </div>
       </div>
 
       {/* Pixel-dissolve overlay — denser at the edges, animates subtly */}
