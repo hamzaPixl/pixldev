@@ -149,7 +149,7 @@ export default function InvestPage() {
             <button
               onClick={handleDownloadPdf}
               disabled={generating}
-              className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50"
             >
               {generating ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -176,7 +176,7 @@ export default function InvestPage() {
               {stageStats.map((stat, i) => (
                 <div
                   key={i}
-                  className="border-2 border-border bg-card p-5 text-center pixel-card"
+                  className="border border-border bg-card p-5 text-center pixel-card"
                 >
                   <p
                     className={`font-pixel text-3xl sm:text-4xl mb-2 ${i === 1 ? "text-[hsl(var(--gold))] glow-gold" : "text-primary glow"}`}
@@ -214,7 +214,7 @@ export default function InvestPage() {
               return (
                 <div
                   key={idx}
-                  className={`border-2 border-border bg-card p-5 border-t-[3px] ${
+                  className={`border border-border bg-card p-5 border-t-[3px] ${
                     isGold ? "border-t-[hsl(var(--gold))]" : "border-t-primary"
                   }`}
                 >
@@ -280,7 +280,7 @@ export default function InvestPage() {
               return (
                 <div
                   key={i}
-                  className={`border-2 border-border bg-card p-5 pixel-card ${
+                  className={`border border-border bg-card p-5 pixel-card ${
                     i >= 3
                       ? "border-l-[3px] border-l-[hsl(var(--gold))]"
                       : "border-l-[3px] border-l-primary"
@@ -343,7 +343,7 @@ export default function InvestPage() {
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
             {t("invest.northStarBody")}
           </p>
-          <div className="border-2 border-primary bg-card p-8 pixel-card max-w-sm mx-auto">
+          <div className="border border-primary bg-card p-8 pixel-card max-w-sm mx-auto">
             <p className="font-pixel text-4xl sm:text-5xl text-primary glow mb-2">
               {northStarStat.value}
             </p>
@@ -369,7 +369,7 @@ export default function InvestPage() {
               return (
                 <div
                   key={i}
-                  className="border-2 border-border bg-card p-5 pixel-card border-t-[3px] border-t-[hsl(var(--gold))]"
+                  className="border border-border bg-card p-5 pixel-card border-t-[3px] border-t-[hsl(var(--gold))]"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <Icon className="w-4 h-4 text-[hsl(var(--gold))]" />
@@ -398,7 +398,7 @@ export default function InvestPage() {
           </h2>
           {/* Table */}
           <div className="max-w-2xl mb-8">
-            <div className="grid grid-cols-3 border-2 border-border">
+            <div className="grid grid-cols-3 border border-border">
               <div className="bg-primary p-3">
                 <p className="text-xs font-bold text-primary-foreground">{t("invest.colStage")}</p>
               </div>

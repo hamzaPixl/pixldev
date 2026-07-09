@@ -15,6 +15,7 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        elevated: "hsl(var(--elevated))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -42,23 +43,22 @@ const config: Config = {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "var(--radius)",
-        sm: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        pixel: ['"Jersey 15"', "cursive"],
-        terminal: ['"VT323"', "monospace"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       animation: {
-        "fade-in": "fadeIn 0.5s ease-out forwards",
-        blink: "blink 1s infinite",
-        glitch: "glitch 0.3s ease-in-out",
-        "gold-pulse": "gold-pulse 2s ease-in-out infinite",
+        "fade-in": "fadeIn 0.5s cubic-bezier(0.25, 0, 0.1, 1) forwards",
+        blink: "blink 1.1s steps(1) infinite",
       },
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },

@@ -156,7 +156,7 @@ export default function PitchPage() {
             <button
               onClick={handleDownloadPdf}
               disabled={generating}
-              className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-primary text-primary text-sm hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50"
             >
               {generating ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -183,7 +183,7 @@ export default function PitchPage() {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="border-2 border-border bg-card p-5 text-center pixel-card"
+                  className="border border-border bg-card p-5 text-center pixel-card"
                 >
                   <p
                     className={`font-pixel text-3xl sm:text-4xl mb-2 ${i === 1 ? "text-[hsl(var(--gold))] glow-gold" : "text-primary glow"}`}
@@ -229,7 +229,7 @@ export default function PitchPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
             {/* Without Pixl */}
-            <div className="border-2 border-border bg-card p-6">
+            <div className="border border-border bg-card p-6">
               <p className="text-xs font-semibold text-muted-foreground tracking-wider mb-4">
                 {t("pitch.compareWithoutTitle")}
               </p>
@@ -245,7 +245,7 @@ export default function PitchPage() {
               </div>
             </div>
             {/* With Pixl */}
-            <div className="border-2 border-primary bg-primary/5 p-6">
+            <div className="border border-primary bg-primary/5 p-6">
               <p className="text-xs font-semibold text-primary tracking-wider mb-4">
                 {t("pitch.compareWithTitle")}
               </p>
@@ -279,7 +279,7 @@ export default function PitchPage() {
               return (
                 <div
                   key={i}
-                  className="border-2 border-border bg-card p-4 text-center pixel-card border-t-primary border-t-[3px]"
+                  className="border border-border bg-card p-4 text-center pixel-card border-t-primary border-t-[3px]"
                 >
                   <Icon className="w-5 h-5 text-primary mx-auto mb-2" />
                   <p className="text-xs sm:text-sm font-semibold text-primary mb-1">
@@ -337,7 +337,7 @@ export default function PitchPage() {
               return (
                 <div
                   key={i}
-                  className={`border-2 border-border bg-card p-5 pixel-card ${
+                  className={`border border-border bg-card p-5 pixel-card ${
                     i >= 3
                       ? "border-l-[3px] border-l-[hsl(var(--gold))]"
                       : "border-l-[3px] border-l-primary"
@@ -378,7 +378,7 @@ export default function PitchPage() {
               return (
                 <div
                   key={idx}
-                  className={`border-2 border-border bg-card p-5 border-t-[3px] ${
+                  className={`border border-border bg-card p-5 border-t-[3px] ${
                     isGold ? "border-t-[hsl(var(--gold))]" : "border-t-primary"
                   }`}
                 >
@@ -448,7 +448,7 @@ export default function PitchPage() {
             {streams.map((stream, i) => (
               <div
                 key={i}
-                className="border-2 border-border bg-card p-5 pixel-card"
+                className="border border-border bg-card p-5 pixel-card"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-4 h-4 text-primary" />

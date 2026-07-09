@@ -51,7 +51,7 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
             {/* Icon/Logo */}
             <div
               className={cn(
-                "w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border-2 border-border bg-card shrink-0",
+                "w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-border bg-card shrink-0",
                 product.featured && "border-gold/40"
               )}
             >

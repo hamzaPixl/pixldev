@@ -1,30 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 95%;
-    --primary: 120 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 120 70% 40%;
-    --secondary-foreground: 0 0% 100%;
-    --accent: 120 50% 15%;
-    --accent-foreground: 120 100% 50%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 120 100% 50%;
-    --radius: 0px;
+    /* Linear-inspired dark foundation, Pixl green as brand accent */
 
-    --gold: 45 100% 50%;
-    --gold-foreground: 0 0% 0%;
+    /* Surfaces */
+    --background: 220 11% 4%;          /* #08090A */
+    --card: 220 9% 6%;                 /* #0F1011 */
+    --card-foreground: 210 11% 97%;
+    --elevated: 220 8% 10%;            /* #17181B */
+
+    /* Text */
+    --foreground: 210 11% 97%;         /* #F7F8F8 */
+    --muted: 220 8% 10%;
+    --muted-foreground: 218 6% 57%;    /* #8A8F98 */
+
+    /* Brand green — refined from #00FF00 to a calmer, confident tone */
+    --primary: 148 62% 49%;            /* #30CB77 */
+    --primary-foreground: 150 60% 6%;  /* near-black green */
+    --secondary: 148 40% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 148 45% 12%;
+    --accent-foreground: 148 62% 55%;
+
+    /* Support */
+    --border: 220 9% 13%;              /* hairline */
+    --input: 220 9% 13%;
+    --ring: 148 62% 49%;
+    --radius: 8px;
+
+    --gold: 42 80% 58%;
+    --gold-foreground: 40 60% 8%;
   }
 }
 
@@ -34,7 +42,11 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04";
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
   }
 }
 
@@ -42,107 +54,101 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Subtle glow effect */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Legacy utility classes, redefined for the modern theme ─────────
+   Kept under their original names so every page inherits the new look. */
+
+/* Display type (was: Jersey 15 pixel font) */
+.font-pixel {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Accent text (was: neon glow) — color only, no halo */
 .glow {
-  text-shadow:
-    0 0 10px hsl(120 100% 50% / 0.6),
-    0 0 20px hsl(120 100% 50% / 0.3);
+  text-shadow: none;
 }
 
 .glow-gold {
-  text-shadow:
-    0 0 10px hsl(45 100% 50% / 0.6),
-    0 0 20px hsl(45 100% 50% / 0.3);
+  text-shadow: none;
 }
 
-/* Pixel border effect - cleaner */
+/* Card borders (was: inset pixel bevel) — hairline ring */
 .pixel-border {
-  box-shadow:
-    inset -3px -3px 0 0 hsl(0 0% 15%),
-    inset 3px 3px 0 0 hsl(0 0% 25%);
+  box-shadow: inset 0 0 0 1px hsl(var(--border));
 }
 
 .pixel-border-active {
-  box-shadow:
-    inset -3px -3px 0 0 hsl(120 100% 30%),
-    inset 3px 3px 0 0 hsl(120 100% 50%);
+  box-shadow: inset 0 0 0 1px hsl(var(--primary) / 0.5);
 }
 
 .pixel-border-gold {
-  box-shadow:
-    inset -3px -3px 0 0 hsl(45 100% 35%),
-    inset 3px 3px 0 0 hsl(45 100% 60%),
-    0 0 20px hsl(45 100% 50% / 0.3);
+  box-shadow: inset 0 0 0 1px hsl(var(--gold) / 0.5);
 }
 
-/* Card hover */
+/* Card hover — quiet lift */
 .pixel-card {
-  transition: all 0.2s ease;
+  border-radius: var(--radius);
+  transition: border-color 150ms cubic-bezier(0.25, 0, 0.1, 1),
+    background-color 150ms cubic-bezier(0.25, 0, 0.1, 1),
+    transform 150ms cubic-bezier(0.25, 0, 0.1, 1),
+    box-shadow 150ms cubic-bezier(0.25, 0, 0.1, 1);
 }
 
 .pixel-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 8px 0 0 hsl(120 100% 50% / 0.2),
-    inset -3px -3px 0 0 hsl(120 100% 30%),
-    inset 3px 3px 0 0 hsl(120 100% 50%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Gold shimmer for featured */
+/* Featured shimmer (was: gold pulse) — static subtle ring */
 .gold-glow {
-  animation: gold-pulse 3s ease-in-out infinite;
+  animation: none;
+  box-shadow: inset 0 0 0 1px hsl(var(--gold) / 0.4);
 }
 
-@keyframes gold-pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 10px hsl(45 100% 50% / 0.3),
-      inset -3px -3px 0 0 hsl(45 100% 35%),
-      inset 3px 3px 0 0 hsl(45 100% 60%);
-  }
-  50% {
-    box-shadow:
-      0 0 25px hsl(45 100% 50% / 0.5),
-      inset -3px -3px 0 0 hsl(45 100% 35%),
-      inset 3px 3px 0 0 hsl(45 100% 60%);
-  }
-}
-
-/* Pixel font for headings */
-.font-pixel {
-  font-family: 'Jersey 15', cursive;
-}
-
-/* Grid pattern - subtle */
+/* Dot grid backdrop — barely-there texture */
 .grid-dots {
   background-image: radial-gradient(
-    hsl(120 100% 50% / 0.08) 1px,
+    hsl(var(--foreground) / 0.03) 1px,
     transparent 1px
   );
-  background-size: 24px 24px;
+  background-size: 32px 32px;
 }
 
-/* Blink animation */
+/* Terminal cursor — the one playful brand carry-over */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
 .animate-blink {
-  animation: blink 1s infinite;
+  animation: blink 1.1s steps(1) infinite;
+  color: hsl(var(--primary));
 }
 
-/* Fade in animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.5s cubic-bezier(0.25, 0, 0.1, 1) forwards;
 }
 
-/* Pixel underline link effect */
+/* Link underline — smooth draw */
 .pixel-link {
   position: relative;
   display: inline-block;
@@ -155,28 +161,43 @@ html {
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1px;
   background: currentColor;
-  transition: width 0.3s ease;
+  transition: width 200ms cubic-bezier(0.25, 0, 0.1, 1);
 }
 
 .pixel-link:hover::after {
   width: 100%;
-  animation: pixel-draw 0.3s steps(6) forwards;
 }
 
-@keyframes pixel-draw {
-  0% { width: 0; }
-  100% { width: 100%; }
-}
-
-/* Pixel button hover effect for dark bg */
+/* Buttons on dark */
 .pixel-btn-dark {
-  position: relative;
-  transition: all 0.2s ease;
+  transition: transform 150ms cubic-bezier(0.25, 0, 0.1, 1),
+    box-shadow 150ms cubic-bezier(0.25, 0, 0.1, 1);
 }
 
 .pixel-btn-dark:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Mono eyebrow — section label in the pixl terminal voice */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: hsl(var(--primary));
+  flex-shrink: 0;
 }

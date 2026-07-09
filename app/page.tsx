@@ -1,20 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Zap, ArrowRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, ExternalLink } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
 import { getVisibleProductsStatic } from "@/lib/products";
+import { getAllBlogPosts } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
+import { HomePageStructuredData } from "@/components/structured-data";
 
 type FilterType = "all" | "live" | "coming-soon" | "planned";
+
+const dateLocaleMap = { en: "en-US", fr: "fr-BE", nl: "nl-BE" } as const;
 
 export default function Home() {
   const products = getVisibleProductsStatic();
   const [mounted, setMounted] = useState(false);
   const [filter, setFilter] = useState<FilterType>("all");
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
+  const latestPosts = getAllBlogPosts(currentLanguage).slice(0, 3);
 
   useEffect(() => {
     setMounted(true);
@@ -26,71 +32,53 @@ export default function Home() {
     return product.status === filter;
   });
 
-  const legendItems: { status: FilterType; label: string; style: string; activeStyle: string }[] = [
-    {
-      status: "all",
-      label: t("filters.all"),
-      style: "border-foreground/30 bg-foreground/10",
-      activeStyle: "border-foreground bg-foreground/30",
-    },
-    {
-      status: "live",
-      label: t("filters.online"),
-      style: "border-primary/30 bg-primary/10",
-      activeStyle: "border-primary bg-primary/30",
-    },
-    {
-      status: "coming-soon",
-      label: t("filters.comingSoon"),
-      style: "border-gold/30 bg-gold/10",
-      activeStyle: "border-gold bg-gold/30",
-    },
-    {
-      status: "planned",
-      label: t("filters.planned"),
-      style: "border-border bg-muted/50",
-      activeStyle: "border-muted-foreground bg-muted",
-    },
+  const filters: { status: FilterType; label: string; dot: string }[] = [
+    { status: "all", label: t("filters.all"), dot: "bg-foreground/60" },
+    { status: "live", label: t("filters.online"), dot: "bg-primary" },
+    { status: "coming-soon", label: t("filters.comingSoon"), dot: "bg-gold" },
+    { status: "planned", label: t("filters.planned"), dot: "bg-muted-foreground/50" },
   ];
 
   return (
     <SharedLayout>
-      {/* Hero Header */}
-      <section className="border-b border-border px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Hero text */}
-          <div className="max-w-2xl">
-            <div className="mb-4">
-              <h1 className="font-pixel text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground leading-relaxed">
-                <span className="inline-block animate-fade-in" style={{ animationDelay: "0ms" }}>
-                  <span className="text-muted-foreground mr-2">{">"}</span>
-                  {t("home.heroTitle1")}
-                </span>
-                <br />
-                <span className="inline-block animate-fade-in" style={{ animationDelay: "300ms" }}>
-                  <span className="text-muted-foreground mr-2">{">"}</span>
-                  <span className="text-primary glow">{t("home.heroTitle2")}</span>
-                  <span className="animate-blink ml-1">_</span>
-                </span>
-              </h1>
+      <HomePageStructuredData />
+
+      {/* Hero */}
+      <section className="relative border-b border-border px-4 sm:px-6 grid-dots">
+        <div className="max-w-6xl mx-auto py-16 sm:py-24 lg:py-28">
+          <div className="max-w-3xl">
+            <div className="eyebrow mb-6 animate-fade-in opacity-0" style={{ animationDelay: "0ms" }}>
+              Pixl — Belgian AI studio
             </div>
-            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6">
+            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl lg:text-6xl text-foreground leading-[1.08] mb-6">
+              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "80ms" }}>
+                {t("home.heroTitle1")}
+              </span>
+              <br />
+              <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "200ms" }}>
+                <span className="text-primary">{t("home.heroTitle2")}</span>
+                <span className="animate-blink ml-1.5 font-mono font-normal">_</span>
+              </span>
+            </h1>
+            <p
+              className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl mb-10 animate-fade-in opacity-0"
+              style={{ animationDelay: "320ms" }}
+            >
               {t("home.heroSubtitle")}
             </p>
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-primary mb-6 sm:mb-8">
-              <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>{t("home.selectModule")}</span>
-            </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div
+              className="flex flex-col sm:flex-row gap-3 animate-fade-in opacity-0"
+              style={{ animationDelay: "420ms" }}
+            >
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors text-sm sm:text-base cursor-pointer [&_*]:pointer-events-none"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-sm cursor-pointer [&_*]:pointer-events-none"
               >
                 {t("common.buildWithUs")}
                 <ArrowRight className="w-4 h-4" />
@@ -99,76 +87,58 @@ export default function Home() {
                 href="https://feen.be"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 border-2 border-primary text-primary font-semibold hover:bg-primary/10 transition-colors text-sm sm:text-base cursor-pointer [&_*]:pointer-events-none"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md border border-border text-foreground font-medium hover:border-primary/40 hover:bg-elevated transition-colors text-sm cursor-pointer [&_*]:pointer-events-none"
               >
                 {t("common.tryFeen")}
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 text-muted-foreground" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Grid */}
-      <main className="px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
+      {/* Modules */}
+      <main id="modules" className="px-4 sm:px-6 py-14 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          {/* Section header with stats */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <h2 className="font-pixel text-base sm:text-lg md:text-xl text-primary">
-              {t("home.modulesTitle")}
-            </h2>
-            <div className="hidden sm:block flex-1 border-t border-border" />
-            <div className="flex items-center gap-4 sm:gap-6">
-              <span className="flex items-center gap-1.5">
-                <span className="font-pixel text-base sm:text-lg text-primary">2</span>
-                <span className="font-pixel text-sm sm:text-base text-muted-foreground">{t("home.stats.online")}</span>
-              </span>
-              <span className="w-px h-4 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <span className="flex items-center gap-1.5">
-                <span className="font-pixel text-base sm:text-lg text-gold">2</span>
-                <span className="font-pixel text-sm sm:text-base text-muted-foreground">{t("home.stats.coming")}</span>
-              </span>
-              <span className="w-px h-4 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <span className="flex items-center gap-1.5">
-                <span className="font-pixel text-base sm:text-lg text-muted-foreground">3+</span>
-                <span className="font-pixel text-sm sm:text-base text-muted-foreground">{t("home.stats.planned")}</span>
-              </span>
+          {/* Section header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="eyebrow mb-3">{t("home.modulesTitle")}</div>
+              <div className="flex items-center gap-5 font-mono text-xs text-muted-foreground">
+                <span>
+                  <span className="text-primary font-medium">2</span> {t("home.stats.online")}
+                </span>
+                <span>
+                  <span className="text-gold font-medium">2</span> {t("home.stats.coming")}
+                </span>
+                <span>
+                  <span className="text-foreground/70 font-medium">3+</span> {t("home.stats.planned")}
+                </span>
+              </div>
+            </div>
+
+            {/* Filter */}
+            <div className="inline-flex items-center gap-1 p-1 rounded-md border border-border bg-card w-fit">
+              {filters.map((item) => (
+                <button
+                  key={item.status}
+                  onClick={() => setFilter(item.status)}
+                  className={cn(
+                    "flex items-center gap-1.5 px-2.5 py-1 rounded text-xs transition-colors cursor-pointer",
+                    filter === item.status
+                      ? "bg-elevated text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <span className={cn("w-1.5 h-1.5 rounded-full", item.dot)} />
+                  {item.label}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Legend / Filter */}
-          <div className="mb-6 sm:mb-8 flex flex-wrap gap-2 sm:gap-3">
-            {legendItems.map((item) => (
-              <button
-                key={item.status}
-                onClick={() => setFilter(item.status)}
-                className={cn(
-                  "flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 border-2 transition-all cursor-pointer",
-                  filter === item.status ? item.activeStyle : item.style,
-                  "hover:opacity-80"
-                )}
-              >
-                <div
-                  className={cn(
-                    "w-2 h-2 sm:w-2.5 sm:h-2.5 border",
-                    item.status === "all" && "border-foreground/50 bg-foreground/20",
-                    item.status === "live" && "border-primary bg-primary/30",
-                    item.status === "coming-soon" && "border-gold bg-gold/30",
-                    item.status === "planned" && "border-muted-foreground bg-muted"
-                  )}
-                />
-                <span className={cn(
-                  "font-pixel text-sm sm:text-base",
-                  filter === item.status ? "text-foreground" : "text-muted-foreground"
-                )}>
-                  {item.label}
-                </span>
-              </button>
-            ))}
-          </div>
-
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {mounted &&
               filteredProducts.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
@@ -176,6 +146,59 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* From the blog */}
+      <section className="border-t border-border px-4 sm:px-6 py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div className="eyebrow">{t("blog.title")}</div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t("blog.allPosts")}
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {latestPosts.map((post) => {
+              const Icon = post.icon;
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col bg-card border border-border rounded-lg p-5 pixel-card hover:border-primary/40 hover:bg-elevated"
+                >
+                  <div className="flex items-center gap-2.5 mb-4">
+                    <div className="w-8 h-8 rounded-md flex items-center justify-center bg-elevated border border-border">
+                      <Icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                      {post.category}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-base font-semibold tracking-tight text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                    {post.description}
+                  </p>
+                  <div className="mt-auto font-mono text-xs text-muted-foreground/70">
+                    {new Date(post.date).toLocaleDateString(dateLocaleMap[currentLanguage], {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                    <span className="mx-2">·</span>
+                    {post.readTime}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
     </SharedLayout>
   );
 }

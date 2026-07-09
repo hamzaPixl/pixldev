@@ -44,25 +44,25 @@ export function ContactForm() {
     <section id="contact" className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
       <div className="max-w-2xl mx-auto">
         {/* Terminal header */}
-        <div className="bg-card border-2 border-primary/30 overflow-hidden">
+        <div className="rounded-lg bg-card border border-border overflow-hidden shadow-lg">
           {/* Title bar */}
-          <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-primary/10 border-b border-primary/30">
+          <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-elevated border-b border-border">
             <Terminal className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-            <span className="font-pixel text-xs sm:text-sm text-primary">CONTACT.exe</span>
+            <span className="font-mono text-xs sm:text-sm text-primary">contact.sh</span>
             <div className="flex-1" />
             <div className="flex gap-1 sm:gap-1.5">
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-muted-foreground/30" />
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-muted-foreground/30" />
-              <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-primary/50" />
+              <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/30" />
+              <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground/30" />
+              <div className="w-2.5 h-2.5 rounded-full bg-primary/60" />
             </div>
           </div>
 
           {/* Terminal content */}
           <div className="p-4 sm:p-6">
-            <p className="text-primary text-xs sm:text-sm mb-1">
+            <p className="font-mono text-primary text-xs sm:text-sm mb-1">
               <span className="text-muted-foreground">{">"}</span> {t("contact.initMessage")}
             </p>
-            <p className="text-primary text-xs sm:text-sm mb-4">
+            <p className="font-mono text-primary text-xs sm:text-sm mb-4">
               <span className="text-muted-foreground">{">"}</span> {mounted ? t("contact.readyMessage") : "..."}<span className="animate-blink">_</span>
             </p>
 
@@ -81,7 +81,7 @@ export function ContactForm() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-background border-2 border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base text-foreground focus:border-primary focus:outline-none transition-colors"
+                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
                   placeholder={t("contact.form.namePlaceholder")}
                 />
               </div>
@@ -96,7 +96,7 @@ export function ContactForm() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-background border-2 border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base text-foreground focus:border-primary focus:outline-none transition-colors"
+                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
                   placeholder={t("contact.form.emailPlaceholder")}
                 />
               </div>
@@ -111,7 +111,7 @@ export function ContactForm() {
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-background border-2 border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
+                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors resize-none"
                   placeholder={t("contact.form.messagePlaceholder")}
                 />
               </div>
@@ -120,7 +120,7 @@ export function ContactForm() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 text-sm sm:text-base"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 text-sm sm:text-base"
               >
                 <Send className="w-3 h-3 sm:w-4 sm:h-4" />
                 {status === "sending" ? t("common.sending") : status === "sent" ? t("common.sent") : t("common.sendMessage")}
@@ -128,7 +128,7 @@ export function ContactForm() {
             </form>
 
             {status === "sent" && (
-              <p className="text-primary text-xs sm:text-sm mt-4">
+              <p className="font-mono text-primary text-xs sm:text-sm mt-4">
                 <span className="text-muted-foreground">{">"}</span> {t("contact.successMessage")}
               </p>
             )}

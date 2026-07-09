@@ -86,7 +86,7 @@ function Quote({ children }: { children: React.ReactNode }) {
 
 function FeatureCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="p-3 sm:p-4 border-2 border-border bg-card mb-3 sm:mb-4">
+    <div className="p-3 sm:p-4 border border-border bg-card mb-3 sm:mb-4">
       <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1.5 sm:mb-2 flex items-center gap-2">
         <span className="text-muted-foreground">◆</span>
         {title}

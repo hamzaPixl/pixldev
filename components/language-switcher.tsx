@@ -71,7 +71,7 @@ export function LanguageSwitcher({ variant = "full" }: LanguageSwitcherProps) {
         </button>
 
         {isOpen && (
-          <div className="absolute right-0 top-full mt-2 bg-card border-2 border-border z-50 min-w-[120px]">
+          <div className="absolute right-0 top-full mt-2 bg-card border border-border z-50 min-w-[120px]">
             {supportedLanguages.map((lang) => (
               <button
                 key={lang}
@@ -93,46 +93,31 @@ export function LanguageSwitcher({ variant = "full" }: LanguageSwitcherProps) {
     );
   }
 
-  const isDark = variant === "dark";
-
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "flex items-center gap-2 px-3 py-1.5 text-sm border-2 transition-colors",
-          isDark
-            ? "border-primary-foreground/30 text-primary-foreground hover:border-primary-foreground/60"
-            : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
-        )}
+        className="flex items-center gap-2 px-2.5 py-1.5 text-sm rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
       >
         <Globe className="w-3 h-3" />
-        <span className="font-pixel text-xs">{languageConfig[currentLanguage].flag}</span>
-        <span className="hidden sm:inline">{languageConfig[currentLanguage].name}</span>
+        <span className="font-mono text-xs">{languageConfig[currentLanguage].flag}</span>
         <ChevronDown className={cn("w-3 h-3 transition-transform", isOpen && "rotate-180")} />
       </button>
 
       {isOpen && (
-        <div className={cn(
-          "absolute right-0 top-full mt-2 border-2 z-50 min-w-[140px]",
-          isDark ? "bg-primary border-primary-foreground/30" : "bg-card border-border"
-        )}>
+        <div className="absolute right-0 top-full mt-2 rounded-md border border-border bg-card shadow-lg z-50 min-w-[150px] overflow-hidden">
           {supportedLanguages.map((lang) => (
             <button
               key={lang}
               onClick={() => handleLanguageSelect(lang)}
               className={cn(
-                "w-full flex items-center gap-2 px-3 py-2 text-sm text-left transition-colors",
-                isDark
-                  ? currentLanguage === lang
-                    ? "bg-primary-foreground/20 text-primary-foreground"
-                    : "text-primary-foreground/80 hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                  : currentLanguage === lang
-                    ? "bg-primary/20 text-primary"
-                    : "text-muted-foreground hover:bg-primary/10 hover:text-primary"
+                "w-full flex items-center gap-2.5 px-3 py-2 text-sm text-left transition-colors",
+                currentLanguage === lang
+                  ? "bg-elevated text-foreground"
+                  : "text-muted-foreground hover:bg-elevated hover:text-foreground"
               )}
             >
-              <span className="font-pixel text-xs">{languageConfig[lang].flag}</span>
+              <span className="font-mono text-xs text-muted-foreground">{languageConfig[lang].flag}</span>
               <span>{languageConfig[lang].name}</span>
             </button>
           ))}
