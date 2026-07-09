@@ -2,16 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/lib/language-context";
 import { getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
 import { cn } from "@/lib/utils";
@@ -23,7 +15,6 @@ interface SharedLayoutProps {
 
 export function SharedLayout({ children }: SharedLayoutProps) {
   const { t } = useLanguage();
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const products = getVisibleProductsStatic().filter((p) => p.status !== "contact");
 
@@ -33,11 +24,6 @@ export function SharedLayout({ children }: SharedLayoutProps) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const navItems = [
-    { href: "/#modules", label: t("footer.productsTitle"), active: false },
-    { href: "/blog", label: t("blog.footerLink"), active: pathname.startsWith("/blog") },
-  ];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -57,51 +43,12 @@ export function SharedLayout({ children }: SharedLayoutProps) {
             <img src="/logo.svg" alt="Pixl" className="h-5 w-auto" />
           </Link>
 
-          {/* Center: nav */}
-          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "px-3 py-1.5 rounded-lg text-sm transition-colors duration-200",
-                  item.active
-                    ? "text-foreground bg-white/[0.06]"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
           {/* Right: language + CTA */}
           <div className="flex items-center gap-2 shrink-0">
             <LanguageSwitcher variant="dark" />
-            <Button asChild size="sm" className="hidden sm:inline-flex rounded-lg">
+            <Button asChild size="sm" className="rounded-lg">
               <a href="mailto:hello@pixldev.be">{t("common.buildWithUs")}</a>
             </Button>
-            {/* Mobile menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild className="md:hidden">
-                <Button variant="outline" size="icon" aria-label="Menu" className="h-8 w-8 rounded-lg">
-                  <Menu />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[180px] md:hidden rounded-xl">
-                <DropdownMenuItem asChild>
-                  <Link href="/#modules">{t("footer.productsTitle")}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/blog">{t("blog.footerLink")}</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a href="mailto:hello@pixldev.be" className="text-primary">
-                    {t("common.buildWithUs")}
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </div>
       </header>
