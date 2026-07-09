@@ -31,6 +31,11 @@
     --ring: 148 62% 49%;
     --radius: 8px;
 
+    --popover: 220 9% 6%;
+    --popover-foreground: 210 11% 97%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 11% 97%;
+
     --gold: 42 80% 58%;
     --gold-foreground: 40 60% 8%;
   }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import { getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
 
@@ -38,12 +39,9 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
           </div>
           <div className="flex items-center gap-3">
             <LanguageSwitcher variant="dark" />
-            <a
-              href="/#contact"
-              className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-            >
-              {t("common.buildWithUs")}
-            </a>
+            <Button asChild size="sm" className="hidden sm:inline-flex">
+              <a href="/#contact">{t("common.buildWithUs")}</a>
+            </Button>
           </div>
         </div>
       </header>

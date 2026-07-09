@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ExternalLink } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
+import { Button } from "@/components/ui/button";
 import { getVisibleProductsStatic } from "@/lib/products";
 import { getAllBlogPosts } from "@/lib/blog";
 import { cn } from "@/lib/utils";
@@ -72,26 +73,24 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-3 animate-fade-in opacity-0"
               style={{ animationDelay: "420ms" }}
             >
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-sm cursor-pointer [&_*]:pointer-events-none"
-              >
-                {t("common.buildWithUs")}
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="https://feen.be"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md border border-border text-foreground font-medium hover:border-primary/40 hover:bg-elevated transition-colors text-sm cursor-pointer [&_*]:pointer-events-none"
-              >
-                {t("common.tryFeen")}
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
-              </a>
+              <Button asChild size="lg">
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  {t("common.buildWithUs")}
+                  <ArrowRight />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href="https://feen.be" target="_blank" rel="noopener noreferrer">
+                  {t("common.tryFeen")}
+                  <ExternalLink className="text-muted-foreground" />
+                </a>
+              </Button>
             </div>
           </div>
         </div>

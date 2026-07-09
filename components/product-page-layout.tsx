@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, MessageCircle, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import type { ProductStatic } from "@/lib/products";
 import { getProductTranslationKey } from "@/lib/products";
 import { cn } from "@/lib/utils";
@@ -94,22 +95,19 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
               {/* Actions */}
               <div className="flex flex-wrap gap-3">
                 {isLive && product.url && (
-                  <button
-                    onClick={() => window.open(product.url, "_blank")}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors text-sm cursor-pointer"
-                  >
-                    <ExternalLink className="w-4 h-4" />
+                  <Button onClick={() => window.open(product.url, "_blank")}>
+                    <ExternalLink />
                     {t("common.launchProduct")} {productName}
-                  </button>
+                  </Button>
                 )}
                 {isContact && (
-                  <button
+                  <Button
                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-gold text-gold-foreground font-medium hover:bg-gold/90 transition-colors text-sm cursor-pointer"
+                    className="bg-gold text-gold-foreground hover:bg-gold/90"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle />
                     {t("common.contactUs")}
-                  </button>
+                  </Button>
                 )}
                 {(product.status === "coming-soon" || product.status === "planned") && (
                   <div className="flex items-center gap-2 px-5 py-2.5 rounded-md border border-border bg-muted text-muted-foreground text-sm">

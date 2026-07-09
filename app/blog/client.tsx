@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, ArrowLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -67,9 +68,9 @@ export function BlogIndexClient() {
                         {/* Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-                            <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider px-2 py-0.5 rounded border text-primary border-primary/30 bg-primary/10">
+                            <Badge variant="outline" className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.12em] text-primary border-primary/30 bg-primary/10 font-medium">
                               {post.category}
-                            </span>
+                            </Badge>
                             <span className="flex items-center gap-1 text-xs text-muted-foreground">
                               <Calendar className="w-3 h-3" />
                               {new Date(post.date).toLocaleDateString(dateLocaleMap[currentLanguage], {
@@ -95,12 +96,9 @@ export function BlogIndexClient() {
                           {/* Tags */}
                           <div className="flex flex-wrap gap-1.5">
                             {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-[10px] sm:text-xs text-muted-foreground rounded border border-border px-1.5 py-0.5"
-                              >
+                              <Badge key={tag} variant="outline" className="text-[10px] sm:text-xs text-muted-foreground font-normal">
                                 {tag}
-                              </span>
+                              </Badge>
                             ))}
                           </div>
                         </div>

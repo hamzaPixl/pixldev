@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Send, Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/lib/language-context";
 
 export function ContactForm() {
@@ -76,14 +79,13 @@ export function ContactForm() {
                 <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.name")}
                 </label>
-                <input
+                <Input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
                   placeholder={t("contact.form.namePlaceholder")}
-                />
+                  />
               </div>
 
               {/* Email field */}
@@ -91,14 +93,13 @@ export function ContactForm() {
                 <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.email")}
                 </label>
-                <input
+                <Input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors"
                   placeholder={t("contact.form.emailPlaceholder")}
-                />
+                  />
               </div>
 
               {/* Message field */}
@@ -106,25 +107,25 @@ export function ContactForm() {
                 <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.message")}
                 </label>
-                <textarea
+                <Textarea
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full rounded-md bg-background border border-border px-3 sm:px-4 py-2 sm:py-2.5 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/40 transition-colors resize-none"
                   placeholder={t("contact.form.messagePlaceholder")}
-                />
+                  className="resize-none"
+                  />
               </div>
 
               {/* Submit button */}
-              <button
+              <Button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 text-sm sm:text-base"
-              >
+                className="w-full sm:w-auto"
+                >
                 <Send className="w-3 h-3 sm:w-4 sm:h-4" />
                 {status === "sending" ? t("common.sending") : status === "sent" ? t("common.sent") : t("common.sendMessage")}
-              </button>
+              </Button>
             </form>
 
             {status === "sent" && (
