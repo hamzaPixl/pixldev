@@ -22,17 +22,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const url = absoluteUrl(`/blog/${post.slug}`);
   const ogImage = ogImageUrl(post.title);
+  // SERP truncates around 160 chars — cut at a word boundary
+  const description =
+    post.description.length > 160
+      ? `${post.description.slice(0, 157).replace(/\s+\S*$/, "")}…`
+      : post.description;
 
   return {
     title: post.title,
-    description: post.description,
+    description,
     authors: post.authors.map((a) => ({ name: a.name, url: a.linkedin })),
     openGraph: {
       type: "article",
       url,
       siteName: "Pixl",
       title: post.title,
-      description: post.description,
+      description,
       publishedTime: post.date,
       authors: post.authors.map((a) => a.name),
       tags: post.tags,
@@ -41,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.description,
+      description,
       images: [ogImage],
     },
     alternates: {
