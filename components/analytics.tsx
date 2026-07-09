@@ -5,7 +5,9 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
 import { trackPageView } from "@/lib/analytics";
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
+// Public GA4 measurement ID (not a secret — it ships in the client anyway).
+// Env var overrides the default so staging can point elsewhere.
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XEWJM1DYS1";
 
 function AnalyticsPageTracker() {
   const pathname = usePathname();

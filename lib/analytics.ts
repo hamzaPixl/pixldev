@@ -1,5 +1,8 @@
 // Google Analytics 4 helper functions
 
+// Public GA4 measurement ID; env var overrides the default.
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-XEWJM1DYS1";
+
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
@@ -16,7 +19,7 @@ export const isGALoaded = (): boolean => {
 export const trackPageView = (url: string): void => {
   if (!isGALoaded()) return;
 
-  window.gtag("config", process.env.NEXT_PUBLIC_GA_ID as string, {
+  window.gtag("config", GA_ID, {
     page_path: url,
   });
 };

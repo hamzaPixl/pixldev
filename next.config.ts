@@ -15,6 +15,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Self-hosted on a VPS: emit a minimal standalone server (.next/standalone).
+  output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
   },
