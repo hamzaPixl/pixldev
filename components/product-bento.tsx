@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ProductStatic } from "@/lib/products";

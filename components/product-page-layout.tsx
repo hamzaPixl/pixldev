@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { ArrowLeft, ExternalLink, MessageCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { ProductStatic } from "@/lib/products";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

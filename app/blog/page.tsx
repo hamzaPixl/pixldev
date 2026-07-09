@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
-import { BASE_URL, absoluteUrl, ogImageUrl, organizationSchema } from "@/lib/seo";
+import { BASE_URL, absoluteUrl, ogImageUrl, organizationSchema, localeAlternates } from "@/lib/seo";
 import { BlogIndexClient } from "./client";
 
 const title = "Blog — AI systems, agents, and building in public";
@@ -24,9 +24,7 @@ export const metadata: Metadata = {
     description,
     images: [ogImageUrl("Essays and experiment logs", { eyebrow: "Blog" })],
   },
-  alternates: {
-    canonical: absoluteUrl("/blog"),
-  },
+  alternates: localeAlternates("/blog", "en"),
 };
 
 export default function BlogPage() {

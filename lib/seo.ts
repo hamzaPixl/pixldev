@@ -6,6 +6,28 @@ export function absoluteUrl(path: string): string {
   return `${BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export type Locale = "en" | "fr" | "nl";
+export const LOCALES: Locale[] = ["en", "fr", "nl"];
+
+/** Per-locale absolute URLs for an English path ("/" or "/blog/x"). */
+export function localeUrls(path: string): Record<Locale, string> {
+  const clean = path === "/" ? "" : path;
+  return {
+    en: `${BASE_URL}${clean || "/"}`,
+    fr: `${BASE_URL}/fr${clean}`,
+    nl: `${BASE_URL}/nl${clean}`,
+  };
+}
+
+/** canonical + hreflang alternates for a page, given its English path + locale. */
+export function localeAlternates(path: string, locale: Locale) {
+  const urls = localeUrls(path);
+  return {
+    canonical: urls[locale],
+    languages: { ...urls, "x-default": urls.en },
+  };
+}
+
 /** Dynamic branded OG card (see app/og/route.tsx). */
 export function ogImageUrl(
   title: string,

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { BlogPost } from "@/lib/blog";

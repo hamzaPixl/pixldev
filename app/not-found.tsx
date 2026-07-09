@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink as Link } from "@/components/locale-link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { SharedLayout } from "@/components/shared-layout";
 import { Button } from "@/components/ui/button";

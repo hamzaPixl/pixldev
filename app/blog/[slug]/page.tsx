@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllBlogPosts, getBlogPost } from "@/lib/blog";
-import { BASE_URL, ORGANIZATION_ID, absoluteUrl, ogImageUrl, organizationSchema } from "@/lib/seo";
+import { BASE_URL, ORGANIZATION_ID, absoluteUrl, ogImageUrl, organizationSchema, localeAlternates } from "@/lib/seo";
 import { BlogPostClient } from "./client";
 
 interface PageProps {
@@ -49,9 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       images: [ogImage],
     },
-    alternates: {
-      canonical: url,
-    },
+    alternates: localeAlternates(`/blog/${post.slug}`, "en"),
   };
 }
 
