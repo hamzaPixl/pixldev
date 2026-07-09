@@ -142,7 +142,31 @@ export function SharedLayout({ children }: SharedLayoutProps) {
                 >
                   RSS
                 </a>
+                <a
+                  href="/llms.txt"
+                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  llms.txt
+                </a>
               </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <p className="font-mono text-xs text-muted-foreground/70">
+              © {new Date().getFullYear()} Pixl SRL · BE 0805.449.693 · Belgium
+            </p>
+            <div className="flex items-center gap-4 font-mono text-xs">
+              <a href="/sitemap.xml" className="text-muted-foreground/70 hover:text-foreground transition-colors">
+                sitemap.xml
+              </a>
+              <a href="/llms.txt" className="text-muted-foreground/70 hover:text-foreground transition-colors">
+                llms.txt
+              </a>
+              <a href="/feed.xml" className="text-muted-foreground/70 hover:text-foreground transition-colors">
+                feed.xml
+              </a>
             </div>
           </div>
         </div>
