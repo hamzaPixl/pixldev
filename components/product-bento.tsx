@@ -54,21 +54,6 @@ const brand: Record<
   },
 };
 
-function StatusBadge({ status, label }: { status: ProductStatic["status"]; label: string }) {
-  const dot =
-    status === "live"
-      ? "bg-primary"
-      : status === "coming-soon" || status === "contact"
-      ? "bg-gold"
-      : "bg-muted-foreground/50";
-  return (
-    <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-      <span className={cn("w-1.5 h-1.5 rounded-full", dot)} />
-      {label}
-    </span>
-  );
-}
-
 /** Illustration slot: real image when provided, quiet branded pattern until then. */
 function Illustration({ product, className }: { product: ProductStatic; className?: string }) {
   const Icon = product.icon;
@@ -95,9 +80,6 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
   const name = (p: ProductStatic) => t(`${getProductTranslationKey(p.id)}.name`);
   const tagline = (p: ProductStatic) => t(`${getProductTranslationKey(p.id)}.tagline`);
   const description = (p: ProductStatic) => t(`${getProductTranslationKey(p.id)}.description`);
-  const statusLabel = (p: ProductStatic) =>
-    t(`status.${p.status === "coming-soon" ? "comingSoon" : p.status}`);
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 auto-rows-fr">
       {/* Feen — featured brand cell */}
@@ -116,12 +98,9 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
               <div className={cn("w-11 h-11 rounded-lg border flex items-center justify-center", brand.feen.tile)}>
                 <img src="/feen-icon.svg" alt="" className="w-7 h-7 object-contain" />
               </div>
-              <div>
-                <h3 className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground">
-                  {name(feen)}
-                </h3>
-                <StatusBadge status={feen.status} label={statusLabel(feen)} />
-              </div>
+              <h3 className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground">
+                {name(feen)}
+              </h3>
             </div>
             <ArrowUpRight className="w-5 h-5 text-muted-foreground transition-all group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
@@ -167,12 +146,9 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
               {name(product)}
             </h3>
             <p className={cn("text-sm font-medium mb-2", b.accentText)}>{tagline(product)}</p>
-            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
               {description(product)}
             </p>
-            <div className="mt-auto">
-              <StatusBadge status={product.status} label={statusLabel(product)} />
-            </div>
           </Link>
         );
       })}
