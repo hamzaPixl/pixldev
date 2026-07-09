@@ -19,7 +19,6 @@ export function BlogPostClient({ slug }: { slug: string }) {
     notFound();
   }
 
-  const Icon = post.icon;
   const showBatonFlowDiagram = post.slug === "the-baton-pattern";
   const showSystemsDiagram = post.slug === "ai-is-not-about-models-its-about-systems";
   const showTechnicalStackDiagrams = post.slug === "the-technical-stack-behind-my-ai-projects";

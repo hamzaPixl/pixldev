@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, ReactNode, useEffect } from "react";
+import { createContext, useContext, ReactNode, useEffect } from "react";
 import { useTranslate } from "@/hooks/useTranslate";
 import { SupportedLanguages } from "@/lib/translations";
 
