@@ -8,17 +8,21 @@ import { getProductTranslationKey } from "@/lib/products";
 import { getProductBrand } from "@/lib/product-brand";
 import { useLanguage } from "@/lib/language-context";
 
-/** Illustration slot: real image when provided, quiet branded pattern until then. */
+/** Featured-cell illustration slot: the product's house-style art. */
 function Illustration({ product, className }: { product: ProductStatic; className?: string }) {
-  const Icon = product.icon;
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-lg border border-border/60 bg-background/40 grid-dots flex items-center justify-center",
+        "relative overflow-hidden rounded-lg border border-border/60 bg-background/40",
         className
       )}
     >
-      <Icon className="w-12 h-12 text-foreground/20" strokeWidth={1} />
+      <img
+        src={`/illustrations/product/${product.id}.jpg`}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -86,6 +90,17 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
               b.hoverBorder
             )}
           >
+            {/* House-style art wash — accent matches the brand; scrim keeps text legible */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30 transition-opacity duration-500 group-hover:opacity-45"
+              style={{ backgroundImage: `url(/illustrations/product/${product.id}.jpg)` }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/75 to-card/35"
+            />
+            <div className="relative z-10 flex flex-col flex-1">
             <div className="flex items-start justify-between gap-3 mb-4">
               <div className={cn("w-10 h-10 rounded-lg border flex items-center justify-center", b.tile)}>
                 {product.logo ? (
@@ -103,6 +118,7 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
             <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
               {description(product)}
             </p>
+            </div>
           </Link>
         );
       })}
