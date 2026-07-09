@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     template: "%s | Pixl",
   },
   description:
-    "Pixl is a Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
+    "Pixl is a Belgian AI studio building business tools for SMEs and freelancers: accounting with Feen, company data, and content. Honest AI, systems over hype.",
   authors: [{ name: "Pixl SRL", url: BASE_URL }],
   creator: "Pixl SRL",
   publisher: "Pixl SRL",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     siteName: "Pixl",
     title: "Pixl — AI systems and business tools for Belgian SMEs",
     description:
-      "Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
+      "Belgian AI studio building business tools for SMEs and freelancers: accounting with Feen, company data, and content. Honest AI, systems over hype.",
     images: [
       {
         url: "/og?title=AI%20systems%20for%20Belgian%20business&eyebrow=Pixl%20Studio",
