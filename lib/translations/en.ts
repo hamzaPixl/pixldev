@@ -306,6 +306,10 @@ export const en = {
     interestedText: "Get notified when {product} launches or contact us to discuss your needs.",
     tryProduct: "Try {product}",
   },
+  notFound: {
+    title: "Page not found",
+    text: "This page doesn't exist, moved, or was never built. It happens. Let's get you back to something real.",
+  },
   blog: {
     title: "Blog",
     subtitle: "Engineering insights, design patterns, and lessons from building AI-powered tools at Pixl.",

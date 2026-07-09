@@ -193,6 +193,9 @@ export function SharedLayout({ children }: SharedLayoutProps) {
               <a href="/llms.txt" className="text-muted-foreground/70 hover:text-foreground transition-colors">
                 llms.txt
               </a>
+              <a href="/brand.md" className="text-muted-foreground/70 hover:text-foreground transition-colors">
+                brand.md
+              </a>
             </div>
           </div>
         </div>

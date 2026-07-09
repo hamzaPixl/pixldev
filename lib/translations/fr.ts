@@ -308,6 +308,10 @@ export const fr = {
     interestedText: "Soyez notifié du lancement de {product} ou contactez-nous pour discuter de vos besoins.",
     tryProduct: "Essayer {product}",
   },
+  notFound: {
+    title: "Page introuvable",
+    text: "Cette page n'existe pas, a été déplacée, ou n'a jamais été construite. Ça arrive. Revenons à quelque chose de concret.",
+  },
   blog: {
     title: "Blog",
     subtitle: "Insights d'ingénierie, design patterns et leçons tirées de la construction d'outils propulsés par l'IA chez Pixl.",

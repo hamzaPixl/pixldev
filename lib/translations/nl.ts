@@ -308,6 +308,10 @@ export const nl = {
     interestedText: "Ontvang een melding wanneer {product} lanceert of neem contact op om uw behoeften te bespreken.",
     tryProduct: "Probeer {product}",
   },
+  notFound: {
+    title: "Pagina niet gevonden",
+    text: "Deze pagina bestaat niet, is verplaatst of werd nooit gebouwd. Het gebeurt. Terug naar iets echts.",
+  },
   blog: {
     title: "Blog",
     subtitle: "Engineering inzichten, design patterns en lessen uit het bouwen van AI-gestuurde tools bij Pixl.",
