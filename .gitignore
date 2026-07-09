@@ -41,3 +41,7 @@ next-env.d.ts
 
 # Testing
 coverage/
+
+# generated video intermediates (regenerate via illustrations/gen-video.mjs)
+public/video/shots/
+public/video/work/

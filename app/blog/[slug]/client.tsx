@@ -701,8 +701,9 @@ function StoryboardExample() {
         />
       </div>
       <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
-        The five keyframes above, generated from one manifest, cut into a moving spot.
-        Per-shot AI motion is the next pass; this cut uses camera moves. No stock, no fake footage.
+        Five keyframes from one manifest, each brought to life with an image-to-video
+        model (OpenRouter), cut to a generated voice-over. Unmute to hear it. No stock,
+        no fake footage.
       </p>
     </section>
   );

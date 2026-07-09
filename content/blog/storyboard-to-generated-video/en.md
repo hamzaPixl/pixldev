@@ -55,6 +55,6 @@ No faked demo here. What's below is what the system actually produced.
 
 ## The example
 
-Here's a five-shot Pixl spot, built exactly this way: storyboard first, each shot generated in the house style, then one keyframe brought to life as a moving clip.
+Here's a five-shot Pixl spot, built exactly this way: storyboard first, each shot generated in the house style, each keyframe brought to life with an image-to-video model, cut to a voice-over.
 
 The storyboard is the video. The rest is rendering.
