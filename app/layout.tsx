@@ -65,7 +65,7 @@ export const metadata: Metadata = {
       "Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
     images: [
       {
-        url: "/og?title=AI%20systems%20and%20business%20tools%20for%20Belgian%20SMEs",
+        url: "/og?title=AI%20systems%20for%20Belgian%20business&eyebrow=Pixl%20Studio",
         width: 1200,
         height: 630,
         alt: "Pixl — AI systems and business tools for Belgian SMEs",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     title: "Pixl — AI systems and business tools for Belgian SMEs",
     description:
       "Belgian AI studio building interconnected business tools and writing openly about the AI systems behind them.",
-    images: ["/og?title=AI%20systems%20and%20business%20tools%20for%20Belgian%20SMEs"],
+    images: ["/og?title=AI%20systems%20for%20Belgian%20business&eyebrow=Pixl%20Studio"],
     creator: "@pixl_be",
     site: "@pixl_be",
   },

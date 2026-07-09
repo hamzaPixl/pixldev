@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     siteName: "Pixl",
     title,
     description,
-    images: [{ url: ogImageUrl("The Pixl Blog"), width: 1200, height: 630, alt: title }],
+    images: [{ url: ogImageUrl("Essays and experiment logs", { eyebrow: "Blog" }), width: 1200, height: 630, alt: title }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [ogImageUrl("The Pixl Blog")],
+    images: [ogImageUrl("Essays and experiment logs", { eyebrow: "Blog" })],
   },
   alternates: {
     canonical: absoluteUrl("/blog"),

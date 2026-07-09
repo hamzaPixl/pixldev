@@ -21,7 +21,7 @@ export function AuthorAvatar({ name }: { name: string }) {
     .join("")
     .toUpperCase();
   return (
-    <span className="w-8 h-8 rounded-full bg-elevated border border-border flex items-center justify-center font-mono text-[10px] text-muted-foreground shrink-0">
+    <span className="w-8 aspect-square self-center shrink-0 rounded-full bg-elevated border border-border inline-flex items-center justify-center font-mono text-[10px] text-muted-foreground">
       {initials}
     </span>
   );

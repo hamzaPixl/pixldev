@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { productsStatic, getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
+import { getProductBrand } from "@/lib/product-brand";
+import { ogImageUrl } from "@/lib/seo";
 import { en } from "@/lib/translations/en";
 import { ProductPageClient } from "./client";
 
@@ -79,7 +81,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   const baseUrl = "https://pixldev.be";
   const productSeo = getProductSeo(id);
-  const ogImage = `/og?title=${encodeURIComponent(productSeo.title)}`;
+  const productName = getTranslation(`${getProductTranslationKey(id)}.name`);
+  const ogImage = ogImageUrl(productName, {
+    eyebrow: "Product",
+    accent: getProductBrand(id).ogAccent,
+  });
 
   return {
     title: productSeo.title,

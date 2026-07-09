@@ -7,8 +7,15 @@ export function absoluteUrl(path: string): string {
 }
 
 /** Dynamic branded OG card (see app/og/route.tsx). */
-export function ogImageUrl(title: string): string {
-  return `/og?title=${encodeURIComponent(title)}`;
+export function ogImageUrl(
+  title: string,
+  opts: { eyebrow?: string; accent?: string; image?: string } = {}
+): string {
+  const params = new URLSearchParams({ title });
+  if (opts.eyebrow) params.set("eyebrow", opts.eyebrow);
+  if (opts.accent) params.set("accent", opts.accent);
+  if (opts.image) params.set("image", opts.image);
+  return `/og?${params.toString()}`;
 }
 
 export const organizationSchema = {

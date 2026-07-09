@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const url = absoluteUrl(`/blog/${post.slug}`);
-  const ogImage = ogImageUrl(post.title);
+  const ogImage = ogImageUrl(post.title, { eyebrow: post.category });
   // SERP truncates around 160 chars — cut at a word boundary
   const description =
     post.description.length > 160
@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     datePublished: post.date,
     dateModified: post.date,
     inLanguage: ["en", "fr", "nl"],
-    image: absoluteUrl(ogImageUrl(post.title)),
+    image: absoluteUrl(ogImageUrl(post.title, { eyebrow: post.category })),
     author: post.authors.map((a) => ({
       "@type": "Person",
       name: a.name,
