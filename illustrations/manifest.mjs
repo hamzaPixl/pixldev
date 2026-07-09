@@ -42,6 +42,26 @@ export const MODEL_FALLBACK = "google/gemini-2.5-flash-image";
 export const illustrations = [
   // ── Blog posts (each a recognizable subject, not an abstract blob) ──
   {
+    id: "seo-is-a-graph",
+    kind: "blog",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "object/scene",
+    concept:
+      "A website homepage glowing on a dark screen, its content lifting off the page into a luminous green knowledge-graph of connected entity nodes and links floating above it, as if machines are reading the site's structure rather than its pixels.",
+    tags: ["website", "knowledge-graph", "nodes", "structured-data", "green"],
+  },
+  {
+    id: "storyboard-to-generated-video",
+    kind: "blog",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "still-life",
+    concept:
+      "A film storyboard laid on a dark table: a neat row of sketched shot-panels for a short spot, one panel in the middle lit bright green and coming alive into a moving frame, the rest waiting in graphite — a video assembled shot by shot.",
+    tags: ["storyboard", "film", "panels", "shots", "green"],
+  },
+  {
     id: "every-image-from-one-manifest",
     kind: "blog",
     accent: PIXL_GREEN,
@@ -212,6 +232,60 @@ export const illustrations = [
     concept:
       "An open brand book on a dark desk radiating amber light, its spread pages showing a logo grid, color swatches and type specimens — a brand identity system coming into being.",
     tags: ["brand-book", "swatches", "logo-grid", "identity", "amber"],
+  },
+
+  // ── Storyboard: a 5-shot Pixl brand spot (example for the video post) ──
+  // All 16:9, same house style + brand.md §5 motifs, so the frames read as
+  // stills from one film.
+  {
+    id: "spot-01-command",
+    kind: "storyboard",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "hand+object",
+    concept:
+      "Cinematic still, shot 1 of 5: extreme close-up of a finger pressing one glowing green key on a dark mechanical keyboard, a terminal cursor blinking green beside a command line just visible in the dark.",
+    tags: ["storyboard", "command", "keyboard", "cursor", "green"],
+  },
+  {
+    id: "spot-02-horizon",
+    kind: "storyboard",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "landscape",
+    concept:
+      "Cinematic still, shot 2 of 5: a single bright green horizon line igniting across a pitch-black frame, dawn breaking over the curve of a dark planet, soft bloom and one lens flare.",
+    tags: ["storyboard", "horizon", "dawn", "ignite", "green"],
+  },
+  {
+    id: "spot-03-assemble",
+    kind: "storyboard",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "object",
+    concept:
+      "Cinematic still, shot 3 of 5: blocks of green light assembling in mid-air into the faint forms of a website, an invoice and a brand card, over a dark reflective floor, motion-blur on the pieces snapping into place.",
+    tags: ["storyboard", "assembly", "company", "montage", "green"],
+  },
+  {
+    id: "spot-04-core",
+    kind: "storyboard",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "architecture",
+    concept:
+      "Cinematic still, shot 4 of 5: a small bright green core glowing at the center of a vast dark engine room, gantries and rails receding into perspective around it.",
+    tags: ["storyboard", "core", "engine-room", "system", "green"],
+  },
+  {
+    id: "spot-05-logo",
+    kind: "storyboard",
+    accent: PIXL_GREEN,
+    aspect: "16:9",
+    archetype: "object",
+    concept:
+      "Cinematic still, shot 5 of 5: an abstract square mark resolving out of a grid of green pixels on pure black, a clean pixel-dissolve settling into a single crisp glyph, generous negative space for a wordmark.",
+    tags: ["storyboard", "logo", "pixel-dissolve", "resolve", "green"],
   },
 ];
 

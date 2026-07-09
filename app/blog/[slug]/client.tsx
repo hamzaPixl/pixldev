@@ -24,6 +24,7 @@ export function BlogPostClient({ slug }: { slug: string }) {
   const showTechnicalStackDiagrams = post.slug === "the-technical-stack-behind-my-ai-projects";
   const showDecadeFocusDiagram = post.slug === "a-practical-map-of-the-next-tech-decade";
   const showWhatsappSimEmbed = post.slug === "simulating-my-whatsapp-group-with-llm-personas";
+  const showStoryboardExample = post.slug === "storyboard-to-generated-video";
 
   return (
     <SharedLayout>
@@ -160,6 +161,8 @@ export function BlogPostClient({ slug }: { slug: string }) {
           <article>
             <BlogMarkdown content={post.content} />
           </article>
+
+          {showStoryboardExample ? <StoryboardExample /> : null}
 
           {/* Footer CTA */}
           <div className="mt-12 rounded-xl border border-border bg-gradient-to-b from-primary/10 to-card p-6 sm:p-8 text-center">
@@ -645,6 +648,63 @@ function BatonFlowDiagram({ t }: { t: (key: string) => string }) {
         }} />
       </div>
     </div>
+  );
+}
+
+// ─── Storyboard example (video post) ──────────────────────────────────
+
+const STORYBOARD_SHOTS = [
+  { n: "01", src: "/illustrations/storyboard/spot-01-command.jpg", label: "The command" },
+  { n: "02", src: "/illustrations/storyboard/spot-02-horizon.jpg", label: "The horizon ignites" },
+  { n: "03", src: "/illustrations/storyboard/spot-03-assemble.jpg", label: "The company assembles" },
+  { n: "04", src: "/illustrations/storyboard/spot-04-core.jpg", label: "The system" },
+  { n: "05", src: "/illustrations/storyboard/spot-05-logo.jpg", label: "The mark resolves" },
+];
+
+function StoryboardExample() {
+  return (
+    <section className="mt-10">
+      <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-primary">
+        <span className="w-2 h-2 rounded-sm bg-current" />
+        Storyboard, 5 shots
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3">
+        {STORYBOARD_SHOTS.map((s) => (
+          <figure
+            key={s.n}
+            className="relative overflow-hidden rounded-lg border border-border bg-elevated"
+          >
+            <img
+              src={s.src}
+              alt={`Shot ${s.n}: ${s.label}`}
+              loading="lazy"
+              className="aspect-video w-full object-cover"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 bg-gradient-to-t from-black/80 to-transparent px-2 py-1.5">
+              <span className="font-mono text-[10px] text-primary">{s.n}</span>
+              <span className="truncate text-[10px] text-white/85">{s.label}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div className="mt-4 overflow-hidden rounded-xl border border-border bg-black">
+        <video
+          src="/video/pixl-spot.mp4"
+          poster="/illustrations/storyboard/spot-02-horizon.jpg"
+          controls
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="block h-auto w-full"
+        />
+      </div>
+      <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
+        The five keyframes above, generated from one manifest, cut into a moving spot.
+        Per-shot AI motion is the next pass; this cut uses camera moves. No stock, no fake footage.
+      </p>
+    </section>
   );
 }
 
