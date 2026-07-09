@@ -8,32 +8,38 @@ authors:
   - name: "Sanawar Syed Azor Ali"
     linkedin: "https://www.linkedin.com/in/sanawar-syed/"
 title: "Het Baton Pattern"
-description: "Een lichtgewicht overdrachtsprotocol voor multi-agent AI-pipelines. Een klein JSON-object dat context meedraagt tussen workflowstappen."
+description: "Een klein JSON-object dat beslissingen en beperkingen meedraagt tussen de stappen van een multi-agent AI-pipeline."
 category: "Engineering"
 tags: ["AI Agents", "Design Patterns", "Orchestratie"]
-readTime: "5 min"
+readTime: "2 min"
 ---
 
-## Het Probleem
-
-Wanneer meerdere AI-agents samenwerken in een pipeline — de ene plant, de andere bouwt, een andere controleert — hebben ze context van elkaar nodig. Maar:
-
-- Alle artefacten (code, docs) doorgeven tussen elke stap **kost te veel tokens**
-- Zelfs met volledige artefacten missen agents het *waarom* — de beslissingen en beperkingen achter het werk
-
-Zonder een gestructureerd overdrachtsmechanisme herhalen agents werk of spreken ze eerdere beslissingen tegen.
+_Drie agents in een pipeline moeten weten wat de anderen hebben beslist. De baton is hoe ze daar achter komen, zonder het werk opnieuw door te sturen._
 
 ---
 
-## De Oplossing
+## Het probleem
 
-De **baton** is een klein JSON-object (~1.000 tokens) dat meereist tussen stappen. Elke agent leest het voor aanvang en werkt het bij na afloop.
+Zet drie agents in een pipeline. De ene plant, de andere bouwt, een andere controleert. Elk moet weten wat de anderen deden.
 
-Denk eraan als een estafettestokje — maar dan eentje dat aantekeningen meedraagt.
+Niet de volledige transcriptie. De essentie: wat beslist is, wat vastligt, wat nog open staat.
 
----
+Twee manieren waarop dit misgaat.
 
-## Structuur
+→ Je stuurt alle artefacten tussen de stappen door, en je **verbrandt tokens** aan context die niemand een tweede keer leest.
+→ Je stuurt niets gestructureerds door, en de volgende agent mist het _waarom_: de beslissingen, de beperkingen, de redenen achter het werk.
+
+Dus herhalen agents het werk. Of erger: ze spreken een beslissing van twee stappen terug tegen, en niemand merkt het tot het live gaat.
+
+## De baton
+
+De oplossing is klein. Een JSON-object, zo'n 1.000 tokens, dat met het werk meereist.
+
+Elke agent leest het voor aanvang. Werkt het bij na afloop. Geeft het door.
+
+Het is een estafettestokje dat aantekeningen maakte.
+
+Klein genoeg om altijd te sturen. Gestructureerd genoeg om te lezen. De velden:
 
 | Veld | Doel |
 |------|------|
@@ -46,60 +52,28 @@ Denk eraan als een estafettestokje — maar dan eentje dat aantekeningen meedraa
 | `artifacts` | Verwijzingen naar geproduceerde outputs |
 | `acceptance` | Tests/controles die moeten slagen |
 
----
+## Hoe het beweegt
 
-## Hoe het werkt
+**Initialiseer** met een doel en een beginstatus. Injecteer het als markdown in de prompt van elke agent vóór de stap. Na de stap retourneert de agent een `baton_patch`: alleen de gewijzigde velden. De samengevoegde baton voedt de volgende stap. Herhaal tot de workflow eindigt.
 
-### 1. Initialiseren
+Dat is het hele protocol. Geen message bus, geen gedeelde database, geen framework.
 
-De baton begint met een doel en een beginstatus.
+## De keuzes die tellen
 
-### 2. Injecteren
+`decision_log` is alleen-toevoegen. Eerdere beslissingen worden nooit gewist, dus een latere agent kan ze niet stiekem terugdraaien.
 
-Voor elke stap wordt de baton als markdown in de prompt van de agent geïnjecteerd.
+`current_state` is het tegenovergestelde. Bij elke patch vervangen, want het moet nu als waar lezen, niet als een dagboek.
 
-### 3. Patchen
+Elke patch krijgt een stap-ID en een tijdstempel. Als de output fout is, lees je precies waar de context afboog.
 
-Na uitvoering retourneert de agent een `baton_patch` — alleen de gewijzigde velden worden bijgewerkt.
+Met ~1.000 tokens past het altijd. De baton is het goedkope deel van de pipeline.
 
-### 4. Herhalen
+## De eerlijke grens
 
-De bijgewerkte baton voedt de volgende stap totdat de workflow is voltooid.
+De baton draagt context, geen bewijs. Het vertelt de volgende agent wat er gebeurde en waarom. Het vertelt je niet dat het werk goed was. Daarvoor zijn `acceptance` en de artefacten zelf.
 
----
+Geen enkel protocol maakt een slecht plan goed. Het voorkomt alleen dat goede context verloren gaat.
 
-## Baton vs. Artefacten
+Gebruik het wanneer stappen van elkaar afhangen, budgetten krap zijn, en beslissingen over de hele keten moeten standhouden.
 
-| | Baton | Artefacten |
-|---|---|---|
-| **Grootte** | ~1.000 tokens | 1k–100k+ tokens |
-| **Inhoud** | Beslissingen, status, beperkingen | Code, plannen, docs |
-| **Meegestuurd** | Altijd | Selectief |
-| **Doel** | *Waarom* en *wat telt* | *Wat er is geproduceerd* |
-
-De baton vertelt de volgende agent **wat er is gebeurd en waarom**. Artefacten zijn het daadwerkelijke werkproduct.
-
----
-
-## Ontwerpkeuzes
-
-**Alleen toevoegen voor beslissingen.** Eerdere beslissingen worden nooit gewist. Dit voorkomt tegenspraak.
-
-**Vervangen voor status.** `current_state` wordt elke keer vervangen — het weerspiegelt de *huidige* waarheid, niet de geschiedenis.
-
-**Zuinig met tokens.** Met ~1.000 tokens past de baton altijd in de context.
-
-**Volledige audit trail.** Elke patch wordt opgeslagen met tijdstempel en stap-ID.
-
----
-
-## Wanneer gebruiken
-
-Het baton pattern werkt voor elke **multi-staps AI-pipeline** waar:
-
-- Agents context nodig hebben van eerdere stappen
-- Tokenbudgetten beperkt zijn
-- Beslissingen consistent moeten zijn tussen stappen
-- U moet kunnen traceren hoe de context evolueerde
-
-Het is bewust eenvoudig — gewoon een JSON-object met merge-patch updates.
+Klein object. Merge-patch updates. Eén manier minder waarop een pipeline tegen zichzelf liegt.

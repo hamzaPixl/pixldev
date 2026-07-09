@@ -9,32 +9,38 @@ authors:
   - name: "Sanawar Syed Azor Ali"
     linkedin: "https://www.linkedin.com/in/sanawar-syed/"
 title: "The Baton Pattern"
-description: "A lightweight handoff protocol for multi-agent AI pipelines. A small JSON object that carries context between workflow stages."
+description: "A small JSON object that carries decisions and constraints between the stages of a multi-agent AI pipeline."
 category: "Engineering"
 tags: ["AI Agents", "Design Patterns", "Orchestration"]
-readTime: "5 min"
+readTime: "2 min"
 ---
 
-## The Problem
-
-When multiple AI agents work together in a pipeline — one plans, another builds, another reviews — they need context from each other. But:
-
-- Passing full artifacts (code, docs) between every stage **costs too many tokens**
-- Even with full artifacts, agents miss the *why* — the decisions and constraints behind the work
-
-Without a structured handoff, agents repeat work or contradict earlier decisions.
+_Three agents in a pipeline need to know what the others decided. The baton is how they find out, without re-sending the work._
 
 ---
 
-## The Solution
+## The problem
 
-The **baton** is a small JSON object (~1,000 tokens) that travels between stages. Each agent reads it before starting and patches it when done.
+Put three agents in a pipeline. One plans, one builds, one reviews. Each needs to know what the others did.
 
-Think of it like a relay race baton — except this one carries notes.
+Not the full transcript. The gist: what is decided, what is fixed, what is still open.
 
----
+Two ways this goes wrong.
 
-## Structure
+→ Pass the full artifacts between stages, and you **burn tokens** on context nobody reads twice.
+→ Pass nothing structured, and the next agent misses the _why_: the decisions, the constraints, the reasons behind the work.
+
+So agents repeat work. Or worse: they contradict a decision made two stages back, and nobody notices until it ships.
+
+## The baton
+
+The fix is small. A JSON object, around 1,000 tokens, that travels with the work.
+
+Each agent reads it before starting. Patches it when done. Passes it on.
+
+It's a relay baton that took notes.
+
+Small enough to always send. Structured enough to be worth reading. The fields:
 
 | Field | Purpose |
 |-------|---------|
@@ -47,60 +53,28 @@ Think of it like a relay race baton — except this one carries notes.
 | `artifacts` | References to produced outputs |
 | `acceptance` | Tests/checks that must pass |
 
----
+## How it moves
 
-## How It Works
+**Initialize** with a goal and a starting state. Inject it into each agent's prompt as markdown before the stage runs. After the stage, the agent returns a `baton_patch`: only the fields that changed. The merged baton feeds the next stage. Repeat until the workflow ends.
 
-### 1. Initialize
+That's the whole protocol. No message bus, no shared database, no framework.
 
-The baton starts with a goal and an initial state.
+## The choices that matter
 
-### 2. Inject
+`decision_log` is append-only. Earlier decisions never get erased, so a later agent can't quietly reverse them.
 
-Before each stage, the baton is injected into the agent's prompt as markdown.
+`current_state` is the opposite. Replaced on every patch, because it should read as true now, not as a diary.
 
-### 3. Patch
+Every patch is stamped with a stage ID and a timestamp. When the output is wrong, you can read exactly where the context bent.
 
-After executing, the agent returns a `baton_patch` — only the fields that changed get updated.
+At ~1,000 tokens, it always fits. The baton is the cheap part of the pipeline.
 
-### 4. Repeat
+## The honest limit
 
-The updated baton feeds into the next stage until the workflow completes.
+The baton carries context, not proof. It tells the next agent what happened and why. It does not tell you the work was any good. That is what `acceptance` and the artifacts themselves are for.
 
----
+No protocol makes a bad plan good. It just stops good context from getting lost.
 
-## Baton vs. Artifacts
+Use it when steps depend on each other, budgets are tight, and decisions have to hold across a chain.
 
-| | Baton | Artifacts |
-|---|---|---|
-| **Size** | ~1,000 tokens | 1k–100k+ tokens |
-| **Content** | Decisions, state, constraints | Actual code, plans, docs |
-| **Included** | Always | Selectively |
-| **Purpose** | *Why* and *what matters* | *What was produced* |
-
-The baton tells the next agent **what happened and why**. Artifacts are the actual work product.
-
----
-
-## Key Design Choices
-
-**Append-only decisions.** Earlier decisions are never erased. This prevents contradictions.
-
-**Replace semantics for state.** `current_state` is replaced each time — it reflects *current* truth, not history.
-
-**Budget-friendly.** At ~1,000 tokens, the baton always fits in context.
-
-**Full audit trail.** Every patch is recorded with timestamp and stage ID.
-
----
-
-## When to Use This
-
-The baton pattern works for any **multi-step AI pipeline** where:
-
-- Agents need context from previous steps
-- Token budgets are limited
-- Decisions must be consistent across stages
-- You need to trace how context evolved
-
-It's intentionally simple — just a JSON object with merge-patch updates.
+Small object. Merge-patch updates. One less way for a pipeline to lie to itself.

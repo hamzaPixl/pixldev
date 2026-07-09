@@ -1,86 +1,72 @@
 ---
 slug: "the-company-is-an-api-call"
+image: "/illustrations/blog/the-company-is-an-api-call.jpg"
 date: "2026-07-09"
 icon: Factory
 authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
 title: "Het bedrijf is een API-call"
-description: "Wat ik echt aan het bouwen ben is geen verzameling tools. Het is een bedrijvenfabriek: een platform waar het aanmaken van een bedrijf identiteit, context, geheugen, een AI-budget en een set smalle AI-services provisioneert — en waar het bedrijf daarna grotendeels door agents wordt uitgebaat."
+description: "Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando levert identiteit, context, geheugen, een AI-budget en diensten, en daarna runnen agents de zaak."
 category: "Visie"
 tags: ["AI-native bedrijf", "Agents", "Platform"]
-readTime: "6 min"
+readTime: "4 min"
 ---
 
-_Wat ik bouw is geen verzameling tools. Het is een bedrijvenfabriek. De demo waar ik naartoe werk is één commando: maak een bedrijf aan, en agents produceren het merk, de website, de SEO-audit en de eerste campagne — met elke euro verantwoord._
+_Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando maakt een bedrijf, en agents produceren het merk, de site, de SEO-audit, de eerste campagne. Elke euro verantwoord._
 
 ---
 
-## De reframe
+## De herkadering
 
-Twee jaar lang bouw ik al producten: een facturatieplatform voor Belgische kmo's, een compliance-monitor, een API voor Belgische bedrijfsdata, een AI-contentstudio, een knowledge engine. Elk nuttig. Elk grotendeels from scratch gebouwd. Elk implementeert dezelfde vijf dingen opnieuw.
+Twee jaar producten bouwen: facturatie voor Belgische kmo's, een compliance-monitor, een bedrijfsdata-API, een contentstudio, een knowledge engine. Elk nuttig. Elk vanaf nul gebouwd. Elk dezelfde vijf dingen opnieuw geïmplementeerd.
 
-Ergens rond de vierde herimplementatie van "brand identity" ben ik gestopt en heb ik het patroon een naam gegeven.
+Ergens rond de vierde keer dat ik "merkidentiteit" van nul herbouwde, stopte ik en gaf ik het patroon een naam.
 
-Wat ik bouw is geen verzameling tools. Het is een **bedrijvenfabriek** — een platform waar "een bedrijf aanmaken" een API-call is die identiteit, context, geheugen, een AI-budget en een set smalle AI-services provisioneert, en waar het bedrijf daarna grotendeels door agents wordt *uitgebaat*.
+Wat ik bouw is geen set tools. Het is een **bedrijfsfabriek**. "Maak een bedrijf" wordt een API-call die identiteit, context, geheugen, een AI-budget en een set smalle diensten levert. Het bedrijf wordt daarna, grotendeels, gerund door agents.
 
 Elk digitaal bedrijf heeft dezelfde vijf dingen nodig:
 
-1. **Identiteit** — wie bestaat: het bedrijf, zijn workspaces, zijn mensen, zijn agents, hun keys.
-2. **Context** — wat het bedrijf *is*: merk, tone of voice, aanbod, beperkingen. Gecureerd, klein, geversioneerd.
-3. **Geheugen** — wat het bedrijf *weet*: geschiedenis, documenten, beslissingen. Geaccumuleerd, groot, opgehaald.
-4. **Intelligentie** — modeltoegang met budgetten, routing en een echte ledger.
-5. **Capabilities** — smalle services die echt werk doen: een site genereren, SEO auditen, content produceren, een bedrijf opzoeken, een factuur versturen.
+→ **Identiteit** (wie er bestaat): het bedrijf, zijn mensen, zijn agents, hun keys.
+→ **Context** (wat het bedrijf is): merk, toon, aanbod. Klein, verzorgd, geversioneerd.
+→ **Geheugen** (wat het weet): geschiedenis, documenten, beslissingen. Groot, opgehaald.
+→ **Intelligentie**: modeltoegang met budgetten, routing en een echte ledger.
+→ **Capaciteiten**: diensten die het werk doen. Een site bouwen, SEO auditen, een factuur versturen.
 
-De producten die mensen zien — Feen, Syncco, de volgende venture — worden dunne, gebrande oppervlakken bovenop die services. Groeien betekent niet langer "de fundamenten opnieuw bouwen". Groei = bedrijven en services toevoegen.
-
----
+De producten die mensen zien (Feen, Syncco, de volgende) worden dunne, gebrande oppervlakken bovenop die diensten. Groeien betekent niet langer "opnieuw de fundamenten bouwen". Het betekent bedrijven en diensten toevoegen.
 
 ## De agent is een werknemer
 
-De meest AI-native beslissing in dit model is geen modelkeuze. Het is een keuze in het organogram.
+De meest AI-native beslissing hier is geen modelkeuze. Het is een keuze in het organogram.
 
-Agents zijn first-class actoren, geen anonieme automatisering. Een agent heeft een identity row zoals een mens die heeft. Hij houdt credentials bij. Hij heeft een budget. Hij roept dezelfde services aan via dezelfde contracten. Hij laat een auditeerbaar spoor achter.
+Een agent krijgt een identity row, net als een mens. Hij houdt credentials. Hij heeft een budget. Hij roept dezelfde diensten aan via dezelfde contracten, en laat een spoor na. Het organogram van het volgende bedrijf is letterlijk rijen in een database.
 
-Het organogram van het volgende bedrijf is letterlijk rijen in een database.
+Klinkt filosofisch tot je een saaie vraag stelt: welke agent gaf €4 uit, aan wiens campagne? In de meeste stacks is dat onbeantwoordbaar. Gedeelde key, kost begraven in een dashboard, niemand toegewezen. In de fabriek is het één query.
 
-Dat klinkt filosofisch tot je kijkt naar wat het oplost. Vandaag, wanneer een AI-feature draait, is de vraag "welke agent gaf €4 uit aan wiens campagne?" in de meeste stacks onbeantwoordbaar — de API-key wordt gedeeld, de kost zit in een providerdashboard, de actie wordt niet geattribueerd. In het fabrieksmodel is die vraag één query op één correlation id.
+En de agent raakt door zijn geld heen zoals een werknemer, in plaats van stilletjes de API-rekening leeg te trekken om 3 uur 's nachts. Budget op, de gateway zegt nee. Payroll voor software.
 
-En budgetten zijn niet langer een spreadsheet-angst. De agent *raakt door zijn geld heen zoals een werknemer*, in plaats van om 3 uur 's nachts stilletjes de API-account op te branden. Is het budget op, dan weigert de gateway de call. Payroll voor software.
+## Capaciteit eerst, UI op aanvraag
 
----
+Tweede regel: **minder UI, meer capaciteit.** De agent is de primaire gebruiker. Schermen zijn voor vertrouwen en intake, niet voor het werk.
 
-## Capability-first, UI-on-demand
+Elke dienst stelt zijn capaciteiten op dezelfde manier beschikbaar: over HTTP voor producten, over MCP voor agents. Definieer een capaciteit één keer; een webapp, een terminal en een agent loop roepen ze allemaal op dezelfde manier aan.
 
-De tweede doctrine: **reduceer UI, versterk capabilities.** De agent is de primaire gebruiker; schermen bestaan voor vertrouwen en intake, niet om te werken.
+Ik heb dit niet op een whiteboard bedacht. Ik vond het in mijn eigen vloot. Eén product was in stilte al de referentie-implementatie voordat het platform een naam had. Ik generaliseer, ik verzin niet.
 
-Elke service stelt zijn capabilities op dezelfde manier beschikbaar — zelfde envelope, zelfde auth, zelfde health check, zelfde error catalog — over HTTP voor producten, over MCP voor agents. Eén capability, één keer gedefinieerd als een schema plus een handler, identiek aanroepbaar door een webapp, een terminal of een agent loop.
-
-Ik heb dit patroon niet op een whiteboard ontworpen. Ik vond het in mijn eigen vloot. Bumpi, mijn contentstudio, werd gebouwd met een capability registry die elke capability automatisch beschikbaar stelt over HTTP, MCP en een agent loop — en dat bleek de referentie-implementatie van het hele platform te zijn nog voor het platform een naam had. Elk dragend patroon in de visie draait vandaag al ergens in productie. Ik ben aan het generaliseren, niet aan het uitvinden.
-
-De succesmetriek is bot: **het percentage features dat agent-aanroepbaar is.** Vandaag ligt dat cijfer over mijn hele vloot rond de 20%. Het doel is dat 100% zeggen saai wordt.
-
----
+De maatstaf is bot: het percentage features dat een agent kan aanroepen. Vandaag, over mijn hele vloot, ongeveer 20%. Het doel is om 100% saai te maken.
 
 ## De eerlijke stand van zaken
 
-Dit is een visiepost, dus hier is exact hoeveel ervan bestaat op 2026-07-09:
+Het is een visiestuk, dus hier de eerlijke versie. De diensten bestaan. De laag ertussen niet. De gateway die elke euro zou moeten meten bestaat amper, dus mijn budgetsysteem gelooft momenteel dat alles gratis is. Een mooi ding om te geloven. Een verschrikkelijk ding om te shippen.
 
-- **De services bestaan. De laag niet.** Ik heb gegrept: nul cross-service calls in productie. Brand is vier keer geherimplementeerd. Identiteit vier keer. De twee pijnen die het platform motiveren zijn gemeten feiten, geen theorie.
-- **De LLM-gateway — de spil — bestaat amper.** De enige echte gateway-code zit in een gearchiveerd project, als library, met `cost_usd=0.0` hardcoded. Mijn budgetsysteem gelooft momenteel dat alles gratis is.
-- **De beste engine wordt onderbenut.** Mijn knowledge service is het sterkste stuk van de vloot en er is bijna niets dat hem al consumeert.
-- **Twee producten bewijzen het model manueel.** Feen en Syncco werken — maar mensen hebben ze bedraad, service per service.
+Feen en Syncco bewijzen het model, maar mensen hebben ze bedraad, dienst per dienst. De volgende zou dat niet nodig mogen hebben.
 
-Het plan voor het kwartaal is strikt serieel, elk hoofdstuk gegated door een demo: een standaard service kit die "een capability" in één namiddag omzet in "een gedeployde, key-gated, agent-aanroepbare service"; dan identiteit en context als control plane; dan de bestaande services opnieuw in de mal gieten; dan de gateway met een echte ledger.
-
-De finale gate is de founding demo: `nuva co create testco` — en agents produceren het merk, de site, de SEO-audit en de eerste campagne, end-to-end, met nul cross-workspace leaks en een kost per artefact die afleesbaar is uit de ledger.
-
----
+De demo waar ik naartoe bouw is één regel: `nuva co create testco`. Agents produceren het merk, de site, de SEO-audit, de eerste campagne. Van begin tot eind. Kost-per-artefact leesbaar uit de ledger.
 
 ## Het punt
 
-Feen en Syncco bewijzen het model manueel. Het volgende bedrijf wordt vanaf dag één op het platform geboren.
+Feen en Syncco bewijzen het model met de hand. Het volgende bedrijf wordt vanaf dag één op het platform geboren.
 
-Dat is de hele visie. Geen grotere modellen, geen extra prompts — een fabriek waar identiteit, context, geheugen, intelligentie en capabilities geprovisioneerd worden zoals infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
+Geen grotere modellen. Niet meer prompts. Een fabriek waar identiteit, context, geheugen, intelligentie en capaciteiten geleverd worden als infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
 
 Het bedrijf is een API-call. De rest is operations.

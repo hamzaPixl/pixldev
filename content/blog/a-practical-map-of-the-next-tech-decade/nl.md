@@ -1,197 +1,93 @@
 ---
 slug: "a-practical-map-of-the-next-tech-decade"
+image: "/illustrations/blog/a-practical-map-of-the-next-tech-decade.jpg"
 date: "2026-04-08"
 icon: Network
 authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
-title: "Een praktische kaart van het volgende technologische decennium"
-description: "Een samenvattend overzicht van het volgende technologische decennium: van systemen en Knowledge OS tot fijn-afgestelde lokale modellen, robotica en belichaamde producten, met referenties naar de eerdere artikels uit de reeks."
+title: "Een praktische kaart van het volgende tech-decennium"
+description: "Mijn kijk op wat volgt: van tools naar systemen, van prompting naar getrainde specialisatie, en uiteindelijk naar robots. Een weddenschap, geen voorspelling."
 category: "Visie"
 tags: ["Volgend decennium", "AI-systemen", "Robotica"]
-readTime: "10 min"
+readTime: "3 min"
 ---
 
-Dit artikel is de samenvattende laag bovenop de vorige vier:
+_Geen decennium rond één model. Een decennium rond systemen die weten, beslissen, uitvoeren, verbeteren, en uiteindelijk handelen in de wereld._
 
-- [AI draait niet om modellen. Het draait om systemen.](/blog/ai-is-not-about-models-its-about-systems)
-- [De technische stack achter mijn AI-projecten: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
-- [Fijn-afgestelde lokale modellen zijn de volgende laag](/blog/fine-tuned-local-models-are-the-next-layer)
-- [Robotica is waar agentische systemen echt worden](/blog/robotics-is-where-agentic-systems-become-real)
+---
 
-Samen beschrijven ze de richting die volgens mij het belangrijkst wordt voor het volgende technologische decennium.
+Dit is de samenvattende laag bovenop vier eerdere artikels:
 
-Geen decennium dat rond één model draait.
-Geen decennium dat rond één appcategorie draait.
+→ [AI draait niet om modellen. Het draait om systemen.](/blog/ai-is-not-about-models-its-about-systems)
+→ [Onder de motorkap: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+→ [Fijn-afgestelde lokale modellen zijn de volgende laag](/blog/fine-tuned-local-models-are-the-next-layer)
+→ [Robotica is waar agentische systemen echt worden](/blog/robotics-is-where-agentic-systems-become-real)
 
-Maar een decennium dat draait rond systemen die kunnen:
+Samen wijzen ze één kant op. Geen decennium gebouwd op één model. Geen decennium gebouwd op één appcategorie. Een decennium gebouwd op systemen die kunnen weten, beslissen, uitvoeren, verbeteren, en uiteindelijk handelen in de fysieke wereld.
 
-- weten
-- beslissen
-- uitvoeren
-- verbeteren
-- en uiteindelijk handelen in de fysieke wereld
+Hier is de kaart, samengedrukt.
 
-Dit is de kortste manier waarop ik die kaart kan samenvatten.
+## Van tools naar systemen
 
-## Stap 1: we bewegen van tools naar systemen
+AI zal verkocht blijven worden als modelreleases, benchmarks en demo's. De duurzame waarde zit ergens stiller: het systeem rond het model. Context. Regels. Uitvoering. Validatie.
 
-De eerste verschuiving is conceptueel.
+Dat is de minimale bedrading voor betrouwbaarheid. Het model is niet langer de eenheid. **Het besturingssysteem eromheen** wel.
 
-AI zal nog lang besproken worden via modelreleases, benchmarks en productdemo's. Maar duurzame waarde zal niet komen uit geïsoleerde modeltoegang. Ze zal komen uit systeemontwerp.
+## Doen en weten zijn twee jobs
 
-Dat was het kernpunt van het eerste artikel.
+Zodra AI een systeemprobleem wordt, wordt de splitsing duidelijk. Eén laag duwt het werk vooruit. Eén laag houdt de juiste context beschikbaar.
 
-De belangrijke eenheid is niet langer alleen het model.
+Ik noem ze de **harness** en de Knowledge OS. De harness plant, genereert, evalueert, gate. De Knowledge OS neemt in, haalt op, relateert, compileert.
 
-Het is het besturingssysteem rond het model:
+Uitvoering zonder geheugen blijft oppervlakkig. Geheugen zonder uitvoering is een archiefkast.
 
-- context
-- regels
-- uitvoering
-- validatie
+## Prompting raakt op
 
-Dat is de minimale structuur die nodig is voor betrouwbaarheid.
+Prompting blijft nuttig. Het stopt gewoon met de hele architectuur te zijn.
 
-## Stap 2: uitvoering en geheugen worden first-class lagen
+Een smalle taak die duizend keer terugkomt, hoort niet thuis in steeds langere prompt-scaffolding. De volgende serieuze laag is **specialisatie via training**: kleinere lokale modellen, smalle rollen, lagere latency, minder prompt-overhead.
 
-Zodra je aanvaardt dat AI een systeemprobleem is, wordt de architectuur helderder.
+Niet om redeneren te vervangen. Om redeneren te bewaren voor waar het echt nodig is, en de rest te stabiliseren.
 
-Je hebt één laag nodig die verantwoordelijk is voor het vooruitduwen van werk.
-Je hebt een andere laag nodig die de juiste context beschikbaar maakt.
+## Zelfverbetering, zonder de mystiek
 
-Daarom splits ik de stack op in:
+"Zelfverbeterende systemen" wordt te los gebruikt. Wat ik bedoel is saai en praktisch: uitvoering levert bewijs op, en het systeem leert daaruit.
 
-- een **harness** voor uitvoering
-- een **Knowledge OS** voor gestructureerd geheugen
+Wat herhaaldelijk faalde. Wat te veel prompting vroeg. Wat een regel moet worden, trainingsdata, of de job van een gespecialiseerd model. **Verbeter de architectuur rond repetitief werk**, en het systeem verbetert mee.
 
-De harness plant, genereert, evalueert en gate.
-De Knowledge OS neemt in, haalt op, relateert en compileert.
+## Dan krijgt het een lichaam
 
-Die splitsing is belangrijk omdat uitvoering zonder geheugen oppervlakkig blijft, en geheugen zonder uitvoering passief blijft.
+Als die vier standhouden, verlaat intelligentie de schermen. Dat is robotica.
 
-## Stap 3: prompting is niet langer genoeg
+Geen apart veld. Dezelfde stack, doorgetrokken in de fysieke wereld. Zodra een systeem kan redeneren, onthouden, evalueren, specialiseren en verbeteren, schrijft de volgende vraag zichzelf: wat gebeurt er als het een lichaam krijgt?
 
-Prompting blijft nuttig, maar daar eindigt de langetermijnarchitectuur niet.
+Niet humanoid eerst. De markt wordt gebouwd via robotarmen, drones, mobiele inspectie-eenheden, educatieve robots, smalle industriële machines. Humanoids worden misschien cultureel belangrijk. Nuttige belichaming komt in vele vormen.
 
-Naarmate systemen volwassener worden, mogen repetitieve smalle taken niet opgesloten blijven in steeds grotere prompt-scaffolding.
+## De lagen, op volgorde
 
-Daarom is de volgende serieuze laag specialisatie via training:
+| Laag | Wat het oplost |
+|---|---|
+| AI-systemen | Kennis, regels, uitvoering, validatie verbinden |
+| Harness + Knowledge OS | Doen van weten scheiden |
+| Fijn-afgestelde lokale modellen | Smalle repetitieve taken stabiliseren |
+| Zelfverbeterende lussen | Leren uit echte uitvoeringsdata |
+| Robotica | Intelligentie uitbreiden naar fysieke actie |
 
-- kleinere lokale modellen
-- smalle verantwoordelijkheden
-- lagere latency
-- minder prompt-overhead
-- sterkere operationele alignment
+Vijf lagen. Elke laag maakt de volgende mogelijk.
 
-Het gaat niet om het vervangen van redeneren.
+De impact blijft niet in software. Ze verspreidt zich naar diensten, operations, logistiek, veiligheid, onderwijs, industrie, fysieke assistentie. Het volgende decennium gaat niet over betere chatinterfaces. Het gaat over de convergentie van AI, training, uitvoeringssystemen, open source, goedkopere hardware en belichaamde deployment.
 
-Het gaat erom redeneren te reserveren voor de plaatsen waar het echt nodig is, en al de rest te stabiliseren.
+## De mens stapt niet uit
 
-## Stap 4: zelfverbetering wordt operationeel
+Ik lees dit niet als een verhaal over het weghalen van mensen. Op korte termijn geven deze systemen ons tijd, focus en uitvoeringskracht terug.
 
-De uitdrukking "zelfverbeterende systemen" wordt vaak te vaag gebruikt.
+Mensen kiezen nog altijd de richting. Mensen beslissen nog altijd wat belangrijk is. Mensen leggen nog altijd het verband tussen capaciteit en betekenis.
 
-Wat mij interesseert is geen abstracte reflectie.
+Nu het eerlijke deel: dit is een weddenschap, geen voorspelling. Ik beschrijf de richting die ik bouw, geen tijdlijn die ik kan bewijzen. De eerste lagen heb ik geleverd. Het lichaam blijft theorie.
 
-Wat mij interesseert is uitvoering die bewijs oplevert.
+Eén zin voor het decennium: van modellen naar systemen, van systemen naar betrouwbare specialisatie, van specialisatie naar belichaamde intelligentie.
 
-Uit dat bewijs kan het systeem leren:
-
-- wat herhaaldelijk faalde
-- wat te veel prompting vereiste
-- wat een regel moet worden
-- wat trainingsdata moet worden
-- wat aan een gespecialiseerd model moet worden toegewezen
-
-Dat is de praktische lus.
-
-Verbeter het systeem door de architectuur rond repetitief werk te verbeteren.
-
-## Stap 5: de stack breidt uit naar robotica
-
-Als de eerste vier stappen werken, dan blijft intelligentie niet langer opgesloten in schermen.
-
-Daar komt robotica binnen.
-
-Ik zie robotica niet als een apart veld los van agentische systemen. Ik zie het als de voortzetting van dezelfde stack in de fysieke wereld.
-
-Zodra een systeem kan redeneren, onthouden, evalueren, specialiseren en verbeteren, wordt de volgende vraag vanzelfsprekend:
-
-> wat gebeurt er wanneer het een lichaam krijgt?
-
-Dat lichaam hoeft in het begin niet humanoid te zijn.
-
-In de praktijk zal een groot deel van de markt gebouwd worden via:
-
-- robotarmen
-- drones
-- mobiele inspectie-eenheden
-- educatieve robots
-- smalle industriële machines
-
-Humanoids kunnen cultureel belangrijk worden, maar nuttige belichaming zal via veel vormen arriveren.
-
-## Een decennium gestructureerd in lagen
-
-Als ik de hele these tot een eenvoudig schema samendruk, ziet het er zo uit:
-
-| Laag | Wat het oplost | Waarom het belangrijk is |
-|---|---|---|
-| AI-systemen | Kennis, regels, uitvoering en validatie verbinden | Zet AI om in operationele structuur |
-| Harness + Knowledge OS | Doen van weten scheiden | Maakt uitvoering en geheugen betrouwbaar |
-| Fijn-afgestelde lokale modellen | Smalle repetitieve taken stabiliseren | Vermindert promptafhankelijkheid |
-| Zelfverbeterende lussen | Leren uit echte uitvoeringsdata | Verhoogt betrouwbaarheid in de tijd |
-| Robotica | Intelligentie uitbreiden naar fysieke actie | Zet softwarecapaciteit om in producten en diensten |
-
-Dit is de architectuur die volgens mij het meest zal tellen.
-
-## Waar producten en diensten naartoe bewegen
-
-De productimpact van deze verschuiving zal niet binnen softwarecategorieën blijven.
-
-Ze zal zich verspreiden naar diensten, operations, logistiek, veiligheid, onderwijs, industrie en fysieke assistentie.
-
-Dat betekent dat het volgende decennium niet alleen over betere chatinterfaces gaat.
-
-Het gaat over de convergentie van:
-
-- AI
-- training
-- uitvoeringssystemen
-- open-source-ecosystemen
-- goedkopere hardware
-- belichaamde deployment
-
-Die combinatie creëert nieuwe productcategorieën.
-
-## De menselijke rol verdwijnt niet
-
-Een reden waarom deze richting mij interesseert, is dat ik ze niet zie als een verhaal van menselijke verwijdering.
-
-Op korte termijn helpen deze systemen mensen om tijd, focus, creativiteit en uitvoeringskracht terug te winnen.
-
-Mensen kiezen nog altijd de richting.
-Mensen beslissen nog altijd wat belangrijk is.
-Mensen doen nog altijd de finale matching tussen capaciteit en betekenis.
-
-Het systeem maakt het makkelijker om verbeelding in structuur om te zetten.
-Dan wordt structuur uitvoering.
-Dan wordt uitvoering service.
-
-Dat is een veel interessanter pad dan louter automatiseringstheater.
-
-## Slotgedachte
-
-Als ik het volgende technologische decennium tot één zin zou moeten reduceren, dan is het deze:
-
-we bewegen van modellen naar systemen, van systemen naar betrouwbare specialisatie, en van betrouwbare specialisatie naar belichaamde intelligentie.
-
-Dat is de sequentie.
-
-Eerst leert het systeem weten.
-Dan leert het doen.
-Dan leert het verbeteren.
-Dan begint het te handelen in de echte wereld.
+Eerst leert het weten. Dan doen. Dan verbeteren. Dan handelen.
 
 Daar denk ik dat het echte decennium naartoe gaat.

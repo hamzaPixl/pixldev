@@ -8,98 +8,72 @@ authors:
   - name: "Sanawar Syed Azor Ali"
     linkedin: "https://www.linkedin.com/in/sanawar-syed/"
 title: "Le Baton Pattern"
-description: "Un protocole de transmission léger pour les pipelines IA multi-agents. Un petit objet JSON qui transporte le contexte entre les étapes."
+description: "Un petit objet JSON qui transporte décisions et contraintes entre les étapes d'un pipeline IA multi-agents."
 category: "Ingénierie"
 tags: ["Agents IA", "Design Patterns", "Orchestration"]
-readTime: "5 min"
+readTime: "2 min"
 ---
 
-## Le Problème
-
-Quand plusieurs agents IA travaillent ensemble dans un pipeline — l'un planifie, l'autre construit, un autre vérifie — ils ont besoin du contexte des étapes précédentes. Mais :
-
-- Transmettre tous les artefacts (code, docs) entre chaque étape **coûte trop de tokens**
-- Même avec les artefacts complets, les agents manquent le *pourquoi* — les décisions et contraintes derrière le travail
-
-Sans un mécanisme de transmission structuré, les agents répètent le travail ou contredisent des décisions antérieures.
+_Trois agents dans un pipeline doivent savoir ce que les autres ont décidé. Le baton est leur façon de l'apprendre, sans se renvoyer le travail._
 
 ---
 
-## La Solution
+## Le problème
 
-Le **baton** est un petit objet JSON (~1 000 tokens) qui voyage entre les étapes. Chaque agent le lit avant de commencer et le met à jour quand il a terminé.
+Mettez trois agents dans un pipeline. L'un planifie, l'autre construit, un autre vérifie. Chacun doit savoir ce que les autres ont fait.
 
-Pensez-y comme un témoin de course de relais — sauf que celui-ci porte des notes.
+Pas la transcription complète. L'essentiel : ce qui est décidé, ce qui est figé, ce qui reste ouvert.
 
----
+Deux façons de rater ça.
 
-## Structure
+→ Vous transmettez tous les artefacts entre les étapes, et vous **brûlez des tokens** sur du contexte que personne ne relit.
+→ Vous ne transmettez rien de structuré, et l'agent suivant rate le _pourquoi_ : les décisions, les contraintes, les raisons derrière le travail.
+
+Alors les agents répètent le travail. Ou pire : ils contredisent une décision prise deux étapes plus tôt, et personne ne le remarque avant la mise en prod.
+
+## Le baton
+
+La solution est petite. Un objet JSON, environ 1 000 tokens, qui voyage avec le travail.
+
+Chaque agent le lit avant de commencer. Le met à jour quand il a fini. Le passe au suivant.
+
+C'est un témoin de relais qui a pris des notes.
+
+Assez petit pour toujours l'envoyer. Assez structuré pour valoir la lecture. Les champs :
 
 | Champ | Objectif |
 |-------|----------|
 | `goal` | Objectif en une phrase |
 | `current_state` | Ce qui est vrai maintenant |
 | `decision_log` | Décisions prises (ajout uniquement) |
-| `constraints` | Règles à respecter |
+| `constraints` | Règles strictes à respecter |
 | `open_questions` | Questions non résolues |
 | `work_scope` | Fichiers/modules concernés |
 | `artifacts` | Références aux sorties produites |
 | `acceptance` | Tests/vérifications à passer |
 
----
+## Comment il circule
 
-## Comment ça marche
+**Initialiser** avec un objectif et un état de départ. L'injecter en markdown dans le prompt de chaque agent avant l'étape. Après l'étape, l'agent retourne un `baton_patch` : seuls les champs modifiés. Le baton fusionné alimente l'étape suivante. Répéter jusqu'à la fin du workflow.
 
-### 1. Initialiser
+Voilà tout le protocole. Pas de bus de messages, pas de base partagée, pas de framework.
 
-Le baton commence avec un objectif et un état initial.
+## Les choix qui comptent
 
-### 2. Injecter
+`decision_log` est en ajout uniquement. Les décisions antérieures ne sont jamais effacées, donc un agent plus tardif ne peut pas les inverser en douce.
 
-Avant chaque étape, le baton est injecté dans le prompt de l'agent en markdown.
+`current_state` est l'inverse. Remplacé à chaque patch, parce qu'il doit se lire comme vrai maintenant, pas comme un journal intime.
 
-### 3. Patcher
+Chaque patch est estampillé avec un identifiant d'étape et un horodatage. Quand la sortie est fausse, vous lisez exactement où le contexte a dévié.
 
-Après exécution, l'agent retourne un `baton_patch` — seuls les champs modifiés sont mis à jour.
+À ~1 000 tokens, il tient toujours. Le baton est la partie bon marché du pipeline.
 
-### 4. Répéter
+## La limite honnête
 
-Le baton mis à jour alimente l'étape suivante jusqu'à la fin du workflow.
+Le baton transporte du contexte, pas des preuves. Il dit à l'agent suivant ce qui s'est passé et pourquoi. Il ne dit pas que le travail était bon. C'est le rôle d'`acceptance` et des artefacts eux-mêmes.
 
----
+Aucun protocole ne rend bon un mauvais plan. Il empêche juste un bon contexte de se perdre.
 
-## Baton vs. Artefacts
+Utilisez-le quand les étapes dépendent les unes des autres, que les budgets sont serrés, et que les décisions doivent tenir sur toute la chaîne.
 
-| | Baton | Artefacts |
-|---|---|---|
-| **Taille** | ~1 000 tokens | 1k–100k+ tokens |
-| **Contenu** | Décisions, état, contraintes | Code, plans, docs |
-| **Inclus** | Toujours | Sélectivement |
-| **Objectif** | *Pourquoi* et *ce qui compte* | *Ce qui a été produit* |
-
-Le baton dit à l'agent suivant **ce qui s'est passé et pourquoi**. Les artefacts sont le produit du travail.
-
----
-
-## Choix de Conception
-
-**Décisions en ajout uniquement.** Les décisions antérieures ne sont jamais effacées. Cela évite les contradictions.
-
-**Remplacement pour l'état.** `current_state` est remplacé à chaque fois — il reflète la vérité *actuelle*, pas l'historique.
-
-**Économe en tokens.** À ~1 000 tokens, le baton tient toujours dans le contexte.
-
-**Traçabilité complète.** Chaque patch est enregistré avec un horodatage et un identifiant d'étape.
-
----
-
-## Quand l'utiliser
-
-Le baton pattern fonctionne pour tout **pipeline IA multi-étapes** où :
-
-- Les agents ont besoin du contexte des étapes précédentes
-- Les budgets de tokens sont limités
-- Les décisions doivent être cohérentes entre les étapes
-- Vous devez tracer l'évolution du contexte
-
-C'est volontairement simple — juste un objet JSON avec des mises à jour merge-patch.
+Petit objet. Mises à jour merge-patch. Une façon de moins pour un pipeline de se mentir à lui-même.

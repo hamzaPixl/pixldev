@@ -33,9 +33,9 @@ export const blogPosts: BlogPostData[] = [
       nl: "Elk beeld op deze site komt uit één bestand",
     },
     description: {
-      en: "How every illustration here — blog heroes, product panels, OG cards — is generated from a single manifest, and the honest mistake I made on the first pass.",
-      fr: "Comment chaque illustration ici — heros de blog, panels produits, cartes OG — est générée depuis un seul manifest, et l'erreur honnête que j'ai faite au premier essai.",
-      nl: "Hoe elke illustratie hier — blogheroes, productpanelen, OG-kaarten — gegenereerd wordt uit één manifest, en de eerlijke fout die ik bij de eerste poging maakte.",
+      en: "Every illustration here is generated from one manifest. The spec, the pipeline, and the honest mistake I made on the first pass.",
+      fr: "Chaque illustration ici est générée depuis un seul manifest. La spec, le pipeline, et l'erreur honnête du premier essai.",
+      nl: "Elke illustratie hier wordt gegenereerd uit één manifest. De spec, de pipeline, en de eerlijke fout van de eerste poging.",
     },
     category: {
       en: "Engineering",
@@ -43,9 +43,9 @@ export const blogPosts: BlogPostData[] = [
       nl: "Engineering",
     },
     readTime: {
-      en: "6 min",
-      fr: "6 min",
-      nl: "6 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["Build in Public","Design Systems","Image Generation"],
@@ -54,17 +54,19 @@ export const blogPosts: BlogPostData[] = [
     },
     content: {
       en: `
-Every website gives itself away with its images. Either it leans on stock photos everyone has already seen, or it reaches for the current default: a glowing gradient blob, an "AI brain", a circuit board. You scroll past all of it without registering a thing.
-
-I wanted the opposite. Every image on this site — the hero behind each blog post, the panel on each product page, the card that shows up when someone shares a link — should feel like it came from the same studio, in one house style, in the Pixl green. And I wanted to be able to change all of them by editing text, not by opening a design tool.
-
-So the images here are not picked. They are generated, from one file.
+_Every image on this site is generated from one file. Here's the manifest, the pipeline, and the mistake I made on the first pass._
 
 ---
 
-## The manifest is the source of truth
+Every website gives itself away with its images. Stock everyone has already seen, or the current default: a glowing gradient blob, an "AI brain", a circuit board. You scroll past without registering a thing.
 
-There is a single file, \`illustrations/manifest.mjs\`. It holds one spec per image and nothing else:
+I wanted the opposite. Every image here should look like it came from one studio, in one house style, in the Pixl green. And I wanted to change all of them by editing text, not by opening a design tool.
+
+So the images here are not picked. They are generated, from one file.
+
+## One file, one signature
+
+\`illustrations/manifest.mjs\`. One spec per image, nothing else:
 
 \`\`\`js
 {
@@ -80,15 +82,13 @@ There is a single file, \`illustrations/manifest.mjs\`. It holds one spec per im
 }
 \`\`\`
 
-Above the specs sits one shared \`STYLE_BASE\`: the house style appended to every prompt. Near-black background, one accent light with soft bloom and motion blur, film grain, a faint pixel grid, photographic light. The \`concept\` changes per image. The signature never does.
+Above the specs sits one shared \`STYLE_BASE\`, appended to every prompt: near-black background, one accent light with soft bloom, film grain, a faint pixel grid. The \`concept\` changes per image. The signature never does.
 
-That is the whole trick. The **subject** varies so the set has range; the **treatment** is constant so it reads as one brand.
-
----
+That is the whole trick. The **subject** varies so the set has range. The treatment stays constant so it reads as one brand.
 
 ## The pipeline is one call
 
-A small script, \`generate.mjs\`, walks the manifest and sends each prompt to [OpenRouter](https://openrouter.ai) with the image modality turned on:
+\`generate.mjs\` walks the manifest and sends each prompt to [OpenRouter](https://openrouter.ai) with the image modality on:
 
 \`\`\`js
 const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -103,82 +103,52 @@ const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
 const url = data.choices[0].message.images[0].image_url.url; // data: URI
 \`\`\`
 
-The image comes back as a base64 data URI. The script decodes it and writes \`public/illustrations/<kind>/<id>.jpg\`. A fallback model kicks in if the primary returns no image. That is the entire generator: read a spec, ask for an image, save it.
+The image comes back as a base64 data URI. The script decodes it and writes \`public/illustrations/<kind>/<id>.jpg\`. A fallback model kicks in if the primary returns nothing. Read a spec, ask for an image, save it.
 
-One command regenerates everything: \`node illustrations/generate.mjs\`. Add ids to do just a few. Set \`FORCE=1\` to redo what already exists.
+One command **regenerates** everything: \`node illustrations/generate.mjs\`.
 
----
+## The mistake
 
-## The mistake on the first pass
+The honest part, because this is build-in-public and the first version was wrong.
 
-Here is the honest part, because this is a build-in-public blog and the first version was wrong.
+My initial \`STYLE_BASE\` ended with a wall of bans: abstract only, no humans, no robots, no brains, no circuit-board clichés. I was so busy dodging the AI-slop defaults that I **banned** every recognizable subject along with them.
 
-My initial \`STYLE_BASE\` ended with a long list of bans: *abstract and conceptual, no humans, no literal robots, no brains, no circuit-board clichés.* I was so busy avoiding the AI-slop defaults that I banned every recognizable subject along with them.
+The result: sixteen images that were all on-brand and completely interchangeable. Green light trails. Green geometric modules. Green nodes on a grid. Every post looked like the same screensaver. On-brand, and forgettable.
 
-The result: sixteen images that were all technically on-brand and completely interchangeable. Green light trails. Green geometric modules. Green nodes on a grid. Every post looked like the same screensaver. On-brand, and forgettable.
+The lesson landed when I looked at what actually stops people in 2026. Not AI-polished abstraction. Human, editorial, recognizable subjects. A face. A pair of hands. An object you know. My all-abstract set was exactly the homogenized look people have learned to scroll past.
 
-The lesson landed when I looked at what actually stops people in 2026. The reference imagery I admire, and the trend reports agree, all point the same way: away from AI-polished abstraction, toward **human-centred, editorial, recognizable** subjects. A face. A pair of hands. An object you know. My all-abstract set was precisely the homogenized look people have learned to ignore.
-
----
-
-## The fix: one archetype per post
-
-I deleted the "abstract only" ban and rebuilt the direction around a small set of **archetypes**. Each post picks the one that fits its idea, and depicts a real, recognizable subject in it, always under the Pixl signature.
-
-| Post | Archetype | Subject |
-|---|---|---|
-| I Changed My Mind (Three Times) | portrait | one face in three motion-blur exposures |
-| Simulating My WhatsApp Group | portraits | five profiles mid-conversation |
-| The Company Is an API Call | hand + object | a finger pressing one key, a factory lighting up |
-| The Baton Pattern | hands + object | two hands passing a glowing baton |
-| A Practical Map of the Decade | landscape | ridgelines of green light, each brighter |
-| Robotics… | object | a robotic hand touching a real surface |
-| AI Is About Systems | architecture | one small core in a vast engine room |
-
-Same file. Same pipeline. I only changed the words in the \`concept\` field, lifted the ban, and ran the command again. Sixteen forgettable blobs became sixteen images you can actually describe to someone.
-
----
-
-## Wiring it in, once
-
-Generating the image is half the job. The other half is making it show up everywhere without manual work.
-
-For a blog post, I add one line to the front matter:
-
-\`\`\`yaml
-image: "/illustrations/blog/every-image-from-one-manifest.jpg"
-\`\`\`
-
-That single path fills the card in the index, the hero at the top of the post, the panel on the shareable OG card, and the \`image\` field in the post's structured data. For products, the same path washes the header on the product page and sits in the bento grid on the home page. Write the path once, and every surface picks it up.
-
-The last step is weight. The model returns files around 1.4 MB. Nothing on the site is shown wider than about 800 pixels, so a second script downscales to 1600 px and recompresses. The images drop to roughly 120–240 KB with no visible loss.
-
----
+So I deleted the ban and gave each post one archetype: a portrait, a pair of hands, an object, a room. A real subject, under the same signature. Same file, same pipeline. I changed the words in the \`concept\` field and ran the command again. Sixteen forgettable blobs became sixteen images you can describe to someone.
 
 ## Why bother
 
-Because the alternative is buying stock, or hand-making forty images and hand-making them again the day the brand green shifts. With a manifest, the visual system is text. It is diffable, reviewable, and regenerable. A new post needs one spec and one command. A palette change is a find-and-replace.
+The alternative is buying stock, or hand-making forty images and hand-making them again the day the brand green shifts.
 
-The image at the top of this post came out of the same file as everything else here. That is the whole point: the images are not the product. The system that makes them is.
+With a manifest, the visual system is **text**. Diffable, reviewable, regenerable. A new post needs one spec and one line in its front matter: \`image: "/illustrations/blog/…jpg"\`. That path fills the index card, the hero, the OG card, and the structured data. A palette change is a find-and-replace.
+
+The image at the top of this post came out of the same file as everything else here. Which means the day I hate the Pixl green, I get to ruin all of it at once.
+
+That is the point. The images are not the product. The system that makes them is.
 `.trim(),
       fr: `
-Chaque site web se trahit par ses images. Soit il s'appuie sur des photos de stock que tout le monde a déjà vues, soit il cède au réflexe du moment : une bulle en dégradé lumineux, un « cerveau IA », un circuit imprimé. On scrolle sans rien retenir.
+_Chaque image de ce site est générée depuis un seul fichier. Voici le manifest, le pipeline, et l'erreur du premier essai._
 
-Je voulais l'inverse. Chaque image de ce site — le hero derrière chaque article, le panel de chaque page produit, la carte qui apparaît quand on partage un lien — devait avoir l'air de sortir du même studio, dans un seul style maison, dans le vert Pixl. Et je voulais pouvoir toutes les changer en éditant du texte, pas en ouvrant un outil de design.
+---
+
+Chaque site web se trahit par ses images. Du stock que tout le monde a déjà vu, ou le réflexe du moment : une bulle en dégradé lumineux, un « cerveau IA », un circuit imprimé. On scrolle sans rien retenir.
+
+Je voulais l'inverse. Chaque image ici devait avoir l'air de sortir du même studio, dans un seul style maison, dans le vert Pixl. Et je voulais toutes les changer en éditant du texte, pas en ouvrant un outil de design.
 
 Alors les images ici ne sont pas choisies. Elles sont générées, depuis un seul fichier.
 
----
+## Un fichier, une signature
 
-## Le manifest est la source de vérité
-
-Il existe un seul fichier, \`illustrations/manifest.mjs\`. Il contient une spec par image, et rien d'autre :
+\`illustrations/manifest.mjs\`. Une spec par image, rien d'autre :
 
 \`\`\`js
 {
   id: "the-baton-pattern",
   kind: "blog",          // blog | product
-  accent: "#30CB77",     // l'unique couleur de lumière
+  accent: "#30CB77",     // the one light colour
   aspect: "16:9",
   archetype: "hands+object",
   concept:
@@ -188,15 +158,13 @@ Il existe un seul fichier, \`illustrations/manifest.mjs\`. Il contient une spec 
 }
 \`\`\`
 
-Au-dessus des specs, un \`STYLE_BASE\` partagé : le style maison ajouté à chaque prompt. Fond quasi-noir, une seule lumière d'accent avec bloom doux et flou de mouvement, grain de film, une fine grille de pixels, lumière photographique. Le \`concept\` change pour chaque image. La signature, jamais.
+Au-dessus des specs, un \`STYLE_BASE\` partagé, ajouté à chaque prompt : fond quasi-noir, une seule lumière d'accent avec bloom doux, grain de film, une fine grille de pixels. Le \`concept\` change pour chaque image. La signature, jamais.
 
-C'est toute l'astuce. Le **sujet** varie pour que le set ait de la variété ; le **traitement** reste constant pour que ça se lise comme une seule marque.
-
----
+C'est toute l'astuce. Le **sujet** varie pour que le set ait de la variété. Le traitement reste constant pour que ça se lise comme une seule marque.
 
 ## Le pipeline tient en un appel
 
-Un petit script, \`generate.mjs\`, parcourt le manifest et envoie chaque prompt à [OpenRouter](https://openrouter.ai) avec la modalité image activée :
+\`generate.mjs\` parcourt le manifest et envoie chaque prompt à [OpenRouter](https://openrouter.ai) avec la modalité image activée :
 
 \`\`\`js
 const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -211,82 +179,52 @@ const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
 const url = data.choices[0].message.images[0].image_url.url; // data: URI
 \`\`\`
 
-L'image revient sous forme de data URI en base64. Le script la décode et écrit \`public/illustrations/<kind>/<id>.jpg\`. Un modèle de secours prend le relais si le principal ne renvoie pas d'image. C'est tout le générateur : lire une spec, demander une image, la sauvegarder.
+L'image revient en data URI base64. Le script la décode et écrit \`public/illustrations/<kind>/<id>.jpg\`. Un modèle de secours prend le relais si le principal ne renvoie rien. Lire une spec, demander une image, la sauvegarder.
 
-Une commande régénère tout : \`node illustrations/generate.mjs\`. On ajoute des ids pour n'en faire que quelques-unes. On met \`FORCE=1\` pour refaire ce qui existe déjà.
+Une commande **régénère** tout : \`node illustrations/generate.mjs\`.
 
----
+## L'erreur
 
-## L'erreur du premier essai
+La partie honnête, parce que c'est un blog build-in-public et que la première version était ratée.
 
-Voici la partie honnête, parce que c'est un blog build-in-public et que la première version était ratée.
+Mon \`STYLE_BASE\` initial finissait par un mur d'interdits : abstrait seulement, pas d'humains, pas de robots, pas de cerveaux, pas de clichés de circuit imprimé. À force d'esquiver les réflexes d'AI-slop, j'ai **interdit** tous les sujets reconnaissables avec eux.
 
-Mon \`STYLE_BASE\` initial finissait par une longue liste d'interdits : *abstrait et conceptuel, pas d'humains, pas de robots littéraux, pas de cerveaux, pas de clichés de circuit imprimé.* À force d'éviter les réflexes d'AI-slop, j'ai interdit tous les sujets reconnaissables en même temps.
+Le résultat : seize images toutes on-brand et totalement interchangeables. Traînées de lumière verte. Modules géométriques verts. Nœuds verts sur une grille. Chaque article ressemblait au même économiseur d'écran. On-brand, et oubliable.
 
-Le résultat : seize images techniquement on-brand et totalement interchangeables. Traînées de lumière verte. Modules géométriques verts. Nœuds verts sur une grille. Chaque article ressemblait au même économiseur d'écran. On-brand, et oubliable.
+La leçon a frappé quand j'ai regardé ce qui arrête vraiment les gens en 2026. Pas l'abstraction polie par l'IA. Des sujets humains, éditoriaux, reconnaissables. Un visage. Une paire de mains. Un objet qu'on connaît. Mon set tout-abstrait était exactement le look homogène que les gens ont appris à dépasser au scroll.
 
-La leçon a frappé quand j'ai regardé ce qui arrête vraiment les gens en 2026. Les références que j'admire, et les rapports de tendances le confirment, pointent toutes dans la même direction : loin de l'abstraction polie par l'IA, vers des sujets **humains, éditoriaux, reconnaissables**. Un visage. Une paire de mains. Un objet qu'on connaît. Mon set tout-abstrait était précisément le look homogène que les gens ont appris à ignorer.
-
----
-
-## La correction : un archétype par article
-
-J'ai supprimé l'interdit « abstract only » et reconstruit la direction autour d'un petit ensemble d'**archétypes**. Chaque article choisit celui qui colle à son idée, et y montre un sujet réel et reconnaissable, toujours sous la signature Pixl.
-
-| Article | Archétype | Sujet |
-|---|---|---|
-| J'ai changé d'avis (trois fois) | portrait | un visage en trois expositions floues |
-| Simuler mon groupe WhatsApp | portraits | cinq profils en pleine conversation |
-| L'entreprise est un appel d'API | main + objet | un doigt sur une touche, une usine s'allume |
-| Le Baton Pattern | mains + objet | deux mains passant un témoin lumineux |
-| Une carte pratique de la décennie | paysage | des crêtes de lumière verte, de plus en plus vives |
-| La robotique… | objet | une main robotique touchant une vraie surface |
-| L'IA, c'est des systèmes | architecture | un petit cœur dans une immense salle des machines |
-
-Même fichier. Même pipeline. J'ai seulement changé les mots du champ \`concept\`, levé l'interdit, et relancé la commande. Seize bulles oubliables sont devenues seize images qu'on peut réellement décrire à quelqu'un.
-
----
-
-## Le câblage, une seule fois
-
-Générer l'image, c'est la moitié du travail. L'autre moitié, c'est la faire apparaître partout sans effort manuel.
-
-Pour un article, j'ajoute une ligne au front matter :
-
-\`\`\`yaml
-image: "/illustrations/blog/every-image-from-one-manifest.jpg"
-\`\`\`
-
-Ce seul chemin remplit la carte dans l'index, le hero en haut de l'article, le panel de la carte OG partageable, et le champ \`image\` des données structurées de l'article. Pour les produits, le même chemin lave le header de la page produit et se pose dans le bento de la page d'accueil. On écrit le chemin une fois, et chaque surface le reprend.
-
-Dernière étape : le poids. Le modèle renvoie des fichiers d'environ 1,4 Mo. Rien sur le site n'est affiché plus large qu'environ 800 pixels, donc un second script réduit à 1600 px et recompresse. Les images tombent à environ 120–240 Ko sans perte visible.
-
----
+Alors j'ai supprimé l'interdit et donné à chaque article un archétype : un portrait, une paire de mains, un objet, une pièce. Un vrai sujet, sous la même signature. Même fichier, même pipeline. J'ai changé les mots du champ \`concept\` et relancé la commande. Seize bulles oubliables sont devenues seize images qu'on peut décrire à quelqu'un.
 
 ## Pourquoi se donner cette peine
 
-Parce que l'alternative, c'est acheter du stock, ou fabriquer quarante images à la main puis les refaire le jour où le vert de la marque change. Avec un manifest, le système visuel est du texte. Il est diffable, relisable, régénérable. Un nouvel article demande une spec et une commande. Un changement de palette est un chercher-remplacer.
+L'alternative, c'est acheter du stock, ou fabriquer quarante images à la main puis les refaire le jour où le vert de la marque change.
 
-L'image en haut de cet article est sortie du même fichier que tout le reste ici. C'est tout le propos : les images ne sont pas le produit. Le système qui les fabrique, oui.
+Avec un manifest, le système visuel est du **texte**. Diffable, relisable, régénérable. Un nouvel article demande une spec et une ligne dans son front matter : \`image: "/illustrations/blog/…jpg"\`. Ce chemin remplit la carte de l'index, le hero, la carte OG et les données structurées. Un changement de palette est un chercher-remplacer.
+
+L'image en haut de cet article est sortie du même fichier que tout le reste ici. Ce qui veut dire que le jour où je déteste le vert Pixl, je peux tout saccager d'un coup.
+
+C'est ça, le propos. Les images ne sont pas le produit. Le système qui les fabrique, oui.
 `.trim(),
       nl: `
-Elke website verraadt zichzelf met haar beelden. Ze leunt op stockfoto's die iedereen al gezien heeft, of ze grijpt naar het reflex van het moment: een glanzende gradient-blob, een "AI-brein", een printplaat. Je scrolt eraan voorbij zonder iets te onthouden.
-
-Ik wilde het omgekeerde. Elk beeld op deze site — de hero achter elk artikel, het paneel op elke productpagina, de kaart die verschijnt wanneer iemand een link deelt — moest aanvoelen alsof het uit dezelfde studio kwam, in één huisstijl, in het Pixl-groen. En ik wilde ze allemaal kunnen wijzigen door tekst aan te passen, niet door een designtool te openen.
-
-Dus de beelden hier zijn niet gekozen. Ze worden gegenereerd, uit één bestand.
+_Elk beeld op deze site wordt gegenereerd uit één bestand. Hier zijn het manifest, de pipeline, en de fout van de eerste poging._
 
 ---
 
-## Het manifest is de bron van waarheid
+Elke website verraadt zichzelf met haar beelden. Stock die iedereen al gezien heeft, of het reflex van het moment: een glanzende gradient-blob, een "AI-brein", een printplaat. Je scrolt eraan voorbij zonder iets te onthouden.
 
-Er is één bestand, \`illustrations/manifest.mjs\`. Het bevat één spec per beeld, en niets anders:
+Ik wilde het omgekeerde. Elk beeld hier moest aanvoelen alsof het uit dezelfde studio kwam, in één huisstijl, in het Pixl-groen. En ik wilde ze allemaal kunnen wijzigen door tekst aan te passen, niet door een designtool te openen.
+
+Dus de beelden hier zijn niet gekozen. Ze worden gegenereerd, uit één bestand.
+
+## Eén bestand, één signatuur
+
+\`illustrations/manifest.mjs\`. Eén spec per beeld, niets anders:
 
 \`\`\`js
 {
   id: "the-baton-pattern",
   kind: "blog",          // blog | product
-  accent: "#30CB77",     // de enige lichtkleur
+  accent: "#30CB77",     // the one light colour
   aspect: "16:9",
   archetype: "hands+object",
   concept:
@@ -296,15 +234,13 @@ Er is één bestand, \`illustrations/manifest.mjs\`. Het bevat één spec per be
 }
 \`\`\`
 
-Boven de specs staat één gedeelde \`STYLE_BASE\`: de huisstijl die aan elke prompt wordt toegevoegd. Bijna-zwarte achtergrond, één accentlicht met zachte bloom en bewegingsonscherpte, filmkorrel, een vaag pixelraster, fotografisch licht. Het \`concept\` verandert per beeld. De signatuur nooit.
+Boven de specs staat één gedeelde \`STYLE_BASE\`, toegevoegd aan elke prompt: bijna-zwarte achtergrond, één accentlicht met zachte bloom, filmkorrel, een vaag pixelraster. Het \`concept\` verandert per beeld. De signatuur nooit.
 
-Dat is de hele truc. Het **onderwerp** varieert zodat de set variatie heeft; de **behandeling** blijft constant zodat het als één merk leest.
-
----
+Dat is de hele truc. Het **onderwerp** varieert zodat de set variatie heeft. De behandeling blijft constant zodat het als één merk leest.
 
 ## De pipeline is één call
 
-Een klein script, \`generate.mjs\`, doorloopt het manifest en stuurt elke prompt naar [OpenRouter](https://openrouter.ai) met de beeldmodaliteit aan:
+\`generate.mjs\` doorloopt het manifest en stuurt elke prompt naar [OpenRouter](https://openrouter.ai) met de beeldmodaliteit aan:
 
 \`\`\`js
 const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -319,63 +255,31 @@ const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
 const url = data.choices[0].message.images[0].image_url.url; // data: URI
 \`\`\`
 
-Het beeld komt terug als een base64 data-URI. Het script decodeert het en schrijft \`public/illustrations/<kind>/<id>.jpg\`. Een terugvalmodel springt in als het hoofdmodel geen beeld teruggeeft. Dat is de hele generator: lees een spec, vraag een beeld, sla het op.
+Het beeld komt terug als een base64 data-URI. Het script decodeert het en schrijft \`public/illustrations/<kind>/<id>.jpg\`. Een terugvalmodel springt in als het hoofdmodel niets teruggeeft. Lees een spec, vraag een beeld, sla het op.
 
-Eén commando genereert alles opnieuw: \`node illustrations/generate.mjs\`. Voeg ids toe om er maar een paar te doen. Zet \`FORCE=1\` om wat al bestaat opnieuw te maken.
+Eén commando **genereert** alles opnieuw: \`node illustrations/generate.mjs\`.
 
----
+## De fout
 
-## De fout bij de eerste poging
+Het eerlijke deel, want dit is een build-in-public blog en de eerste versie was fout.
 
-Hier komt het eerlijke deel, want dit is een build-in-public blog en de eerste versie was fout.
+Mijn eerste \`STYLE_BASE\` eindigde met een muur van verboden: alleen abstract, geen mensen, geen robots, geen breinen, geen printplaat-clichés. Ik was zo bezig met het ontwijken van de AI-slop-standaarden dat ik meteen elk herkenbaar onderwerp mee **verbood**.
 
-Mijn eerste \`STYLE_BASE\` eindigde met een lange lijst verboden: *abstract en conceptueel, geen mensen, geen letterlijke robots, geen breinen, geen printplaat-clichés.* Ik was zo bezig met het vermijden van de AI-slop-standaarden dat ik meteen elk herkenbaar onderwerp mee verbood.
+Het resultaat: zestien beelden die allemaal on-brand en volledig inwisselbaar waren. Groene lichtsporen. Groene geometrische modules. Groene knopen op een raster. Elk artikel leek op dezelfde screensaver. On-brand, en vergeetbaar.
 
-Het resultaat: zestien beelden die technisch on-brand en volledig inwisselbaar waren. Groene lichtsporen. Groene geometrische modules. Groene knopen op een raster. Elk artikel leek op dezelfde screensaver. On-brand, en vergeetbaar.
+De les landde toen ik keek naar wat mensen in 2026 echt doet stoppen. Niet AI-gepolijste abstractie. Mensgerichte, redactionele, herkenbare onderwerpen. Een gezicht. Een paar handen. Een object dat je kent. Mijn volledig abstracte set was precies de gehomogeniseerde look die mensen geleerd hebben voorbij te scrollen.
 
-De les landde toen ik keek naar wat mensen in 2026 echt doet stoppen. De referentiebeelden die ik bewonder, en de trendrapporten bevestigen het, wijzen allemaal dezelfde kant op: weg van AI-gepolijste abstractie, richting **mensgerichte, redactionele, herkenbare** onderwerpen. Een gezicht. Een paar handen. Een object dat je kent. Mijn volledig abstracte set was precies de gehomogeniseerde look die mensen geleerd hebben te negeren.
-
----
-
-## De oplossing: één archetype per artikel
-
-Ik schrapte het "abstract only"-verbod en herbouwde de richting rond een kleine set **archetypes**. Elk artikel kiest degene die bij zijn idee past, en toont daarin een echt, herkenbaar onderwerp, altijd onder de Pixl-signatuur.
-
-| Artikel | Archetype | Onderwerp |
-|---|---|---|
-| Ik ben drie keer van gedachten veranderd | portret | één gezicht in drie bewegingsonscherpe belichtingen |
-| Mijn WhatsApp-groep simuleren | portretten | vijf profielen midden in een gesprek |
-| Het bedrijf is een API-call | hand + object | een vinger op één toets, een fabriek licht op |
-| Het Baton Pattern | handen + object | twee handen die een lichtgevend stokje doorgeven |
-| Een praktische kaart van het decennium | landschap | bergkammen van groen licht, telkens feller |
-| Robotica… | object | een robothand die een echt oppervlak raakt |
-| AI gaat over systemen | architectuur | één kleine kern in een enorme machinekamer |
-
-Zelfde bestand. Zelfde pipeline. Ik veranderde alleen de woorden in het veld \`concept\`, hief het verbod op, en draaide het commando opnieuw. Zestien vergeetbare blobs werden zestien beelden die je echt aan iemand kunt beschrijven.
-
----
-
-## Het bedraden, één keer
-
-Het beeld genereren is de helft van het werk. De andere helft is het overal laten verschijnen zonder handwerk.
-
-Voor een artikel voeg ik één regel toe aan de front matter:
-
-\`\`\`yaml
-image: "/illustrations/blog/every-image-from-one-manifest.jpg"
-\`\`\`
-
-Dat ene pad vult de kaart in de index, de hero bovenaan het artikel, het paneel op de deelbare OG-kaart, en het \`image\`-veld in de gestructureerde data van het artikel. Voor producten wast hetzelfde pad de header op de productpagina en zit het in het bento-raster op de homepage. Schrijf het pad één keer, en elk oppervlak pikt het op.
-
-De laatste stap is gewicht. Het model geeft bestanden terug van ongeveer 1,4 MB. Niets op de site wordt breder dan ongeveer 800 pixels getoond, dus een tweede script schaalt terug naar 1600 px en hercomprimeert. De beelden zakken naar zo'n 120–240 KB zonder zichtbaar verlies.
-
----
+Dus ik schrapte het verbod en gaf elk artikel één archetype: een portret, een paar handen, een object, een kamer. Een echt onderwerp, onder dezelfde signatuur. Zelfde bestand, zelfde pipeline. Ik veranderde de woorden in het veld \`concept\` en draaide het commando opnieuw. Zestien vergeetbare blobs werden zestien beelden die je aan iemand kunt beschrijven.
 
 ## Waarom de moeite
 
-Omdat het alternatief is: stock kopen, of veertig beelden met de hand maken en ze opnieuw maken de dag dat het merkgroen verschuift. Met een manifest is het visuele systeem tekst. Het is diffbaar, reviewbaar, hergenereerbaar. Een nieuw artikel vraagt één spec en één commando. Een paletwijziging is een zoek-en-vervang.
+Het alternatief is stock kopen, of veertig beelden met de hand maken en ze opnieuw maken de dag dat het merkgroen verschuift.
 
-Het beeld bovenaan dit artikel kwam uit hetzelfde bestand als al de rest hier. Dat is het hele punt: de beelden zijn niet het product. Het systeem dat ze maakt, wel.
+Met een manifest is het visuele systeem **tekst**. Diffbaar, reviewbaar, hergenereerbaar. Een nieuw artikel vraagt één spec en één regel in zijn front matter: \`image: "/illustrations/blog/…jpg"\`. Dat pad vult de indexkaart, de hero, de OG-kaart en de gestructureerde data. Een paletwijziging is een zoek-en-vervang.
+
+Het beeld bovenaan dit artikel kwam uit hetzelfde bestand als al de rest hier. Wat betekent dat de dag dat ik het Pixl-groen beu ben, ik alles in één keer kan verpesten.
+
+Dat is het punt. De beelden zijn niet het product. Het systeem dat ze maakt, wel.
 `.trim(),
     },
   },
@@ -391,9 +295,9 @@ Het beeld bovenaan dit artikel kwam uit hetzelfde bestand als al de rest hier. D
       nl: "Ik ben van gedacht veranderd (drie keer)",
     },
     description: {
-      en: "In April I published a vision series about harnesses, Knowledge OS, local models, and robotics. Three months later, half of it is revised and two threads are gone. Here's the honest diff — and what survived every pivot.",
-      fr: "En avril, j'ai publié une série de vision sur les harness, le Knowledge OS, les modèles locaux et la robotique. Trois mois plus tard, la moitié est révisée et deux fils ont disparu. Voici le diff honnête — et ce qui a survécu à chaque pivot.",
-      nl: "In april publiceerde ik een visiereeks over harnesses, Knowledge OS, lokale modellen en robotica. Drie maanden later is de helft herzien en zijn twee draden verdwenen. Dit is de eerlijke diff — en wat elke pivot overleefde.",
+      en: "In April I published a vision series. Three months later, half of it is revised and two threads are gone. Here's the honest diff, and what survived every pivot.",
+      fr: "En avril, j'ai publié une série de vision. Trois mois plus tard, la moitié est révisée et deux fils ont disparu. Voici le diff honnête, et ce qui a survécu à chaque pivot.",
+      nl: "In april publiceerde ik een visiereeks. Drie maanden later is de helft herzien en zijn twee draden verdwenen. Dit is de eerlijke diff, en wat elke pivot overleefde.",
     },
     category: {
       en: "Vision",
@@ -401,9 +305,9 @@ Het beeld bovenaan dit artikel kwam uit hetzelfde bestand als al de rest hier. D
       nl: "Visie",
     },
     readTime: {
-      en: "6 min",
-      fr: "6 min",
-      nl: "6 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["AI Systems","Build In Public","Retrospective"],
@@ -416,61 +320,53 @@ _In April I published a series about the next tech decade. Three months later I 
 
 ---
 
-## Why write this at all
+## Why write this
 
-Most vision essays never get audited. You publish the big picture, the future arrives slightly different, and nobody re-reads the old post — least of all the author.
+Most vision essays never get audited. You publish the big picture, the future arrives slightly different, and nobody re-reads the old post. The author least of all.
 
-I re-read mine. Then I had my own tooling verify what my repos actually do today, and I wrote the new vision against that ground truth. It turns out my thinking has gone through three distinct eras, and the newest documents name them explicitly. So let me do the uncomfortable thing and diff them in public.
+I re-read mine. Then I had my own tooling verify what my repos actually do today, and wrote the new vision against that ground truth. My thinking turned out to have three distinct eras. So let me do the uncomfortable thing and diff them in public.
 
----
+## Era 1: two layers
 
-## Era 1: the two-layer thesis
+The one I blogged about: **the harness helps the system do, the Knowledge OS helps the system know.**
 
-The first era was the one I blogged about: **the harness helps the system do, the Knowledge OS helps the system know.**
-
-Two layers. An execution harness that drives agents through work with gates and reviews, and a knowledge layer that structures memory and context. That framing carried a lot: it's why my knowledge engine exists, it's why my agent tooling exists, and it's still the cleanest way I know to explain why "just prompt it better" doesn't scale.
+An execution harness that drives agents through work with gates and reviews. A knowledge layer that structures memory and context. That framing carried a lot. It's why my knowledge engine exists, why my agent tooling exists, and still the cleanest way I know to explain why "just prompt it better" doesn't scale.
 
 ## Era 2: the unified OS
 
-The second era — this spring — tried to unify everything. One monorepo, one system, subsystems folded into a single operating layer. The April architecture put the pieces under one roof: \`pixl-os\` with subsystems inside.
+This spring, I tried to unify everything. One monorepo, one system, subsystems folded under a single roof: \`pixl-os\`.
 
-It felt elegant. It was also the era that produced my most expensive habit: beautiful contracts, sprints of scaffolding — and then a pivot orphans it. I now have an archived platform with 1,500 tests to prove it.
+It felt elegant. It was also my most expensive habit: beautiful contracts, sprints of scaffolding, then a pivot orphans it. I now have an archived platform with 1,500 tests to prove it.
 
 ## Era 3: the company factory
 
-The third era is where I am now: no unified OS, no monorepo. **Services over HTTP.** Small narrow services, each deployable alone, each exposing capabilities the same way, composed by a control plane that provisions companies. The vision post about it is its own essay; the short version is that "creating a company" becomes an API call and agents operate most of it.
+Where I am now. No unified OS, no monorepo. **Services over HTTP.** Small narrow services, each deployable alone, each exposing capabilities the same way, composed by a control plane that provisions companies. "Creating a company" becomes an API call, and agents operate most of it.
 
 The April monorepo direction is dead. I'm saying it plainly because I recommended it in writing three months ago.
 
----
-
 ## What I dropped
 
-**The harness as a product.** Abandoned, for now. This one hurts — it was the star of the two-layer era. But the harness *pattern* survived: its core idea, the gate where execution pauses for a decision, generalized into the job contract every service now shares. A job can be \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\`. That \`input-required\` state — a service pausing to ask a human or an agent for a decision — is the harness gate, promoted from a product feature to a network protocol. The product died; the idea got a bigger job.
+**The harness as a product.** Abandoned, for now. This one hurts. But the harness *pattern* survived. The gate where execution pauses for a decision generalized into the job contract every service now shares: \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\`. That \`input-required\` state is the harness gate, promoted from a product feature to a network protocol. The product died. The idea got a bigger job.
 
-**The Knowledge OS as an OS.** Demoted, deliberately. In April, knowledge was the second pillar of everything. In the new model, memory is *a capability like the others* — consumed through the same interface as "generate a site" or "look up a company." What replaced the pillar is a sharper distinction I wish I'd made a year earlier: **context** is curated, small, versioned — what the company *is*. **Memory** is accumulated, large, retrieved — what the company *knows*. Conflating them is why every RAG demo feels smart and behaves drunk.
+**The Knowledge OS as an OS.** Demoted, deliberately. Memory is now a capability like the others, consumed through the same interface as "generate a site." What replaced the pillar is a distinction I wish I'd made a year earlier. **Context** is curated, small, versioned: what the company *is*. **Memory** is accumulated, large, retrieved: what the company *knows*. Conflating them is why every RAG demo feels smart and behaves drunk.
 
-**Robotics.** Gone from the working vision. Not because I stopped believing the April essay — I still think embodiment is where agentic systems get real, and the funding numbers this year agree. It's gone because nothing in my current stack consumes it, and I've adopted a rule that has no exceptions: no consumer, no build.
+**Robotics.** Gone from the working vision. I still think embodiment is where agentic systems get real, and this year's funding numbers agree. It's gone because nothing in my stack consumes it, and I have a rule with no exceptions: no consumer, no build.
 
-**Local and fine-tuned models.** Same fate, with one honest nuance: "local" survives as a routing target in the gateway design, one provider among several. But the thesis that specialized local models are *the next layer*? Not one line of my current platform depends on it. The idea isn't wrong. It's just not mine to build this year.
+**Local models.** Same fate. "Local" survives as a routing target in the gateway, one provider among several. But the thesis that specialized local models are *the next layer*? Not one line of my platform depends on it. The idea isn't wrong. It's just not mine to build this year.
 
----
+## What survived
 
-## What survived every pivot
+Three things made it through all three eras, which probably means they're the actual beliefs:
 
-Three things made it through all three eras intact, which probably means they're the actual beliefs:
-
-1. **The ownership boundaries.** Knowledge knows. The engine does. Services are capabilities. The shell is thin. Every era redrew the boxes; the boundaries between them never moved.
-2. **Contract-first.** No integration without a shared contract. The envelope, the error catalog, the health check, the versioned schema — the boring paperwork is the only reason three eras of pivots didn't produce rubble.
-3. **Reliability comes from system structure, not bigger prompts.** The oldest claim on this blog, and the one every new model release re-confirms. Better models raise the floor. Structure holds up the ceiling.
-
----
+→ **Ownership boundaries.** Knowledge knows. The engine does. Services are capabilities. The shell is thin. Every era redrew the boxes. The boundaries never moved.
+→ **Contract-first.** No integration without a shared contract. The envelope, the error catalog, the health check, the versioned schema. The boring paperwork is the only reason three eras of pivots didn't produce rubble.
+→ **Reliability comes from structure, not bigger prompts.** The oldest claim on this blog. Better models raise the floor. Structure holds up the ceiling.
 
 ## The meta-lesson
 
-Publishing the April series is what made this post cheap to write. The vision was versioned, in public, in my own words — so revising it is a diff, not an identity crisis.
+Publishing the April series is what made this post cheap to write. The vision was versioned, in public, in my own words. Revising it is a diff, not an identity crisis.
 
-My failure mode was never bad code. It was a new deep artifact mid-quarter — a beautiful spec seducing me away from the thing with paying users. Naming the eras is how I catch it now: when I feel era four coming, I'll ask what it consumes, who pays for it, and which demo gates it.
+My failure mode was never bad code. It was a beautiful new spec mid-quarter, seducing me away from the thing with paying users. Naming the eras is how I catch it: when I feel era four coming, I'll ask what it consumes, who pays for it, and which demo gates it.
 
 Strong opinions, versioned. That's the whole method.
 `.trim(),
@@ -479,61 +375,53 @@ _En avril, j'ai publié une série sur la prochaine décennie technologique. Tro
 
 ---
 
-## Pourquoi écrire ça, au fond
+## Pourquoi écrire ça
 
-La plupart des essais de vision ne sont jamais audités. On publie la grande image, le futur arrive légèrement différent, et personne ne relit l'ancien article — l'auteur moins que quiconque.
+La plupart des essais de vision ne sont jamais audités. On publie la grande image, le futur arrive un peu différent, et personne ne relit le vieil article. L'auteur encore moins que les autres.
 
-J'ai relu le mien. Puis j'ai fait vérifier par mon propre tooling ce que mes repos font réellement aujourd'hui, et j'ai écrit la nouvelle vision contre cette réalité de terrain. Il s'avère que ma pensée a traversé trois ères distinctes, et les documents les plus récents les nomment explicitement. Alors faisons la chose inconfortable : le diff, en public.
+J'ai relu le mien. Puis j'ai fait vérifier par mon propre tooling ce que mes repos font vraiment aujourd'hui, et j'ai écrit la nouvelle vision contre cette réalité de terrain. Ma pensée s'est révélée avoir trois ères distinctes. Alors faisons la chose inconfortable : le diff, en public.
 
----
+## Ère 1 : deux couches
 
-## Ère 1 : la thèse des deux couches
+Celle du blog : **le harness aide le système à faire, le Knowledge OS l'aide à savoir.**
 
-La première ère est celle du blog : **le harness aide le système à faire, le Knowledge OS l'aide à savoir.**
-
-Deux couches. Un harness d'exécution qui conduit les agents à travers le travail avec des gates et des reviews, et une couche de connaissance qui structure la mémoire et le contexte. Ce cadrage a porté beaucoup : c'est pour ça que mon moteur de connaissance existe, c'est pour ça que mon tooling d'agents existe, et c'est toujours la façon la plus propre que je connaisse d'expliquer pourquoi "prompte mieux" ne scale pas.
+Un harness d'exécution qui conduit les agents à travers le travail avec des gates et des reviews. Une couche de connaissance qui structure la mémoire et le contexte. Ce cadrage a beaucoup porté. C'est pour ça que mon moteur de connaissance existe, pour ça que mon tooling d'agents existe, et c'est toujours la façon la plus propre que je connaisse d'expliquer pourquoi "prompte mieux" ne scale pas.
 
 ## Ère 2 : l'OS unifié
 
-La deuxième ère — ce printemps — a essayé de tout unifier. Un monorepo, un système, des sous-systèmes repliés dans une seule couche opérante. L'architecture d'avril mettait toutes les pièces sous un même toit : \`pixl-os\` avec les sous-systèmes à l'intérieur.
+Ce printemps, j'ai essayé de tout unifier. Un monorepo, un système, des sous-systèmes repliés sous un seul toit : \`pixl-os\`.
 
-C'était élégant. C'était aussi l'ère qui a produit mon habitude la plus coûteuse : de beaux contrats, des sprints de scaffolding — puis un pivot qui rend le tout orphelin. J'ai maintenant une plateforme archivée avec 1 500 tests pour le prouver.
+C'était élégant. C'était aussi mon habitude la plus coûteuse : de beaux contrats, des sprints de scaffolding, puis un pivot qui rend le tout orphelin. J'ai maintenant une plateforme archivée avec 1 500 tests pour le prouver.
 
 ## Ère 3 : l'usine à entreprises
 
-La troisième ère est celle où je suis maintenant : pas d'OS unifié, pas de monorepo. **Des services en HTTP.** De petits services étroits, chacun déployable seul, chacun exposant ses capabilities de la même façon, composés par un control plane qui provisionne des entreprises. L'article de vision à ce sujet est un essai à part ; la version courte, c'est que "créer une entreprise" devient un appel d'API et que des agents en opèrent l'essentiel.
+Là où je suis maintenant. Pas d'OS unifié, pas de monorepo. **Des services en HTTP.** De petits services étroits, chacun déployable seul, chacun exposant ses capabilities de la même façon, composés par un control plane qui provisionne des entreprises. "Créer une entreprise" devient un appel d'API, et des agents en opèrent l'essentiel.
 
-La direction monorepo d'avril est morte. Je le dis sans détour parce que je l'ai recommandée par écrit il y a trois mois.
-
----
+La direction monorepo d'avril est morte. Je le dis sans détour, parce que je l'ai recommandée par écrit il y a trois mois.
 
 ## Ce que j'ai abandonné
 
-**Le harness comme produit.** Abandonné, pour l'instant. Celui-là fait mal — c'était la star de l'ère des deux couches. Mais le *pattern* du harness a survécu : son idée centrale, le gate où l'exécution se met en pause pour une décision, s'est généralisée dans le contrat de job que tous les services partagent désormais. Un job peut être \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\`. Cet état \`input-required\` — un service qui se met en pause pour demander une décision à un humain ou à un agent — c'est le gate du harness, promu de fonctionnalité produit à protocole réseau. Le produit est mort ; l'idée a décroché un poste plus important.
+**Le harness comme produit.** Abandonné, pour l'instant. Celui-là fait mal. Mais le *pattern* du harness a survécu. Le gate où l'exécution se met en pause pour une décision s'est généralisé dans le contrat de job que tous les services partagent désormais : \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\`. Cet état \`input-required\`, c'est le gate du harness, promu de fonctionnalité produit à protocole réseau. Le produit est mort. L'idée a décroché un poste plus important.
 
-**Le Knowledge OS comme OS.** Rétrogradé, délibérément. En avril, la connaissance était le second pilier de tout. Dans le nouveau modèle, la mémoire est *une capability comme les autres* — consommée via la même interface que "générer un site" ou "chercher une entreprise". Ce qui a remplacé le pilier, c'est une distinction plus tranchante que j'aurais aimé faire un an plus tôt : le **contexte** est curé, petit, versionné — ce que l'entreprise *est*. La **mémoire** est accumulée, volumineuse, retrouvée — ce que l'entreprise *sait*. Les confondre, c'est la raison pour laquelle chaque démo RAG a l'air intelligente et se comporte comme si elle avait bu.
+**Le Knowledge OS comme OS.** Rétrogradé, délibérément. La mémoire est maintenant une capability comme les autres, consommée via la même interface que "générer un site". Ce qui a remplacé le pilier, c'est une distinction que j'aurais aimé faire un an plus tôt. Le **contexte** est curé, petit, versionné : ce que l'entreprise *est*. La **mémoire** est accumulée, volumineuse, retrouvée : ce que l'entreprise *sait*. Les confondre, c'est pourquoi chaque démo RAG a l'air intelligente et se comporte comme si elle avait bu.
 
-**La robotique.** Disparue de la vision de travail. Pas parce que j'ai cessé de croire à l'essai d'avril — je pense toujours que l'incarnation est l'endroit où les systèmes agentiques deviennent réels, et les chiffres de financement de cette année sont d'accord. Elle a disparu parce que rien dans ma stack actuelle ne la consomme, et que j'ai adopté une règle sans aucune exception : pas de consommateur, pas de build.
+**La robotique.** Disparue de la vision de travail. Je pense toujours que l'incarnation est l'endroit où les systèmes agentiques deviennent réels, et les chiffres de financement de cette année sont d'accord. Elle a disparu parce que rien dans ma stack ne la consomme, et j'ai une règle sans aucune exception : pas de consommateur, pas de build.
 
-**Les modèles locaux et fine-tunés.** Même sort, avec une nuance honnête : le "local" survit comme cible de routing dans le design de la gateway, un provider parmi d'autres. Mais la thèse selon laquelle les modèles locaux spécialisés sont *la couche suivante* ? Pas une ligne de ma plateforme actuelle n'en dépend. L'idée n'est pas fausse. C'est juste pas à moi de la construire cette année.
+**Les modèles locaux.** Même sort. Le "local" survit comme cible de routing dans la gateway, un provider parmi d'autres. Mais la thèse selon laquelle les modèles locaux spécialisés sont *la couche suivante* ? Pas une ligne de ma plateforme n'en dépend. L'idée n'est pas fausse. C'est juste pas à moi de la construire cette année.
 
----
+## Ce qui a survécu
 
-## Ce qui a survécu à chaque pivot
+Trois choses ont traversé les trois ères, ce qui signifie probablement que ce sont les vraies convictions :
 
-Trois choses ont traversé les trois ères intactes, ce qui signifie probablement que ce sont les vraies convictions :
-
-1. **Les frontières de responsabilité.** La connaissance sait. Le moteur fait. Les services sont des capabilities. Le shell est fin. Chaque ère a redessiné les boîtes ; les frontières entre elles n'ont jamais bougé.
-2. **Contract-first.** Pas d'intégration sans contrat partagé. L'enveloppe, le catalogue d'erreurs, le health check, le schéma versionné — cette paperasse ennuyeuse est la seule raison pour laquelle trois ères de pivots n'ont pas produit des gravats.
-3. **La fiabilité vient de la structure du système, pas de prompts plus gros.** La plus vieille affirmation de ce blog, et celle que chaque nouvelle sortie de modèle re-confirme. De meilleurs modèles relèvent le plancher. La structure tient le plafond.
-
----
+→ **Les frontières de responsabilité.** La connaissance sait. Le moteur fait. Les services sont des capabilities. Le shell est fin. Chaque ère a redessiné les boîtes. Les frontières n'ont jamais bougé.
+→ **Contract-first.** Pas d'intégration sans contrat partagé. L'enveloppe, le catalogue d'erreurs, le health check, le schéma versionné. Cette paperasse ennuyeuse est la seule raison pour laquelle trois ères de pivots n'ont pas produit des gravats.
+→ **La fiabilité vient de la structure, pas de prompts plus gros.** La plus vieille affirmation de ce blog. De meilleurs modèles relèvent le plancher. La structure tient le plafond.
 
 ## La méta-leçon
 
-C'est la publication de la série d'avril qui a rendu cet article peu coûteux à écrire. La vision était versionnée, en public, dans mes propres mots — la réviser est donc un diff, pas une crise d'identité.
+C'est la publication de la série d'avril qui a rendu cet article peu coûteux à écrire. La vision était versionnée, en public, dans mes propres mots. La réviser est un diff, pas une crise d'identité.
 
-Mon mode d'échec n'a jamais été le mauvais code. C'était un nouvel artefact profond en plein trimestre — une belle spec qui me détourne de la chose avec des utilisateurs payants. Nommer les ères, c'est comme ça que je l'attrape maintenant : quand je sentirai l'ère quatre arriver, je demanderai ce qu'elle consomme, qui la paie, et quelle démo la conditionne.
+Mon mode d'échec n'a jamais été le mauvais code. C'était une belle spec en plein trimestre, qui me détourne de la chose avec des utilisateurs payants. Nommer les ères, c'est comme ça que je l'attrape : quand je sentirai l'ère quatre arriver, je demanderai ce qu'elle consomme, qui la paie, et quelle démo la conditionne.
 
 Des opinions fortes, versionnées. C'est toute la méthode.
 `.trim(),
@@ -542,61 +430,53 @@ _In april publiceerde ik een reeks over het volgende technologische decennium. D
 
 ---
 
-## Waarom dit überhaupt schrijven
+## Waarom dit schrijven
 
-De meeste visie-essays worden nooit geauditeerd. Je publiceert het grote plaatje, de toekomst arriveert net iets anders, en niemand herleest de oude post — de auteur nog het minst van al.
+De meeste visie-essays worden nooit geauditeerd. Je publiceert het grote plaatje, de toekomst arriveert net iets anders, en niemand herleest de oude post. De auteur nog het minst van al.
 
-Ik herlas de mijne. Daarna liet ik mijn eigen tooling verifiëren wat mijn repos vandaag echt doen, en schreef ik de nieuwe visie tegen die ground truth. Blijkt dat mijn denken door drie duidelijk verschillende tijdperken is gegaan, en de nieuwste documenten benoemen ze expliciet. Dus laat me het ongemakkelijke doen en ze publiek diffen.
+Ik herlas de mijne. Daarna liet ik mijn eigen tooling verifiëren wat mijn repos vandaag echt doen, en schreef ik de nieuwe visie tegen die ground truth. Mijn denken bleek door drie duidelijk verschillende tijdperken te zijn gegaan. Dus laat me het ongemakkelijke doen en ze publiek diffen.
 
----
+## Tijdperk 1: twee lagen
 
-## Tijdperk 1: de tweelagenthese
+Het tijdperk waarover ik blogde: **de harness helpt het systeem doen, de Knowledge OS helpt het systeem weten.**
 
-Het eerste tijdperk was het tijdperk waarover ik blogde: **de harness helpt het systeem doen, de Knowledge OS helpt het systeem weten.**
-
-Twee lagen. Een uitvoeringsharness die agents met gates en reviews door het werk stuurt, en een kennislaag die geheugen en context structureert. Dat frame droeg veel: het is waarom mijn knowledge engine bestaat, het is waarom mijn agent-tooling bestaat, en het is nog altijd de properste manier die ik ken om uit te leggen waarom "prompt het gewoon beter" niet schaalt.
+Een uitvoeringsharness die agents met gates en reviews door het werk stuurt. Een kennislaag die geheugen en context structureert. Dat frame droeg veel. Het is waarom mijn knowledge engine bestaat, waarom mijn agent-tooling bestaat, en nog altijd de properste manier die ik ken om uit te leggen waarom "prompt het gewoon beter" niet schaalt.
 
 ## Tijdperk 2: het geünificeerde OS
 
-Het tweede tijdperk — dit voorjaar — probeerde alles te unificeren. Eén monorepo, één systeem, subsystemen samengevouwen in één operationele laag. De april-architectuur zette de stukken onder één dak: \`pixl-os\` met subsystemen erin.
+Dit voorjaar probeerde ik alles te unificeren. Eén monorepo, één systeem, subsystemen samengevouwen onder één dak: \`pixl-os\`.
 
-Het voelde elegant. Het was ook het tijdperk dat mijn duurste gewoonte produceerde: prachtige contracten, sprints vol scaffolding — en dan laat een pivot het allemaal verweesd achter. Ik heb nu een gearchiveerd platform met 1.500 tests om het te bewijzen.
+Het voelde elegant. Het was ook mijn duurste gewoonte: prachtige contracten, sprints vol scaffolding, dan een pivot die het allemaal verweesd achterlaat. Ik heb nu een gearchiveerd platform met 1.500 tests om het te bewijzen.
 
 ## Tijdperk 3: de bedrijvenfabriek
 
-Het derde tijdperk is waar ik nu sta: geen geünificeerd OS, geen monorepo. **Services over HTTP.** Kleine smalle services, elk apart deploybaar, elk met capabilities die op dezelfde manier worden aangeboden, gecomponeerd door een control plane dat bedrijven provisioneert. De visiepost daarover is een essay op zich; de korte versie is dat "een bedrijf aanmaken" een API-call wordt en agents het grootste deel ervan uitbaten.
+Waar ik nu sta. Geen geünificeerd OS, geen monorepo. **Services over HTTP.** Kleine smalle services, elk apart deploybaar, elk met capabilities die op dezelfde manier worden aangeboden, gecomponeerd door een control plane dat bedrijven provisioneert. "Een bedrijf aanmaken" wordt een API-call, en agents baten het grootste deel ervan uit.
 
 De monorepo-richting van april is dood. Ik zeg het onomwonden, omdat ik ze drie maanden geleden schriftelijk heb aanbevolen.
 
----
-
 ## Wat ik heb laten vallen
 
-**De harness als product.** Opgegeven, voorlopig. Deze doet pijn — het was de ster van het tweelagen-tijdperk. Maar het harness-*patroon* overleefde: het kernidee, de gate waar uitvoering pauzeert voor een beslissing, generaliseerde naar het job-contract dat elke service nu deelt. Een job kan \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\` zijn. Die \`input-required\`-status — een service die pauzeert om een mens of een agent om een beslissing te vragen — is de harness-gate, gepromoveerd van productfeature naar netwerkprotocol. Het product stierf; het idee kreeg een grotere job.
+**De harness als product.** Opgegeven, voorlopig. Deze doet pijn. Maar het harness-*patroon* overleefde. De gate waar uitvoering pauzeert voor een beslissing generaliseerde naar het job-contract dat elke service nu deelt: \`submitted\`, \`working\`, \`input-required\`, \`completed\`, \`failed\`. Die \`input-required\`-status is de harness-gate, gepromoveerd van productfeature naar netwerkprotocol. Het product stierf. Het idee kreeg een grotere job.
 
-**De Knowledge OS als OS.** Gedegradeerd, bewust. In april was kennis de tweede pijler van alles. In het nieuwe model is geheugen *een capability zoals de andere* — geconsumeerd via dezelfde interface als "genereer een site" of "zoek een bedrijf op". Wat de pijler verving is een scherper onderscheid dat ik een jaar eerder had willen maken: **context** is gecureerd, klein, geversioneerd — wat het bedrijf *is*. **Geheugen** is geaccumuleerd, groot, opgehaald — wat het bedrijf *weet*. Die twee door elkaar halen is waarom elke RAG-demo slim aanvoelt en zich zat gedraagt.
+**De Knowledge OS als OS.** Gedegradeerd, bewust. Geheugen is nu een capability zoals de andere, geconsumeerd via dezelfde interface als "genereer een site". Wat de pijler verving is een onderscheid dat ik een jaar eerder had willen maken. **Context** is gecureerd, klein, geversioneerd: wat het bedrijf *is*. **Geheugen** is geaccumuleerd, groot, opgehaald: wat het bedrijf *weet*. Die twee door elkaar halen is waarom elke RAG-demo slim aanvoelt en zich zat gedraagt.
 
-**Robotica.** Weg uit de werkvisie. Niet omdat ik het april-essay niet meer geloof — ik denk nog altijd dat belichaming de plek is waar agentische systemen echt worden, en de fundingcijfers van dit jaar geven me gelijk. Het is weg omdat niets in mijn huidige stack het consumeert, en ik een regel heb aangenomen die geen uitzonderingen kent: geen consumer, geen build.
+**Robotica.** Weg uit de werkvisie. Ik denk nog altijd dat belichaming de plek is waar agentische systemen echt worden, en de fundingcijfers van dit jaar geven me gelijk. Het is weg omdat niets in mijn stack het consumeert, en ik een regel heb zonder uitzonderingen: geen consumer, geen build.
 
-**Lokale en fijn-afgestelde modellen.** Zelfde lot, met één eerlijke nuance: "lokaal" overleeft als routing-target in het gateway-ontwerp, één provider tussen meerdere. Maar de these dat gespecialiseerde lokale modellen *de volgende laag* zijn? Geen regel van mijn huidige platform hangt ervan af. Het idee is niet fout. Het is gewoon niet aan mij om het dit jaar te bouwen.
+**Lokale modellen.** Zelfde lot. "Lokaal" overleeft als routing-target in de gateway, één provider tussen meerdere. Maar de these dat gespecialiseerde lokale modellen *de volgende laag* zijn? Geen regel van mijn platform hangt ervan af. Het idee is niet fout. Het is gewoon niet aan mij om het dit jaar te bouwen.
 
----
+## Wat overleefde
 
-## Wat elke pivot overleefde
+Drie dingen kwamen door alle drie de tijdperken, wat waarschijnlijk betekent dat dit de echte overtuigingen zijn:
 
-Drie dingen kwamen intact door alle drie de tijdperken, wat waarschijnlijk betekent dat dit de echte overtuigingen zijn:
-
-1. **De eigendomsgrenzen.** Kennis weet. De engine doet. Services zijn capabilities. De shell is dun. Elk tijdperk hertekende de blokken; de grenzen ertussen verschoven nooit.
-2. **Contract-first.** Geen integratie zonder gedeeld contract. De envelope, de error catalog, de health check, het geversioneerde schema — de saaie paperassen zijn de enige reden dat drie tijdperken van pivots geen puin hebben opgeleverd.
-3. **Betrouwbaarheid komt van systeemstructuur, niet van grotere prompts.** De oudste claim op deze blog, en degene die elke nieuwe modelrelease opnieuw bevestigt. Betere modellen tillen de vloer omhoog. Structuur houdt het plafond recht.
-
----
+→ **Eigendomsgrenzen.** Kennis weet. De engine doet. Services zijn capabilities. De shell is dun. Elk tijdperk hertekende de blokken. De grenzen verschoven nooit.
+→ **Contract-first.** Geen integratie zonder gedeeld contract. De envelope, de error catalog, de health check, het geversioneerde schema. De saaie paperassen zijn de enige reden dat drie tijdperken van pivots geen puin opleverden.
+→ **Betrouwbaarheid komt van structuur, niet van grotere prompts.** De oudste claim op deze blog. Betere modellen tillen de vloer omhoog. Structuur houdt het plafond recht.
 
 ## De metales
 
-De aprilreeks publiceren is wat deze post goedkoop maakte om te schrijven. De visie was geversioneerd, publiek, in mijn eigen woorden — dus ze herzien is een diff, geen identiteitscrisis.
+De aprilreeks publiceren is wat deze post goedkoop maakte om te schrijven. De visie was geversioneerd, publiek, in mijn eigen woorden. Ze herzien is een diff, geen identiteitscrisis.
 
-Mijn faalmodus was nooit slechte code. Het was een nieuw diep artefact halfweg het kwartaal — een prachtige spec die me wegverleidt van het ding met betalende gebruikers. De tijdperken benoemen is hoe ik het nu opvang: wanneer ik tijdperk vier voel aankomen, vraag ik wat het consumeert, wie ervoor betaalt en welke demo het gate.
+Mijn faalmodus was nooit slechte code. Het was een prachtige nieuwe spec halfweg het kwartaal, die me wegverleidt van het ding met betalende gebruikers. De tijdperken benoemen is hoe ik het nu opvang: wanneer ik tijdperk vier voel aankomen, vraag ik wat het consumeert, wie ervoor betaalt en welke demo het gate.
 
 Sterke meningen, geversioneerd. Dat is de hele methode.
 `.trim(),
@@ -614,9 +494,9 @@ Sterke meningen, geversioneerd. Dat is de hele methode.
       nl: "Geen consumer, geen build",
     },
     description: {
-      en: "I audited my own ecosystem and found the most expensive state in software: built, tested, deployed — and zero callers. The operating rule that came out of it, and the discipline that makes it stick.",
-      fr: "J'ai audité mon propre écosystème et trouvé l'état le plus coûteux du logiciel : construit, testé, déployé — et zéro appelant. La règle opérationnelle qui en est sortie, et la discipline qui la fait tenir.",
-      nl: "Ik auditeerde mijn eigen ecosysteem en vond de duurste toestand in software: gebouwd, getest, gedeployed — en nul callers. De operationele regel die eruit voortkwam, en de discipline die ze doet standhouden.",
+      en: "I audited my own fleet and found the most expensive thing in software: working code with zero callers. The one rule that came out of it, and the discipline that makes it stick.",
+      fr: "J'ai audité ma propre flotte et trouvé la chose la plus coûteuse du logiciel : du code qui marche, avec zéro appelant. La règle qui en est sortie, et la discipline qui la fait tenir.",
+      nl: "Ik auditeerde mijn eigen vloot en vond het duurste in software: werkende code met nul callers. De ene regel die eruit voortkwam, en de discipline die ze doet standhouden.",
     },
     category: {
       en: "Strategy",
@@ -624,9 +504,9 @@ Sterke meningen, geversioneerd. Dat is de hele methode.
       nl: "Strategie",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Operating Doctrine","Solo Builder","Focus"],
@@ -641,64 +521,54 @@ _I ran a code-verified audit of my own ecosystem. The most expensive thing I fou
 
 ## The audit
 
-This month I pointed my own tooling at my own fleet — every repo, every service, every deployment — and asked it to verify what actually runs, what actually calls what, and what is actually consumed.
+This month I pointed my own tooling at my own fleet. Every repo, every service, every deployment. I asked it to verify what actually runs, what actually calls what, and what actually gets consumed.
 
-Selected findings:
+The most expensive thing it found wasn't a bug. It was working software with zero callers.
 
-- My Belgian company-data service is live, with four real data sources integrated. Its intelligence engine — compare, history, timeline — is built and tested. **It has zero callers.** Four of its tables have never held a row.
-- Across my services layer: **zero cross-service calls in production.** The "platform" is a diagram; the wires don't exist.
-- Brand identity is re-implemented **four times**. So is auth.
-- One product carries ~5,000 lines of duplicated data-source clients that a shared service was supposed to replace. The shared service exists. The migration never happened.
-- An archived platform contains my only real LLM gateway — 1,500 tests, six provider adapters, and a budget guard with \`cost_usd=0.0\` hardcoded. It shipped without ever charging anyone for anything, including itself.
+→ My Belgian company-data service is live, four real sources integrated, intelligence engine built and tested. **Zero callers.** Four of its tables have never held a row.
+→ Across my services layer: zero cross-service calls in production. The "platform" is a diagram. The wires don't exist.
+→ Brand identity: re-implemented four times. Auth too.
+→ One product carries ~5,000 lines of duplicated data-source clients. The shared service that replaces them exists. The migration never happened.
+→ An archived platform holds my only real LLM gateway: 1,500 tests, six provider adapters, a budget guard with \`cost_usd=0.0\` hardcoded. It shipped without ever charging anyone. Itself included.
 
-None of this is broken code. All of it passes its tests. That's what makes it expensive: it's inventory that looks like assets.
-
----
+None of this is broken. It all passes its tests. That's what makes it expensive. It's inventory dressed as assets.
 
 ## The failure mode has a name
 
-Reading the audit, the pattern was embarrassingly consistent. My failure mode is never bad code. It's **a new deep artifact mid-quarter** — a beautiful spec, sprints of scaffolding, then a pivot orphans it.
+My failure mode is never bad code. It's **a new deep artifact mid-quarter**. A beautiful spec, sprints of scaffolding, then a pivot orphans it.
 
-Spec-overreach feels like progress while you're doing it. The contracts are elegant. The tests are green. The README is immaculate. And then the quarter turns, priorities move, and the artifact joins the museum of things that were built ahead of their first user.
+Spec-overreach feels like progress while you do it. The contracts are elegant. The tests are green. The README is immaculate. Then the quarter turns and the artifact joins the museum of things built ahead of their first user.
 
-The audit gave me the number I needed to stop arguing with myself: the gap between "vision" and "wired" is not a vibe, it's measurable. Zero cross-service calls is not a strategy disagreement. It's a fact with a grep behind it.
-
----
+The gap between "vision" and "wired" isn't a vibe. It's measurable. Zero cross-service calls is a fact with a grep behind it.
 
 ## The rule
 
-So the new operating doctrine has one load-bearing rule:
+So the doctrine has one load-bearing rule.
 
 **Every platform piece ships against a paying-product need. No consumer, no build.**
 
-Not "no vision" — the vision is written down, versioned, and bigger than ever. The rule governs *sequencing*: infrastructure gets built at the moment a real product pulls it into existence, and not one sprint earlier.
+Not "no vision." The vision is written, versioned, bigger than ever. The rule governs sequencing: infrastructure gets built the moment a real product pulls it into existence, and not one sprint earlier.
 
-The rest of the discipline exists to make the rule survive contact with my own enthusiasm:
+The rest exists to make the rule survive my own enthusiasm.
 
-- **A hard WIP limit: three active projects. Ever.** Not three per lane. Three.
-- **Lanes with a fixed pecking order.** The cash lane — client work with an invoice attached — wins every conflict. The product lane runs on autopilot: my main product ships zero new features this quarter, deliberately. The platform lane is strictly serial.
-- **Every chapter ends in a demo, and no chapter starts before the previous gate passes.** Not a document — a demo. A service kit is done when a new capability goes from idea to deployed, key-gated, agent-callable service in one afternoon. The identity layer is done when an agent reading workspace X gets a clean 403 on workspace Y, with the same correlation id in both logs.
-- **Frozen means frozen, with a written re-entry condition.** The LLM gateway is frozen until agents start spending money unsupervised — it's a safety mechanism, not a dashboard, and safety mechanisms get built when the hazard exists. My old agent engine is parked, and the phrasing in my own planning doc is the phrasing I need on a poster: **sunk cost buys no seat.**
+→ A hard WIP limit: three active projects. Not three per lane. Three.
+→ A fixed pecking order. The cash lane wins every conflict. The product lane ships zero new features this quarter, deliberately. The platform lane is strictly serial.
+→ Every chapter ends in a demo, not a document. Nothing starts before the previous gate passes.
+→ Frozen means frozen. The gateway stays frozen until agents spend money unsupervised. Sunk cost buys no seat.
 
----
+## What it costs
 
-## What this costs
+This doctrine has a price, and I'm paying it.
 
-Honesty section: this doctrine has a price, and I'm paying it.
-
-It means telling myself "no" about the most interesting work available. The gateway is the most intellectually appealing piece of the entire platform, and it is explicitly frozen. It means my strongest engine stays under-adopted for another quarter because adoption follows the serial plan, not my pride. It means watching duplicated code sit there, known and ticketed, because the migration is scheduled behind a demo gate.
-
-And it means accepting that some built things will never get their consumer, and will be deleted rather than rescued. Deleting working software is the tax on having built it too early.
-
----
+It means telling myself no on the most interesting work available. It means my strongest engine stays under-adopted another quarter. It means watching duplicated code sit there, known and ticketed. It means deleting working software rather than rescuing it. That's the tax on building it too early.
 
 ## The point
 
-The audit found the most expensive state in software: built, but not wired. Code with no callers is not an asset — it's a claim about the future that compounds interest against you.
+Code with no callers isn't an asset. It's a claim about the future that compounds interest against you.
 
-The fix isn't better architecture. Mine was already fine. The fix is a sequencing rule with teeth: no consumer, no build; every chapter gated by a demo; sunk cost buys no seat.
+The fix isn't better architecture. Mine was fine. The fix is a sequencing rule with teeth: no consumer, no build.
 
-Growth is adding companies and services — not rebuilding foundations, and not building cathedrals ahead of the congregation.
+Growth is adding companies and services. Not rebuilding foundations. Not building cathedrals ahead of the congregation.
 `.trim(),
       fr: `
 _J'ai lancé un audit vérifié par le code sur mon propre écosystème. La chose la plus coûteuse que j'ai trouvée n'était pas un bug. C'était du logiciel fonctionnel avec zéro appelant._
@@ -707,64 +577,54 @@ _J'ai lancé un audit vérifié par le code sur mon propre écosystème. La chos
 
 ## L'audit
 
-Ce mois-ci, j'ai pointé mon propre tooling sur ma propre flotte — chaque repo, chaque service, chaque déploiement — et je lui ai demandé de vérifier ce qui tourne réellement, ce qui appelle réellement quoi, et ce qui est réellement consommé.
+Ce mois-ci, j'ai pointé mon propre tooling sur ma propre flotte. Chaque repo, chaque service, chaque déploiement. Je lui ai demandé de vérifier ce qui tourne vraiment, ce qui appelle vraiment quoi, et ce qui est vraiment consommé.
 
-Morceaux choisis :
+La chose la plus coûteuse qu'il a trouvée n'était pas un bug. C'était du logiciel fonctionnel avec zéro appelant.
 
-- Mon service de données d'entreprises belges est live, avec quatre vraies sources de données intégrées. Son moteur d'intelligence — comparaison, historique, timeline — est construit et testé. **Il a zéro appelant.** Quatre de ses tables n'ont jamais contenu la moindre ligne.
-- Sur toute ma couche de services : **zéro appel inter-services en production.** La "plateforme" est un schéma ; les câbles n'existent pas.
-- L'identité de marque est réimplémentée **quatre fois**. L'auth aussi.
-- Un produit traîne ~5 000 lignes de clients de sources de données dupliqués qu'un service partagé était censé remplacer. Le service partagé existe. La migration n'a jamais eu lieu.
-- Une plateforme archivée contient ma seule vraie gateway LLM — 1 500 tests, six adaptateurs de providers, et un garde-fou budgétaire avec \`cost_usd=0.0\` hardcodé. Elle a shippé sans jamais rien facturer à qui que ce soit, y compris à elle-même.
+→ Mon service de données d'entreprises belges est live, quatre vraies sources intégrées, moteur d'intelligence construit et testé. **Zéro appelant.** Quatre de ses tables n'ont jamais contenu la moindre ligne.
+→ Sur toute ma couche de services : zéro appel inter-services en production. La "plateforme" est un schéma. Les câbles n'existent pas.
+→ L'identité de marque : réimplémentée quatre fois. L'auth aussi.
+→ Un produit traîne ~5 000 lignes de clients de sources dupliqués. Le service partagé qui les remplace existe. La migration n'a jamais eu lieu.
+→ Une plateforme archivée contient ma seule vraie gateway LLM : 1 500 tests, six adaptateurs de providers, un garde-fou budgétaire avec \`cost_usd=0.0\` hardcodé. Elle a shippé sans jamais rien facturer à personne. À elle-même comprise.
 
-Rien de tout ça n'est du code cassé. Tout passe ses tests. C'est justement ce qui coûte cher : c'est de l'inventaire qui ressemble à des actifs.
-
----
+Rien de tout ça n'est cassé. Tout passe ses tests. C'est justement ce qui coûte cher. C'est de l'inventaire déguisé en actifs.
 
 ## Le mode d'échec a un nom
 
-En lisant l'audit, le pattern était d'une constance embarrassante. Mon mode d'échec n'est jamais le mauvais code. C'est **un nouvel artefact profond en plein trimestre** — une belle spec, des sprints de scaffolding, puis un pivot qui rend le tout orphelin.
+Mon mode d'échec n'est jamais le mauvais code. C'est **un nouvel artefact profond en plein trimestre**. Une belle spec, des sprints de scaffolding, puis un pivot qui le rend orphelin.
 
-La sur-spécification donne une sensation de progrès pendant qu'on y est. Les contrats sont élégants. Les tests sont verts. Le README est impeccable. Et puis le trimestre tourne, les priorités bougent, et l'artefact rejoint le musée des choses construites avant leur premier utilisateur.
+La sur-spécification donne une sensation de progrès pendant qu'on y est. Les contrats sont élégants. Les tests sont verts. Le README est impeccable. Puis le trimestre tourne, et l'artefact rejoint le musée des choses construites avant leur premier utilisateur.
 
-L'audit m'a donné le chiffre dont j'avais besoin pour arrêter de négocier avec moi-même : l'écart entre "vision" et "câblé" n'est pas une impression, il est mesurable. Zéro appel inter-services, ce n'est pas un désaccord stratégique. C'est un fait avec un grep derrière.
-
----
+L'écart entre "vision" et "câblé" n'est pas une impression. Il est mesurable. Zéro appel inter-services, c'est un fait avec un grep derrière.
 
 ## La règle
 
-La nouvelle doctrine opérationnelle a donc une règle porteuse :
+Alors la doctrine a une seule règle porteuse.
 
 **Chaque pièce de plateforme ship contre un besoin d'un produit payant. Pas de consommateur, pas de build.**
 
-Pas "pas de vision" — la vision est écrite, versionnée, et plus grande que jamais. La règle gouverne le *séquencement* : l'infrastructure se construit au moment où un vrai produit la tire vers l'existence, et pas un sprint plus tôt.
+Pas "pas de vision". La vision est écrite, versionnée, plus grande que jamais. La règle gouverne le séquencement : l'infrastructure se construit au moment où un vrai produit la tire vers l'existence, et pas un sprint plus tôt.
 
-Le reste de la discipline existe pour que la règle survive au contact de mon propre enthousiasme :
+Le reste existe pour que la règle survive à mon propre enthousiasme.
 
-- **Une limite WIP dure : trois projets actifs. Point.** Pas trois par lane. Trois.
-- **Des lanes avec un ordre de priorité fixe.** La lane cash — le travail client avec une facture attachée — gagne chaque conflit. La lane produit tourne en pilote automatique : mon produit principal ne ship aucune nouvelle fonctionnalité ce trimestre, délibérément. La lane plateforme est strictement sérielle.
-- **Chaque chapitre se termine par une démo, et aucun chapitre ne commence avant que le gate précédent passe.** Pas un document — une démo. Un kit de service est terminé quand une nouvelle capability passe de l'idée à un service déployé, protégé par clé, appelable par agent, en un après-midi. La couche d'identité est terminée quand un agent qui lit le workspace X reçoit un 403 propre sur le workspace Y, avec le même correlation id dans les deux logs.
-- **Gelé veut dire gelé, avec une condition de réentrée écrite.** La gateway LLM est gelée jusqu'à ce que des agents commencent à dépenser de l'argent sans supervision — c'est un mécanisme de sécurité, pas un dashboard, et les mécanismes de sécurité se construisent quand le danger existe. Mon vieux moteur d'agents est au garage, et la formulation de mon propre doc de planning est celle qu'il me faudrait sur une affiche : **le sunk cost n'achète aucun siège.**
-
----
+→ Une limite WIP dure : trois projets actifs. Pas trois par lane. Trois.
+→ Un ordre de priorité fixe. La lane cash gagne chaque conflit. La lane produit ship zéro nouvelle fonctionnalité ce trimestre, délibérément. La lane plateforme est strictement sérielle.
+→ Chaque chapitre se termine par une démo, pas un document. Rien ne commence avant que le gate précédent passe.
+→ Gelé veut dire gelé. La gateway reste gelée jusqu'à ce que des agents dépensent de l'argent sans supervision. Le sunk cost n'achète aucun siège.
 
 ## Ce que ça coûte
 
-Section honnêteté : cette doctrine a un prix, et je le paie.
+Cette doctrine a un prix, et je le paie.
 
-Ça veut dire me dire "non" sur le travail le plus intéressant disponible. La gateway est la pièce intellectuellement la plus séduisante de toute la plateforme, et elle est explicitement gelée. Ça veut dire que mon moteur le plus solide reste sous-adopté un trimestre de plus, parce que l'adoption suit le plan sériel, pas ma fierté. Ça veut dire regarder du code dupliqué rester là, connu et ticketé, parce que la migration est planifiée derrière un gate de démo.
-
-Et ça veut dire accepter que certaines choses construites n'auront jamais leur consommateur, et seront supprimées plutôt que sauvées. Supprimer du logiciel fonctionnel, c'est la taxe pour l'avoir construit trop tôt.
-
----
+Ça veut dire me dire non sur le travail le plus intéressant disponible. Ça veut dire que mon moteur le plus solide reste sous-adopté un trimestre de plus. Ça veut dire regarder du code dupliqué rester là, connu et ticketé. Ça veut dire supprimer du logiciel fonctionnel plutôt que le sauver. C'est la taxe pour l'avoir construit trop tôt.
 
 ## L'essentiel
 
-L'audit a trouvé l'état le plus coûteux du logiciel : construit, mais pas câblé. Du code sans appelant n'est pas un actif — c'est une promesse sur le futur qui accumule des intérêts contre vous.
+Du code sans appelant n'est pas un actif. C'est une promesse sur le futur qui accumule des intérêts contre vous.
 
-Le fix n'est pas une meilleure architecture. La mienne était déjà bien. Le fix est une règle de séquencement avec des dents : pas de consommateur, pas de build ; chaque chapitre conditionné par une démo ; le sunk cost n'achète aucun siège.
+Le fix n'est pas une meilleure architecture. La mienne était très bien. Le fix est une règle de séquencement avec des dents : pas de consommateur, pas de build.
 
-La croissance, c'est ajouter des entreprises et des services — pas reconstruire les fondations, et pas bâtir des cathédrales avant d'avoir les fidèles.
+La croissance, c'est ajouter des entreprises et des services. Pas reconstruire les fondations. Pas bâtir des cathédrales avant d'avoir les fidèles.
 `.trim(),
       nl: `
 _Ik draaide een code-geverifieerde audit van mijn eigen ecosysteem. Het duurste dat ik vond was geen bug. Het was werkende software met nul callers._
@@ -773,64 +633,54 @@ _Ik draaide een code-geverifieerde audit van mijn eigen ecosysteem. Het duurste 
 
 ## De audit
 
-Deze maand richtte ik mijn eigen tooling op mijn eigen vloot — elke repo, elke service, elke deployment — en vroeg ik ze te verifiëren wat er echt draait, wat echt wat aanroept, en wat echt geconsumeerd wordt.
+Deze maand richtte ik mijn eigen tooling op mijn eigen vloot. Elke repo, elke service, elke deployment. Ik vroeg ze te verifiëren wat er echt draait, wat echt wat aanroept, en wat echt geconsumeerd wordt.
 
-Een selectie uit de bevindingen:
+Het duurste dat ze vond was geen bug. Het was werkende software met nul callers.
 
-- Mijn Belgische bedrijfsdata-service is live, met vier echte databronnen geïntegreerd. Zijn intelligence engine — vergelijken, historiek, tijdlijn — is gebouwd en getest. **Hij heeft nul callers.** Vier van zijn tabellen hebben nog nooit één rij bevat.
-- Over mijn hele serviceslaag: **nul cross-service calls in productie.** Het "platform" is een diagram; de draden bestaan niet.
-- Brand identity is **vier keer** geherimplementeerd. Auth ook.
-- Eén product sleept ~5.000 regels gedupliceerde databron-clients mee die een gedeelde service had moeten vervangen. De gedeelde service bestaat. De migratie is er nooit gekomen.
-- Een gearchiveerd platform bevat mijn enige echte LLM-gateway — 1.500 tests, zes provider-adapters en een budget guard met \`cost_usd=0.0\` hardcoded. Hij shipte zonder ooit iemand iets aan te rekenen, zichzelf incluis.
+→ Mijn Belgische bedrijfsdata-service is live, vier echte bronnen geïntegreerd, intelligence engine gebouwd en getest. **Nul callers.** Vier van zijn tabellen hebben nog nooit één rij bevat.
+→ Over mijn hele serviceslaag: nul cross-service calls in productie. Het "platform" is een diagram. De draden bestaan niet.
+→ Brand identity: vier keer geherimplementeerd. Auth ook.
+→ Eén product sleept ~5.000 regels gedupliceerde databron-clients mee. De gedeelde service die ze vervangt bestaat. De migratie is er nooit gekomen.
+→ Een gearchiveerd platform bevat mijn enige echte LLM-gateway: 1.500 tests, zes provider-adapters, een budget guard met \`cost_usd=0.0\` hardcoded. Hij shipte zonder ooit iemand iets aan te rekenen. Zichzelf incluis.
 
-Niets hiervan is kapotte code. Alles slaagt voor zijn tests. Dat is net wat het duur maakt: het is inventaris die eruitziet als activa.
-
----
+Niets hiervan is kapot. Alles slaagt voor zijn tests. Dat is net wat het duur maakt. Het is inventaris vermomd als activa.
 
 ## De faalmodus heeft een naam
 
-Toen ik de audit las, was het patroon gênant consistent. Mijn faalmodus is nooit slechte code. Het is **een nieuw diep artefact halfweg het kwartaal** — een prachtige spec, sprints vol scaffolding, en dan laat een pivot het verweesd achter.
+Mijn faalmodus is nooit slechte code. Het is **een nieuw diep artefact halfweg het kwartaal**. Een prachtige spec, sprints vol scaffolding, en dan laat een pivot het verweesd achter.
 
-Spec-overreach voelt als vooruitgang terwijl je ermee bezig bent. De contracten zijn elegant. De tests zijn groen. De README is onberispelijk. En dan kantelt het kwartaal, verschuiven de prioriteiten, en belandt het artefact in het museum van dingen die vóór hun eerste gebruiker gebouwd werden.
+Spec-overreach voelt als vooruitgang terwijl je ermee bezig bent. De contracten zijn elegant. De tests zijn groen. De README is onberispelijk. Dan kantelt het kwartaal, en belandt het artefact in het museum van dingen die vóór hun eerste gebruiker gebouwd werden.
 
-De audit gaf me het cijfer dat ik nodig had om te stoppen met discussiëren met mezelf: de kloof tussen "visie" en "bedraad" is geen gevoel, ze is meetbaar. Nul cross-service calls is geen strategisch meningsverschil. Het is een feit met een grep erachter.
-
----
+De kloof tussen "visie" en "bedraad" is geen gevoel. Ze is meetbaar. Nul cross-service calls is een feit met een grep erachter.
 
 ## De regel
 
-Dus de nieuwe operationele doctrine heeft één dragende regel:
+Dus de doctrine heeft één dragende regel.
 
 **Elk platformstuk shipt tegen een behoefte van een betalend product. Geen consumer, geen build.**
 
-Niet "geen visie" — de visie staat op papier, geversioneerd, en is groter dan ooit. De regel gaat over *volgorde*: infrastructuur wordt gebouwd op het moment dat een echt product ze in bestaan trekt, en geen sprint vroeger.
+Niet "geen visie". De visie staat op papier, geversioneerd, groter dan ooit. De regel gaat over volgorde: infrastructuur wordt gebouwd op het moment dat een echt product ze in bestaan trekt, en geen sprint vroeger.
 
-De rest van de discipline bestaat om de regel het contact met mijn eigen enthousiasme te laten overleven:
+De rest bestaat om de regel het contact met mijn eigen enthousiasme te laten overleven.
 
-- **Een harde WIP-limiet: drie actieve projecten. Punt.** Niet drie per lane. Drie.
-- **Lanes met een vaste pikorde.** De cash lane — klantenwerk met een factuur eraan vast — wint elk conflict. De product lane draait op automatische piloot: mijn hoofdproduct shipt dit kwartaal nul nieuwe features, bewust. De platform lane is strikt serieel.
-- **Elk hoofdstuk eindigt in een demo, en geen hoofdstuk start voor de vorige gate gepasseerd is.** Geen document — een demo. Een service kit is klaar wanneer een nieuwe capability in één namiddag van idee naar gedeployde, key-gated, agent-aanroepbare service gaat. De identiteitslaag is klaar wanneer een agent die workspace X leest een propere 403 krijgt op workspace Y, met dezelfde correlation id in beide logs.
-- **Bevroren is bevroren, met een neergeschreven her-instapvoorwaarde.** De LLM-gateway blijft bevroren tot agents onbewaakt geld beginnen uit te geven — het is een veiligheidsmechanisme, geen dashboard, en veiligheidsmechanismen bouw je wanneer het gevaar bestaat. Mijn oude agent engine staat geparkeerd, en de formulering in mijn eigen planningsdoc is de formulering die ik op een poster nodig heb: **sunk cost koopt geen zetel.**
+→ Een harde WIP-limiet: drie actieve projecten. Niet drie per lane. Drie.
+→ Een vaste pikorde. De cash lane wint elk conflict. De product lane shipt dit kwartaal nul nieuwe features, bewust. De platform lane is strikt serieel.
+→ Elk hoofdstuk eindigt in een demo, geen document. Niets start voor de vorige gate gepasseerd is.
+→ Bevroren is bevroren. De gateway blijft bevroren tot agents onbewaakt geld uitgeven. Sunk cost koopt geen zetel.
 
----
+## Wat het kost
 
-## Wat dit kost
+Deze doctrine heeft een prijs, en ik betaal ze.
 
-Eerlijkheidssectie: deze doctrine heeft een prijs, en ik betaal ze.
-
-Ze betekent "nee" zeggen tegen mezelf over het interessantste werk dat er ligt. De gateway is het intellectueel meest aantrekkelijke stuk van het hele platform, en hij is expliciet bevroren. Ze betekent dat mijn sterkste engine nog een kwartaal onderbenut blijft, omdat adoptie het seriële plan volgt, niet mijn trots. Ze betekent toekijken hoe gedupliceerde code daar blijft staan, gekend en geticket, omdat de migratie ingepland staat achter een demo-gate.
-
-En ze betekent aanvaarden dat sommige gebouwde dingen hun consumer nooit zullen krijgen, en gedelete zullen worden in plaats van gered. Werkende software deleten is de taks die je betaalt omdat je ze te vroeg hebt gebouwd.
-
----
+Ze betekent "nee" zeggen tegen mezelf over het interessantste werk dat er ligt. Ze betekent dat mijn sterkste engine nog een kwartaal onderbenut blijft. Ze betekent toekijken hoe gedupliceerde code daar blijft staan, gekend en geticket. Ze betekent werkende software deleten in plaats van redden. Dat is de taks omdat je ze te vroeg hebt gebouwd.
 
 ## Het punt
 
-De audit vond de duurste toestand in software: gebouwd, maar niet bedraad. Code zonder callers is geen actief — het is een claim op de toekomst die rente opstapelt in jouw nadeel.
+Code zonder callers is geen actief. Het is een claim op de toekomst die rente opstapelt in jouw nadeel.
 
-De oplossing is geen betere architectuur. De mijne was al goed. De oplossing is een volgorde-regel met tanden: geen consumer, geen build; elk hoofdstuk gegated door een demo; sunk cost koopt geen zetel.
+De oplossing is geen betere architectuur. De mijne was prima. De oplossing is een volgorde-regel met tanden: geen consumer, geen build.
 
-Groei is bedrijven en services toevoegen — niet fundamenten herbouwen, en geen kathedralen bouwen voor de parochie er is.
+Groei is bedrijven en services toevoegen. Geen fundamenten herbouwen. Geen kathedralen bouwen voor de parochie er is.
 `.trim(),
     },
   },
@@ -846,9 +696,9 @@ Groei is bedrijven en services toevoegen — niet fundamenten herbouwen, en geen
       nl: "Het bedrijf is een API-call",
     },
     description: {
-      en: "What I'm actually building is not a set of tools. It's a company factory: a platform where creating a company provisions identity, context, memory, an AI budget, and a set of narrow AI services — and where the company is then operated mostly by agents.",
-      fr: "Ce que je construis réellement n'est pas un ensemble d'outils. C'est une usine à entreprises : une plateforme où créer une entreprise provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services IA étroits — et où l'entreprise est ensuite opérée principalement par des agents.",
-      nl: "Wat ik echt aan het bouwen ben is geen verzameling tools. Het is een bedrijvenfabriek: een platform waar het aanmaken van een bedrijf identiteit, context, geheugen, een AI-budget en een set smalle AI-services provisioneert — en waar het bedrijf daarna grotendeels door agents wordt uitgebaat.",
+      en: "What I'm building isn't a set of tools. It's a company factory: one command provisions identity, context, memory, an AI budget, and services, then agents run the place.",
+      fr: "Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande provisionne l'identité, le contexte, la mémoire, un budget IA et des services, puis des agents font tourner la boutique.",
+      nl: "Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando levert identiteit, context, geheugen, een AI-budget en diensten, en daarna runnen agents de zaak.",
     },
     category: {
       en: "Vision",
@@ -856,9 +706,9 @@ Groei is bedrijven en services toevoegen — niet fundamenten herbouwen, en geen
       nl: "Visie",
     },
     readTime: {
-      en: "6 min",
-      fr: "6 min",
-      nl: "6 min",
+      en: "4 min",
+      fr: "4 min",
+      nl: "4 min",
     },
     tags: {
       en: ["AI-Native Company","Agents","Platform"],
@@ -867,224 +717,179 @@ Groei is bedrijven en services toevoegen — niet fundamenten herbouwen, en geen
     },
     content: {
       en: `
-_What I'm building is not a set of tools. It's a company factory. The demo I'm working toward is one command: create a company, and agents produce its brand, its website, its SEO audit, and its first campaign — with every euro accounted for._
+_What I'm building isn't a set of tools. It's a company factory: one command creates a company, and agents produce its brand, its site, its SEO audit, its first campaign. Every euro accounted for._
 
 ---
 
 ## The reframe
 
-For two years I've been building products: an invoicing platform for Belgian SMEs, a compliance monitor, a Belgian company-data API, an AI content studio, a knowledge engine. Each one useful. Each one built mostly from scratch. Each one re-implementing the same five things.
+Two years of building products: invoicing for Belgian SMEs, a compliance monitor, a company-data API, a content studio, a knowledge engine. Each one useful. Each one built from scratch. Each one re-implementing the same five things.
 
-Somewhere around the fourth re-implementation of "brand identity" I stopped and named the pattern.
+Somewhere around the fourth time I rebuilt "brand identity" from zero, I stopped and named the pattern.
 
-What I'm building is not a set of tools. It is a **company factory** — a platform where "creating a company" is an API call that provisions identity, context, memory, an AI budget, and a set of narrow AI services, and where the company is then *operated* mostly by agents.
+What I'm building isn't a set of tools. It's a **company factory**. "Create a company" becomes an API call that provisions identity, context, memory, an AI budget, and a set of narrow services. The company is then run, mostly, by agents.
 
 Every digital company needs the same five things:
 
-1. **Identity** — who exists: the company, its workspaces, its humans, its agents, their keys.
-2. **Context** — what the company *is*: brand, tone, offer, constraints. Curated, small, versioned.
-3. **Memory** — what the company *knows*: history, documents, decisions. Accumulated, large, retrieved.
-4. **Intelligence** — model access with budgets, routing, and a real ledger.
-5. **Capabilities** — narrow services that do actual work: generate a site, audit SEO, produce content, look up a company, send an invoice.
+→ **Identity** (who exists): the company, its people, its agents, their keys.
+→ **Context** (what the company is): brand, tone, offer. Small, curated, versioned.
+→ **Memory** (what it knows): history, documents, decisions. Large, retrieved.
+→ **Intelligence**: model access with budgets, routing, and a real ledger.
+→ **Capabilities**: services that do the work. Build a site, audit SEO, send an invoice.
 
-The products people see — Feen, Syncco, the next venture — become thin, branded surfaces over those services. Growth stops meaning "rebuild the foundations again." Growth = adding companies and services.
-
----
+The products people see (Feen, Syncco, the next one) become thin, branded surfaces over those services. Growth stops meaning "rebuild the foundations again." It means adding companies and services.
 
 ## The agent is an employee
 
-The most AI-native decision in this model is not a model choice. It's an org-chart choice.
+The most AI-native decision here isn't a model choice. It's an org-chart choice.
 
-Agents are first-class actors, not anonymous automation. An agent has an identity row like a human does. It holds credentials. It has a budget. It calls the same services through the same contracts. It leaves an auditable trail.
+An agent gets an identity row, like a human. It holds credentials. It has a budget. It calls the same services through the same contracts, and leaves a trail. The org chart of the next company is literally rows in a database.
 
-The org chart of the next company is literally rows in a database.
+Sounds philosophical until you ask a boring question: which agent spent €4, on whose campaign? In most stacks that's unanswerable. Shared key, cost buried in a dashboard, nobody attributed. In the factory, it's one query.
 
-This sounds philosophical until you look at what it fixes. Today, when an AI feature runs, the question "which agent spent €4 on whose campaign?" is unanswerable in most stacks — the API key is shared, the cost sits in a provider dashboard, the action isn't attributed. In the factory model, that question is one query on one correlation id.
-
-And budgets stop being a spreadsheet fear. The agent *runs out of money like an employee*, instead of silently burning the API account at 3 a.m. When the budget is exhausted, the gateway refuses the call. Payroll for software.
-
----
+And the agent runs out of money like an employee, instead of quietly draining the API account at 3 a.m. Budget's gone, the gateway says no. Payroll for software.
 
 ## Capability-first, UI-on-demand
 
-The second doctrine: **reduce UI, enhance capabilities.** The agent is the primary user; screens exist for trust and intake, not for work.
+Second rule: **reduce UI, grow capability.** The agent is the primary user. Screens are for trust and intake, not for work.
 
-Every service exposes its capabilities the same way — same envelope, same auth, same health check, same error catalog — over HTTP for products, over MCP for agents. One capability, defined once as a schema plus a handler, callable identically by a web app, a terminal, or an agent loop.
+Every service exposes its capabilities the same way: over HTTP for products, over MCP for agents. Define a capability once; a web app, a terminal, and an agent loop all call it the same.
 
-I didn't design this pattern on a whiteboard. I found it in my own fleet. Bumpi, my content studio, was built with a capability registry that auto-exposes every capability over HTTP, MCP, and an agent loop — and it turned out to be the reference implementation of the whole platform before the platform had a name. Every load-bearing pattern in the vision already runs in production somewhere. I'm generalizing, not inventing.
+I didn't whiteboard this. I found it in my own fleet. One product was quietly the reference implementation before the platform had a name. I'm generalizing, not inventing.
 
-The success metric is blunt: **percentage of features that are agent-callable.** Today, across my fleet, that number is about 20%. The goal is to make it boring to say 100%.
-
----
+The metric is blunt: the percentage of features an agent can call. Today, across my fleet, about 20%. The goal is to make 100% boring.
 
 ## The honest state
 
-This is a vision post, so here is exactly how much of it exists on 2026-07-09:
+It's a vision post, so here's the honest version. The services exist. The layer between them doesn't. The gateway that's supposed to meter every euro barely exists, so my budget system currently believes everything is free. A lovely thing to believe. A terrible thing to ship.
 
-- **The services exist. The layer doesn't.** I grepped: zero cross-service calls in production. Brand is re-implemented four times. Identity four times. The two pains motivating the platform are measured facts, not theory.
-- **The LLM gateway — the linchpin — barely exists.** The only real gateway code sits in an archived project, as a library, with \`cost_usd=0.0\` hardcoded. My budget system currently believes everything is free.
-- **The best engine is under-adopted.** My knowledge service is the strongest piece of the fleet and almost nothing consumes it yet.
-- **Two products prove the model manually.** Feen and Syncco work — but humans wired them, service by service.
+Feen and Syncco prove the model, but humans wired them, service by service. The next one shouldn't need that.
 
-The plan for the quarter is strictly serial, each chapter gated by a demo: a standard service kit that turns "a capability" into "a deployed, key-gated, agent-callable service" in an afternoon; then identity and context as a control plane; then re-pouring the existing services into the mold; then the gateway with a real ledger.
-
-The final gate is the founding demo: \`nuva co create testco\` — and agents produce the brand, the site, the SEO audit, and the first campaign, end to end, with zero cross-workspace leaks and a cost-per-artifact readable from the ledger.
-
----
+The demo I'm building toward is one line: \`nuva co create testco\`. Agents produce the brand, the site, the SEO audit, the first campaign. End to end. Cost-per-artifact readable from the ledger.
 
 ## The point
 
-Feen and Syncco prove the model manually. The next company is born on the platform from day one.
+Feen and Syncco prove the model by hand. The next company is born on the platform from day one.
 
-That's the whole vision. Not bigger models, not more prompts — a factory where identity, context, memory, intelligence, and capabilities are provisioned like infrastructure, and where the first employees are agents with badges and budgets.
+Not bigger models. Not more prompts. A factory where identity, context, memory, intelligence, and capabilities are provisioned like infrastructure, and the first employees are agents with badges and budgets.
 
 The company is an API call. The rest is operations.
 `.trim(),
       fr: `
-_Ce que je construis n'est pas un ensemble d'outils. C'est une usine à entreprises. La démo vers laquelle je travaille tient en une commande : créer une entreprise, et des agents produisent sa marque, son site web, son audit SEO et sa première campagne — avec chaque euro comptabilisé._
+_Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande crée une entreprise, et des agents produisent sa marque, son site, son audit SEO, sa première campagne. Chaque euro tracé._
 
 ---
 
 ## Le recadrage
 
-Depuis deux ans, je construis des produits : une plateforme de facturation pour les PME belges, un moniteur de conformité, une API de données d'entreprises belges, un studio de contenu IA, un moteur de connaissance. Chacun utile. Chacun construit presque entièrement from scratch. Chacun réimplémentant les cinq mêmes choses.
+Deux ans à construire des produits : de la facturation pour PME belges, un moniteur de conformité, une API de données d'entreprise, un studio de contenu, un moteur de connaissance. Chacun utile. Chacun reparti de zéro. Chacun réimplémentant les cinq mêmes choses.
 
-Quelque part autour de la quatrième réimplémentation de "l'identité de marque", je me suis arrêté et j'ai nommé le pattern.
+Vers la quatrième fois où j'ai reconstruit « l'identité de marque » à partir de rien, je me suis arrêté et j'ai nommé le motif.
 
-Ce que je construis n'est pas un ensemble d'outils. C'est une **usine à entreprises** — une plateforme où "créer une entreprise" est un appel d'API qui provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services IA étroits, et où l'entreprise est ensuite *opérée* principalement par des agents.
+Ce que je construis, ce n'est pas une boîte à outils. C'est une **usine à entreprises**. « Créer une entreprise » devient un appel d'API qui provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services étroits. L'entreprise est ensuite dirigée, en grande partie, par des agents.
 
 Toute entreprise digitale a besoin des cinq mêmes choses :
 
-1. **Identité** — qui existe : l'entreprise, ses workspaces, ses humains, ses agents, leurs clés.
-2. **Contexte** — ce que l'entreprise *est* : marque, ton, offre, contraintes. Curé, petit, versionné.
-3. **Mémoire** — ce que l'entreprise *sait* : historique, documents, décisions. Accumulée, volumineuse, retrouvée.
-4. **Intelligence** — l'accès aux modèles avec des budgets, du routing et un vrai ledger.
-5. **Capabilities** — des services étroits qui font le vrai travail : générer un site, auditer le SEO, produire du contenu, chercher une entreprise, envoyer une facture.
+→ **L'identité** (qui existe) : l'entreprise, ses gens, ses agents, leurs clés.
+→ **Le contexte** (ce qu'est l'entreprise) : marque, ton, offre. Petit, soigné, versionné.
+→ **La mémoire** (ce qu'elle sait) : historique, documents, décisions. Vaste, retrouvée à la demande.
+→ **L'intelligence** : l'accès aux modèles avec budgets, routage et un vrai grand livre.
+→ **Les capacités** : les services qui font le travail. Construire un site, auditer le SEO, envoyer une facture.
 
-Les produits que les gens voient — Feen, Syncco, la prochaine venture — deviennent des surfaces fines et brandées au-dessus de ces services. Grandir ne veut plus dire "reconstruire les fondations encore une fois". Grandir = ajouter des entreprises et des services.
-
----
+Les produits que les gens voient (Feen, Syncco, le prochain) deviennent de fines surfaces de marque posées sur ces services. Grandir ne veut plus dire « reconstruire les fondations encore une fois ». Ça veut dire ajouter des entreprises et des services.
 
 ## L'agent est un employé
 
-La décision la plus AI-native de ce modèle n'est pas un choix de modèle. C'est un choix d'organigramme.
+La décision la plus AI-native ici, ce n'est pas un choix de modèle. C'est un choix d'organigramme.
 
-Les agents sont des acteurs de premier rang, pas de l'automatisation anonyme. Un agent a une ligne d'identité dans la base, comme un humain. Il détient des credentials. Il a un budget. Il appelle les mêmes services via les mêmes contrats. Il laisse une trace auditable.
+Un agent reçoit une ligne d'identité, comme un humain. Il détient des identifiants. Il a un budget. Il appelle les mêmes services via les mêmes contrats, et laisse une trace. L'organigramme de la prochaine entreprise, ce sont littéralement des lignes dans une base de données.
 
-L'organigramme de la prochaine entreprise, ce sont littéralement des lignes dans une base de données.
+Ça sonne philosophique jusqu'à ce qu'on pose une question banale : quel agent a dépensé 4 €, sur la campagne de qui ? Dans la plupart des stacks, c'est sans réponse. Clé partagée, coût noyé dans un tableau de bord, personne d'attribué. Dans l'usine, c'est une seule requête.
 
-Cela sonne philosophique jusqu'à ce qu'on regarde ce que ça corrige. Aujourd'hui, quand une fonctionnalité IA tourne, la question "quel agent a dépensé 4 € sur la campagne de qui ?" est sans réponse dans la plupart des stacks — la clé d'API est partagée, le coût dort dans le dashboard d'un provider, l'action n'est pas attribuée. Dans le modèle usine, cette question tient en une requête sur un correlation id.
+Et l'agent tombe à court d'argent comme un employé, au lieu de vider discrètement le compte API à 3 h du matin. Budget épuisé, la passerelle dit non. La paie, mais pour du logiciel.
 
-Et les budgets cessent d'être une angoisse de tableur. L'agent *tombe à court d'argent comme un employé*, au lieu de brûler silencieusement le compte API à 3 h du matin. Quand le budget est épuisé, la gateway refuse l'appel. La paie, version logiciel.
+## Capacité d'abord, UI à la demande
 
----
+Deuxième règle : **réduire l'UI, faire grandir la capacité.** L'agent est l'utilisateur principal. Les écrans servent à la confiance et à la saisie, pas au travail.
 
-## Capability-first, UI à la demande
+Chaque service expose ses capacités de la même façon : en HTTP pour les produits, en MCP pour les agents. On définit une capacité une fois ; une app web, un terminal et une boucle d'agent l'appellent tous pareil.
 
-La deuxième doctrine : **réduire l'UI, renforcer les capabilities.** L'agent est l'utilisateur principal ; les écrans existent pour la confiance et la collecte d'informations, pas pour le travail.
+Je n'ai pas dessiné ça sur un tableau blanc. Je l'ai trouvé dans ma propre flotte. Un produit était déjà, en silence, l'implémentation de référence avant que la plateforme ait un nom. Je généralise, je n'invente pas.
 
-Chaque service expose ses capabilities de la même manière — même enveloppe, même auth, même health check, même catalogue d'erreurs — en HTTP pour les produits, en MCP pour les agents. Une capability, définie une fois comme un schéma plus un handler, appelable à l'identique par une web app, un terminal ou une boucle d'agent.
-
-Je n'ai pas dessiné ce pattern sur un tableau blanc. Je l'ai trouvé dans ma propre flotte. Bumpi, mon studio de contenu, a été construit avec un registre de capabilities qui expose automatiquement chaque capability en HTTP, en MCP et dans une boucle d'agent — et il s'est avéré être l'implémentation de référence de toute la plateforme avant même que la plateforme ait un nom. Chaque pattern porteur de la vision tourne déjà en production quelque part. Je généralise, je n'invente pas.
-
-La métrique de succès est brute : **le pourcentage de fonctionnalités appelables par un agent.** Aujourd'hui, sur l'ensemble de ma flotte, ce chiffre tourne autour de 20 %. L'objectif est de rendre banal de dire 100 %.
-
----
+La métrique est brute : le pourcentage de fonctionnalités qu'un agent peut appeler. Aujourd'hui, sur toute ma flotte, environ 20 %. L'objectif, c'est de rendre les 100 % ennuyeux.
 
 ## L'état honnête
 
-Ceci est un article de vision, donc voici exactement ce qui en existe au 2026-07-09 :
+C'est un billet de vision, alors voici la version honnête. Les services existent. La couche entre eux, non. La passerelle censée compter chaque euro existe à peine, donc mon système de budget croit actuellement que tout est gratuit. Une belle chose à croire. Une terrible chose à mettre en prod.
 
-- **Les services existent. La couche, non.** J'ai lancé un grep : zéro appel inter-services en production. La marque est réimplémentée quatre fois. L'identité, quatre fois. Les deux douleurs qui motivent la plateforme sont des faits mesurés, pas de la théorie.
-- **La gateway LLM — la pièce maîtresse — existe à peine.** Le seul vrai code de gateway dort dans un projet archivé, sous forme de librairie, avec \`cost_usd=0.0\` hardcodé. Mon système de budget croit actuellement que tout est gratuit.
-- **Le meilleur moteur est sous-adopté.** Mon service de connaissance est la pièce la plus solide de la flotte et presque rien ne le consomme encore.
-- **Deux produits prouvent le modèle manuellement.** Feen et Syncco fonctionnent — mais des humains les ont câblés, service par service.
+Feen et Syncco prouvent le modèle, mais ce sont des humains qui les ont câblés, service par service. Le prochain ne devrait pas en avoir besoin.
 
-Le plan du trimestre est strictement sériel, chaque chapitre conditionné par une démo : un kit de service standard qui transforme "une capability" en "un service déployé, protégé par clé, appelable par agent" en un après-midi ; puis l'identité et le contexte comme control plane ; puis recouler les services existants dans le moule ; puis la gateway avec un vrai ledger.
+La démo vers laquelle je construis tient en une ligne : \`nuva co create testco\`. Les agents produisent la marque, le site, l'audit SEO, la première campagne. De bout en bout. Le coût par artefact lisible depuis le grand livre.
 
-Le gate final est la démo fondatrice : \`nuva co create testco\` — et des agents produisent la marque, le site, l'audit SEO et la première campagne, de bout en bout, avec zéro fuite entre workspaces et un coût par artefact lisible dans le ledger.
+## Le point
 
----
+Feen et Syncco prouvent le modèle à la main. La prochaine entreprise naît sur la plateforme dès le premier jour.
 
-## L'essentiel
-
-Feen et Syncco prouvent le modèle manuellement. La prochaine entreprise naît sur la plateforme dès le premier jour.
-
-C'est toute la vision. Pas de plus gros modèles, pas plus de prompts — une usine où l'identité, le contexte, la mémoire, l'intelligence et les capabilities sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec un badge et un budget.
+Pas de plus gros modèles. Pas plus de prompts. Une usine où l'identité, le contexte, la mémoire, l'intelligence et les capacités sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec badges et budgets.
 
 L'entreprise est un appel d'API. Le reste, c'est de l'opérationnel.
 `.trim(),
       nl: `
-_Wat ik bouw is geen verzameling tools. Het is een bedrijvenfabriek. De demo waar ik naartoe werk is één commando: maak een bedrijf aan, en agents produceren het merk, de website, de SEO-audit en de eerste campagne — met elke euro verantwoord._
+_Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando maakt een bedrijf, en agents produceren het merk, de site, de SEO-audit, de eerste campagne. Elke euro verantwoord._
 
 ---
 
-## De reframe
+## De herkadering
 
-Twee jaar lang bouw ik al producten: een facturatieplatform voor Belgische kmo's, een compliance-monitor, een API voor Belgische bedrijfsdata, een AI-contentstudio, een knowledge engine. Elk nuttig. Elk grotendeels from scratch gebouwd. Elk implementeert dezelfde vijf dingen opnieuw.
+Twee jaar producten bouwen: facturatie voor Belgische kmo's, een compliance-monitor, een bedrijfsdata-API, een contentstudio, een knowledge engine. Elk nuttig. Elk vanaf nul gebouwd. Elk dezelfde vijf dingen opnieuw geïmplementeerd.
 
-Ergens rond de vierde herimplementatie van "brand identity" ben ik gestopt en heb ik het patroon een naam gegeven.
+Ergens rond de vierde keer dat ik "merkidentiteit" van nul herbouwde, stopte ik en gaf ik het patroon een naam.
 
-Wat ik bouw is geen verzameling tools. Het is een **bedrijvenfabriek** — een platform waar "een bedrijf aanmaken" een API-call is die identiteit, context, geheugen, een AI-budget en een set smalle AI-services provisioneert, en waar het bedrijf daarna grotendeels door agents wordt *uitgebaat*.
+Wat ik bouw is geen set tools. Het is een **bedrijfsfabriek**. "Maak een bedrijf" wordt een API-call die identiteit, context, geheugen, een AI-budget en een set smalle diensten levert. Het bedrijf wordt daarna, grotendeels, gerund door agents.
 
 Elk digitaal bedrijf heeft dezelfde vijf dingen nodig:
 
-1. **Identiteit** — wie bestaat: het bedrijf, zijn workspaces, zijn mensen, zijn agents, hun keys.
-2. **Context** — wat het bedrijf *is*: merk, tone of voice, aanbod, beperkingen. Gecureerd, klein, geversioneerd.
-3. **Geheugen** — wat het bedrijf *weet*: geschiedenis, documenten, beslissingen. Geaccumuleerd, groot, opgehaald.
-4. **Intelligentie** — modeltoegang met budgetten, routing en een echte ledger.
-5. **Capabilities** — smalle services die echt werk doen: een site genereren, SEO auditen, content produceren, een bedrijf opzoeken, een factuur versturen.
+→ **Identiteit** (wie er bestaat): het bedrijf, zijn mensen, zijn agents, hun keys.
+→ **Context** (wat het bedrijf is): merk, toon, aanbod. Klein, verzorgd, geversioneerd.
+→ **Geheugen** (wat het weet): geschiedenis, documenten, beslissingen. Groot, opgehaald.
+→ **Intelligentie**: modeltoegang met budgetten, routing en een echte ledger.
+→ **Capaciteiten**: diensten die het werk doen. Een site bouwen, SEO auditen, een factuur versturen.
 
-De producten die mensen zien — Feen, Syncco, de volgende venture — worden dunne, gebrande oppervlakken bovenop die services. Groeien betekent niet langer "de fundamenten opnieuw bouwen". Groei = bedrijven en services toevoegen.
-
----
+De producten die mensen zien (Feen, Syncco, de volgende) worden dunne, gebrande oppervlakken bovenop die diensten. Groeien betekent niet langer "opnieuw de fundamenten bouwen". Het betekent bedrijven en diensten toevoegen.
 
 ## De agent is een werknemer
 
-De meest AI-native beslissing in dit model is geen modelkeuze. Het is een keuze in het organogram.
+De meest AI-native beslissing hier is geen modelkeuze. Het is een keuze in het organogram.
 
-Agents zijn first-class actoren, geen anonieme automatisering. Een agent heeft een identity row zoals een mens die heeft. Hij houdt credentials bij. Hij heeft een budget. Hij roept dezelfde services aan via dezelfde contracten. Hij laat een auditeerbaar spoor achter.
+Een agent krijgt een identity row, net als een mens. Hij houdt credentials. Hij heeft een budget. Hij roept dezelfde diensten aan via dezelfde contracten, en laat een spoor na. Het organogram van het volgende bedrijf is letterlijk rijen in een database.
 
-Het organogram van het volgende bedrijf is letterlijk rijen in een database.
+Klinkt filosofisch tot je een saaie vraag stelt: welke agent gaf €4 uit, aan wiens campagne? In de meeste stacks is dat onbeantwoordbaar. Gedeelde key, kost begraven in een dashboard, niemand toegewezen. In de fabriek is het één query.
 
-Dat klinkt filosofisch tot je kijkt naar wat het oplost. Vandaag, wanneer een AI-feature draait, is de vraag "welke agent gaf €4 uit aan wiens campagne?" in de meeste stacks onbeantwoordbaar — de API-key wordt gedeeld, de kost zit in een providerdashboard, de actie wordt niet geattribueerd. In het fabrieksmodel is die vraag één query op één correlation id.
+En de agent raakt door zijn geld heen zoals een werknemer, in plaats van stilletjes de API-rekening leeg te trekken om 3 uur 's nachts. Budget op, de gateway zegt nee. Payroll voor software.
 
-En budgetten zijn niet langer een spreadsheet-angst. De agent *raakt door zijn geld heen zoals een werknemer*, in plaats van om 3 uur 's nachts stilletjes de API-account op te branden. Is het budget op, dan weigert de gateway de call. Payroll voor software.
+## Capaciteit eerst, UI op aanvraag
 
----
+Tweede regel: **minder UI, meer capaciteit.** De agent is de primaire gebruiker. Schermen zijn voor vertrouwen en intake, niet voor het werk.
 
-## Capability-first, UI-on-demand
+Elke dienst stelt zijn capaciteiten op dezelfde manier beschikbaar: over HTTP voor producten, over MCP voor agents. Definieer een capaciteit één keer; een webapp, een terminal en een agent loop roepen ze allemaal op dezelfde manier aan.
 
-De tweede doctrine: **reduceer UI, versterk capabilities.** De agent is de primaire gebruiker; schermen bestaan voor vertrouwen en intake, niet om te werken.
+Ik heb dit niet op een whiteboard bedacht. Ik vond het in mijn eigen vloot. Eén product was in stilte al de referentie-implementatie voordat het platform een naam had. Ik generaliseer, ik verzin niet.
 
-Elke service stelt zijn capabilities op dezelfde manier beschikbaar — zelfde envelope, zelfde auth, zelfde health check, zelfde error catalog — over HTTP voor producten, over MCP voor agents. Eén capability, één keer gedefinieerd als een schema plus een handler, identiek aanroepbaar door een webapp, een terminal of een agent loop.
-
-Ik heb dit patroon niet op een whiteboard ontworpen. Ik vond het in mijn eigen vloot. Bumpi, mijn contentstudio, werd gebouwd met een capability registry die elke capability automatisch beschikbaar stelt over HTTP, MCP en een agent loop — en dat bleek de referentie-implementatie van het hele platform te zijn nog voor het platform een naam had. Elk dragend patroon in de visie draait vandaag al ergens in productie. Ik ben aan het generaliseren, niet aan het uitvinden.
-
-De succesmetriek is bot: **het percentage features dat agent-aanroepbaar is.** Vandaag ligt dat cijfer over mijn hele vloot rond de 20%. Het doel is dat 100% zeggen saai wordt.
-
----
+De maatstaf is bot: het percentage features dat een agent kan aanroepen. Vandaag, over mijn hele vloot, ongeveer 20%. Het doel is om 100% saai te maken.
 
 ## De eerlijke stand van zaken
 
-Dit is een visiepost, dus hier is exact hoeveel ervan bestaat op 2026-07-09:
+Het is een visiestuk, dus hier de eerlijke versie. De diensten bestaan. De laag ertussen niet. De gateway die elke euro zou moeten meten bestaat amper, dus mijn budgetsysteem gelooft momenteel dat alles gratis is. Een mooi ding om te geloven. Een verschrikkelijk ding om te shippen.
 
-- **De services bestaan. De laag niet.** Ik heb gegrept: nul cross-service calls in productie. Brand is vier keer geherimplementeerd. Identiteit vier keer. De twee pijnen die het platform motiveren zijn gemeten feiten, geen theorie.
-- **De LLM-gateway — de spil — bestaat amper.** De enige echte gateway-code zit in een gearchiveerd project, als library, met \`cost_usd=0.0\` hardcoded. Mijn budgetsysteem gelooft momenteel dat alles gratis is.
-- **De beste engine wordt onderbenut.** Mijn knowledge service is het sterkste stuk van de vloot en er is bijna niets dat hem al consumeert.
-- **Twee producten bewijzen het model manueel.** Feen en Syncco werken — maar mensen hebben ze bedraad, service per service.
+Feen en Syncco bewijzen het model, maar mensen hebben ze bedraad, dienst per dienst. De volgende zou dat niet nodig mogen hebben.
 
-Het plan voor het kwartaal is strikt serieel, elk hoofdstuk gegated door een demo: een standaard service kit die "een capability" in één namiddag omzet in "een gedeployde, key-gated, agent-aanroepbare service"; dan identiteit en context als control plane; dan de bestaande services opnieuw in de mal gieten; dan de gateway met een echte ledger.
-
-De finale gate is de founding demo: \`nuva co create testco\` — en agents produceren het merk, de site, de SEO-audit en de eerste campagne, end-to-end, met nul cross-workspace leaks en een kost per artefact die afleesbaar is uit de ledger.
-
----
+De demo waar ik naartoe bouw is één regel: \`nuva co create testco\`. Agents produceren het merk, de site, de SEO-audit, de eerste campagne. Van begin tot eind. Kost-per-artefact leesbaar uit de ledger.
 
 ## Het punt
 
-Feen en Syncco bewijzen het model manueel. Het volgende bedrijf wordt vanaf dag één op het platform geboren.
+Feen en Syncco bewijzen het model met de hand. Het volgende bedrijf wordt vanaf dag één op het platform geboren.
 
-Dat is de hele visie. Geen grotere modellen, geen extra prompts — een fabriek waar identiteit, context, geheugen, intelligentie en capabilities geprovisioneerd worden zoals infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
+Geen grotere modellen. Niet meer prompts. Een fabriek waar identiteit, context, geheugen, intelligentie en capaciteiten geleverd worden als infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
 
 Het bedrijf is een API-call. De rest is operations.
 `.trim(),
@@ -1102,9 +907,9 @@ Het bedrijf is een API-call. De rest is operations.
       nl: "Ik simuleerde mijn WhatsApp-groep gedurende 16 runs",
     },
     description: {
-      en: "Five LLM personas, a different model each, goal: become millionaires together. Budget $10. The real numbers.",
-      fr: "Cinq personas LLM, un modèle différent chacun, goal : devenir millionnaires ensemble. Budget 10 $. Les vrais chiffres.",
-      nl: "Vijf LLM-persona's, elk een ander model, doel: samen miljonairs worden. Budget $10. De echte cijfers.",
+      en: "Five LLM personas, a different model each. Goal: become millionaires together. Budget $10. The real numbers.",
+      fr: "Cinq personas LLM, un modèle différent chacun. Goal : devenir millionnaires ensemble. Budget 10 $. Les vrais chiffres.",
+      nl: "Vijf LLM-persona's, elk een ander model. Doel: samen miljonairs worden. Budget $10. De echte cijfers.",
     },
     category: {
       en: "Experiments",
@@ -1112,9 +917,9 @@ Het bedrijf is een API-call. De rest is operations.
       nl: "Experimenten",
     },
     readTime: {
-      en: "6 min",
-      fr: "6 min",
-      nl: "6 min",
+      en: "4 min",
+      fr: "4 min",
+      nl: "4 min",
     },
     tags: {
       en: ["LLM","Multi-Agent","Personas"],
@@ -1123,13 +928,13 @@ Het bedrijf is een API-call. De rest is operations.
     },
     content: {
       en: `
-_Five LLM personas (each on a different model), goal: "become millionaires together". Budget: $10. Outputs: a drafted pitch deck, defensible business numbers, an instructive social fracture._
+_Five LLM personas, each on a different model. Goal: "become millionaires together". Budget: $10. Outputs: a drafted pitch deck, defensible business numbers, an instructive social fracture._
 
 ---
 
 ## The setup
 
-5 friends, tech boot-camp WhatsApp group. 9000 messages, plenty of SaaS ideas, zero shipped. Reconstituted as LLM personas, each on a different OpenRouter model, grounded in their real messages.
+5 friends, one tech boot-camp WhatsApp group. 9000 messages, plenty of SaaS ideas, zero shipped. I rebuilt them as LLM personas, each on a different OpenRouter model, grounded in their real messages.
 
 **Injected goal**: become millionaires together in 2 years. **Constraint**: 6 structured deliverables (vision, PRD, business plan, exec plan, MVP scope, pricing).
 
@@ -1141,21 +946,21 @@ Yacine    meta-llama/llama-3.3-70b      $0.12/M
 Sanou     google/gemini-2.5-flash       $0.10/M
 \`\`\`
 
-Each has a **private goal** (Hamza pushes to ship, Tarek owns the business plan, etc.) and **signature expressions** pulled from their real messages ("wsh", "tkt", "akhi"...) that anchor the voice.
+Each persona has a **private goal** (I push to ship, Tarek owns the business plan) and signature expressions pulled from their real messages ("wsh", "tkt", "akhi") that anchor the voice.
 
 ---
 
 ## The loop, every turn
 
-1. **Inbox check** — drain user directives
-2. **News scout** — fetch real news (web plugin)
-3. **Election** — 5 parallel LLM calls, willingness adjusted by anti-domination handicap
-4. **Filters** — anti-repeat, anti-domination
-5. **Winner speaks** — 1 message in the chat
-6. **Every 8 turns** — observer + facts + filler (parallel)
-7. **Every 20 turns** — judge + public directive
+1. **Inbox check**: drain user directives
+2. **News scout**: fetch real news (web plugin)
+3. **Election**: 5 parallel LLM calls, willingness adjusted by an anti-domination handicap
+4. **Filters**: anti-repeat, anti-domination
+5. **Winner speaks**: 1 message in the chat
+6. **Every 8 turns**: observer + facts + filler (parallel)
+7. **Every 20 turns**: judge + public directive
 
-4 memory layers injected in each prompt: last 20 messages + 25 structured facts + \`project_state.md\` + last 10 private thoughts.
+Four memory layers go into each prompt: last 20 messages + 25 structured facts + \`project_state.md\` + last 10 private thoughts.
 
 ---
 
@@ -1170,7 +975,7 @@ Each has a **private goal** (Hamza pushes to ship, Tarek owns the business plan,
 | Deliverable patches | 43 |
 | **Total cost** | **$0.277** |
 
-### Speaking distribution — perfect balance
+### Speaking distribution: perfect balance
 
 | Persona | Share |
 |---|---|
@@ -1180,27 +985,27 @@ Each has a **private goal** (Hamza pushes to ship, Tarek owns the business plan,
 | Sanou | 20.4% |
 | Tarek | 18.4% |
 
-Without the anti-domination handicap (\`-0.08 × recent_speak\`), Hamza won 4 turns out of 5. With it, zero domination.
+Without the anti-domination handicap (\`-0.08 × recent_speak\`), I won 4 turns out of 5. With it, zero domination.
 
 ---
 
 ## What worked
 
-- **Structured facts** (\`cash.available=8k€\`, \`mvp.deadline=friday\`) > chatty history. Actors stop re-asking "what's the pricing?" because the answer is there, attributed, timestamped.
-- **Deliverable templates** = forcing function. Showing "MVP scope: 70%" with named sections makes actors push content rather than debate in the void.
-- **Judge speaking in the chat** reshapes the next 20 turns. A private score is just a log.
+- **Structured facts** (\`cash.available=8k€\`, \`mvp.deadline=friday\`) beat chatty history. Actors stop re-asking "what's the pricing?" because the answer is there, attributed, timestamped.
+- **Deliverable templates** are a forcing function. Show "MVP scope: 70%" with named sections and actors push content instead of debating in the void.
+- **The judge speaking in the chat** reshapes the next 20 turns. A private score is just a log.
 
 After 16 runs:
-- Locked vision: AI tool for FR SMBs 10–50 employees
+- Locked vision: AI tool for FR SMBs, 10–50 employees
 - MVP: LinkedIn scrape + scoring + PDF export, 2 weeks
 - Pricing: 49€/month solo, CAC 50€, LTV 600€
-- Cash: 8k€ in funding (deliverable **auto-created** by the filler — not in baseline templates)
+- Cash: 8k€ in funding (deliverable **auto-created** by the filler, not in the baseline templates)
 
 ---
 
 ## What broke (run V1, honest)
 
-206 turns, Hamza **"ejected" Bouba from the group** after a security vs speed clash:
+206 turns in, I **"ejected" Bouba from the group** after a security-vs-speed clash:
 
 \`\`\`
 turn 40: alignment 0.62 · complete 5/6 · ready 0.71
@@ -1209,7 +1014,7 @@ turn 60: alignment 0.42 · complete 6/6 · ready 0.61
 
 **The group finished the 6 deliverables by excluding the dissident.** A human reading the chat can miss that. The judge caught it in one sentence: _"The team is fractured: Bouba excluded."_
 
-**Cause**: the Bouba persona overweighted his skeptical moments. Fix: a YAML overlay boosting his positive drives. In subsequent runs, Bouba speaks 10 times out of 49 — exactly like Hamza.
+**Cause**: the Bouba persona overweighted his skeptical moments. Fix: a YAML overlay that boosts his positive drives. In later runs, Bouba speaks 10 times out of 49, exactly like me.
 
 ---
 
@@ -1221,13 +1026,13 @@ turn 60: alignment 0.42 · complete 6/6 · ready 0.61
 | Time | several weeks | ~3h wall clock |
 | Output | often unfinished | 6 deliverables drafted, audit trail, dashboard |
 
-**Ratio: ~10,000 ×**. Not the same thing — real decisions demand humans. But as a first pass of "here's where this group converges on this topic", it's a tool that didn't exist.
+**Ratio: ~10,000 ×**. Not the same thing. Real decisions demand humans. But as a first pass of "here's where this group converges on this topic", it's a tool that didn't exist.
 
 ---
 
 ## The key point
 
-An LLM group is the **cheapest focus group in the world** for a concrete business idea. Goal, constraints, distinct voices, structured deliverables — and in 30 min for $2, you see what 40h of human meetings would produce.
+An LLM group is the **cheapest focus group in the world** for a concrete business idea. Goal, constraints, distinct voices, structured deliverables. In 30 min for $2, you see what 40h of human meetings would produce.
 
 The pitch deck is mostly noise. Sometimes, a real number drops.
 
@@ -1236,13 +1041,13 @@ The pitch deck is mostly noise. Sometimes, a real number drops.
 _Open source, offline, no WhatsApp integration. Audit trail in \`world/state/*.jsonl\`._
 `.trim(),
       fr: `
-_Cinq personas LLM (un modèle différent chacun), goal : "devenir millionnaires ensemble". Budget : 10 $. Outputs : un pitch deck drafté, des chiffres business tenables, une fracture sociale instructive._
+_Cinq personas LLM, un modèle différent chacun. Goal : "devenir millionnaires ensemble". Budget : 10 $. Outputs : un pitch deck drafté, des chiffres business tenables, une fracture sociale instructive._
 
 ---
 
 ## Le setup
 
-5 amis, groupe WhatsApp boot-camp tech. 9000 messages, plein d'idées de SaaS, zéro shippé. Reconstitués en personas LLM, chacun sur un modèle OpenRouter différent, grounded dans leurs vrais messages.
+5 amis, un groupe WhatsApp boot-camp tech. 9000 messages, plein d'idées de SaaS, zéro shippé. Je les ai reconstitués en personas LLM, chacun sur un modèle OpenRouter différent, grounded dans leurs vrais messages.
 
 **Goal injecté** : devenir millionnaires ensemble en 2 ans. **Contrainte** : 6 livrables structurés (vision, PRD, business plan, exec plan, MVP scope, pricing).
 
@@ -1254,21 +1059,21 @@ Yacine    meta-llama/llama-3.3-70b      $0.12/M
 Sanou     google/gemini-2.5-flash       $0.10/M
 \`\`\`
 
-Chacun a un **goal privé** (Hamza pousse à shipper, Tarek owner business plan, etc.) et des **signature expressions** extraites de leurs vrais messages ("wsh", "tkt", "akhi"...) qui ancrent la voix.
+Chaque persona a un **goal privé** (je pousse à shipper, Tarek owner du business plan) et des signature expressions extraites de leurs vrais messages ("wsh", "tkt", "akhi") qui ancrent la voix.
 
 ---
 
 ## La boucle, chaque tour
 
-1. **Inbox check** — drain directives user
-2. **News scout** — fetch actu (web plugin)
-3. **Élection** — 5 LLM calls parallèles, willingness adjusted par handicap anti-domination
-4. **Filtres** — anti-répétition, anti-domination
-5. **Winner parle** — 1 message dans le chat
-6. **Every 8 turns** — observer + facts + filler (parallèle)
-7. **Every 20 turns** — judge + directive publique
+1. **Inbox check** : drain des directives user
+2. **News scout** : fetch de l'actu (web plugin)
+3. **Élection** : 5 LLM calls parallèles, willingness ajustée par un handicap anti-domination
+4. **Filtres** : anti-répétition, anti-domination
+5. **Le winner parle** : 1 message dans le chat
+6. **Tous les 8 tours** : observer + facts + filler (parallèle)
+7. **Tous les 20 tours** : judge + directive publique
 
-4 couches de mémoire injectées dans chaque prompt : 20 derniers messages + 25 facts structurés + \`project_state.md\` + 10 dernières pensées privées.
+Quatre couches de mémoire injectées dans chaque prompt : 20 derniers messages + 25 facts structurés + \`project_state.md\` + 10 dernières pensées privées.
 
 ---
 
@@ -1283,7 +1088,7 @@ Chacun a un **goal privé** (Hamza pousse à shipper, Tarek owner business plan,
 | Patches livrables | 43 |
 | **Coût total** | **$0.277** |
 
-### Distribution de parole — équilibre parfait
+### Distribution de parole : équilibre parfait
 
 | Persona | Part |
 |---|---|
@@ -1293,27 +1098,27 @@ Chacun a un **goal privé** (Hamza pousse à shipper, Tarek owner business plan,
 | Sanou | 20.4% |
 | Tarek | 18.4% |
 
-Sans handicap anti-domination (\`-0.08 × recent_speak\`), Hamza gagnait 4 tours sur 5. Avec, zéro domination.
+Sans le handicap anti-domination (\`-0.08 × recent_speak\`), je gagnais 4 tours sur 5. Avec, zéro domination.
 
 ---
 
 ## Ce qui a marché
 
-- **Facts structurés** (\`cash.available=8k€\`, \`mvp.deadline=vendredi\`) > historique bavard. Les actors arrêtent de re-demander "c'est quoi le pricing ?" parce que la réponse est là, attribuée, timestampée.
-- **Templates de livrables** = forcing function. Montrer "MVP scope : 70%" avec sections nommées fait que les actors poussent du contenu plutôt que débattre dans le vide.
-- **Judge qui parle dans le chat** reshape les 20 turns suivants. Un score privé est juste un log.
+- **Facts structurés** (\`cash.available=8k€\`, \`mvp.deadline=vendredi\`) battent l'historique bavard. Les actors arrêtent de re-demander "c'est quoi le pricing ?" parce que la réponse est là, attribuée, timestampée.
+- **Templates de livrables** = forcing function. Montrer "MVP scope : 70%" avec des sections nommées fait que les actors poussent du contenu au lieu de débattre dans le vide.
+- **Le judge qui parle dans le chat** reshape les 20 tours suivants. Un score privé est juste un log.
 
-Résultat après 16 runs :
-- Vision lockée : outil IA pour PME/TPE FR 10-50 salariés
+Après 16 runs :
+- Vision lockée : outil IA pour PME/TPE FR, 10-50 salariés
 - MVP : scrape LinkedIn + scoring + export PDF, 2 semaines
 - Pricing : 49€/mois solo, CAC 50€, LTV 600€
-- Cash : 8k€ en funding (livrable **auto-créé** par le filler — pas dans les templates baseline)
+- Cash : 8k€ en funding (livrable **auto-créé** par le filler, pas dans les templates baseline)
 
 ---
 
 ## Ce qui a cassé (run V1, honnête)
 
-206 turns, Hamza **"éjecte" Bouba du groupe** après un clash sur la sécurité vs la vitesse :
+Au tour 206, j'ai **"éjecté" Bouba du groupe** après un clash sécurité contre vitesse :
 
 \`\`\`
 turn 40 : alignment 0.62 · complete 5/6 · ready 0.71
@@ -1322,7 +1127,7 @@ turn 60 : alignment 0.42 · complete 6/6 · ready 0.61
 
 **Le groupe a fini les 6 livrables en excluant le dissident.** Un humain qui lit le chat peut rater ça. Le judge l'a chopé en une phrase : _"L'équipe est fracturée : Bouba exclu."_
 
-**Cause** : la persona Bouba sur-pondérait ses moments sceptiques. Fix : overlay YAML qui booste ses drives positifs. Dans les runs suivants, Bouba parle 10 fois sur 49 — exactement comme Hamza.
+**Cause** : la persona Bouba sur-pondérait ses moments sceptiques. Fix : un overlay YAML qui booste ses drives positifs. Dans les runs suivants, Bouba parle 10 fois sur 49, exactement comme moi.
 
 ---
 
@@ -1332,30 +1137,30 @@ turn 60 : alignment 0.42 · complete 6/6 · ready 0.61
 |---|---|---|
 | Coût | 5 × 10h × 50€/h = **2500€** | **$0.28** |
 | Temps | plusieurs semaines | ~3h wall clock |
-| Output | souvent pas fini | 6 livrables drafted, audit trail, dashboard |
+| Output | souvent pas fini | 6 livrables draftés, audit trail, dashboard |
 
-**Ratio : ~10 000 ×**. Pas la même chose — les vraies décisions demandent des humains. Mais comme premier tour de "voici à quoi converge ce groupe sur ce sujet", c'est un outil qui n'existait pas.
+**Ratio : ~10 000 ×**. Pas la même chose. Les vraies décisions demandent des humains. Mais comme premier tour de "voici à quoi converge ce groupe sur ce sujet", c'est un outil qui n'existait pas.
 
 ---
 
 ## Le point clé
 
-Un groupe LLM est le **focus group le moins cher au monde** pour une idée business. Goal, contraintes, voix distinctes, livrables structurés — et en 30 min pour $2, tu vois ce que 40h de meetings humains produiraient.
+Un groupe LLM est le **focus group le moins cher au monde** pour une idée business concrète. Goal, contraintes, voix distinctes, livrables structurés. En 30 min pour $2, tu vois ce que 40h de meetings humains produiraient.
 
-Le pitch deck est principalement du bruit. Parfois, un vrai chiffre tombe.
+Le pitch deck est surtout du bruit. Parfois, un vrai chiffre tombe.
 
 ---
 
 _Open source, offline, no WhatsApp integration. Audit trail dans \`world/state/*.jsonl\`._
 `.trim(),
       nl: `
-_Vijf LLM-persona's (elk op een ander model), doel: "samen miljonairs worden". Budget: $10. Output: een concept pitch deck, verdedigbare businesscijfers, een leerrijke sociale breuk._
+_Vijf LLM-persona's, elk op een ander model. Doel: "samen miljonairs worden". Budget: $10. Output: een concept pitch deck, verdedigbare businesscijfers, een leerrijke sociale breuk._
 
 ---
 
 ## De setup
 
-5 vrienden, tech boot-camp WhatsApp-groep. 9000 berichten, veel SaaS-ideeën, nul verscheept. Gereconstrueerd als LLM-persona's, elk op een ander OpenRouter-model, gegrond in hun echte berichten.
+5 vrienden, één tech boot-camp WhatsApp-groep. 9000 berichten, veel SaaS-ideeën, nul verscheept. Ik bouwde ze opnieuw als LLM-persona's, elk op een ander OpenRouter-model, gegrond in hun echte berichten.
 
 **Geïnjecteerd doel**: samen miljonairs worden in 2 jaar. **Beperking**: 6 gestructureerde deliverables (vision, PRD, business plan, exec plan, MVP scope, pricing).
 
@@ -1367,21 +1172,21 @@ Yacine    meta-llama/llama-3.3-70b      $0.12/M
 Sanou     google/gemini-2.5-flash       $0.10/M
 \`\`\`
 
-Elk heeft een **privé-doel** (Hamza duwt om te verschepen, Tarek owner businessplan, enz.) en **signature expressions** uit hun echte berichten ("wsh", "tkt", "akhi"...) die de stem verankeren.
+Elke persona heeft een **privé-doel** (ik duw om te verschepen, Tarek owner van het businessplan) en signature expressions uit hun echte berichten ("wsh", "tkt", "akhi") die de stem verankeren.
 
 ---
 
 ## De loop, elke beurt
 
-1. **Inbox check** — drain user directives
-2. **News scout** — haal echt nieuws op (web plugin)
-3. **Verkiezing** — 5 parallelle LLM calls, willingness adjusted via anti-dominantie handicap
-4. **Filters** — anti-herhaling, anti-dominantie
-5. **Winnaar spreekt** — 1 bericht in de chat
-6. **Elke 8 beurten** — observer + facts + filler (parallel)
-7. **Elke 20 beurten** — judge + publieke directive
+1. **Inbox check**: drain van user directives
+2. **News scout**: haal echt nieuws op (web plugin)
+3. **Verkiezing**: 5 parallelle LLM calls, willingness aangepast door een anti-dominantie handicap
+4. **Filters**: anti-herhaling, anti-dominantie
+5. **De winnaar spreekt**: 1 bericht in de chat
+6. **Elke 8 beurten**: observer + facts + filler (parallel)
+7. **Elke 20 beurten**: judge + publieke directive
 
-4 geheugenlagen geïnjecteerd in elke prompt: laatste 20 berichten + 25 gestructureerde feiten + \`project_state.md\` + laatste 10 privégedachten.
+Vier geheugenlagen gaan in elke prompt: laatste 20 berichten + 25 gestructureerde feiten + \`project_state.md\` + laatste 10 privégedachten.
 
 ---
 
@@ -1396,7 +1201,7 @@ Elk heeft een **privé-doel** (Hamza duwt om te verschepen, Tarek owner business
 | Deliverable patches | 43 |
 | **Totale kost** | **$0.277** |
 
-### Verdeling van spreektijd — perfect evenwicht
+### Verdeling van spreektijd: perfect evenwicht
 
 | Persona | Aandeel |
 |---|---|
@@ -1406,36 +1211,36 @@ Elk heeft een **privé-doel** (Hamza duwt om te verschepen, Tarek owner business
 | Sanou | 20.4% |
 | Tarek | 18.4% |
 
-Zonder anti-dominantie handicap (\`-0.08 × recent_speak\`) won Hamza 4 beurten op 5. Met, nul dominantie.
+Zonder de anti-dominantie handicap (\`-0.08 × recent_speak\`) won ik 4 beurten op 5. Met, nul dominantie.
 
 ---
 
 ## Wat heeft gewerkt
 
-- **Gestructureerde feiten** (\`cash.available=8k€\`, \`mvp.deadline=vrijdag\`) > kletsende historiek. Actors stoppen met hervragen "wat is de pricing?" omdat het antwoord er staat, geattribueerd, tijdgestempeld.
-- **Deliverable-templates** = forcing function. "MVP scope: 70%" tonen met benoemde secties zorgt dat actors content pushen in plaats van in het niets te debatteren.
-- **Judge die in de chat spreekt** hervormt de volgende 20 beurten. Een privéscore is gewoon een log.
+- **Gestructureerde feiten** (\`cash.available=8k€\`, \`mvp.deadline=vrijdag\`) verslaan kletsende historiek. Actors stoppen met hervragen "wat is de pricing?" omdat het antwoord er staat, geattribueerd, tijdgestempeld.
+- **Deliverable-templates** = forcing function. Toon "MVP scope: 70%" met benoemde secties en actors pushen content in plaats van in het niets te debatteren.
+- **De judge die in de chat spreekt** hervormt de volgende 20 beurten. Een privéscore is gewoon een log.
 
 Na 16 runs:
-- Vision gelocked: AI-tool voor FR KMO's 10–50 werknemers
+- Vision gelocked: AI-tool voor FR KMO's, 10–50 werknemers
 - MVP: LinkedIn scrape + scoring + PDF export, 2 weken
 - Pricing: 49€/maand solo, CAC 50€, LTV 600€
-- Cash: 8k€ in funding (deliverable **auto-gecreëerd** door de filler — niet in baseline templates)
+- Cash: 8k€ in funding (deliverable **auto-gecreëerd** door de filler, niet in de baseline templates)
 
 ---
 
 ## Wat stuk ging (run V1, eerlijk)
 
-206 beurten, Hamza **"ejecte" Bouba uit de groep** na een clash over veiligheid vs snelheid:
+Bij beurt 206 heb ik **Bouba "geëjecteerd" uit de groep** na een clash veiligheid tegen snelheid:
 
 \`\`\`
 turn 40: alignment 0.62 · complete 5/6 · ready 0.71
 turn 60: alignment 0.42 · complete 6/6 · ready 0.61
 \`\`\`
 
-**De groep heeft de 6 deliverables afgemaakt door de dissident uit te sluiten.** Een mens die de chat leest kan dat missen. De judge heeft het in één zin gepakt: _"Het team is gebroken: Bouba uitgesloten."_
+**De groep maakte de 6 deliverables af door de dissident uit te sluiten.** Een mens die de chat leest kan dat missen. De judge pakte het in één zin: _"Het team is gebroken: Bouba uitgesloten."_
 
-**Oorzaak**: de Bouba-persona overweegde zijn sceptische momenten. Fix: een YAML-overlay die zijn positieve drives versterkt. In volgende runs spreekt Bouba 10 keer op 49 — exact zoals Hamza.
+**Oorzaak**: de Bouba-persona woog zijn sceptische momenten te zwaar. Fix: een YAML-overlay die zijn positieve drives versterkt. In latere runs spreekt Bouba 10 keer op 49, exact zoals ik.
 
 ---
 
@@ -1447,13 +1252,13 @@ turn 60: alignment 0.42 · complete 6/6 · ready 0.61
 | Tijd | meerdere weken | ~3u wall clock |
 | Output | vaak niet af | 6 deliverables, audit trail, dashboard |
 
-**Ratio: ~10.000 ×**. Niet hetzelfde — echte beslissingen vragen mensen. Maar als eerste pass van "hier is waar deze groep convergeert over dit onderwerp" is het een tool die niet bestond.
+**Ratio: ~10.000 ×**. Niet hetzelfde. Echte beslissingen vragen mensen. Maar als eerste pass van "hier is waar deze groep convergeert over dit onderwerp" is het een tool die niet bestond.
 
 ---
 
 ## Het kernpunt
 
-Een LLM-groep is de **goedkoopste focus group ter wereld** voor een concreet business-idee. Doel, beperkingen, onderscheiden stemmen, gestructureerde deliverables — en in 30 min voor $2 zie je wat 40u menselijke meetings zouden produceren.
+Een LLM-groep is de **goedkoopste focus group ter wereld** voor een concreet business-idee. Doel, beperkingen, onderscheiden stemmen, gestructureerde deliverables. In 30 min voor $2 zie je wat 40u menselijke meetings zouden produceren.
 
 De pitch deck is grotendeels ruis. Soms valt er een echt cijfer uit.
 
@@ -1471,13 +1276,13 @@ _Open source, offline, geen WhatsApp-integratie. Audit trail in \`world/state/*.
     image: "/illustrations/blog/a-practical-map-of-the-next-tech-decade.jpg",
     title: {
       en: "A Practical Map of the Next Tech Decade",
-      fr: "Une carte pratique de la prochaine décennie technologique",
-      nl: "Een praktische kaart van het volgende technologische decennium",
+      fr: "Une carte pratique de la prochaine décennie tech",
+      nl: "Een praktische kaart van het volgende tech-decennium",
     },
     description: {
-      en: "A capstone summary of the next tech decade: from systems and Knowledge OS to fine-tuned local models, robotics, and embodied products, with references to the earlier articles in the series.",
-      fr: "Une synthèse de la prochaine décennie technologique : des systèmes et du Knowledge OS jusqu'aux modèles locaux fine-tunés, à la robotique et aux produits incarnés, avec des références aux articles précédents de la série.",
-      nl: "Een samenvattend overzicht van het volgende technologische decennium: van systemen en Knowledge OS tot fijn-afgestelde lokale modellen, robotica en belichaamde producten, met referenties naar de eerdere artikels uit de reeks.",
+      en: "My take on where tech goes next: from tools to systems, from prompting to trained specialization, and eventually into robots. A bet, not a forecast.",
+      fr: "Mon opinion sur la suite : passer des outils aux systèmes, du prompting à la spécialisation entraînée, puis aux robots. Un pari, pas une prévision.",
+      nl: "Mijn kijk op wat volgt: van tools naar systemen, van prompting naar getrainde specialisatie, en uiteindelijk naar robots. Een weddenschap, geen voorspelling.",
     },
     category: {
       en: "Vision",
@@ -1485,9 +1290,9 @@ _Open source, offline, geen WhatsApp-integratie. Audit trail in \`world/state/*.
       nl: "Visie",
     },
     readTime: {
-      en: "8 min",
-      fr: "10 min",
-      nl: "10 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["Next Decade","AI Systems","Robotics"],
@@ -1496,557 +1301,242 @@ _Open source, offline, geen WhatsApp-integratie. Audit trail in \`world/state/*.
     },
     content: {
       en: `
-This article is the summary layer over the previous four:
+_Not a decade about one model. A decade about systems that know, decide, execute, improve, and eventually act in the world._
 
-- [AI Is Not About Models. It's About Systems.](/blog/ai-is-not-about-models-its-about-systems)
-- [Under the Hood: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
-- [Fine-Tuned Local Models Are the Next Layer](/blog/fine-tuned-local-models-are-the-next-layer)
-- [Robotics Is Where Agentic Systems Become Real](/blog/robotics-is-where-agentic-systems-become-real)
+---
 
-Taken together, they describe the direction I believe matters most for the next tech decade.
+This is the summary layer over four earlier posts:
 
-Not a decade centered on one model.
-Not a decade centered on one app category.
+→ [AI Is Not About Models. It's About Systems.](/blog/ai-is-not-about-models-its-about-systems)
+→ [Under the Hood: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+→ [Fine-Tuned Local Models Are the Next Layer](/blog/fine-tuned-local-models-are-the-next-layer)
+→ [Robotics Is Where Agentic Systems Become Real](/blog/robotics-is-where-agentic-systems-become-real)
 
-But a decade centered on systems that can:
+Read together, they point one way. Not a decade built on one model. Not a decade built on one app category. A decade built on systems that can know, decide, execute, improve, and eventually act in the physical world.
 
-- know
-- decide
-- execute
-- improve
-- and eventually act in the physical world
+Here's the map, compressed.
 
-This is the shortest way I can summarize that map.
+## From tools to systems
 
-## Step 1: We Move From Tools to Systems
+AI will keep being sold as model releases, benchmarks, and demos. The durable value sits somewhere quieter: the system around the model. Context. Rules. Execution. Validation.
 
-The first shift is conceptual.
+That's the minimum wiring for reliability. The model stopped being the unit. The **operating system around it** is.
 
-AI will keep being discussed through model releases, benchmarks, and product demos. But the durable value will not come from isolated model access. It will come from system design.
+## Doing and knowing are different jobs
 
-That was the core point of the first article.
+Once AI is a system problem, the split gets obvious. One layer moves work forward. One layer keeps the right context available.
 
-The important unit is no longer just the model.
+I call them the **harness** and the Knowledge OS. The harness plans, generates, evaluates, gates. The Knowledge OS ingests, retrieves, relates, compiles.
 
-It is the operating system around the model:
+Execution without memory is shallow. Memory without execution is a filing cabinet.
 
-- context
-- rules
-- execution
-- validation
+## Prompting runs out
 
-That is the minimum structure required for reliability.
+Prompting stays useful. It just stops being the whole architecture.
 
-## Step 2: Execution and Memory Become First-Class Layers
+Narrow tasks repeated a thousand times shouldn't live inside ever-growing prompt scaffolding. The next serious layer is **specialization through training**: smaller local models, narrow jobs, lower latency, less prompt overhead.
 
-Once you accept that AI is a system problem, the architecture becomes clearer.
+Not to replace reasoning. To reserve reasoning for where it's actually needed, and stabilize the rest.
 
-You need one layer responsible for moving work forward.
-You need another layer responsible for making the right context available.
+## Self-improvement, minus the mysticism
 
-That is why I split the stack into:
+"Self-improving systems" gets used too loosely. What I mean is dull and practical: execution produces evidence, and the system learns from it.
 
-- a **harness** for execution
-- a **Knowledge OS** for structured memory
+What failed repeatedly. What needed too much prompting. What should become a rule, or training data, or a specialized model's job. **Improve the architecture around repeated work**, and the system improves with it.
 
-The harness plans, generates, evaluates, and gates.
-The Knowledge OS ingests, retrieves, relates, and compiles.
+## Then it gets a body
 
-That split matters because execution without memory becomes shallow, and memory without execution remains passive.
+If those four hold, intelligence stops living on screens. That's robotics.
 
-## Step 3: Prompting Stops Being Enough
+Not a separate field. The same stack, extended into the physical world. Once a system can reason, remember, evaluate, specialize, and improve, the next question writes itself: what happens when it gains a body?
 
-Prompting will remain useful, but it is not where the long-term architecture ends.
+Not humanoid first. The market gets built through robotic arms, drones, mobile inspection units, educational robots, narrow industrial machines. Humanoids may matter culturally. Useful embodiment arrives in many shapes.
 
-As systems mature, repeated narrow tasks should not remain trapped inside ever-growing prompt scaffolding.
+## The layers, in order
 
-That is why the next serious layer is specialization through training:
+| Layer | What it solves |
+|---|---|
+| AI systems | Connect knowledge, rules, execution, validation |
+| Harness + Knowledge OS | Separate doing from knowing |
+| Fine-tuned local models | Stabilize narrow repeated tasks |
+| Self-improving loops | Learn from real execution evidence |
+| Robotics | Extend intelligence into physical action |
 
-- smaller local models
-- narrow responsibilities
-- lower latency
-- less prompt overhead
-- stronger operational alignment
+Five layers. Each one makes the next possible.
 
-This is not about replacing reasoning.
+The impact won't stay inside software. It spreads into services, operations, logistics, safety, education, industry, physical assistance. The next decade isn't better chat interfaces. It's the convergence of AI, training, execution systems, open source, cheaper hardware, and embodied deployment.
 
-It is about reserving reasoning for the places where reasoning is actually needed, and stabilizing everything else.
+## Humans don't exit
 
-## Step 4: Self-Improvement Becomes Operational
+I don't read this as removing people. Near term, these systems hand time, focus, and execution power back to us.
 
-The phrase "self-improving systems" is often used too vaguely.
+Humans still choose the direction. Humans still decide what matters. Humans still match capability to meaning.
 
-What matters to me is not abstract reflection.
+Now the honest part: this is a bet, not a forecast. I'm describing the direction I'm building toward, not a timeline I can prove. The early layers I've shipped. The body is still theory.
 
-What matters is execution producing evidence.
+One line for the decade: from models to systems, from systems to reliable specialization, from specialization to embodied intelligence.
 
-From that evidence, the system can learn:
+First it learns to know. Then to do. Then to improve. Then to act.
 
-- what failed repeatedly
-- what required too much prompting
-- what should become a rule
-- what should become training data
-- what should be assigned to a specialized model
-
-That is the practical loop.
-
-Improve the system by improving the architecture around repeated work.
-
-## Step 5: The Stack Extends Into Robotics
-
-If the first four steps work, then intelligence stops being confined to screens.
-
-That is where robotics enters.
-
-I do not see robotics as a separate field disconnected from agentic systems. I see it as the continuation of the same stack into the physical world.
-
-Once a system can reason, remember, evaluate, specialize, and improve, the next question is obvious:
-
-> what happens when it gains a body?
-
-That body does not need to be humanoid at first.
-
-In practice, much of the market will be built through:
-
-- robotic arms
-- drones
-- mobile inspection units
-- educational robots
-- narrow industrial machines
-
-Humanoids may become culturally important, but useful embodiment will arrive through many forms.
-
-## A Decade Structured in Layers
-
-If I compress the whole thesis into a simple schema, it looks like this:
-
-| Layer | What It Solves | Why It Matters |
-|---|---|---|
-| AI systems | Connect knowledge, rules, execution, and validation | Turns AI into operating structure |
-| Harness + Knowledge OS | Separate doing from knowing | Makes execution and memory reliable |
-| Fine-tuned local models | Stabilize narrow repeated tasks | Reduces prompt dependency |
-| Self-improving loops | Learn from real execution evidence | Increases reliability over time |
-| Robotics | Extend intelligence into physical action | Turns software capability into products and services |
-
-This is the architecture I expect to matter most.
-
-## Where Products and Services Will Move
-
-The product impact of this shift will not stay inside software categories.
-
-It will spread into services, operations, logistics, safety, education, industry, and physical assistance.
-
-That means the next decade is not only about better chat interfaces.
-
-It is about the convergence of:
-
-- AI
-- training
-- execution systems
-- open source ecosystems
-- cheaper hardware
-- embodied deployment
-
-That combination is what creates new product categories.
-
-## The Human Role Does Not Disappear
-
-One reason I care about this direction is that I do not see it as a story of human removal.
-
-In the near term, these systems help humans recover time, focus, creativity, and execution power.
-
-Humans still choose the direction.
-Humans still decide what matters.
-Humans still do the final matching between capability and meaning.
-
-The system makes imagination easier to turn into structure.
-Then structure becomes execution.
-Then execution becomes service.
-
-That is a much more interesting path than simple automation theater.
-
-## Final Thought
-
-If I had to reduce the next tech decade to one line, it would be this:
-
-we are moving from models to systems, from systems to reliable specialization, and from reliable specialization to embodied intelligence.
-
-That is the sequence.
-
-First the system learns to know.
-Then it learns to do.
-Then it learns to improve.
-Then it begins to act in the real world.
-
-That is where I think the real decade is heading.
+That's where I think the real decade goes.
 `.trim(),
       fr: `
-Cet article est la couche de synthèse des quatre précédents :
+_Pas une décennie autour d'un modèle. Une décennie autour de systèmes qui savent, décident, exécutent, s'améliorent, et finissent par agir dans le monde._
 
-- [L'IA n'est pas une affaire de modèles. C'est une affaire de systèmes.](/blog/ai-is-not-about-models-its-about-systems)
-- [La stack technique derrière mes projets IA : Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
-- [Les modèles locaux fine-tunés sont la couche suivante](/blog/fine-tuned-local-models-are-the-next-layer)
-- [La robotique est l'endroit où les systèmes agentiques deviennent réels](/blog/robotics-is-where-agentic-systems-become-real)
+---
 
-Pris ensemble, ils décrivent la direction qui me paraît la plus importante pour la prochaine décennie technologique.
+C'est la couche de synthèse au-dessus de quatre articles :
 
-Pas une décennie centrée sur un seul modèle.
-Pas une décennie centrée sur une seule catégorie d'application.
+→ [L'IA n'est pas une affaire de modèles. C'est une affaire de systèmes.](/blog/ai-is-not-about-models-its-about-systems)
+→ [Sous le capot : Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+→ [Les modèles locaux fine-tunés sont la couche suivante](/blog/fine-tuned-local-models-are-the-next-layer)
+→ [La robotique est là où les systèmes agentiques deviennent réels](/blog/robotics-is-where-agentic-systems-become-real)
 
-Mais une décennie centrée sur des systèmes capables de :
+Lus ensemble, ils pointent dans une seule direction. Pas une décennie bâtie sur un modèle. Pas une décennie bâtie sur une catégorie d'app. Une décennie bâtie sur des systèmes capables de savoir, décider, exécuter, s'améliorer, et finalement agir dans le monde physique.
 
-- savoir
-- décider
-- exécuter
-- s'améliorer
-- et finalement agir dans le monde physique
+Voici la carte, compressée.
 
-C'est la manière la plus courte que j'ai de résumer cette carte.
+## Des outils aux systèmes
 
-## Étape 1 : passer des outils aux systèmes
+L'IA continuera de se vendre en sorties de modèles, benchmarks et démos. La valeur durable est ailleurs, plus discrète : le système autour du modèle. Le contexte. Les règles. L'exécution. La validation.
 
-Le premier basculement est conceptuel.
+C'est le câblage minimal de la fiabilité. Le modèle n'est plus l'unité. **Le système d'exploitation autour de lui**, si.
 
-L'IA continuera d'être racontée à travers des sorties de modèles, des benchmarks et des démos produit. Mais la valeur durable ne viendra pas d'un accès isolé au modèle. Elle viendra du design système.
+## Faire et savoir sont deux métiers
 
-C'était l'idée centrale du premier article.
+Dès que l'IA devient un problème de système, la séparation saute aux yeux. Une couche fait avancer le travail. Une couche garde le bon contexte disponible.
 
-L'unité importante n'est plus seulement le modèle.
+Je les appelle le **harness** et le Knowledge OS. Le harness planifie, génère, évalue, gate. Le Knowledge OS ingère, retrouve, relie, compile.
 
-C'est le système opérant autour du modèle :
+L'exécution sans mémoire reste superficielle. La mémoire sans exécution, c'est un classeur.
 
-- le contexte
-- les règles
-- l'exécution
-- la validation
+## Le prompting s'épuise
 
-C'est la structure minimale nécessaire à la fiabilité.
+Le prompting reste utile. Il cesse juste d'être toute l'architecture.
 
-## Étape 2 : l'exécution et la mémoire deviennent des couches de premier rang
+Une tâche étroite répétée mille fois ne devrait pas vivre dans un scaffolding de prompt toujours plus long. La couche suivante sérieuse, c'est la **spécialisation par l'entraînement** : des modèles locaux plus petits, des rôles étroits, moins de latence, moins d'overhead de prompt.
 
-Dès qu'on accepte que l'IA soit un problème de système, l'architecture devient plus claire.
+Pas pour remplacer le raisonnement. Pour le réserver là où il sert vraiment, et stabiliser le reste.
 
-Il faut une couche responsable de faire avancer le travail.
-Il faut une autre couche responsable de rendre le bon contexte disponible.
+## L'auto-amélioration, sans le mysticisme
 
-C'est pourquoi je découpe la stack en :
+"Systèmes auto-améliorants" est employé trop vaguement. Ce que je vise est banal et concret : l'exécution produit des preuves, et le système apprend d'elles.
 
-- un **harness** pour l'exécution
-- un **Knowledge OS** pour la mémoire structurée
+Ce qui a échoué en boucle. Ce qui a demandé trop de prompting. Ce qui doit devenir une règle, une donnée d'entraînement, ou le job d'un modèle spécialisé. **Améliore l'architecture autour du travail répété**, et le système s'améliore avec.
 
-Le harness planifie, génère, évalue et gate.
-Le Knowledge OS ingère, retrouve, relie et compile.
+## Puis il reçoit un corps
 
-Cette séparation compte parce qu'une exécution sans mémoire reste superficielle, et qu'une mémoire sans exécution reste passive.
+Si ces quatre étapes tiennent, l'intelligence quitte les écrans. C'est la robotique.
 
-## Étape 3 : le prompting cesse d'être suffisant
+Pas un champ à part. La même stack, prolongée dans le monde physique. Une fois qu'un système sait raisonner, se souvenir, évaluer, se spécialiser et s'améliorer, la question s'écrit toute seule : que se passe-t-il quand il gagne un corps ?
 
-Le prompting restera utile, mais ce n'est pas là que l'architecture de long terme s'arrête.
+Pas humanoïde d'abord. Le marché se construira par des bras robotiques, des drones, des unités mobiles d'inspection, des robots éducatifs, des machines industrielles étroites. Les humanoïdes compteront peut-être culturellement. L'incarnation utile arrive sous mille formes.
 
-À mesure que les systèmes mûrissent, les tâches étroites et répétées ne doivent pas rester enfermées dans un scaffolding de prompt toujours plus long.
+## Les couches, dans l'ordre
 
-C'est pourquoi la couche suivante sérieuse est la spécialisation par l'entraînement :
+| Couche | Ce qu'elle résout |
+|---|---|
+| Systèmes IA | Relier connaissance, règles, exécution, validation |
+| Harness + Knowledge OS | Séparer le faire du savoir |
+| Modèles locaux fine-tunés | Stabiliser les tâches étroites et répétées |
+| Boucles auto-améliorantes | Apprendre de l'exécution réelle |
+| Robotique | Étendre l'intelligence à l'action physique |
 
-- des modèles locaux plus petits
-- des responsabilités étroites
-- moins de latence
-- moins d'overhead de prompt
-- plus d'alignement opérationnel
+Cinq couches. Chacune rend la suivante possible.
 
-Il ne s'agit pas de remplacer le raisonnement.
+L'impact ne restera pas dans le logiciel. Il se diffuse dans les services, les opérations, la logistique, la sécurité, l'éducation, l'industrie, l'assistance physique. La prochaine décennie, ce ne sont pas de meilleures interfaces de chat. C'est la convergence de l'IA, de l'entraînement, des systèmes d'exécution, de l'open source, d'un hardware moins cher et du déploiement incarné.
 
-Il s'agit de réserver le raisonnement aux endroits où il est réellement nécessaire, et de stabiliser le reste.
+## L'humain ne sort pas du jeu
 
-## Étape 4 : l'auto-amélioration devient opérationnelle
+Je ne lis pas ça comme une histoire de retrait de l'humain. À court terme, ces systèmes nous rendent du temps, de la concentration et du pouvoir d'exécution.
 
-L'expression "systèmes auto-améliorants" est souvent utilisée de manière trop vague.
+Les humains choisissent toujours la direction. Les humains décident toujours de ce qui compte. Les humains font toujours le lien entre capacité et sens.
 
-Ce qui m'intéresse n'est pas la réflexion abstraite.
+Maintenant, la partie honnête : c'est un pari, pas une prévision. Je décris la direction que je construis, pas un calendrier que je peux prouver. Les premières couches, je les ai livrées. Le corps reste une théorie.
 
-Ce qui m'intéresse, c'est l'exécution qui produit des preuves.
+Une phrase pour la décennie : des modèles aux systèmes, des systèmes à la spécialisation fiable, de la spécialisation à l'intelligence incarnée.
 
-À partir de ces preuves, le système peut apprendre :
-
-- ce qui a échoué de manière répétée
-- ce qui a demandé trop de prompting
-- ce qui doit devenir une règle
-- ce qui doit devenir de la donnée d'entraînement
-- ce qui doit être confié à un modèle spécialisé
-
-C'est la boucle pratique.
-
-Améliorer le système en améliorant l'architecture autour du travail répétitif.
-
-## Étape 5 : la stack s'étend à la robotique
-
-Si les quatre premières étapes fonctionnent, alors l'intelligence cesse d'être confinée aux écrans.
-
-C'est là que la robotique entre en jeu.
-
-Je ne vois pas la robotique comme un champ séparé des systèmes agentiques. Je la vois comme la continuation de la même stack dans le monde physique.
-
-Une fois qu'un système sait raisonner, se souvenir, évaluer, se spécialiser et s'améliorer, la question suivante devient évidente :
-
-> que se passe-t-il lorsqu'il reçoit un corps ?
-
-Ce corps n'a pas besoin d'être humanoïde au départ.
-
-En pratique, une grande partie du marché se construira à travers :
-
-- des bras robotiques
-- des drones
-- des unités mobiles d'inspection
-- des robots éducatifs
-- des machines industrielles étroites
-
-Les humanoïdes deviendront peut-être culturellement importants, mais l'incarnation utile arrivera à travers de nombreuses formes.
-
-## Une décennie structurée par couches
-
-Si je compresse toute la thèse dans un schéma simple, cela ressemble à ceci :
-
-| Couche | Ce qu'elle résout | Pourquoi elle compte |
-|---|---|---|
-| Systèmes IA | Relier connaissance, règles, exécution et validation | Transforme l'IA en structure opérante |
-| Harness + Knowledge OS | Séparer le faire du savoir | Rend l'exécution et la mémoire fiables |
-| Modèles locaux fine-tunés | Stabiliser les tâches étroites et répétées | Réduit la dépendance au prompt |
-| Boucles auto-améliorantes | Apprendre à partir de l'exécution réelle | Augmente la fiabilité dans le temps |
-| Robotique | Étendre l'intelligence à l'action physique | Transforme des capacités logicielles en produits et services |
-
-C'est l'architecture que je m'attends à voir compter le plus.
-
-## Où vont bouger les produits et les services
-
-L'impact produit de ce basculement ne restera pas limité aux catégories logicielles.
-
-Il va se diffuser dans les services, les opérations, la logistique, la sécurité, l'éducation, l'industrie et l'assistance physique.
-
-Cela signifie que la prochaine décennie ne sera pas seulement celle de meilleures interfaces conversationnelles.
-
-Elle sera celle de la convergence entre :
-
-- l'IA
-- l'entraînement
-- les systèmes d'exécution
-- les écosystèmes open source
-- un hardware moins coûteux
-- le déploiement incarné
-
-C'est cette combinaison qui crée de nouvelles catégories produit.
-
-## Le rôle humain ne disparaît pas
-
-L'une des raisons pour lesquelles cette direction m'intéresse est que je ne la vois pas comme un récit de disparition de l'humain.
-
-À court terme, ces systèmes aident les humains à récupérer du temps, de la concentration, de la créativité et du pouvoir d'exécution.
-
-Les humains choisissent toujours la direction.
-Les humains décident toujours de ce qui compte.
-Les humains font toujours le matching final entre capacité et sens.
-
-Le système rend l'imagination plus facile à transformer en structure.
-Puis la structure devient exécution.
-Puis l'exécution devient service.
-
-C'est une trajectoire beaucoup plus intéressante qu'un simple théâtre de l'automatisation.
-
-## Dernière idée
-
-Si je devais réduire la prochaine décennie technologique à une seule phrase, je dirais ceci :
-
-nous passons des modèles aux systèmes, des systèmes à la spécialisation fiable, puis de la spécialisation fiable à l'intelligence incarnée.
-
-C'est la séquence.
-
-D'abord le système apprend à savoir.
-Ensuite il apprend à faire.
-Puis il apprend à s'améliorer.
-Enfin il commence à agir dans le monde réel.
+D'abord il apprend à savoir. Puis à faire. Puis à s'améliorer. Puis à agir.
 
 C'est là que je pense que la vraie décennie se dirige.
 `.trim(),
       nl: `
-Dit artikel is de samenvattende laag bovenop de vorige vier:
+_Geen decennium rond één model. Een decennium rond systemen die weten, beslissen, uitvoeren, verbeteren, en uiteindelijk handelen in de wereld._
 
-- [AI draait niet om modellen. Het draait om systemen.](/blog/ai-is-not-about-models-its-about-systems)
-- [De technische stack achter mijn AI-projecten: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
-- [Fijn-afgestelde lokale modellen zijn de volgende laag](/blog/fine-tuned-local-models-are-the-next-layer)
-- [Robotica is waar agentische systemen echt worden](/blog/robotics-is-where-agentic-systems-become-real)
+---
 
-Samen beschrijven ze de richting die volgens mij het belangrijkst wordt voor het volgende technologische decennium.
+Dit is de samenvattende laag bovenop vier eerdere artikels:
 
-Geen decennium dat rond één model draait.
-Geen decennium dat rond één appcategorie draait.
+→ [AI draait niet om modellen. Het draait om systemen.](/blog/ai-is-not-about-models-its-about-systems)
+→ [Onder de motorkap: Harness + Knowledge OS](/blog/the-technical-stack-behind-my-ai-projects)
+→ [Fijn-afgestelde lokale modellen zijn de volgende laag](/blog/fine-tuned-local-models-are-the-next-layer)
+→ [Robotica is waar agentische systemen echt worden](/blog/robotics-is-where-agentic-systems-become-real)
 
-Maar een decennium dat draait rond systemen die kunnen:
+Samen wijzen ze één kant op. Geen decennium gebouwd op één model. Geen decennium gebouwd op één appcategorie. Een decennium gebouwd op systemen die kunnen weten, beslissen, uitvoeren, verbeteren, en uiteindelijk handelen in de fysieke wereld.
 
-- weten
-- beslissen
-- uitvoeren
-- verbeteren
-- en uiteindelijk handelen in de fysieke wereld
+Hier is de kaart, samengedrukt.
 
-Dit is de kortste manier waarop ik die kaart kan samenvatten.
+## Van tools naar systemen
 
-## Stap 1: we bewegen van tools naar systemen
+AI zal verkocht blijven worden als modelreleases, benchmarks en demo's. De duurzame waarde zit ergens stiller: het systeem rond het model. Context. Regels. Uitvoering. Validatie.
 
-De eerste verschuiving is conceptueel.
+Dat is de minimale bedrading voor betrouwbaarheid. Het model is niet langer de eenheid. **Het besturingssysteem eromheen** wel.
 
-AI zal nog lang besproken worden via modelreleases, benchmarks en productdemo's. Maar duurzame waarde zal niet komen uit geïsoleerde modeltoegang. Ze zal komen uit systeemontwerp.
+## Doen en weten zijn twee jobs
 
-Dat was het kernpunt van het eerste artikel.
+Zodra AI een systeemprobleem wordt, wordt de splitsing duidelijk. Eén laag duwt het werk vooruit. Eén laag houdt de juiste context beschikbaar.
 
-De belangrijke eenheid is niet langer alleen het model.
+Ik noem ze de **harness** en de Knowledge OS. De harness plant, genereert, evalueert, gate. De Knowledge OS neemt in, haalt op, relateert, compileert.
 
-Het is het besturingssysteem rond het model:
+Uitvoering zonder geheugen blijft oppervlakkig. Geheugen zonder uitvoering is een archiefkast.
 
-- context
-- regels
-- uitvoering
-- validatie
+## Prompting raakt op
 
-Dat is de minimale structuur die nodig is voor betrouwbaarheid.
+Prompting blijft nuttig. Het stopt gewoon met de hele architectuur te zijn.
 
-## Stap 2: uitvoering en geheugen worden first-class lagen
+Een smalle taak die duizend keer terugkomt, hoort niet thuis in steeds langere prompt-scaffolding. De volgende serieuze laag is **specialisatie via training**: kleinere lokale modellen, smalle rollen, lagere latency, minder prompt-overhead.
 
-Zodra je aanvaardt dat AI een systeemprobleem is, wordt de architectuur helderder.
+Niet om redeneren te vervangen. Om redeneren te bewaren voor waar het echt nodig is, en de rest te stabiliseren.
 
-Je hebt één laag nodig die verantwoordelijk is voor het vooruitduwen van werk.
-Je hebt een andere laag nodig die de juiste context beschikbaar maakt.
+## Zelfverbetering, zonder de mystiek
 
-Daarom splits ik de stack op in:
+"Zelfverbeterende systemen" wordt te los gebruikt. Wat ik bedoel is saai en praktisch: uitvoering levert bewijs op, en het systeem leert daaruit.
 
-- een **harness** voor uitvoering
-- een **Knowledge OS** voor gestructureerd geheugen
+Wat herhaaldelijk faalde. Wat te veel prompting vroeg. Wat een regel moet worden, trainingsdata, of de job van een gespecialiseerd model. **Verbeter de architectuur rond repetitief werk**, en het systeem verbetert mee.
 
-De harness plant, genereert, evalueert en gate.
-De Knowledge OS neemt in, haalt op, relateert en compileert.
+## Dan krijgt het een lichaam
 
-Die splitsing is belangrijk omdat uitvoering zonder geheugen oppervlakkig blijft, en geheugen zonder uitvoering passief blijft.
+Als die vier standhouden, verlaat intelligentie de schermen. Dat is robotica.
 
-## Stap 3: prompting is niet langer genoeg
+Geen apart veld. Dezelfde stack, doorgetrokken in de fysieke wereld. Zodra een systeem kan redeneren, onthouden, evalueren, specialiseren en verbeteren, schrijft de volgende vraag zichzelf: wat gebeurt er als het een lichaam krijgt?
 
-Prompting blijft nuttig, maar daar eindigt de langetermijnarchitectuur niet.
+Niet humanoid eerst. De markt wordt gebouwd via robotarmen, drones, mobiele inspectie-eenheden, educatieve robots, smalle industriële machines. Humanoids worden misschien cultureel belangrijk. Nuttige belichaming komt in vele vormen.
 
-Naarmate systemen volwassener worden, mogen repetitieve smalle taken niet opgesloten blijven in steeds grotere prompt-scaffolding.
+## De lagen, op volgorde
 
-Daarom is de volgende serieuze laag specialisatie via training:
+| Laag | Wat het oplost |
+|---|---|
+| AI-systemen | Kennis, regels, uitvoering, validatie verbinden |
+| Harness + Knowledge OS | Doen van weten scheiden |
+| Fijn-afgestelde lokale modellen | Smalle repetitieve taken stabiliseren |
+| Zelfverbeterende lussen | Leren uit echte uitvoeringsdata |
+| Robotica | Intelligentie uitbreiden naar fysieke actie |
 
-- kleinere lokale modellen
-- smalle verantwoordelijkheden
-- lagere latency
-- minder prompt-overhead
-- sterkere operationele alignment
+Vijf lagen. Elke laag maakt de volgende mogelijk.
 
-Het gaat niet om het vervangen van redeneren.
+De impact blijft niet in software. Ze verspreidt zich naar diensten, operations, logistiek, veiligheid, onderwijs, industrie, fysieke assistentie. Het volgende decennium gaat niet over betere chatinterfaces. Het gaat over de convergentie van AI, training, uitvoeringssystemen, open source, goedkopere hardware en belichaamde deployment.
 
-Het gaat erom redeneren te reserveren voor de plaatsen waar het echt nodig is, en al de rest te stabiliseren.
+## De mens stapt niet uit
 
-## Stap 4: zelfverbetering wordt operationeel
+Ik lees dit niet als een verhaal over het weghalen van mensen. Op korte termijn geven deze systemen ons tijd, focus en uitvoeringskracht terug.
 
-De uitdrukking "zelfverbeterende systemen" wordt vaak te vaag gebruikt.
+Mensen kiezen nog altijd de richting. Mensen beslissen nog altijd wat belangrijk is. Mensen leggen nog altijd het verband tussen capaciteit en betekenis.
 
-Wat mij interesseert is geen abstracte reflectie.
+Nu het eerlijke deel: dit is een weddenschap, geen voorspelling. Ik beschrijf de richting die ik bouw, geen tijdlijn die ik kan bewijzen. De eerste lagen heb ik geleverd. Het lichaam blijft theorie.
 
-Wat mij interesseert is uitvoering die bewijs oplevert.
+Eén zin voor het decennium: van modellen naar systemen, van systemen naar betrouwbare specialisatie, van specialisatie naar belichaamde intelligentie.
 
-Uit dat bewijs kan het systeem leren:
-
-- wat herhaaldelijk faalde
-- wat te veel prompting vereiste
-- wat een regel moet worden
-- wat trainingsdata moet worden
-- wat aan een gespecialiseerd model moet worden toegewezen
-
-Dat is de praktische lus.
-
-Verbeter het systeem door de architectuur rond repetitief werk te verbeteren.
-
-## Stap 5: de stack breidt uit naar robotica
-
-Als de eerste vier stappen werken, dan blijft intelligentie niet langer opgesloten in schermen.
-
-Daar komt robotica binnen.
-
-Ik zie robotica niet als een apart veld los van agentische systemen. Ik zie het als de voortzetting van dezelfde stack in de fysieke wereld.
-
-Zodra een systeem kan redeneren, onthouden, evalueren, specialiseren en verbeteren, wordt de volgende vraag vanzelfsprekend:
-
-> wat gebeurt er wanneer het een lichaam krijgt?
-
-Dat lichaam hoeft in het begin niet humanoid te zijn.
-
-In de praktijk zal een groot deel van de markt gebouwd worden via:
-
-- robotarmen
-- drones
-- mobiele inspectie-eenheden
-- educatieve robots
-- smalle industriële machines
-
-Humanoids kunnen cultureel belangrijk worden, maar nuttige belichaming zal via veel vormen arriveren.
-
-## Een decennium gestructureerd in lagen
-
-Als ik de hele these tot een eenvoudig schema samendruk, ziet het er zo uit:
-
-| Laag | Wat het oplost | Waarom het belangrijk is |
-|---|---|---|
-| AI-systemen | Kennis, regels, uitvoering en validatie verbinden | Zet AI om in operationele structuur |
-| Harness + Knowledge OS | Doen van weten scheiden | Maakt uitvoering en geheugen betrouwbaar |
-| Fijn-afgestelde lokale modellen | Smalle repetitieve taken stabiliseren | Vermindert promptafhankelijkheid |
-| Zelfverbeterende lussen | Leren uit echte uitvoeringsdata | Verhoogt betrouwbaarheid in de tijd |
-| Robotica | Intelligentie uitbreiden naar fysieke actie | Zet softwarecapaciteit om in producten en diensten |
-
-Dit is de architectuur die volgens mij het meest zal tellen.
-
-## Waar producten en diensten naartoe bewegen
-
-De productimpact van deze verschuiving zal niet binnen softwarecategorieën blijven.
-
-Ze zal zich verspreiden naar diensten, operations, logistiek, veiligheid, onderwijs, industrie en fysieke assistentie.
-
-Dat betekent dat het volgende decennium niet alleen over betere chatinterfaces gaat.
-
-Het gaat over de convergentie van:
-
-- AI
-- training
-- uitvoeringssystemen
-- open-source-ecosystemen
-- goedkopere hardware
-- belichaamde deployment
-
-Die combinatie creëert nieuwe productcategorieën.
-
-## De menselijke rol verdwijnt niet
-
-Een reden waarom deze richting mij interesseert, is dat ik ze niet zie als een verhaal van menselijke verwijdering.
-
-Op korte termijn helpen deze systemen mensen om tijd, focus, creativiteit en uitvoeringskracht terug te winnen.
-
-Mensen kiezen nog altijd de richting.
-Mensen beslissen nog altijd wat belangrijk is.
-Mensen doen nog altijd de finale matching tussen capaciteit en betekenis.
-
-Het systeem maakt het makkelijker om verbeelding in structuur om te zetten.
-Dan wordt structuur uitvoering.
-Dan wordt uitvoering service.
-
-Dat is een veel interessanter pad dan louter automatiseringstheater.
-
-## Slotgedachte
-
-Als ik het volgende technologische decennium tot één zin zou moeten reduceren, dan is het deze:
-
-we bewegen van modellen naar systemen, van systemen naar betrouwbare specialisatie, en van betrouwbare specialisatie naar belichaamde intelligentie.
-
-Dat is de sequentie.
-
-Eerst leert het systeem weten.
-Dan leert het doen.
-Dan leert het verbeteren.
-Dan begint het te handelen in de echte wereld.
+Eerst leert het weten. Dan doen. Dan verbeteren. Dan handelen.
 
 Daar denk ik dat het echte decennium naartoe gaat.
 `.trim(),
@@ -2060,13 +1550,13 @@ Daar denk ik dat het echte decennium naartoe gaat.
     image: "/illustrations/blog/ai-is-not-about-models-its-about-systems.jpg",
     title: {
       en: "AI Is Not About Models. It's About Systems.",
-      fr: "L'IA n'est pas une affaire de modèles. C'est une affaire de systèmes.",
+      fr: "L'IA n'est pas une histoire de modèles. C'est une histoire de systèmes.",
       nl: "AI draait niet om modellen. Het draait om systemen.",
     },
     description: {
-      en: "Why companies won't get real value from AI by stacking tools on top of chaos, and why systems matter more than models.",
-      fr: "Pourquoi les entreprises ne tireront pas de vraie valeur de l'IA en empilant des outils sur le chaos, et pourquoi les systèmes comptent plus que les modèles.",
-      nl: "Waarom bedrijven geen echte waarde uit AI halen door tools bovenop chaos te stapelen, en waarom systemen belangrijker zijn dan modellen.",
+      en: "Everyone asks which model to buy. Wrong question. AI only pays off when it sits on structure: knowledge, rules, execution, and a human with the last call.",
+      fr: "Tout le monde demande quel modèle acheter. Mauvaise question. L'IA ne rapporte que posée sur une structure : connaissance, règles, exécution, et un humain qui tranche.",
+      nl: "Iedereen vraagt welk model hij moet kopen. Verkeerde vraag. AI loont pas als het op structuur staat: kennis, regels, uitvoering, en een mens die de knoop doorhakt.",
     },
     category: {
       en: "Strategy",
@@ -2074,9 +1564,9 @@ Daar denk ik dat het echte decennium naartoe gaat.
       nl: "Strategie",
     },
     readTime: {
-      en: "7 min",
-      fr: "7 min",
-      nl: "7 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["AI Systems","Operations","Strategy"],
@@ -2085,493 +1575,157 @@ Daar denk ik dat het echte decennium naartoe gaat.
     },
     content: {
       en: `
-Over the past year, AI has moved from experimentation to daily use. Teams now rely on it to write content, answer customers, analyze data, support operations, and accelerate software development. The tools are better than ever, easier to access, and improving at remarkable speed.
+_Everyone asks which model to buy. It's the wrong question._
 
-And yet, inside many companies, the underlying reality has not changed as much as expected.
+---
 
-Decisions remain inconsistent. Knowledge is still scattered across documents, chats, tools, and individuals. Teams continue to depend on a few key people rather than on repeatable systems. The issue is not that AI is underperforming. The issue is that most organizations are trying to plug AI into environments that were already fragmented before AI arrived.
+I've watched teams bolt AI onto their work for a year. Better tools, easier access, real speed. And inside most companies, almost nothing changed.
 
-AI is not failing. The way companies integrate it is.
+Support answers faster, not more consistently. Marketing ships more, aligned less. Ops automates a step, then babysits it.
 
-## The Illusion of Progress
+The AI isn't underperforming. It's plugged into a mess that was already a mess.
 
-On the surface, adoption looks strong. Leadership is investing. Employees are experimenting. New workflows are appearing across departments. But when you look closely, the gains are often narrow.
+**The problem is not capability. It is structure.**
 
-Support teams may answer faster, but not always consistently. Marketing teams may produce more content, but alignment suffers. Operations teams may automate steps, yet still rely on manual oversight to catch avoidable issues. In each case, AI appears useful, but not transformative.
+## Three cracks
 
-That is because most companies are using AI as a layer on top of broken structures. They expect it to compensate for disconnected knowledge, vague rules, and inconsistent execution. It cannot.
+Most companies had them long before AI showed up:
 
-The problem is not capability. It is structure.
+→ Knowledge scattered across docs, chats, tools, and three people's heads.
+→ Rules that live on a slide nobody opens, applied differently by everyone.
+→ Expertise stuck in senior people, so onboarding takes months.
 
-## The Problems AI Exposes
+None of these are AI problems. AI just makes them impossible to ignore. Point a model at a fragmented company and you get a fluent, confident version of the same fragmentation. Now with bullet points.
 
-Long before AI entered the picture, most organizations already had three persistent weaknesses.
+## The chain
 
-The first is fragmented knowledge. Important information lives in too many places, with too little connection between them. Policies sit in one tool, project decisions in another, tribal knowledge in private conversations, and practical know-how in the heads of experienced employees.
+So stop adding AI as a feature. Put it where it belongs: between what you know, how you want to work, and what actually gets done. That's the chain in the diagram above. Four layers, in order.
 
-The second is inconsistent work. Most companies do have standards, but those standards are not applied evenly. Two people doing the same task can produce very different outcomes because the rules are interpreted differently, remembered differently, or not visible at the moment of execution.
+**Knowledge** defines what's true. Not a folder of documents. The decisions, the context, the links between them. One source people and agents both work from.
 
-The third is overdependence on individuals. Expertise is concentrated instead of distributed. Onboarding takes too long. Teams repeat mistakes because the reasoning behind previous decisions was never captured in a usable way.
+**Guidelines** define what's allowed. Your standards, your constraints, your taste. Passive in a deck. Active when they're wired in.
 
-These are not AI problems. They are system problems. AI simply makes them impossible to ignore.
+**Execution** is the part you notice first: assistants, agents, workflows. It's only reliable when it stands on the two layers above. Otherwise it improvises.
 
-## From Tools to Systems
+**Humans** keep the last call. Not because the system is weak. Because accountability shouldn't be automated.
 
-This is where the conversation needs to change.
+Knowledge tells you what's true. Guidelines tell you what's allowed. Execution does the work. You stay responsible.
 
-Most organizations still think of AI as a tool. They add a chatbot, automate a workflow, or speed up content production. These improvements can be valuable, but they are local optimizations. They do not change how the company actually operates.
+It's not elegant. It removes a real bottleneck.
 
-The real shift happens when AI is no longer treated as a standalone feature, but as the interface between knowledge, rules, and execution.
+## The payoff
 
-The important question is no longer "What can AI do?" The better question is "How should work be structured so AI can support it reliably?"
+It isn't "10% faster emails." It's that expertise stops living in three people's heads and moves into the operating system. Encode how a good decision gets made once, and everyone runs on it.
 
-Once you ask that, the architecture becomes clearer.
+You don't replace your experts. You give them reach.
 
-A useful AI system is not just a model generating outputs. It is a chain that connects what the company knows, how it wants to operate, how work gets done, and where human judgment remains essential.
+The companies that win with AI won't be the ones on this week's model. Everyone rents the same models. They'll be the ones with the clearest wiring between knowledge, rules, execution, and judgment.
 
-Knowledge leads into guidelines. Guidelines shape execution. Execution remains accountable through human validation.
+**Models are not the product. Systems are.**
 
-## Knowledge: Defining What Is True
-
-Every company already has knowledge. The issue is rarely a lack of information. The issue is that information is poorly organized.
-
-A strong knowledge layer does more than store documents. It connects decisions, context, history, and relationships between pieces of information. It turns scattered data into something navigable and meaningful.
-
-When this layer is structured properly, both employees and AI can work from the same foundation. A support agent no longer guesses the correct answer based on memory. A marketer no longer reinterprets the brand every time they write. An operator no longer rebuilds context from scratch for every recurring task.
-
-Clarity becomes the starting point.
-
-## Guidelines: Defining What Is Allowed
-
-Knowledge alone does not guarantee consistency. Two people can access the same information and still make different choices.
-
-This is why guidelines matter. Guidelines define the standards, constraints, and expectations that shape how the organization works. They clarify what quality looks like, what should be avoided, and what must always be respected.
-
-In many companies, these rules exist only passively. They sit in slide decks, internal docs, or the heads of experienced team members. That makes them easy to overlook and hard to apply consistently.
-
-When guidelines are embedded into AI systems, they become active rather than passive. They stop being reminders and start becoming operating logic.
-
-> Knowledge tells you what is true.
-> Guidelines tell you what is allowed.
-
-## Execution: Supporting What Gets Done
-
-This is the layer people usually notice first. It is where AI assistants, copilots, agents, and automated workflows actually interact with daily work.
-
-But execution only becomes reliable when it is grounded in structured knowledge and shaped by active guidelines. Without those layers, AI produces outputs in isolation. With them, AI operates inside a system.
-
-That changes the nature of execution. It is no longer improvised. It becomes guided.
-
-A task is no longer simply performed by an individual using a clever tool. It is executed within a framework that provides context, constraints, and consistency.
-
-That is where scale starts to become real.
-
-## Human Validation: Keeping Responsibility Where It Belongs
-
-None of this removes the need for human judgment. It makes that judgment more effective.
-
-Humans remain accountable for decisions, tradeoffs, and outcomes. AI can accelerate, assist, and guide, but responsibility stays with people. That is not a weakness in the system. It is one of its defining strengths.
-
-Human validation preserves critical thinking. It protects trust. It ensures that expertise is not displaced, but reinforced.
-
-The goal is not to remove humans from the loop. It is to give them a better loop.
-
-## What Changes When the System Is in Place
-
-When these layers are connected, the impact is not just incremental productivity. The organization itself becomes more coherent.
-
-Support teams can respond faster without sacrificing consistency. Marketing can move faster while protecting tone and quality. Operations can reduce repetitive coordination and rely on clearer workflows. Leadership gains better visibility because work is happening inside a connected system rather than across disconnected islands.
-
-For employees, the change is even more immediate. Less time is spent searching, guessing, and redoing work. More time is spent executing with context.
-
-| Function | Before AI System | With AI System |
-|---|---|---|
-| Customer Support | Inconsistent answers and slow onboarding | Faster, aligned, guideline-based responses |
-| Marketing | Content quality varies by person | Consistent tone and faster execution |
-| Operations | Manual coordination and repetitive work | Structured workflows and less friction |
-| Leadership | Limited visibility across teams | Better context and clearer decisions |
-| Employees | Searching, guessing, and redoing work | Guided execution with shared context |
-
-The pattern is simple: less friction, more alignment, better outcomes.
-
-## AI as a Distribution Layer for Expertise
-
-One of the most important effects of this approach is that it changes how expertise flows through a company.
-
-In most organizations, expertise is concentrated. It lives with senior employees, in specific teams, or inside undocumented decisions. That creates bottlenecks and makes quality difficult to scale.
-
-A systems-based AI approach allows companies to encode how decisions are made, how work should be executed, and which standards must be followed. Once that knowledge is embedded into the operating system of the company, it becomes accessible to everyone.
-
-This does not replace experts. It extends their reach.
-
-AI does not remove expertise. It scales it.
-
-## A Simple Example
-
-Take something as basic as communication guidelines. In many companies, marketing defines a tone of voice, positioning rules, and messaging principles. But once those guidelines leave the marketing team, consistency starts to break down.
-
-A developer writing release notes, a support agent replying to a customer, and a marketer launching a campaign may all interpret the same brand differently.
-
-Now imagine those guidelines are embedded directly into the system. Every output, whether it is a customer response, internal document, campaign draft, or product message, is generated within the same rules.
-
-Consistency no longer depends on reminders or repeated reviews. It becomes part of the system itself.
-
-That is a much more meaningful use of AI than simply generating text faster.
-
-## The Real Opportunity
-
-Many companies are focused on the wrong question. They ask which model to choose, which tool to buy, or which feature to adopt next.
-
-Those are not irrelevant questions, but they are surface-level ones.
-
-The deeper opportunity is to design the underlying system that allows AI to be useful across the organization in a reliable way. The companies that benefit most from AI will not necessarily be the ones with access to the newest model. They will be the ones that create the clearest connection between knowledge, rules, execution, and human oversight.
-
-> The winners will not just have better tools.
-> They will have better systems.
-
-## Looking Ahead
-
-This points toward a different kind of organization.
-
-Not one where AI replaces work, but one where work is structured so AI can support it properly. An organization where knowledge is connected, rules are applied consistently, execution is guided in real time, and humans operate with full context instead of partial visibility.
-
-This is not a distant vision. It is already beginning to take shape.
-
-## Final Thought
-
-AI is often framed as a productivity tool. That framing is too narrow.
-
-Its real value is not just speed. It is the ability to help organizations work with greater clarity, consistency, and scale. But that only happens when AI is treated as part of the operating system of the company, not as a disconnected feature layered on top of chaos.
-
-AI is not about what it can generate.
-
-It is about how your organization is structured to use it.
+I keep saying it because I keep watching it be true.
 `.trim(),
       fr: `
-Au cours de l'année écoulée, l'IA est passée du stade de l'expérimentation à celui de l'usage quotidien. Les équipes l'utilisent désormais pour rédiger du contenu, répondre aux clients, analyser des données, soutenir les opérations et accélérer le développement logiciel. Les outils n'ont jamais été aussi performants, aussi accessibles, et ils progressent à grande vitesse.
+_Tout le monde demande quel modèle acheter. C'est la mauvaise question._
 
-Et pourtant, dans beaucoup d'entreprises, la réalité de fond n'a pas autant changé qu'on aurait pu l'espérer.
+---
 
-Les décisions restent incohérentes. La connaissance reste dispersée entre documents, conversations, outils et individus. Les équipes dépendent encore de quelques personnes clés au lieu de s'appuyer sur des systèmes reproductibles. Le problème n'est pas que l'IA ne soit pas performante. Le problème est que la plupart des organisations essaient d'injecter l'IA dans des environnements déjà fragmentés avant même son arrivée.
+Ça fait un an que je regarde des équipes greffer de l'IA sur leur travail. De meilleurs outils, un accès plus simple, de la vitesse bien réelle. Et à l'intérieur de la plupart des boîtes, presque rien n'a changé.
 
-L'IA n'échoue pas. C'est sa manière d'être intégrée dans les entreprises qui échoue.
+Le support répond plus vite, pas plus juste. Le marketing produit plus, aligné moins. Les ops automatisent une étape, puis passent leur temps à la surveiller.
 
-## L'illusion du progrès
+L'IA ne sous-performe pas. Elle est branchée sur un bordel qui était déjà un bordel.
 
-En apparence, l'adoption est forte. La direction investit. Les équipes expérimentent. De nouveaux workflows apparaissent dans plusieurs départements. Mais dès qu'on regarde de plus près, les gains restent souvent limités.
+**Le problème n'est pas la capacité. C'est la structure.**
 
-Le support peut répondre plus vite, mais pas toujours de manière cohérente. Le marketing peut produire davantage de contenu, mais l'alignement en souffre. Les opérations peuvent automatiser certaines étapes, tout en dépendant encore de contrôles manuels pour éviter des erreurs prévisibles. Dans chaque cas, l'IA semble utile, sans être réellement transformative.
+## Trois fissures
 
-Cela s'explique simplement : la plupart des entreprises utilisent l'IA comme une couche ajoutée par-dessus des structures déjà défaillantes. Elles attendent d'elle qu'elle compense une connaissance déconnectée, des règles floues et une exécution incohérente. Elle ne le peut pas.
+La plupart des boîtes les avaient bien avant que l'IA débarque :
 
-Le problème n'est pas la capacité. C'est la structure.
+→ La connaissance éparpillée entre des docs, des chats, des outils, et la tête de trois personnes.
+→ Des règles qui vivent sur une slide que personne n'ouvre, appliquées différemment par chacun.
+→ L'expertise coincée dans les seniors, si bien que l'onboarding prend des mois.
 
-## Les problèmes que l'IA met en lumière
+Aucune n'est un problème d'IA. L'IA les rend juste impossibles à ignorer. Pointez un modèle sur une boîte fragmentée et vous obtenez une version fluide et sûre d'elle de la même fragmentation. Maintenant avec des puces.
 
-Bien avant l'arrivée de l'IA, la plupart des organisations souffraient déjà de trois faiblesses persistantes.
+## La chaîne
 
-La première est la fragmentation de la connaissance. Les informations importantes vivent dans trop d'endroits, avec trop peu de liens entre elles. Les politiques sont dans un outil, les décisions projet dans un autre, le savoir implicite dans des conversations privées, et le savoir-faire pratique dans la tête des collaborateurs expérimentés.
+Alors arrêtez d'ajouter l'IA comme une fonctionnalité. Mettez-la à sa place : entre ce que vous savez, la façon dont vous voulez travailler, et ce qui se fait vraiment. C'est la chaîne du schéma ci-dessus. Quatre couches, dans l'ordre.
 
-La deuxième est l'incohérence dans le travail. La plupart des entreprises ont bien des standards, mais ils ne sont pas appliqués de façon homogène. Deux personnes réalisant la même tâche peuvent produire des résultats très différents parce que les règles sont interprétées différemment, retenues différemment, ou tout simplement absentes au moment de l'exécution.
+**La connaissance** définit ce qui est vrai. Pas un dossier de documents. Les décisions, le contexte, les liens entre eux. Une seule source depuis laquelle travaillent les humains comme les agents.
 
-La troisième est la dépendance excessive aux individus. L'expertise est concentrée au lieu d'être diffusée. L'onboarding est lent. Les équipes répètent les mêmes erreurs parce que le raisonnement derrière les décisions passées n'a jamais été capturé dans une forme exploitable.
+**Les directives** définissent ce qui est permis. Vos standards, vos contraintes, votre goût. Passives dans un deck. Actives quand elles sont câblées.
 
-Ces problèmes ne sont pas des problèmes d'IA. Ce sont des problèmes de système. L'IA ne fait que les rendre impossibles à ignorer.
+**L'exécution**, c'est la partie qu'on remarque en premier : assistants, agents, workflows. Elle n'est fiable que posée sur les deux couches du dessus. Sinon, elle improvise.
 
-## Des outils aux systèmes
+**Les humains** gardent le dernier mot. Pas parce que le système est faible. Parce que la responsabilité ne devrait pas s'automatiser.
 
-C'est là que la conversation doit changer.
+La connaissance dit ce qui est vrai. Les directives disent ce qui est permis. L'exécution fait le travail. Vous restez responsable.
 
-La plupart des organisations considèrent encore l'IA comme un outil. Elles ajoutent un chatbot, automatisent un workflow, ou accélèrent la production de contenu. Ces améliorations peuvent être utiles, mais elles restent locales. Elles ne transforment pas réellement la façon dont l'entreprise fonctionne.
+Ce n'est pas élégant. Ça supprime un vrai goulot d'étranglement.
 
-Le vrai basculement se produit lorsque l'IA n'est plus traitée comme une fonctionnalité isolée, mais comme l'interface entre la connaissance, les règles et l'exécution.
+## Le retour
 
-La vraie question n'est plus : "Que peut faire l'IA ?" La meilleure question est : "Comment structurer le travail pour que l'IA puisse le soutenir de manière fiable ?"
+Ce n'est pas « des e-mails 10 % plus rapides ». C'est que l'expertise arrête de vivre dans la tête de trois personnes et passe dans le système d'exploitation. Encodez une fois comment se prend une bonne décision, et tout le monde tourne dessus.
 
-À partir de là, l'architecture devient plus claire.
+Vous ne remplacez pas vos experts. Vous leur donnez de la portée.
 
-Un système d'IA utile n'est pas simplement un modèle qui génère des sorties. C'est une chaîne qui relie ce que l'entreprise sait, la manière dont elle veut fonctionner, la manière dont le travail est exécuté, et l'endroit où le jugement humain reste essentiel.
+Les boîtes qui gagneront avec l'IA ne seront pas celles qui tournent sur le modèle de la semaine. Tout le monde loue les mêmes modèles. Ce seront celles au câblage le plus clair entre connaissance, règles, exécution et jugement.
 
-La connaissance alimente les règles. Les règles structurent l'exécution. L'exécution reste responsable grâce à la validation humaine.
+**Les modèles ne sont pas le produit. Les systèmes, oui.**
 
-## Connaissance : définir ce qui est vrai
-
-Chaque entreprise possède déjà de la connaissance. Le problème n'est presque jamais le manque d'information. Le problème est que cette information est mal organisée.
-
-Une couche de connaissance solide ne se contente pas de stocker des documents. Elle relie les décisions, le contexte, l'historique et les relations entre les informations. Elle transforme des données dispersées en un ensemble navigable et exploitable.
-
-Lorsque cette couche est correctement structurée, les employés comme l'IA peuvent travailler à partir de la même base. Un agent support ne devine plus la bonne réponse. Un marketeur ne réinterprète plus la marque à chaque contenu. Un opérateur ne reconstruit plus le contexte à partir de zéro à chaque tâche récurrente.
-
-La clarté devient le point de départ.
-
-## Règles : définir ce qui est permis
-
-La connaissance seule ne garantit pas la cohérence. Deux personnes peuvent accéder à la même information et malgré tout faire des choix différents.
-
-C'est là que les règles deviennent essentielles. Elles définissent les standards, les contraintes et les attentes qui structurent la manière dont l'organisation fonctionne. Elles précisent ce que signifie la qualité, ce qu'il faut éviter, et ce qui doit toujours être respecté.
-
-Dans beaucoup d'entreprises, ces règles n'existent que de manière passive. Elles vivent dans des slides, des documents internes ou la mémoire de quelques personnes expérimentées. Elles sont donc faciles à oublier et difficiles à appliquer de manière cohérente.
-
-Quand ces règles sont intégrées aux systèmes d'IA, elles deviennent actives au lieu de rester passives. Elles cessent d'être de simples rappels pour devenir de la logique opérationnelle.
-
-> La connaissance dit ce qui est vrai.
-> Les règles disent ce qui est permis.
-
-## Exécution : soutenir ce qui doit être fait
-
-C'est la couche que l'on remarque le plus facilement. C'est là que les assistants IA, copilots, agents et workflows automatisés interagissent avec le travail quotidien.
-
-Mais l'exécution ne devient fiable que lorsqu'elle repose sur une connaissance structurée et sur des règles actives. Sans ces couches, l'IA produit des sorties de manière isolée. Avec elles, elle agit à l'intérieur d'un système.
-
-Cela change profondément la nature de l'exécution. Elle n'est plus improvisée. Elle devient guidée.
-
-Une tâche n'est plus simplement réalisée par une personne utilisant un outil intelligent. Elle est exécutée dans un cadre qui fournit contexte, contraintes et cohérence.
-
-C'est là que l'échelle commence à devenir réelle.
-
-## Validation humaine : garder la responsabilité au bon endroit
-
-Rien de tout cela ne supprime le besoin de jugement humain. Au contraire, cela le rend plus efficace.
-
-Les humains restent responsables des décisions, des arbitrages et des résultats. L'IA peut accélérer, assister et guider, mais la responsabilité reste humaine. Ce n'est pas une faiblesse du système. C'est l'une de ses forces structurelles.
-
-La validation humaine préserve l'esprit critique. Elle protège la confiance. Elle garantit que l'expertise n'est pas déplacée, mais renforcée.
-
-L'objectif n'est pas de retirer les humains de la boucle. L'objectif est de leur offrir une meilleure boucle.
-
-## Ce qui change quand le système est en place
-
-Lorsque ces couches sont reliées, l'impact ne se limite pas à quelques gains de productivité. C'est l'organisation elle-même qui devient plus cohérente.
-
-Le support peut répondre plus vite sans sacrifier la cohérence. Le marketing peut aller plus vite tout en protégeant le ton et la qualité. Les opérations peuvent réduire la coordination répétitive et s'appuyer sur des workflows plus clairs. La direction gagne en visibilité parce que le travail se déroule à l'intérieur d'un système connecté plutôt qu'à travers des silos déconnectés.
-
-Pour les employés, le changement est encore plus concret. Moins de temps passé à chercher, deviner et refaire. Plus de temps à exécuter avec du contexte.
-
-| Fonction | Avant le système IA | Avec le système IA |
-|---|---|---|
-| Support client | Réponses incohérentes et onboarding lent | Réponses plus rapides, alignées et guidées |
-| Marketing | La qualité du contenu dépend de la personne | Ton cohérent et exécution plus rapide |
-| Opérations | Coordination manuelle et travail répétitif | Workflows structurés et moins de friction |
-| Direction | Visibilité limitée entre les équipes | Plus de contexte et de meilleures décisions |
-| Employés | Chercher, deviner et recommencer | Exécution guidée avec contexte partagé |
-
-Le schéma est simple : moins de friction, plus d'alignement, de meilleurs résultats.
-
-## L'IA comme couche de distribution de l'expertise
-
-L'un des effets les plus importants de cette approche est qu'elle transforme la manière dont l'expertise circule dans l'entreprise.
-
-Dans la plupart des organisations, l'expertise est concentrée. Elle vit chez les profils seniors, dans certaines équipes, ou dans des décisions jamais documentées. Cela crée des goulots d'étranglement et rend la qualité difficile à faire monter à l'échelle.
-
-Une approche systémique de l'IA permet aux entreprises d'encoder la manière dont les décisions sont prises, dont le travail doit être exécuté, et quels standards doivent être suivis. Une fois cette connaissance intégrée dans le système opérant de l'entreprise, elle devient accessible à tous.
-
-Cela ne remplace pas les experts. Cela étend leur portée.
-
-L'IA ne supprime pas l'expertise. Elle la met à l'échelle.
-
-## Un exemple simple
-
-Prenons quelque chose d'aussi simple que des guidelines de communication. Dans beaucoup d'entreprises, le marketing définit un ton de voix, des règles de positionnement et des principes de messaging. Mais dès que ces guidelines sortent de l'équipe marketing, la cohérence commence à se dégrader.
-
-Un développeur qui écrit une release note, un agent support qui répond à un client, et un marketeur qui lance une campagne peuvent tous interpréter la même marque différemment.
-
-Maintenant, imaginez que ces guidelines soient directement intégrées dans le système. Chaque sortie, qu'il s'agisse d'une réponse client, d'un document interne, d'un draft de campagne ou d'un message produit, est générée à l'intérieur des mêmes règles.
-
-La cohérence ne dépend plus de rappels ou de relectures répétées. Elle devient une propriété du système lui-même.
-
-C'est une utilisation bien plus intéressante de l'IA que le simple fait de générer du texte plus vite.
-
-## La véritable opportunité
-
-Beaucoup d'entreprises se concentrent sur la mauvaise question. Elles demandent quel modèle choisir, quel outil acheter, ou quelle fonctionnalité adopter ensuite.
-
-Ces questions ne sont pas inutiles, mais elles restent superficielles.
-
-L'opportunité la plus profonde consiste à concevoir le système sous-jacent qui permet à l'IA d'être réellement utile, de manière fiable, à l'échelle de toute l'organisation. Les entreprises qui tireront le plus de valeur de l'IA ne seront pas forcément celles qui auront accès au dernier modèle. Ce seront celles qui construiront le lien le plus clair entre connaissance, règles, exécution et supervision humaine.
-
-> Les gagnants n'auront pas seulement de meilleurs outils.
-> Ils auront de meilleurs systèmes.
-
-## Vers quoi on va
-
-Tout cela dessine une autre forme d'organisation.
-
-Pas une organisation où l'IA remplace le travail, mais une organisation où le travail est structuré pour que l'IA puisse réellement le soutenir. Une organisation où la connaissance est connectée, où les règles sont appliquées de manière cohérente, où l'exécution est guidée en temps réel, et où les humains travaillent avec un contexte complet plutôt qu'avec une visibilité partielle.
-
-Ce n'est pas une vision lointaine. C'est déjà en train de commencer.
-
-## Dernière idée
-
-L'IA est souvent présentée comme un simple outil de productivité. Cette vision est trop étroite.
-
-Sa vraie valeur n'est pas seulement la vitesse. C'est sa capacité à aider les organisations à travailler avec plus de clarté, de cohérence et d'échelle. Mais cela n'arrive que lorsque l'IA est traitée comme une partie du système opérant de l'entreprise, et non comme une fonctionnalité ajoutée par-dessus le chaos.
-
-L'IA ne se résume pas à ce qu'elle peut générer.
-
-Elle dépend de la manière dont votre organisation est structurée pour l'utiliser.
+Je le répète parce que je n'arrête pas de le voir se confirmer.
 `.trim(),
       nl: `
-Het afgelopen jaar is AI verschoven van experiment naar dagelijks gebruik. Teams gebruiken het nu om content te schrijven, klanten te helpen, data te analyseren, operations te ondersteunen en softwareontwikkeling te versnellen. De tools zijn beter dan ooit, veel toegankelijker, en gaan razendsnel vooruit.
+_Iedereen vraagt welk model hij moet kopen. Het is de verkeerde vraag._
 
-En toch is de onderliggende realiteit in veel bedrijven veel minder veranderd dan verwacht.
+---
 
-Beslissingen blijven inconsistent. Kennis blijft verspreid over documenten, chats, tools en individuen. Teams blijven afhankelijk van een paar sleutelpersonen in plaats van van herhaalbare systemen. Het probleem is niet dat AI ondermaats presteert. Het probleem is dat de meeste organisaties AI proberen toe te voegen aan omgevingen die al versnipperd waren voordat AI opkwam.
+Ik kijk nu een jaar toe hoe teams AI op hun werk schroeven. Betere tools, makkelijkere toegang, echte snelheid. En binnen de meeste bedrijven veranderde er bijna niets.
 
-AI faalt niet. De manier waarop bedrijven het integreren faalt.
+Support antwoordt sneller, niet consistenter. Marketing levert meer, maar minder op één lijn. Ops automatiseert een stap en houdt hem daarna de hele dag in de gaten.
 
-## De illusie van vooruitgang
+De AI presteert niet onder. Ze staat aangesloten op een chaos die al een chaos was.
 
-Op papier lijkt adoptie sterk. Leiderschap investeert. Medewerkers experimenteren. Nieuwe workflows verschijnen in meerdere afdelingen. Maar zodra je beter kijkt, blijken de winsten vaak beperkt.
+**Het probleem is niet capaciteit. Het is structuur.**
 
-Supportteams kunnen sneller antwoorden, maar niet altijd consistent. Marketingteams kunnen meer content produceren, maar de afstemming lijdt eronder. Operationele teams kunnen stappen automatiseren, maar vertrouwen nog steeds op manuele controles om voorspelbare fouten op te vangen. In elk geval lijkt AI nuttig, maar niet echt transformerend.
+## Drie barsten
 
-Dat komt omdat de meeste bedrijven AI gebruiken als een extra laag bovenop gebrekkige structuren. Ze verwachten dat AI versnipperde kennis, vage regels en inconsistente uitvoering compenseert. Dat kan het niet.
+De meeste bedrijven hadden ze al lang voordat AI opdook:
 
-Het probleem is niet capaciteit. Het is structuur.
+→ Kennis verspreid over docs, chats, tools, en de hoofden van drie mensen.
+→ Regels die op een slide staan die niemand opent, door iedereen anders toegepast.
+→ Expertise vastgeroest in senioren, waardoor onboarding maanden duurt.
 
-## De problemen die AI blootlegt
+Geen daarvan is een AI-probleem. AI maakt ze alleen onmogelijk om te negeren. Richt een model op een gefragmenteerd bedrijf en je krijgt een vlotte, zelfverzekerde versie van diezelfde fragmentatie. Nu met bullets.
 
-Lang voordat AI op het toneel verscheen, worstelden de meeste organisaties al met drie hardnekkige zwaktes.
+## De keten
 
-De eerste is gefragmenteerde kennis. Belangrijke informatie leeft op te veel plekken, met te weinig verband ertussen. Beleidsregels zitten in de ene tool, projectbeslissingen in een andere, impliciete kennis in privégesprekken en praktische expertise in de hoofden van ervaren medewerkers.
+Stop dus met AI toevoegen als feature. Zet het waar het hoort: tussen wat je weet, hoe je wilt werken, en wat er echt gebeurt. Dat is de keten in het schema hierboven. Vier lagen, op volgorde.
 
-De tweede is inconsistent werk. De meeste bedrijven hebben wel standaarden, maar die worden niet gelijkmatig toegepast. Twee mensen die dezelfde taak uitvoeren, kunnen heel verschillende resultaten produceren omdat regels anders worden geïnterpreteerd, anders worden onthouden, of simpelweg niet zichtbaar zijn op het moment van uitvoering.
+**Kennis** bepaalt wat waar is. Geen map met documenten. De beslissingen, de context, de verbanden ertussen. Eén bron waar mensen en agents allebei uit werken.
 
-De derde is een te grote afhankelijkheid van individuen. Expertise is geconcentreerd in plaats van verspreid. Onboarding duurt te lang. Teams herhalen fouten omdat de redenering achter eerdere beslissingen nooit bruikbaar is vastgelegd.
+**Richtlijnen** bepalen wat mag. Je standaarden, je grenzen, je smaak. Passief in een deck. Actief zodra ze zijn ingebed.
 
-Dit zijn geen AI-problemen. Dit zijn systeemproblemen. AI maakt ze alleen onmogelijk om te negeren.
+**Uitvoering** is het deel dat je eerst opmerkt: assistenten, agents, workflows. Het is alleen betrouwbaar als het op de twee lagen erboven staat. Anders improviseert het.
 
-## Van tools naar systemen
+**Mensen** houden het laatste woord. Niet omdat het systeem zwak is. Omdat verantwoordelijkheid niet geautomatiseerd hoort te worden.
 
-Hier moet het gesprek veranderen.
+Kennis zegt wat waar is. Richtlijnen zeggen wat mag. Uitvoering doet het werk. Jij blijft verantwoordelijk.
 
-De meeste organisaties zien AI nog steeds als een tool. Ze voegen een chatbot toe, automatiseren een workflow of versnellen contentproductie. Die verbeteringen kunnen waardevol zijn, maar blijven lokale optimalisaties. Ze veranderen niet fundamenteel hoe het bedrijf werkt.
+Het is niet elegant. Het haalt een echte bottleneck weg.
 
-De echte verschuiving gebeurt wanneer AI niet langer wordt behandeld als een losse feature, maar als de interface tussen kennis, regels en uitvoering.
+## Wat het oplevert
 
-De belangrijke vraag is niet langer "Wat kan AI doen?" De betere vraag is "Hoe moet werk worden gestructureerd zodat AI het betrouwbaar kan ondersteunen?"
+Het is niet "10% snellere e-mails". Het is dat expertise stopt met leven in de hoofden van drie mensen en verhuist naar het besturingssysteem. Codeer één keer hoe een goede beslissing wordt genomen, en iedereen draait erop.
 
-Zodra je die vraag stelt, wordt de architectuur helderder.
+Je vervangt je experts niet. Je geeft ze bereik.
 
-Een bruikbaar AI-systeem is niet simpelweg een model dat outputs genereert. Het is een keten die verbindt wat het bedrijf weet, hoe het wil opereren, hoe werk wordt uitgevoerd en waar menselijk oordeel essentieel blijft.
+De bedrijven die met AI winnen, zijn niet die op het model van deze week draaien. Iedereen huurt dezelfde modellen. Het worden de bedrijven met de helderste bedrading tussen kennis, regels, uitvoering en oordeel.
 
-Kennis voedt richtlijnen. Richtlijnen sturen uitvoering. Uitvoering blijft verantwoord via menselijke validatie.
+**Modellen zijn niet het product. Systemen wel.**
 
-## Kennis: definiëren wat waar is
-
-Elk bedrijf heeft al kennis. Het probleem is zelden een gebrek aan informatie. Het probleem is dat die informatie slecht georganiseerd is.
-
-Een sterke kennislaag doet meer dan documenten opslaan. Ze verbindt beslissingen, context, geschiedenis en relaties tussen informatie. Ze verandert verspreide data in iets navigeerbaars en betekenisvols.
-
-Wanneer die laag goed is gestructureerd, kunnen zowel medewerkers als AI vanuit dezelfde basis werken. Een supportmedewerker hoeft het juiste antwoord niet langer te gokken. Een marketeer hoeft het merk niet telkens opnieuw te interpreteren. Een operator hoeft context niet telkens opnieuw op te bouwen voor terugkerend werk.
-
-Helderheid wordt het vertrekpunt.
-
-## Richtlijnen: definiëren wat toegestaan is
-
-Kennis alleen garandeert geen consistentie. Twee mensen kunnen toegang hebben tot dezelfde informatie en toch verschillende keuzes maken.
-
-Daarom zijn richtlijnen essentieel. Richtlijnen definiëren de standaarden, beperkingen en verwachtingen die bepalen hoe de organisatie werkt. Ze maken duidelijk wat kwaliteit betekent, wat vermeden moet worden en wat altijd gerespecteerd moet worden.
-
-In veel bedrijven bestaan deze regels alleen passief. Ze leven in slides, interne documenten of in het hoofd van ervaren medewerkers. Daardoor zijn ze makkelijk te vergeten en moeilijk consequent toe te passen.
-
-Wanneer richtlijnen in AI-systemen worden ingebed, worden ze actief in plaats van passief. Ze stoppen met louter herinneringen te zijn en worden operationele logica.
-
-> Kennis vertelt je wat waar is.
-> Richtlijnen vertellen je wat toegestaan is.
-
-## Uitvoering: ondersteunen wat gedaan moet worden
-
-Dit is de laag die mensen meestal als eerste opmerken. Hier interageren AI-assistenten, copilots, agents en geautomatiseerde workflows met het dagelijkse werk.
-
-Maar uitvoering wordt pas betrouwbaar wanneer ze steunt op gestructureerde kennis en actieve richtlijnen. Zonder die lagen produceert AI outputs in isolatie. Met die lagen werkt AI binnen een systeem.
-
-Dat verandert de aard van uitvoering. Ze is niet langer geïmproviseerd. Ze wordt gestuurd.
-
-Een taak wordt niet langer simpelweg uitgevoerd door een individu met een slimme tool. Ze wordt uitgevoerd binnen een kader dat context, beperkingen en consistentie levert.
-
-Daar begint schaal echt te worden.
-
-## Menselijke validatie: verantwoordelijkheid op de juiste plek houden
-
-Niets hiervan elimineert de nood aan menselijk oordeel. Het maakt dat oordeel effectiever.
-
-Mensen blijven verantwoordelijk voor beslissingen, afwegingen en resultaten. AI kan versnellen, ondersteunen en begeleiden, maar verantwoordelijkheid blijft bij mensen. Dat is geen zwakte van het systeem. Het is een van de kernsterktes ervan.
-
-Menselijke validatie bewaart kritisch denken. Ze beschermt vertrouwen. Ze zorgt ervoor dat expertise niet wordt verdrongen, maar versterkt.
-
-Het doel is niet om mensen uit de lus te halen. Het doel is om hen een betere lus te geven.
-
-## Wat verandert wanneer het systeem er staat
-
-Wanneer deze lagen verbonden zijn, is de impact meer dan incrementele productiviteit. De organisatie zelf wordt coherenter.
-
-Supportteams kunnen sneller reageren zonder consistentie te verliezen. Marketing kan sneller bewegen terwijl toon en kwaliteit beschermd blijven. Operations kan repetitieve coördinatie verminderen en vertrouwen op duidelijkere workflows. Leiderschap krijgt beter zicht omdat werk plaatsvindt binnen een verbonden systeem in plaats van over losse eilanden heen.
-
-Voor medewerkers is de verandering nog directer. Minder tijd gaat naar zoeken, gokken en opnieuw doen. Meer tijd gaat naar uitvoeren met context.
-
-| Functie | Voor een AI-systeem | Met een AI-systeem |
-|---|---|---|
-| Customer support | Inconsistente antwoorden en trage onboarding | Snellere, afgestemde en richtlijn-gebaseerde antwoorden |
-| Marketing | Contentkwaliteit verschilt per persoon | Consistente toon en snellere uitvoering |
-| Operations | Manuele coördinatie en repetitief werk | Gestructureerde workflows en minder frictie |
-| Leiderschap | Beperkt zicht tussen teams | Meer context en duidelijkere beslissingen |
-| Medewerkers | Zoeken, gokken en werk opnieuw doen | Begeleide uitvoering met gedeelde context |
-
-Het patroon is eenvoudig: minder frictie, meer afstemming, betere resultaten.
-
-## AI als distributielaag voor expertise
-
-Een van de belangrijkste effecten van deze aanpak is dat ze verandert hoe expertise door een bedrijf stroomt.
-
-In de meeste organisaties is expertise geconcentreerd. Ze leeft bij senior medewerkers, in specifieke teams of in ongedocumenteerde beslissingen. Dat creëert bottlenecks en maakt kwaliteit moeilijk schaalbaar.
-
-Een systeembenadering van AI laat bedrijven vastleggen hoe beslissingen worden genomen, hoe werk moet worden uitgevoerd en welke standaarden gevolgd moeten worden. Zodra die kennis is ingebed in het besturingssysteem van het bedrijf, wordt ze beschikbaar voor iedereen.
-
-Dat vervangt experts niet. Het vergroot hun bereik.
-
-AI verwijdert expertise niet. Het schaalt ze.
-
-## Een eenvoudig voorbeeld
-
-Neem iets basaals als communicatierichtlijnen. In veel bedrijven definieert marketing een tone of voice, positioneringsregels en messagingprincipes. Maar zodra die richtlijnen buiten het marketingteam terechtkomen, begint consistentie af te brokkelen.
-
-Een developer die release notes schrijft, een supportmedewerker die een klant antwoordt en een marketeer die een campagne lanceert, kunnen hetzelfde merk allemaal anders interpreteren.
-
-Stel je nu voor dat die richtlijnen rechtstreeks in het systeem zijn ingebed. Elke output, of het nu gaat om een klantantwoord, intern document, campagnedraft of productboodschap, wordt gegenereerd binnen dezelfde regels.
-
-Consistentie hangt dan niet langer af van herinneringen of herhaalde reviews. Ze wordt een eigenschap van het systeem zelf.
-
-Dat is een veel betekenisvollere toepassing van AI dan simpelweg sneller tekst genereren.
-
-## De echte opportuniteit
-
-Veel bedrijven focussen op de verkeerde vraag. Ze vragen welk model ze moeten kiezen, welke tool ze moeten kopen of welke feature ze als volgende moeten adopteren.
-
-Die vragen zijn niet irrelevant, maar ze blijven oppervlakkig.
-
-De diepere opportuniteit is om het onderliggende systeem te ontwerpen dat AI in staat stelt om op een betrouwbare manier waardevol te zijn in de hele organisatie. De bedrijven die het meest van AI zullen profiteren, zijn niet noodzakelijk de bedrijven met toegang tot het nieuwste model. Het zijn de bedrijven die de duidelijkste verbinding creëren tussen kennis, regels, uitvoering en menselijk toezicht.
-
-> De winnaars zullen niet alleen betere tools hebben.
-> Ze zullen betere systemen hebben.
-
-## Vooruitkijken
-
-Dit wijst op een ander type organisatie.
-
-Niet een organisatie waarin AI werk vervangt, maar een organisatie waarin werk zo is gestructureerd dat AI het goed kan ondersteunen. Een organisatie waarin kennis verbonden is, regels consequent worden toegepast, uitvoering in real time wordt gestuurd en mensen werken met volledige context in plaats van gedeeltelijk zicht.
-
-Dit is geen verre toekomstvisie. Het begint nu al vorm te krijgen.
-
-## Slotgedachte
-
-AI wordt vaak voorgesteld als een productiviteitstool. Dat frame is te beperkt.
-
-De echte waarde is niet alleen snelheid. Het is het vermogen om organisaties te helpen werken met meer helderheid, consistentie en schaal. Maar dat gebeurt alleen wanneer AI wordt behandeld als onderdeel van het besturingssysteem van het bedrijf, en niet als een losse feature bovenop chaos.
-
-AI draait niet om wat het kan genereren.
-
-Het draait om hoe je organisatie is gestructureerd om het te gebruiken.
+Ik blijf het zeggen omdat ik het steeds weer waar zie worden.
 `.trim(),
     },
   },
@@ -2587,9 +1741,9 @@ Het draait om hoe je organisatie is gestructureerd om het te gebruiken.
       nl: "Fijn-afgestelde lokale modellen zijn de volgende laag",
     },
     description: {
-      en: "Why the next step after harnesses and Knowledge OS is a layer of specialized fine-tuned local models for narrow tasks, stronger alignment, and more reliable execution.",
-      fr: "Pourquoi, après le harness et le Knowledge OS, l'étape suivante est une couche de modèles locaux spécialisés et fine-tunés pour des tâches étroites, un meilleur alignement et une exécution plus fiable.",
-      nl: "Waarom na de harness en de Knowledge OS de volgende stap een laag gespecialiseerde, fijn-afgestelde lokale modellen is voor smalle taken, sterkere alignment en betrouwbaardere uitvoering.",
+      en: "The foundation is a harness and a Knowledge OS. The next layer is specialized, fine-tuned local models: narrow jobs, less prompt tax, more reliable execution.",
+      fr: "La base, c'est un harness et un Knowledge OS. La couche suivante : des modèles locaux fine-tunés, spécialisés sur des tâches étroites, moins de prompt, une exécution plus fiable.",
+      nl: "De basis is een harness en een Knowledge OS. De volgende laag: gespecialiseerde, fijn-afgestelde lokale modellen voor smalle taken, minder prompt, betrouwbaardere uitvoering.",
     },
     category: {
       en: "Engineering",
@@ -2597,9 +1751,9 @@ Het draait om hoe je organisatie is gestructureerd om het te gebruiken.
       nl: "Engineering",
     },
     readTime: {
-      en: "7 min",
-      fr: "9 min",
-      nl: "9 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["Fine-Tuning","Local Models","Reliability"],
@@ -2608,571 +1762,205 @@ Het draait om hoe je organisatie is gestructureerd om het te gebruiken.
     },
     content: {
       en: `
-My last two articles focused on systems first, then on the technical stack behind them.
+_The harness and the Knowledge OS are the foundation. They are not the end state._
 
-The first point was that AI becomes useful when it is part of a system.
+---
 
-The second was that, in my case, this system is built on two main layers:
+Two articles ago I argued AI only becomes useful inside a system. The last one named my two layers:
 
-- a **harness** for execution
-- a **Knowledge OS** for structured context
+→ a **harness** for execution
+→ a **Knowledge OS** for structured context
 
-I still believe those two layers are the foundation.
+Still the foundation. Not the end state.
 
-But they are not the end state.
+The next layer is clear to me: specialized, fine-tuned local models. Not one giant model for everything. Not one giant prompt holding the system together. Smaller models, narrow jobs, real hardware constraints, wired in as reliable components.
 
-If we want these systems to become more complete, more isolated, and more deployable across different environments, then the next layer is clear to me:
+## Prompting hits a wall
 
-> specialized, fine-tuned local models
+Prompting is the fastest way to prototype and reach early usefulness.
 
-Not one giant model for everything.
-Not one giant prompt trying to hold the whole system together.
+Then the bill arrives. Too much behavior lives in the prompt. Instructions grow. Edge cases pile up. The model infers too much, every single time.
 
-I mean smaller models assigned to narrower tasks, trained for specific jobs, attached to real hardware constraints, and integrated into the execution system as reliable components.
+You're paying a frontier model to re-read the same instructions forever. It never gets bored. Your budget does.
 
-## Why Prompting Alone Eventually Hits a Wall
+Fine at the start. Less fine when the goal is repeatable execution. If the same classification, extraction, or routing runs over and over, I don't want to pay the full prompt tax on every call. I want that behavior closer to the model.
 
-Prompting is powerful. It is the fastest way to explore, prototype, and reach early usefulness.
+## Fine-tuning is compression
 
-But prompting has limits.
+People frame fine-tuning as making a model smarter. That's not the framing I care about.
 
-When too much behavior lives inside prompts, the system becomes expensive to maintain and difficult to stabilize. Instructions grow longer. Edge cases accumulate. The model still needs to infer too much each time.
+Fine-tuning **compresses** repeated behavior into the model, so the system needs less scaffolding at runtime.
 
-That is acceptable at the beginning.
+It cuts prompt length, orchestration overhead, latency on narrow workflows, and variability on repeated tasks. Often it buys more reliability than another paragraph of instructions ever would.
 
-It is less acceptable when the goal is repeatable execution.
+## Small models, narrow jobs
 
-If the same type of reasoning, formatting, routing, classification, extraction, or decision pattern happens over and over again, I do not want to pay the full prompt tax every single time. I want part of that behavior to move closer to the model itself.
+The future of operational AI isn't one frontier model doing every job. It's **distributed**:
 
-That is where fine-tuning starts to matter.
+→ frontier models for broad reasoning and hard synthesis
+→ structured systems for memory, retrieval, and gating
+→ small fine-tuned models for narrow, repeated tasks
 
-## Fine-Tuning Is About Compression of Behavior
+A well-scoped small model doesn't need to be universally brilliant. It needs to be dependable inside a bounded responsibility: classification, structured extraction, style enforcement, tool routing, domain validation.
 
-People often talk about fine-tuning as if it were mainly about making a model smarter.
+That's a more serious path to reliability than asking one general model to improvise every layer.
 
-That is not the framing I care about most.
+## Reasoning stays central
 
-The more practical framing is this:
+This isn't reasoning replaced by brittle automation. The opposite.
 
-fine-tuning is a way to compress repeated behavior into the model so the system needs less prompt scaffolding at runtime.
+The harness still owns decisions, gating, escalation, flow. The Knowledge OS still owns memory and context. Specialized models just take the narrow jobs inside that loop. So the system spends expensive reasoning where reasoning is needed, not on low-entropy work that should already be stable.
 
-Instead of explaining the same narrow task again and again, you train the model so that this behavior becomes more native to it.
+Reliability isn't magic. It's engineered alignment between the task, the training data, the evaluation loop, and where the thing actually runs. Hardware is real: compute, latency, privacy, and cost are architecture, not afterthoughts.
 
-That reduces:
-
-- prompt length
-- orchestration overhead
-- latency in narrow workflows
-- variability in repeated tasks
-
-And in many cases, it improves reliability more than simply adding more prompt detail.
-
-## Why Smaller Models Matter
-
-I do not think the future of operational AI systems is one central frontier model doing every job.
-
-The more complete view is closer to a distributed architecture:
-
-- frontier models for broad reasoning and difficult synthesis
-- structured systems for memory, retrieval, and gating
-- smaller fine-tuned models for narrow and repeated tasks
-
-That last category matters a lot.
-
-A well-scoped smaller model can be extremely useful when its job is clearly defined. It does not need to be universally brilliant. It needs to be dependable inside a bounded responsibility.
-
-For example:
-
-- a model specialized for classification
-- a model specialized for extracting structured data
-- a model specialized for style enforcement
-- a model specialized for tool routing
-- a model specialized for domain-specific validation
-
-This is a much more serious path to reliability than asking one general model to improvise every layer of the stack.
-
-## Reasoning Should Stay Central
-
-This does not mean I want to replace reasoning with brittle automation.
-
-Quite the opposite.
-
-I think reasoning becomes more valuable when the rest of the system is cleaner.
-
-The harness still handles decisions, gating, iteration, escalation, and execution flow.
-The Knowledge OS still handles memory, context, structure, and retrieval.
-But now specialized models can take ownership of narrower jobs inside that larger loop.
-
-That means the higher-level system can rely on reasoning where reasoning is actually needed, instead of wasting expensive general intelligence on low-entropy tasks that should already be stabilized.
-
-So the shift is not from reasoning to training.
-
-It is from prompting everything to reasoning where necessary and training where repetition already exists.
-
-## Reliability Comes from Alignment With Real Work
-
-When people hear the word alignment, they often jump immediately to abstract safety discussions.
-
-That is not what I mean here.
-
-I mean operational alignment.
-
-Does the model behave in a way that actually matches the task, the domain, the rules, and the hardware environment where it runs?
-
-For production systems, this matters more than elegant demos.
-
-A narrow local model that is trained on the right examples, evaluated against the right failure modes, and constrained by the right harness can be far more valuable than a bigger model that is only loosely steered through prompts.
-
-Reliability is not magic. It is engineered alignment between:
-
-- the task
-- the training data
-- the evaluation loop
-- the execution environment
-
-## Self-Improvement Needs a System, Not a Myth
-
-I do think self-improvement is the next door.
-
-But I do not mean a vague fantasy where a model endlessly rewrites itself in the dark.
-
-I mean a structured process where the system learns from execution:
-
-- what failed
-- what repeated
-- what required too much prompting
-- what patterns became stable enough to encode
-
-From there, you can decide what should remain in prompts, what should move into rules, what should become training data, and what should be assigned to a smaller specialized model.
-
-That is a much more grounded version of self-improvement.
-
-The system does not become better because it "reflects" in the abstract.
-
-It becomes better because execution produces evidence, and that evidence is turned into better models, better routes, and better constraints.
-
-## Hardware Is Part of the Design
-
-Another reason I care about small local models is that hardware is real.
-
-If a system is meant to be deployable in different environments, then compute, memory, latency, privacy, and cost are architecture concerns, not afterthoughts.
-
-A complete AI system should be able to assign the right task to the right layer:
-
-- some tasks deserve large-model reasoning
-- some tasks should stay local for speed or privacy
-- some tasks should run on specialized smaller models because that is the most efficient option
-
-This is one of the main reasons I see fine-tuned local models as part of a serious operating architecture rather than just an optimization trick.
-
-They make the system more portable, more controllable, and in many cases more economically viable.
-
-## What the Complete Stack Starts to Look Like
-
-At a high level, the architecture becomes easier to describe:
+## The stack
 
 | Layer | Role |
 |---|---|
-| Harness | Orchestrate execution, iteration, evaluation, and gating |
-| Knowledge OS | Provide structured memory, retrieval, and evolving context |
-| Fine-tuned local models | Handle narrow, repeated, domain-shaped tasks reliably |
-| Frontier reasoning models | Tackle broad synthesis, ambiguity, and complex judgment |
+| Harness | Orchestrate execution, iteration, evaluation, gating |
+| Knowledge OS | Structured memory, retrieval, evolving context |
+| Fine-tuned local models | Handle narrow, repeated, domain-shaped tasks |
+| Frontier models | Broad synthesis, ambiguity, hard judgment |
 
-That is much closer to a complete system than "one model plus one prompt."
+Closer to a complete system than "one model plus one prompt."
 
-It is also much closer to something that can be isolated, deployed, and adapted across different systems and hardware setups.
+The harness helps the system **do**. The Knowledge OS helps it know. Fine-tuned local models help it stabilize.
 
-## Final Thought
-
-If the harness helps the system **do**, and the Knowledge OS helps the system **know**, then fine-tuned local models help the system **stabilize**.
-
-They reduce prompt dependency.
-They turn repeated behavior into reusable capability.
-They create a better bridge between execution, reasoning, hardware, and alignment.
-
-To me, that is the next serious step.
-
-Not more prompting.
-
-Better specialization, better training, and better system design around where reasoning truly belongs.
+The next step isn't more prompting. It's better specialization.
 `.trim(),
       fr: `
-Mes deux derniers articles portaient d'abord sur les systèmes, puis sur la stack technique qui les soutient.
+_Le harness et le Knowledge OS sont la base. Ils ne sont pas l'état final._
 
-Le premier point était simple : l'IA devient réellement utile lorsqu'elle est intégrée dans un système.
+---
 
-Le second était que, dans mon cas, ce système repose sur deux couches principales :
+Il y a deux articles, je défendais une idée : l'IA ne devient utile que dans un système. Le précédent nommait mes deux couches :
 
-- un **harness** pour l'exécution
-- un **Knowledge OS** pour le contexte structuré
+→ un **harness** pour l'exécution
+→ un **Knowledge OS** pour le contexte structuré
 
-Je continue à penser que ces deux couches sont la base.
+Toujours la base. Pas l'état final.
 
-Mais elles ne sont pas l'état final.
+La couche suivante est claire pour moi : des modèles locaux spécialisés et fine-tunés. Pas un seul grand modèle pour tout. Pas un seul immense prompt censé tenir le système ensemble. Des modèles plus petits, des tâches étroites, de vraies contraintes matérielles, câblés comme des composants fiables.
 
-Si l'on veut que ces systèmes deviennent plus complets, plus isolés, et plus facilement déployables dans différents environnements, alors la couche suivante me paraît claire :
+## Le prompting finit par buter contre un mur
 
-> des modèles locaux spécialisés et fine-tunés
+Le prompting est le moyen le plus rapide de prototyper et d'atteindre une première utilité.
 
-Pas un seul grand modèle pour tout faire.
-Pas un seul immense prompt censé tenir tout le système ensemble.
+Puis la facture arrive. Trop de comportement vit dans le prompt. Les instructions s'allongent. Les cas limites s'accumulent. Le modèle infère trop, à chaque exécution.
 
-Je parle de modèles plus petits, assignés à des tâches plus étroites, entraînés pour des rôles précis, attachés à de vraies contraintes matérielles, et intégrés au système d'exécution comme des composants fiables.
+Tu paies un modèle frontier pour relire les mêmes instructions à l'infini. Lui ne s'ennuie jamais. Ton budget, si.
 
-## Pourquoi le prompting seul finit par atteindre une limite
+Acceptable au début. Beaucoup moins quand l'objectif devient une exécution répétable. Si la même classification, extraction ou routage revient sans cesse, je ne veux pas payer le plein tarif du prompt à chaque appel. Je veux rapprocher ce comportement du modèle.
 
-Le prompting est puissant. C'est le moyen le plus rapide d'explorer, de prototyper et d'obtenir une première utilité.
+## Le fine-tuning, c'est de la compression
 
-Mais il a ses limites.
+On présente souvent le fine-tuning comme un moyen de rendre un modèle plus intelligent. Ce n'est pas l'angle qui m'intéresse.
 
-Quand trop de comportement vit dans les prompts, le système devient coûteux à maintenir et difficile à stabiliser. Les instructions s'allongent. Les cas limites s'accumulent. Le modèle doit encore inférer trop de choses à chaque exécution.
+Le fine-tuning **compresse** un comportement répété dans le modèle, pour que le système ait besoin de moins de scaffolding à l'exécution.
 
-Cela reste acceptable au début.
+Il réduit la longueur des prompts, l'overhead d'orchestration, la latence sur les workflows étroits, et la variabilité sur les tâches répétées. Souvent, il achète plus de fiabilité qu'un paragraphe d'instructions de plus.
 
-Cela l'est beaucoup moins quand l'objectif devient une exécution répétable.
+## Petits modèles, rôles étroits
 
-Si le même type de raisonnement, de formatage, de routage, de classification, d'extraction ou de prise de décision revient encore et encore, je ne veux pas payer le coût complet du prompt à chaque fois. Je veux qu'une partie de ce comportement se rapproche du modèle lui-même.
+Le futur de l'IA opérationnelle n'est pas un seul modèle frontier qui fait tout. Il est **distribué** :
 
-C'est là que le fine-tuning commence à compter.
+→ des modèles frontier pour le raisonnement large et la synthèse difficile
+→ des systèmes structurés pour la mémoire, le retrieval et le gating
+→ des petits modèles fine-tunés pour les tâches étroites et répétées
 
-## Le fine-tuning comme compression de comportement
+Un petit modèle bien borné n'a pas besoin d'être universellement brillant. Il doit être fiable dans une responsabilité limitée : classification, extraction structurée, application du style, routage d'outils, validation métier.
 
-On parle souvent du fine-tuning comme si l'enjeu principal était de rendre un modèle plus intelligent.
+C'est une voie vers la fiabilité bien plus sérieuse que de demander à un modèle général d'improviser chaque couche.
 
-Ce n'est pas l'angle qui m'intéresse le plus.
+## Le raisonnement reste central
 
-L'angle le plus pratique est plutôt celui-ci :
+Il ne s'agit pas de remplacer le raisonnement par une automatisation fragile. L'inverse.
 
-le fine-tuning est une manière de compresser un comportement répété dans le modèle afin que le système dépende de moins de scaffolding de prompt à l'exécution.
+Le harness garde les décisions, le gating, l'escalade, le flux. Le Knowledge OS garde la mémoire et le contexte. Les modèles spécialisés prennent juste les tâches étroites dans cette boucle. Le système dépense alors du raisonnement coûteux là où il compte, pas sur des tâches à faible entropie déjà censées être stables.
 
-Au lieu d'expliquer la même tâche étroite encore et encore, on entraîne le modèle pour que ce comportement devienne plus naturel pour lui.
+La fiabilité n'a rien de magique. C'est un alignement conçu entre la tâche, les données d'entraînement, la boucle d'évaluation, et l'endroit où ça tourne vraiment. Le hardware est réel : compute, latence, confidentialité et coût sont de l'architecture, pas des détails.
 
-Cela réduit :
-
-- la longueur des prompts
-- l'overhead d'orchestration
-- la latence dans les workflows étroits
-- la variabilité sur les tâches répétées
-
-Et dans beaucoup de cas, cela améliore davantage la fiabilité qu'une simple accumulation d'instructions dans le prompt.
-
-## Pourquoi les petits modèles comptent
-
-Je ne pense pas que le futur des systèmes IA opérationnels soit un unique modèle frontier qui fait tout.
-
-La vision la plus sérieuse ressemble davantage à une architecture distribuée :
-
-- des modèles frontier pour le raisonnement large et la synthèse difficile
-- des systèmes structurés pour la mémoire, le retrieval et le gating
-- des modèles plus petits, fine-tunés, pour les tâches étroites et répétées
-
-Cette dernière catégorie compte énormément.
-
-Un petit modèle bien borné peut être extrêmement utile si son rôle est clairement défini. Il n'a pas besoin d'être universellement brillant. Il doit être fiable dans une responsabilité limitée.
-
-Par exemple :
-
-- un modèle spécialisé pour la classification
-- un modèle spécialisé pour l'extraction de données structurées
-- un modèle spécialisé pour l'application du style
-- un modèle spécialisé pour le routage d'outils
-- un modèle spécialisé pour une validation métier précise
-
-C'est une voie bien plus sérieuse vers la fiabilité que de demander à un modèle général d'improviser toutes les couches de la stack.
-
-## Le raisonnement doit rester central
-
-Cela ne signifie pas que je veux remplacer le raisonnement par une automatisation fragile.
-
-Au contraire.
-
-Je pense que le raisonnement devient plus précieux lorsque le reste du système est plus propre.
-
-Le harness continue de gérer les décisions, le gating, l'itération, l'escalade et le flux d'exécution.
-Le Knowledge OS continue de gérer la mémoire, le contexte, la structure et le retrieval.
-Mais désormais, des modèles spécialisés peuvent prendre en charge des tâches plus étroites à l'intérieur de cette boucle plus large.
-
-Cela signifie que le système de plus haut niveau peut réserver le raisonnement aux endroits où il est réellement nécessaire, au lieu de gaspiller une intelligence générale coûteuse sur des tâches à faible entropie qui auraient déjà dû être stabilisées.
-
-Le déplacement n'est donc pas du raisonnement vers l'entraînement.
-
-Il va d'un prompting généralisé vers du raisonnement là où c'est nécessaire, et de l'entraînement là où la répétition existe déjà.
-
-## La fiabilité vient de l'alignement avec le vrai travail
-
-Quand on entend le mot alignement, on saute souvent immédiatement vers des discussions abstraites de safety.
-
-Ce n'est pas le sens que je vise ici.
-
-Je parle d'alignement opérationnel.
-
-Le modèle se comporte-t-il d'une manière qui correspond réellement à la tâche, au domaine, aux règles et à l'environnement matériel dans lequel il tourne ?
-
-Pour des systèmes de production, cela compte plus que des démos élégantes.
-
-Un modèle local étroit, entraîné sur les bons exemples, évalué sur les bons modes d'échec, et contraint par le bon harness, peut avoir bien plus de valeur qu'un plus grand modèle seulement orienté par des prompts.
-
-La fiabilité n'a rien de magique. C'est un alignement conçu entre :
-
-- la tâche
-- les données d'entraînement
-- la boucle d'évaluation
-- l'environnement d'exécution
-
-## L'auto-amélioration a besoin d'un système, pas d'un mythe
-
-Oui, je pense que l'auto-amélioration est la porte suivante.
-
-Mais je ne parle pas d'un fantasme flou où un modèle se réécrit lui-même indéfiniment dans le noir.
-
-Je parle d'un processus structuré dans lequel le système apprend de l'exécution :
-
-- ce qui a échoué
-- ce qui s'est répété
-- ce qui a demandé trop de prompting
-- quels schémas sont devenus assez stables pour être encodés
-
-À partir de là, on peut décider ce qui doit rester dans les prompts, ce qui doit devenir une règle, ce qui doit devenir de la donnée d'entraînement, et ce qui doit être confié à un plus petit modèle spécialisé.
-
-C'est une version bien plus solide de l'auto-amélioration.
-
-Le système ne devient pas meilleur parce qu'il "réfléchit" au sens abstrait.
-
-Il devient meilleur parce que l'exécution produit des preuves, et que ces preuves sont transformées en meilleurs modèles, meilleurs routages et meilleures contraintes.
-
-## Le hardware fait partie du design
-
-Une autre raison pour laquelle je m'intéresse aux petits modèles locaux est simple : le hardware est réel.
-
-Si un système doit être déployable dans différents environnements, alors le compute, la mémoire, la latence, la confidentialité et le coût sont des sujets d'architecture, pas des détails.
-
-Un système IA complet devrait pouvoir affecter la bonne tâche à la bonne couche :
-
-- certaines tâches méritent le raisonnement de grands modèles
-- certaines tâches doivent rester locales pour la vitesse ou la confidentialité
-- certaines tâches doivent tourner sur de petits modèles spécialisés parce que c'est l'option la plus efficace
-
-C'est l'une des principales raisons pour lesquelles je vois les modèles locaux fine-tunés comme une partie d'une architecture sérieuse, et non comme une simple astuce d'optimisation.
-
-Ils rendent le système plus portable, plus contrôlable et, dans bien des cas, plus viable économiquement.
-
-## À quoi commence à ressembler la stack complète
-
-À haut niveau, l'architecture devient plus facile à décrire :
+## La stack
 
 | Couche | Rôle |
 |---|---|
-| Harness | Orchestrer l'exécution, l'itération, l'évaluation et le gating |
-| Knowledge OS | Fournir une mémoire structurée, du retrieval et un contexte évolutif |
-| Modèles locaux fine-tunés | Gérer de manière fiable les tâches étroites, répétées et métier |
-| Modèles de raisonnement frontier | Traiter la synthèse large, l'ambiguïté et le jugement complexe |
+| Harness | Orchestrer l'exécution, l'itération, l'évaluation, le gating |
+| Knowledge OS | Mémoire structurée, retrieval, contexte évolutif |
+| Modèles locaux fine-tunés | Gérer les tâches étroites, répétées, métier |
+| Modèles frontier | Synthèse large, ambiguïté, jugement complexe |
 
-Cela ressemble beaucoup plus à un système complet que "un modèle plus un prompt".
+Plus proche d'un système complet que « un modèle plus un prompt ».
 
-Cela ressemble aussi beaucoup plus à quelque chose qui peut être isolé, déployé et adapté à différents systèmes et différentes contraintes matérielles.
+Le harness aide le système à **faire**. Le Knowledge OS l'aide à savoir. Les modèles locaux fine-tunés l'aident à stabiliser.
 
-## Dernière idée
-
-Si le harness aide le système à **faire**, et le Knowledge OS aide le système à **savoir**, alors les modèles locaux fine-tunés aident le système à **stabiliser**.
-
-Ils réduisent la dépendance au prompt.
-Ils transforment des comportements répétés en capacités réutilisables.
-Ils créent un meilleur pont entre l'exécution, le raisonnement, le hardware et l'alignement.
-
-Pour moi, c'est la prochaine étape sérieuse.
-
-Pas plus de prompting.
-
-Mais plus de spécialisation, plus d'entraînement, et un meilleur design système autour des endroits où le raisonnement doit vraiment intervenir.
+La prochaine étape n'est pas plus de prompting. C'est une meilleure spécialisation.
 `.trim(),
       nl: `
-Mijn laatste twee artikels gingen eerst over systemen, en daarna over de technische stack erachter.
+_De harness en de Knowledge OS zijn de basis. Ze zijn niet het eindpunt._
 
-Het eerste punt was eenvoudig: AI wordt pas echt nuttig wanneer het deel wordt van een systeem.
+---
 
-Het tweede punt was dat dit systeem in mijn geval rust op twee hoofdlagen:
+Twee artikels geleden betoogde ik dat AI pas nuttig wordt binnen een systeem. Het vorige benoemde mijn twee lagen:
 
-- een **harness** voor uitvoering
-- een **Knowledge OS** voor gestructureerde context
+→ een **harness** voor uitvoering
+→ een **Knowledge OS** voor gestructureerde context
 
-Ik blijf geloven dat die twee lagen de basis vormen.
+Nog steeds de basis. Niet het eindpunt.
 
-Maar ze zijn niet het eindpunt.
+De volgende laag is voor mij duidelijk: gespecialiseerde, fijn-afgestelde lokale modellen. Niet één gigantisch model voor alles. Niet één gigantische prompt die het systeem bijeenhoudt. Kleinere modellen, smalle taken, echte hardwarebeperkingen, ingebouwd als betrouwbare componenten.
 
-Als we willen dat deze systemen vollediger, meer geïsoleerd en makkelijker inzetbaar worden in verschillende omgevingen, dan is de volgende laag voor mij duidelijk:
+## Prompting botst tegen een muur
 
-> gespecialiseerde, fijn-afgestelde lokale modellen
+Prompting is de snelste manier om te prototypen en snel eerste waarde te bereiken.
 
-Niet één gigantisch model voor alles.
-Niet één gigantische prompt die het hele systeem moet bijeenhouden.
+Dan komt de rekening. Te veel gedrag leeft in de prompt. Instructies worden langer. Edge cases stapelen op. Het model leidt te veel af, bij elke run.
 
-Ik bedoel kleinere modellen die aan smallere taken worden toegewezen, getraind zijn voor specifieke rollen, rekening houden met echte hardwarebeperkingen en als betrouwbare componenten in het uitvoeringssysteem worden geïntegreerd.
+Je betaalt een frontier-model om eindeloos dezelfde instructies te herlezen. Het verveelt zich nooit. Je budget wel.
 
-## Waarom prompting alleen uiteindelijk tegen een muur botst
+Aanvaardbaar in het begin. Veel minder wanneer het doel herhaalbare uitvoering wordt. Als dezelfde classificatie, extractie of routing telkens terugkomt, wil ik niet de volledige promptbelasting bij elke call betalen. Ik wil dat gedrag dichter bij het model.
 
-Prompting is krachtig. Het is de snelste manier om te verkennen, te prototypen en snel eerste waarde te bereiken.
+## Fine-tuning is compressie
 
-Maar prompting heeft grenzen.
+Men kadert fine-tuning vaak als een model slimmer maken. Dat is niet het kader dat mij interesseert.
 
-Wanneer te veel gedrag in prompts leeft, wordt het systeem duur om te onderhouden en moeilijk om te stabiliseren. Instructies worden langer. Edge cases stapelen zich op. Het model moet nog altijd te veel afleiden bij elke run.
+Fine-tuning **comprimeert** herhaald gedrag in het model, zodat het systeem tijdens runtime minder scaffolding nodig heeft.
 
-Dat is aanvaardbaar in het begin.
+Het snijdt in promptlengte, orchestratie-overhead, latency op smalle workflows, en variabiliteit bij repetitieve taken. Vaak koopt het meer betrouwbaarheid dan nog een paragraaf instructies ooit zou doen.
 
-Dat is veel minder aanvaardbaar wanneer het doel herhaalbare uitvoering wordt.
+## Kleine modellen, smalle rollen
 
-Als hetzelfde soort redenering, formatting, routing, classificatie, extractie of beslissingspatroon telkens terugkomt, wil ik niet telkens de volledige promptbelasting betalen. Ik wil dat een deel van dat gedrag dichter bij het model zelf komt te liggen.
+De toekomst van operationele AI is niet één frontier-model dat elke taak doet. Ze is **gedistribueerd**:
 
-Daar begint fine-tuning belangrijk te worden.
+→ frontier-modellen voor breed redeneren en moeilijke synthese
+→ gestructureerde systemen voor geheugen, retrieval en gating
+→ kleine fijn-afgestelde modellen voor smalle, repetitieve taken
 
-## Fine-tuning als compressie van gedrag
+Een goed afgebakend klein model hoeft niet universeel briljant te zijn. Het moet betrouwbaar zijn binnen een begrensde taak: classificatie, gestructureerde extractie, stijlhandhaving, tool routing, domeinvalidatie.
 
-Mensen spreken vaak over fine-tuning alsof het vooral gaat om een model slimmer te maken.
+Dat is een veel serieuzere weg naar betrouwbaarheid dan één algemeen model elke laag laten improviseren.
 
-Dat is niet het kader dat mij het meest interesseert.
+## Redeneren blijft centraal
 
-Het nuttigere kader is dit:
+Dit gaat niet over redeneren vervangen door fragiele automatisering. Integendeel.
 
-fine-tuning is een manier om herhaald gedrag in het model te comprimeren zodat het systeem tijdens runtime minder prompt-scaffolding nodig heeft.
+De harness houdt beslissingen, gating, escalatie en flow. De Knowledge OS houdt geheugen en context. Gespecialiseerde modellen nemen enkel de smalle taken binnen die lus. Zo besteedt het systeem duur redeneren waar het telt, niet aan taken met lage entropie die al stabiel hadden moeten zijn.
 
-In plaats van dezelfde smalle taak telkens opnieuw uit te leggen, train je het model zodat dat gedrag natuurlijker wordt.
+Betrouwbaarheid is geen magie. Het is ontworpen alignment tussen de taak, de trainingsdata, de evaluatielus, en waar het ding echt draait. Hardware is echt: compute, latency, privacy en kost zijn architectuur, geen bijzaken.
 
-Dat vermindert:
-
-- promptlengte
-- orchestratie-overhead
-- latency in smalle workflows
-- variabiliteit bij repetitieve taken
-
-En in veel gevallen verbetert dat de betrouwbaarheid meer dan gewoon nog meer promptinstructies toevoegen.
-
-## Waarom kleinere modellen tellen
-
-Ik denk niet dat de toekomst van operationele AI-systemen één centraal frontier-model is dat elke taak uitvoert.
-
-Het serieuzere beeld lijkt meer op een gedistribueerde architectuur:
-
-- frontier-modellen voor breed redeneren en moeilijke synthese
-- gestructureerde systemen voor geheugen, retrieval en gating
-- kleinere fijn-afgestelde modellen voor smalle en repetitieve taken
-
-Die laatste categorie is bijzonder belangrijk.
-
-Een kleiner model met een goed afgebakende rol kan enorm nuttig zijn wanneer zijn verantwoordelijkheid helder is. Het hoeft niet universeel briljant te zijn. Het moet betrouwbaar zijn binnen een begrensde taak.
-
-Bijvoorbeeld:
-
-- een model gespecialiseerd in classificatie
-- een model gespecialiseerd in extractie van gestructureerde data
-- een model gespecialiseerd in stijlhandhaving
-- een model gespecialiseerd in tool routing
-- een model gespecialiseerd in domeinspecifieke validatie
-
-Dat is een veel serieuzere weg naar betrouwbaarheid dan één algemeen model vragen om elke laag van de stack te improviseren.
-
-## Redeneren moet centraal blijven
-
-Dat betekent niet dat ik redeneren wil vervangen door fragiele automatisering.
-
-Integendeel.
-
-Ik denk dat redeneren waardevoller wordt wanneer de rest van het systeem properder is.
-
-De harness blijft beslissingen, gating, iteratie, escalatie en uitvoeringsflow beheren.
-De Knowledge OS blijft geheugen, context, structuur en retrieval beheren.
-Maar gespecialiseerde modellen kunnen nu smallere taken opnemen binnen die grotere lus.
-
-Dat betekent dat het hogere systeem redeneren kan inzetten waar het echt nodig is, in plaats van dure algemene intelligentie te verspillen aan taken met lage entropie die al gestabiliseerd hadden moeten zijn.
-
-De verschuiving is dus niet van redeneren naar training.
-
-Ze gaat van alles prompten naar redeneren waar nodig en trainen waar herhaling al bestaat.
-
-## Betrouwbaarheid komt uit alignment met echt werk
-
-Wanneer mensen het woord alignment horen, springen ze vaak meteen naar abstracte veiligheidsdiscussies.
-
-Dat is niet wat ik hier bedoel.
-
-Ik bedoel operationele alignment.
-
-Gedraagt het model zich op een manier die echt overeenkomt met de taak, het domein, de regels en de hardware-omgeving waarin het draait?
-
-Voor productiesystemen is dat belangrijker dan elegante demo's.
-
-Een smal lokaal model dat op de juiste voorbeelden is getraind, op de juiste failure modes is geëvalueerd en door de juiste harness wordt begrensd, kan veel waardevoller zijn dan een groter model dat enkel losjes via prompts wordt gestuurd.
-
-Betrouwbaarheid is geen magie. Het is ontworpen alignment tussen:
-
-- de taak
-- de trainingsdata
-- de evaluatielus
-- de uitvoeringsomgeving
-
-## Zelfverbetering heeft een systeem nodig, geen mythe
-
-Ik denk wel degelijk dat zelfverbetering de volgende deur is.
-
-Maar ik bedoel niet een vage fantasie waarin een model zichzelf eindeloos in het donker herschrijft.
-
-Ik bedoel een gestructureerd proces waarin het systeem leert van uitvoering:
-
-- wat faalde
-- wat zich herhaalde
-- wat te veel prompting vereiste
-- welke patronen stabiel genoeg werden om te encoderen
-
-Van daaruit kun je beslissen wat in prompts moet blijven, wat naar regels moet verhuizen, wat trainingsdata moet worden en wat aan een kleiner gespecialiseerd model moet worden toegewezen.
-
-Dat is een veel gegrondere vorm van zelfverbetering.
-
-Het systeem wordt niet beter omdat het in abstracte zin "reflecteert".
-
-Het wordt beter omdat uitvoering bewijs oplevert, en dat bewijs wordt omgezet in betere modellen, betere routes en betere beperkingen.
-
-## Hardware maakt deel uit van het ontwerp
-
-Nog een reden waarom ik om kleine lokale modellen geef, is simpel: hardware is echt.
-
-Als een systeem in verschillende omgevingen inzetbaar moet zijn, dan zijn compute, geheugen, latency, privacy en kost architectuurkeuzes, geen bijzaken.
-
-Een compleet AI-systeem zou de juiste taak aan de juiste laag moeten kunnen toewijzen:
-
-- sommige taken verdienen redenering door grote modellen
-- sommige taken moeten lokaal blijven voor snelheid of privacy
-- sommige taken moeten op gespecialiseerde kleine modellen draaien omdat dat de efficiëntste optie is
-
-Dat is een van de belangrijkste redenen waarom ik fijn-afgestelde lokale modellen zie als onderdeel van een serieuze operating architecture, niet als een optimalisatietrick.
-
-Ze maken het systeem draagbaarder, beter controleerbaar en in veel gevallen economisch haalbaarder.
-
-## Hoe de volledige stack eruit begint te zien
-
-Op hoog niveau wordt de architectuur eenvoudiger te beschrijven:
+## De stack
 
 | Laag | Rol |
 |---|---|
-| Harness | Uitvoering, iteratie, evaluatie en gating orkestreren |
-| Knowledge OS | Gestructureerd geheugen, retrieval en evoluerende context leveren |
-| Fijn-afgestelde lokale modellen | Smalle, repetitieve en domeingevormde taken betrouwbaar uitvoeren |
-| Frontier-redeneermodellen | Brede synthese, ambiguïteit en complex oordeel behandelen |
+| Harness | Uitvoering, iteratie, evaluatie, gating orkestreren |
+| Knowledge OS | Gestructureerd geheugen, retrieval, evoluerende context |
+| Fijn-afgestelde lokale modellen | Smalle, repetitieve, domeingevormde taken uitvoeren |
+| Frontier-modellen | Brede synthese, ambiguïteit, complex oordeel |
 
-Dat staat veel dichter bij een compleet systeem dan "één model plus één prompt".
+Dichter bij een compleet systeem dan "één model plus één prompt".
 
-Het staat ook veel dichter bij iets dat geïsoleerd, gedeployed en aangepast kan worden aan verschillende systemen en hardware-opstellingen.
+De harness helpt het systeem **doen**. De Knowledge OS helpt het weten. Fijn-afgestelde lokale modellen helpen het stabiliseren.
 
-## Slotgedachte
-
-Als de harness het systeem helpt **doen**, en de Knowledge OS het systeem helpt **weten**, dan helpen fijn-afgestelde lokale modellen het systeem **stabiliseren**.
-
-Ze verminderen promptafhankelijkheid.
-Ze zetten herhaald gedrag om in herbruikbare capaciteit.
-Ze bouwen een betere brug tussen uitvoering, redenering, hardware en alignment.
-
-Voor mij is dat de volgende serieuze stap.
-
-Niet meer prompting.
-
-Maar betere specialisatie, betere training en beter systeemontwerp rond de plaatsen waar redeneren echt thuishoort.
+De volgende stap is niet meer prompting. Het is betere specialisatie.
 `.trim(),
     },
   },
@@ -3184,13 +1972,13 @@ Maar betere specialisatie, betere training en beter systeemontwerp rond de plaat
     image: "/illustrations/blog/robotics-is-where-agentic-systems-become-real.jpg",
     title: {
       en: "Robotics Is Where Agentic Systems Become Real",
-      fr: "La robotique est l'endroit où les systèmes agentiques deviennent réels",
+      fr: "La robotique, c'est là que les systèmes agentiques deviennent réels",
       nl: "Robotica is waar agentische systemen echt worden",
     },
     description: {
-      en: "Why I see robotics as the real destination of agentic systems, from educational companions and safety assistants to the broader convergence of AI, training, open source, and physical products.",
-      fr: "Pourquoi je vois la robotique comme la véritable destination des systèmes agentiques, des compagnons éducatifs aux assistants de sécurité, dans une convergence plus large entre IA, entraînement, open source et produits physiques.",
-      nl: "Waarom ik robotica zie als de echte bestemming van agentische systemen, van educatieve companions tot veiligheidsassistenten, binnen een bredere convergentie van AI, training, open source en fysieke producten.",
+      en: "My first posts were about the invisible layers. Robotics is where they get a body: systems that perceive, decide, and act in the physical world.",
+      fr: "Mes premiers articles portaient sur les couches invisibles. La robotique, c'est là qu'elles reçoivent un corps : des systèmes qui perçoivent, décident et agissent dans le monde physique.",
+      nl: "Mijn eerste artikels gingen over de onzichtbare lagen. Robotica is waar ze een lichaam krijgen: systemen die waarnemen, beslissen en handelen in de fysieke wereld.",
     },
     category: {
       en: "Vision",
@@ -3198,9 +1986,9 @@ Maar betere specialisatie, betere training en beter systeemontwerp rond de plaat
       nl: "Visie",
     },
     readTime: {
-      en: "7 min",
-      fr: "9 min",
-      nl: "9 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Robotics","Agentic Systems","Embodiment"],
@@ -3209,589 +1997,259 @@ Maar betere specialisatie, betere training en beter systeemontwerp rond de plaat
     },
     content: {
       en: `
-My first articles were about systems, execution, memory, fine-tuning, and reliability.
+_My first posts were about the invisible layers. This one is where they get a body._
 
-Those topics matter on their own.
+---
 
-But for me, they also point toward something larger:
+My first posts were about the boring layers: execution, memory, fine-tuning, reliability.
 
-robotics.
+They matter on their own. But for me they all point one way.
 
-If I zoom out, I do not see agentic systems as the final product category. I see them as the path toward embodied systems that can operate in the physical world.
+Robotics.
 
-In other words:
+I don't see agentic systems as the final category. I see them as the road to systems that can act in the physical world.
 
-the broader vision is not only software that reasons.
-It is software, models, memory, training, and execution becoming able to act through machines.
+## Agents are a bridge
 
-That is why robotics matters so much to me.
+Everyone talks about agents like the destination is digital automation.
 
-## Agentic Systems Are a Bridge
+I don't buy it.
 
-A lot of people talk about agents as if the destination were digital automation alone.
+Agents matter because they force the hard problems first:
 
-I do not think that is the full picture.
+→ planning
+→ memory and reasoning
+→ specialization and evaluation
+→ reliability and adaptation
 
-Agents matter because they force us to solve the right intermediate problems:
+Those are exactly the layers a robot needs before it earns its place.
 
-- planning
-- memory
-- reasoning
-- specialization
-- evaluation
-- reliability
-- adaptation
+A robot without them is **mostly hardware**. A robot with them starts to become a system.
 
-Those are exactly the capabilities you need before physical systems can become truly useful at scale.
+## Shape is not the point
 
-A robot without these layers is mostly hardware.
+People hear robotics and picture humanoids. I get it. There's something human in wanting to build physical cousins of ourselves.
 
-A robot with them starts to become a system.
+But that fantasy shouldn't blind us to what already works.
 
-## The Humanoid Question
+Most useful robots are not humanoids:
 
-When people think about robotics, they often jump directly to humanoids.
+→ drones
+→ robotic arms
+→ wheeled machines
+→ small educational companions
+→ narrow industrial units
 
-I understand why.
+The market won't wait for a perfect humanoid to start changing work. It's already doing it through a drone and a robotic arm that will never pass for your cousin.
 
-There is something deeply human in the idea. We are naturally drawn to the possibility of building physical cousins of ourselves, almost in the same way that we imagine extraterrestrial life: not just tools, but other embodied intelligences we can relate to.
+The real question was never "does it look human." It's whether it can **perceive, decide, and act** reliably in the real world.
 
-That vision is powerful.
+A Reachy Mini in a classroom. A safety assistant on a construction site. An arm moving parts. Form follows the task, not the mythology.
 
-But I do not think it should blind us to what robotics already is today.
+## Why the decade tilts physical
 
-Most useful robots are not full humanoids.
+Hardware keeps improving. That's not the interesting part. The software layer around it is finally catching up.
 
-They are:
+The forces are converging:
 
-- drones
-- robotic arms
-- wheeled machines
-- small educational companions
-- narrow industrial systems
+→ better models, training, and simulation
+→ cheaper hardware
+→ open source building blocks
+→ stronger developer ecosystems
 
-That matters because the market will not wait for perfect humanoids to start transforming work.
+The stack is becoming composable. And once a stack is composable, experimentation gets **cheap**.
 
-It is already moving through smaller, more specialized bodies.
+Open source is the accelerant most people underrate. Not because it solves everything. Because it lowers the cost of iteration and distribution.
 
-## Embodiment Matters More Than Shape
+A robotics market won't grow from big labs alone. It grows from researchers, schools, hackerspaces, and niche builders shipping small experiments until the category matures. That's how real markets form.
 
-For me, the real question is not "Does it look human?"
+## The honest near term
 
-The more important question is:
+None of this replaces people. That was never the point.
 
-> Can it perceive, decide, and act reliably in the real world?
+The near-term job is to **make humans more capable again**. Better execution, memory, and reasoning hand people back time, focus, and creative bandwidth.
 
-That can happen through many forms.
+Humans still do the matching. Humans still set the direction. Humans still decide what matters.
 
-A Reachy Mini used by children or teachers.
-A safety assistant helping construction teams reduce risk.
-A robotic arm moving parts or materials.
-A mobile unit inspecting, transporting, or monitoring.
+AI just removes the friction between imagination and execution. That's valuable long before robotics is mature.
 
-These systems do not all need the same body.
+## Where it lands
 
-What they need is useful embodiment.
+Robotics isn't a side branch of AI. It's one of its most concrete destinations.
 
-The physical form should follow the task, not the mythology.
+Intelligence trapped in screens is useful. Intelligence wired to tools, sensors, and bodies is a different economy.
 
-## Why Robotics Will Drive Products and Services
-
-I think the coming decade will push robotics much deeper into real products and services.
-
-Not only because hardware keeps improving, but because the software layer around it is finally catching up.
-
-What changes the equation is the convergence of several forces:
-
-- better AI models
-- better training pipelines
-- better simulation and evaluation
-- cheaper hardware
-- more open source building blocks
-- stronger developer ecosystems
-
-This is why robotics now feels less like a distant moonshot and more like an emerging product category.
-
-The stack is becoming composable.
-
-And once the stack becomes composable, experimentation accelerates.
-
-## Open Source Will Matter More Than People Think
-
-One of the most important accelerants in this space will be open source.
-
-Not because open source solves everything, but because it lowers the cost of iteration and distribution.
-
-When models, training recipes, control systems, hardware interfaces, and simulation tools become easier to access, more people can build.
-
-That matters enormously.
-
-A robotics ecosystem does not grow only from large labs.
-
-It also grows from researchers, startups, schools, hackerspaces, developers, and niche product builders who keep shipping smaller experiments until the category matures.
-
-That is often how real technological markets are formed.
-
-## Near-Term Use: Humans Become Creative Again
-
-There is also a more immediate reason why I care about these first three articles and the systems behind them.
-
-In the near term, the purpose is not to replace people with machines.
-
-The purpose is to make humans more capable again.
-
-Better execution systems, better memory, better reasoning, and better specialization can help people recover time, focus, and creative bandwidth.
-
-Humans still do the matching.
-Humans still define the direction.
-Humans still decide what is meaningful.
-
-But AI can remove a large amount of friction between imagination and execution.
-
-That is already valuable, even before robotics reaches maturity.
-
-## From Imagination to Physical Service
-
-What excites me most is the continuity between these layers.
-
-First, AI helps humans think, organize, design, and execute better.
-
-Then those same systems become capable of guiding physical tools.
-
-Eventually, you get products and services that are not only digital, but embodied.
-
-That could mean robots that:
-
-- demonstrate concepts in classrooms
-- assist teachers and children in learning environments
-- improve safety in construction and industrial contexts
-- save time on repetitive physical handling
-- help people supervise or coordinate real-world operations
-
-That is where imagination becomes service.
-
-Not because the machine replaces human purpose, but because it extends human reach.
-
-## The Real Opportunity
-
-To me, robotics is not a side branch of AI.
-
-It is one of the most concrete destinations of the whole movement.
-
-If intelligence remains trapped inside screens, it will still be useful.
-
-But once intelligence can reliably connect to tools, bodies, sensors, and physical environments, the economic and social impact becomes much larger.
-
-That is when product categories multiply.
-That is when services become embodied.
-That is when AI starts to reshape daily life in visible ways.
-
-## Final Thought
-
-The first layers are about making systems able to think, know, decide, and improve.
-
-Robotics is what happens when those layers gain a body.
-
-Humanoids may become one part of that future.
-But the deeper shift is broader than humanoids.
-
-It is the emergence of useful embodied systems across education, industry, safety, logistics, assistance, and everyday work.
-
-That is why I see robotics not as a separate topic, but as the continuation of the same architecture.
-
-First the system learns to reason.
-Then it learns to act.
-Then it enters the physical world.
+First the system learns to reason. Then to act. Then it enters the room.
 `.trim(),
       fr: `
-Mes premiers articles portaient sur les systèmes, l'exécution, la mémoire, le fine-tuning et la fiabilité.
+_Mes premiers articles portaient sur les couches invisibles. Celui-ci, c'est là qu'elles reçoivent un corps._
 
-Ces sujets comptent en eux-mêmes.
+---
 
-Mais pour moi, ils pointent aussi vers quelque chose de plus large :
+Mes premiers articles portaient sur les couches ingrates : exécution, mémoire, fine-tuning, fiabilité.
 
-la robotique.
+Elles comptent en elles-mêmes. Mais pour moi, elles pointent toutes dans la même direction.
 
-Si je prends un peu de recul, je ne vois pas les systèmes agentiques comme une catégorie de produit finale. Je les vois comme le chemin vers des systèmes incarnés capables d'opérer dans le monde physique.
+La robotique.
 
-Autrement dit :
+Je ne vois pas les systèmes agentiques comme la catégorie finale. Je les vois comme la route vers des systèmes capables d'agir dans le monde physique.
 
-la vision n'est pas seulement un logiciel qui raisonne.
-C'est un ensemble de logiciel, de modèles, de mémoire, d'entraînement et d'exécution capable d'agir à travers des machines.
+## Les agents sont un pont
 
-C'est pour cela que la robotique compte autant à mes yeux.
+Tout le monde parle des agents comme si la destination était l'automatisation digitale.
 
-## Les systèmes agentiques sont un pont
+Je n'y crois pas.
 
-Beaucoup de gens parlent des agents comme si la destination était uniquement l'automatisation digitale.
+Les agents comptent parce qu'ils forcent d'abord les problèmes difficiles :
 
-Je ne pense pas que ce soit toute l'image.
+→ planification
+→ mémoire et raisonnement
+→ spécialisation et évaluation
+→ fiabilité et adaptation
 
-Les agents comptent parce qu'ils nous obligent à résoudre les bons problèmes intermédiaires :
+Ce sont exactement les couches dont un robot a besoin avant de mériter sa place.
 
-- la planification
-- la mémoire
-- le raisonnement
-- la spécialisation
-- l'évaluation
-- la fiabilité
-- l'adaptation
+Un robot sans elles reste **surtout du hardware**. Un robot avec elles commence à devenir un système.
 
-Ce sont exactement les capacités qu'il faut résoudre avant que des systèmes physiques deviennent réellement utiles à grande échelle.
+## La forme n'est pas le sujet
 
-Un robot sans ces couches reste surtout du hardware.
+On entend robotique et on imagine des humanoïdes. Je comprends. Il y a quelque chose de profondément humain à vouloir construire des cousins physiques de nous-mêmes.
 
-Un robot avec elles commence à devenir un système.
+Mais ce fantasme ne devrait pas nous aveugler sur ce qui marche déjà.
 
-## La question du humanoïde
+La plupart des robots utiles ne sont pas des humanoïdes :
 
-Quand on pense à la robotique, on saute souvent directement aux humanoïdes.
+→ drones
+→ bras robotiques
+→ machines roulantes
+→ petits compagnons éducatifs
+→ unités industrielles étroites
 
-Je comprends pourquoi.
+Le marché n'attendra pas l'humanoïde parfait pour transformer le travail. Il le fait déjà avec un drone et un bras robotique qui ne passeront jamais pour ton cousin.
 
-Il y a quelque chose de profondément humain dans cette idée. Nous sommes naturellement attirés par la possibilité de construire des cousins physiques de nous-mêmes, presque de la même manière que nous imaginons des formes de vie extraterrestres : pas seulement des outils, mais d'autres intelligences incarnées auxquelles nous pourrions nous relier.
+La vraie question n'a jamais été "est-ce que ça ressemble à un humain". C'est de savoir s'il peut **percevoir, décider et agir** de façon fiable dans le monde réel.
 
-Cette vision est puissante.
+Un Reachy Mini dans une classe. Un assistant de sécurité sur un chantier. Un bras qui déplace des pièces. La forme suit la tâche, pas le mythe.
 
-Mais je ne pense pas qu'elle doive nous aveugler sur ce qu'est déjà la robotique aujourd'hui.
+## Pourquoi la décennie penche vers le physique
 
-La plupart des robots utiles ne sont pas des humanoïdes complets.
+Le hardware continue de progresser. Ce n'est pas la partie intéressante. La couche logicielle autour de lui rattrape enfin son retard.
 
-Ce sont :
+Les forces convergent :
 
-- des drones
-- des bras robotiques
-- des machines roulantes
-- de petits compagnons éducatifs
-- des systèmes industriels étroits
+→ meilleurs modèles, entraînement et simulation
+→ hardware moins cher
+→ briques open source
+→ écosystèmes développeurs plus solides
 
-Cela compte parce que le marché n'attendra pas des humanoïdes parfaits pour commencer à transformer le travail.
+La stack devient composable. Et dès qu'une stack devient composable, l'expérimentation devient **bon marché**.
 
-Il avance déjà à travers des corps plus petits et plus spécialisés.
+L'open source est l'accélérateur que la plupart sous-estiment. Pas parce qu'il résout tout. Parce qu'il réduit le coût de l'itération et de la diffusion.
 
-## L'incarnation compte plus que la forme
+Un marché de la robotique ne grandit pas depuis les grands labos seuls. Il grandit grâce aux chercheurs, aux écoles, aux hackerspaces et aux constructeurs de niche qui expédient de petites expériences jusqu'à ce que la catégorie mûrisse. C'est ainsi que se forment les vrais marchés.
 
-Pour moi, la vraie question n'est pas : "Est-ce que cela ressemble à un humain ?"
+## Le court terme, honnêtement
 
-La question plus importante est :
+Rien de tout ça ne remplace les gens. Ça n'a jamais été le but.
 
-> Est-ce que cela peut percevoir, décider et agir de manière fiable dans le monde réel ?
+Le travail à court terme, c'est de **rendre les humains plus capables à nouveau**. Une meilleure exécution, une meilleure mémoire, un meilleur raisonnement rendent aux gens du temps, de la concentration, de la bande passante créative.
 
-Cela peut prendre beaucoup de formes.
+Les humains font toujours le matching. Les humains fixent toujours la direction. Les humains décident toujours de ce qui compte.
 
-Un Reachy Mini utilisé par des enfants ou des enseignants.
-Un assistant de sécurité aidant des équipes de construction à réduire les risques.
-Un bras robotique qui déplace des pièces ou des matériaux.
-Une unité mobile qui inspecte, transporte ou surveille.
+L'IA retire juste la friction entre l'imagination et l'exécution. C'est précieux bien avant que la robotique soit mûre.
 
-Tous ces systèmes n'ont pas besoin du même corps.
+## Où ça atterrit
 
-Ils ont besoin d'une incarnation utile.
+La robotique n'est pas une branche secondaire de l'IA. C'est l'une de ses destinations les plus concrètes.
 
-La forme physique doit suivre la tâche, pas le mythe.
+L'intelligence coincée dans des écrans est utile. L'intelligence branchée à des outils, des capteurs et des corps, c'est une autre économie.
 
-## Pourquoi la robotique va tirer les produits et services
-
-Je pense que la décennie qui arrive va faire entrer la robotique beaucoup plus profondément dans les produits et les services réels.
-
-Pas seulement parce que le hardware progresse, mais parce que la couche logicielle autour de lui commence enfin à rattraper son retard.
-
-Ce qui change l'équation, c'est la convergence de plusieurs forces :
-
-- de meilleurs modèles d'IA
-- de meilleures pipelines d'entraînement
-- de meilleures simulations et évaluations
-- du hardware moins coûteux
-- plus de briques open source
-- des écosystèmes développeurs plus solides
-
-C'est pour cela que la robotique ressemble de moins en moins à un moonshot lointain, et de plus en plus à une catégorie produit émergente.
-
-La stack devient composable.
-
-Et dès que la stack devient composable, l'expérimentation accélère.
-
-## L'open source comptera plus qu'on ne le pense
-
-L'un des accélérateurs les plus importants dans cet espace sera l'open source.
-
-Pas parce que l'open source résout tout, mais parce qu'il réduit le coût de l'itération et de la diffusion.
-
-Quand les modèles, les recettes d'entraînement, les systèmes de contrôle, les interfaces hardware et les outils de simulation deviennent plus accessibles, davantage de gens peuvent construire.
-
-Cela compte énormément.
-
-Un écosystème robotique ne grandit pas uniquement depuis de grands laboratoires.
-
-Il grandit aussi grâce à des chercheurs, des startups, des écoles, des hackerspaces, des développeurs et des constructeurs de produits de niche qui continuent d'expédier de petites expériences jusqu'à maturation de la catégorie.
-
-C'est souvent ainsi que se forment les vrais marchés technologiques.
-
-## Usage à court terme : redonner de la créativité aux humains
-
-Il y a aussi une raison plus immédiate pour laquelle ces trois premiers articles et les systèmes derrière eux m'importent.
-
-À court terme, l'objectif n'est pas de remplacer les humains par des machines.
-
-L'objectif est de rendre les humains plus capables à nouveau.
-
-De meilleurs systèmes d'exécution, de meilleure mémoire, plus de raisonnement et plus de spécialisation peuvent aider les gens à récupérer du temps, de la concentration et de la capacité créative.
-
-Les humains font toujours le matching.
-Les humains définissent toujours la direction.
-Les humains décident toujours de ce qui a du sens.
-
-Mais l'IA peut retirer une grande partie de la friction entre l'imagination et l'exécution.
-
-C'est déjà précieux, même avant que la robotique n'atteigne sa maturité.
-
-## De l'imagination au service physique
-
-Ce qui m'enthousiasme le plus, c'est la continuité entre ces couches.
-
-D'abord, l'IA aide les humains à mieux penser, organiser, concevoir et exécuter.
-
-Ensuite, ces mêmes systèmes deviennent capables de guider des outils physiques.
-
-Finalement, on obtient des produits et des services qui ne sont plus seulement digitaux, mais incarnés.
-
-Cela peut vouloir dire des robots qui :
-
-- démontrent des concepts en classe
-- assistent les enseignants et les enfants dans des environnements d'apprentissage
-- améliorent la sécurité sur des chantiers ou en contexte industriel
-- font gagner du temps sur des manipulations physiques répétitives
-- aident les gens à superviser ou coordonner des opérations dans le monde réel
-
-C'est là que l'imagination devient service.
-
-Pas parce que la machine remplace la finalité humaine, mais parce qu'elle étend la portée humaine.
-
-## La vraie opportunité
-
-Pour moi, la robotique n'est pas une branche secondaire de l'IA.
-
-C'est l'une des destinations les plus concrètes de tout ce mouvement.
-
-Si l'intelligence reste enfermée dans des écrans, elle sera déjà utile.
-
-Mais dès que cette intelligence peut se connecter de manière fiable à des outils, des corps, des capteurs et des environnements physiques, l'impact économique et social devient beaucoup plus grand.
-
-C'est là que les catégories produit se multiplient.
-C'est là que les services deviennent incarnés.
-C'est là que l'IA commence à transformer la vie quotidienne d'une manière visible.
-
-## Dernière idée
-
-Les premières couches consistent à rendre les systèmes capables de penser, savoir, décider et s'améliorer.
-
-La robotique, c'est ce qui se produit lorsque ces couches reçoivent un corps.
-
-Les humanoïdes deviendront peut-être une partie de ce futur.
-Mais le basculement profond est plus large que les humanoïdes.
-
-C'est l'émergence de systèmes incarnés utiles dans l'éducation, l'industrie, la sécurité, la logistique, l'assistance et le travail quotidien.
-
-C'est pourquoi je vois la robotique non pas comme un sujet séparé, mais comme la continuation de la même architecture.
-
-D'abord le système apprend à raisonner.
-Ensuite il apprend à agir.
-Puis il entre dans le monde physique.
+D'abord le système apprend à raisonner. Puis à agir. Puis il entre dans la pièce.
 `.trim(),
       nl: `
-Mijn eerste artikels gingen over systemen, uitvoering, geheugen, fine-tuning en betrouwbaarheid.
+_Mijn eerste artikels gingen over de onzichtbare lagen. Dit artikel is waar ze een lichaam krijgen._
 
-Die onderwerpen zijn op zichzelf belangrijk.
+---
 
-Maar voor mij wijzen ze ook naar iets groters:
+Mijn eerste artikels gingen over de ondankbare lagen: uitvoering, geheugen, fine-tuning, betrouwbaarheid.
 
-robotica.
+Die zijn op zichzelf belangrijk. Maar voor mij wijzen ze allemaal in dezelfde richting.
 
-Als ik uitzoom, zie ik agentische systemen niet als de uiteindelijke productcategorie. Ik zie ze als het pad naar belichaamde systemen die in de fysieke wereld kunnen opereren.
+Robotica.
 
-Met andere woorden:
+Ik zie agentische systemen niet als de eindcategorie. Ik zie ze als de weg naar systemen die in de fysieke wereld kunnen handelen.
 
-de bredere visie is niet alleen software die redeneert.
-Het is software, modellen, geheugen, training en uitvoering die via machines kunnen handelen.
+## Agents zijn een brug
 
-Daarom is robotica voor mij zo belangrijk.
+Iedereen praat over agents alsof de bestemming digitale automatisering is.
 
-## Agentische systemen zijn een brug
+Dat koop ik niet.
 
-Veel mensen spreken over agents alsof de bestemming puur digitale automatisering is.
+Agents zijn belangrijk omdat ze de moeilijke problemen eerst afdwingen:
 
-Ik denk niet dat dat het volledige beeld is.
+→ planning
+→ geheugen en redeneren
+→ specialisatie en evaluatie
+→ betrouwbaarheid en adaptatie
 
-Agents zijn belangrijk omdat ze ons dwingen de juiste tussenproblemen op te lossen:
+Dat zijn precies de lagen die een robot nodig heeft voordat hij zijn plek verdient.
 
-- planning
-- geheugen
-- redeneren
-- specialisatie
-- evaluatie
-- betrouwbaarheid
-- adaptatie
+Een robot zonder die lagen is **vooral hardware**. Een robot met die lagen begint een systeem te worden.
 
-Dat zijn precies de capaciteiten die je nodig hebt voordat fysieke systemen echt nuttig kunnen worden op schaal.
+## De vorm is niet het punt
 
-Een robot zonder die lagen is vooral hardware.
+Mensen horen robotica en zien humanoids voor zich. Ik snap het. Er zit iets diep menselijks in de wens om fysieke neven van onszelf te bouwen.
 
-Een robot met die lagen begint een systeem te worden.
+Maar die fantasie mag ons niet blind maken voor wat al werkt.
 
-## De humanoid-vraag
+De meeste nuttige robots zijn geen humanoids:
 
-Wanneer mensen aan robotica denken, springen ze vaak meteen naar humanoids.
+→ drones
+→ robotarmen
+→ rollende machines
+→ kleine educatieve companions
+→ smalle industriële units
 
-Ik begrijp waarom.
+De markt wacht niet op de perfecte humanoid om werk te veranderen. Ze doet het nu al met een drone en een robotarm die nooit voor je neef zullen doorgaan.
 
-Er zit iets diep menselijks in dat idee. We worden van nature aangetrokken door de mogelijkheid om fysieke neven van onszelf te bouwen, bijna op dezelfde manier waarop we zoeken naar buitenaards leven: niet alleen tools, maar andere belichaamde intelligenties waarmee we ons kunnen verhouden.
+De echte vraag was nooit "lijkt het op een mens". Het is of het betrouwbaar kan **waarnemen, beslissen en handelen** in de echte wereld.
 
-Die visie is krachtig.
+Een Reachy Mini in een klaslokaal. Een veiligheidsassistent op een bouwwerf. Een arm die onderdelen verplaatst. De vorm volgt de taak, niet de mythe.
 
-Maar ik denk niet dat ze ons blind mag maken voor wat robotica vandaag al is.
+## Waarom het decennium naar het fysieke kantelt
 
-De meeste nuttige robots zijn geen volledige humanoids.
+Hardware blijft verbeteren. Dat is niet het interessante deel. De softwarelaag eromheen benet eindelijk bij.
 
-Het zijn:
+De krachten convergeren:
 
-- drones
-- robotarmen
-- rollende machines
-- kleine educatieve companions
-- smalle industriële systemen
+→ betere modellen, training en simulatie
+→ goedkopere hardware
+→ open-sourcebouwstenen
+→ sterkere ontwikkelaarsecosystemen
 
-Dat is belangrijk, want de markt gaat niet wachten op perfecte humanoids om werk te beginnen transformeren.
+De stack wordt composable. En zodra een stack composable wordt, wordt experimenteren **goedkoop**.
 
-Ze beweegt nu al via kleinere en meer gespecialiseerde lichamen.
+Open source is de versneller die de meesten onderschatten. Niet omdat het alles oplost. Omdat het de kost van iteratie en distributie verlaagt.
 
-## Belichaming is belangrijker dan vorm
+Een roboticamarkt groeit niet uit grote labs alleen. Ze groeit uit onderzoekers, scholen, hackerspaces en nichebouwers die kleine experimenten blijven shippen tot de categorie volwassen wordt. Zo worden echte markten gevormd.
 
-Voor mij is de echte vraag niet: "Lijkt het op een mens?"
+## Het korte termijn, eerlijk
 
-De belangrijkere vraag is:
+Niets hiervan vervangt mensen. Dat was nooit het punt.
 
-> Kan het betrouwbaar waarnemen, beslissen en handelen in de echte wereld?
+De taak op korte termijn is om **mensen opnieuw capabeler te maken**. Betere uitvoering, beter geheugen en beter redeneren geven mensen tijd, focus en creatieve bandbreedte terug.
 
-Dat kan via veel vormen.
+Mensen doen nog altijd de matching. Mensen bepalen nog altijd de richting. Mensen beslissen nog altijd wat telt.
 
-Een Reachy Mini gebruikt door kinderen of leerkrachten.
-Een veiligheidsassistent die bouwteams helpt risico's te verminderen.
-Een robotarm die onderdelen of materialen verplaatst.
-Een mobiel systeem dat inspecteert, transporteert of monitort.
+AI haalt gewoon de frictie tussen verbeelding en uitvoering weg. Dat is waardevol lang voordat robotica volwassen is.
 
-Die systemen hebben niet allemaal hetzelfde lichaam nodig.
+## Waar het landt
 
-Wat ze nodig hebben is nuttige belichaming.
+Robotica is geen zijtak van AI. Het is een van de meest concrete bestemmingen.
 
-De fysieke vorm moet de taak volgen, niet de mythologie.
+Intelligentie opgesloten in schermen is nuttig. Intelligentie verbonden met tools, sensoren en lichamen is een andere economie.
 
-## Waarom robotica producten en diensten zal aandrijven
-
-Ik denk dat het komende decennium robotica veel dieper in echte producten en diensten zal duwen.
-
-Niet alleen omdat hardware blijft verbeteren, maar ook omdat de softwarelaag eromheen eindelijk begint bij te benen.
-
-Wat de vergelijking verandert, is de convergentie van meerdere krachten:
-
-- betere AI-modellen
-- betere trainingspijplijnen
-- betere simulatie en evaluatie
-- goedkopere hardware
-- meer open-sourcebouwstenen
-- sterkere ontwikkelaarsecosystemen
-
-Daarom voelt robotica nu minder als een verre moonshot en meer als een opkomende productcategorie.
-
-De stack wordt composable.
-
-En zodra de stack composable wordt, versnelt experimentatie.
-
-## Open source zal belangrijker zijn dan mensen denken
-
-Een van de belangrijkste versnellers in deze ruimte zal open source zijn.
-
-Niet omdat open source alles oplost, maar omdat het de kost van iteratie en distributie verlaagt.
-
-Wanneer modellen, trainingsrecepten, controlesystemen, hardware-interfaces en simulatietools toegankelijker worden, kunnen meer mensen bouwen.
-
-Dat is enorm belangrijk.
-
-Een robotica-ecosysteem groeit niet alleen uit grote labs.
-
-Het groeit ook uit onderzoekers, startups, scholen, hackerspaces, developers en nichebouwers die kleine experimenten blijven shippen tot de categorie volwassen wordt.
-
-Zo worden echte technologische markten vaak gevormd.
-
-## Nabije use case: mensen opnieuw creatief maken
-
-Er is ook een directere reden waarom ik om die eerste drie artikels en de systemen erachter geef.
-
-Op korte termijn is het doel niet om mensen door machines te vervangen.
-
-Het doel is om mensen opnieuw capabeler te maken.
-
-Betere uitvoeringssystemen, beter geheugen, beter redeneren en betere specialisatie kunnen mensen helpen tijd, focus en creatieve bandbreedte terug te winnen.
-
-Mensen doen nog altijd de matching.
-Mensen bepalen nog altijd de richting.
-Mensen beslissen nog altijd wat betekenisvol is.
-
-Maar AI kan een groot deel van de frictie tussen verbeelding en uitvoering wegnemen.
-
-Dat is nu al waardevol, nog voordat robotica volwassen wordt.
-
-## Van verbeelding naar fysieke service
-
-Wat mij het meest exciteert, is de continuïteit tussen die lagen.
-
-Eerst helpt AI mensen om beter te denken, organiseren, ontwerpen en uitvoeren.
-
-Daarna worden diezelfde systemen in staat om fysieke tools aan te sturen.
-
-Uiteindelijk krijg je producten en diensten die niet alleen digitaal zijn, maar belichaamd.
-
-Dat kan robots betekenen die:
-
-- concepten demonstreren in klaslokalen
-- leerkrachten en kinderen ondersteunen in leeromgevingen
-- veiligheid verbeteren in bouw- en industriële contexten
-- tijd besparen op repetitieve fysieke handelingen
-- mensen helpen echte operaties te superviseren of coördineren
-
-Daar wordt verbeelding service.
-
-Niet omdat de machine menselijk doel vervangt, maar omdat ze menselijk bereik uitbreidt.
-
-## De echte opportuniteit
-
-Voor mij is robotica geen zijtak van AI.
-
-Het is een van de meest concrete bestemmingen van de hele beweging.
-
-Als intelligentie binnen schermen opgesloten blijft, zal ze al nuttig zijn.
-
-Maar zodra intelligentie zich betrouwbaar kan verbinden met tools, lichamen, sensoren en fysieke omgevingen, wordt de economische en sociale impact veel groter.
-
-Dan vermenigvuldigen productcategorieën zich.
-Dan worden diensten belichaamd.
-Dan begint AI het dagelijkse leven zichtbaar te hervormen.
-
-## Slotgedachte
-
-De eerste lagen gaan erover systemen te leren denken, weten, beslissen en verbeteren.
-
-Robotica is wat er gebeurt wanneer die lagen een lichaam krijgen.
-
-Humanoids worden misschien een deel van die toekomst.
-Maar de diepere verschuiving is breder dan humanoids.
-
-Het is de opkomst van nuttige belichaamde systemen in onderwijs, industrie, veiligheid, logistiek, assistentie en dagelijks werk.
-
-Daarom zie ik robotica niet als een apart onderwerp, maar als de voortzetting van dezelfde architectuur.
-
-Eerst leert het systeem redeneren.
-Dan leert het handelen.
-Dan betreedt het de fysieke wereld.
+Eerst leert het systeem redeneren. Dan handelen. Dan komt het de kamer binnen.
 `.trim(),
     },
   },
@@ -3803,13 +2261,13 @@ Dan betreedt het de fysieke wereld.
     image: "/illustrations/blog/the-technical-stack-behind-my-ai-projects.jpg",
     title: {
       en: "Under the Hood: Harness + Knowledge OS",
-      fr: "La stack technique derrière mes projets IA : Harness + Knowledge OS",
-      nl: "De technische stack achter mijn AI-projecten: Harness + Knowledge OS",
+      fr: "Sous le capot : harness + Knowledge OS",
+      nl: "Onder de motorkap: harness + Knowledge OS",
     },
     description: {
-      en: "A concise technical look at the two core layers behind my AI projects: the harness that drives execution and the Knowledge OS that structures memory and context.",
-      fr: "Un regard technique sur les deux couches centrales de mon système IA : le harness qui pilote l'exécution et le Knowledge OS qui structure la mémoire et le contexte d'entreprise.",
-      nl: "Een technische blik op de twee kernlagen achter mijn AI-systeem: de harness die uitvoering stuurt en de Knowledge OS die geheugen en bedrijfscontext structureert.",
+      en: "Two layers sit under almost everything I build: a harness that drives execution and a Knowledge OS that structures context. The shape and the reasoning, not the blueprint.",
+      fr: "Deux couches sous presque tout ce que je construis : un harness qui pilote l'exécution et un Knowledge OS qui structure le contexte. La forme et le raisonnement, pas le plan détaillé.",
+      nl: "Twee lagen onder bijna alles wat ik bouw: een harness die uitvoering stuurt en een Knowledge OS die context structureert. De vorm en de redenering, niet de blauwdruk.",
     },
     category: {
       en: "Engineering",
@@ -3817,9 +2275,9 @@ Dan betreedt het de fysieke wereld.
       nl: "Engineering",
     },
     readTime: {
-      en: "6 min",
-      fr: "8 min",
-      nl: "8 min",
+      en: "3 min",
+      fr: "3 min",
+      nl: "3 min",
     },
     tags: {
       en: ["Harness","Knowledge OS","AI Architecture"],
@@ -3828,536 +2286,187 @@ Dan betreedt het de fysieke wereld.
     },
     content: {
       en: `
-My previous article was about systems at a high level. This one is the more technical follow-up.
+_My last post argued AI only pays off inside a system. This is the technical follow-up: two layers under almost everything I build. Guarded, but honest._
 
-Most of the AI projects I build sit on top of two layers:
+---
 
-- a **harness** that drives execution
-- a **Knowledge OS** that provides structured context
+Almost everything I ship sits on two layers.
 
-That separation is deliberate. I do not want execution, memory, retrieval, evaluation, and decision-making collapsed into one long prompt. I want a system where each layer has a clear job.
+→ a **harness** that drives execution
+→ a Knowledge OS that supplies context
 
-The harness is there to move work forward.
+I keep them apart on purpose. I do not want planning, memory, retrieval, and judgment collapsed into one long prompt. Each layer gets one job.
 
-The Knowledge OS is there to make sure the system knows enough to do that work properly.
+The harness moves work forward. The Knowledge OS makes sure the system knows enough to do it well.
 
-## The Harness
+## The harness
 
-The harness is an execution loop, not a single generation step.
+The harness is a loop, not a single generation step.
 
-In practice, it behaves more like a small workflow engine around product delivery:
+Four stages, in order:
 
-| Stage | Role |
-|---|---|
-| Plan | Turn a short request into a usable specification |
-| Generate | Build or improve against that specification |
-| Evaluate | Inspect the actual result |
-| Gate | Stop, iterate, or escalate |
+→ Plan the request into a real spec.
+→ Generate against that spec.
+→ Evaluate the actual result.
+→ Gate: stop, iterate, or escalate.
 
-That structure matters because it separates production from judgment. The system that builds is not the same layer that decides whether the result is good enough.
+The point is the **split between building and judging.** The layer that produces is not the layer that decides it is good enough. That gap is most of the distance between a demo agent and something you can run twice.
 
-This is one of the main differences between a demo agent and a system you can actually use repeatedly.
+It also has to know when to stop. If scores plateau, if the same fix keeps repeating, if the generator says it is stuck, more iteration is just expensive. Change approach or escalate. That is a systems call, not a prompt.
 
-## Why the Harness Is Useful
-
-The real value is not that it generates. A raw model can already generate.
-
-The value comes from the fact that execution is constrained by a loop:
-
-- there is a specification
-- there is a concrete result
-- there is an evaluation step
-- there is a gate with explicit outcomes
-
-That makes the process easier to reason about and much easier to improve.
-
-A good harness also needs to know when not to keep going. If quality scores plateau, if the same fixes repeat, or if the system gets stuck, blind iteration becomes waste. At that point, the right move is either to change approach or escalate.
-
-That is a systems decision, not a prompt decision.
-
-## State Matters More Than People Think
-
-Iteration is only useful if state survives across the loop.
-
-If each cycle partially resets, the system wastes time rediscovering the same context. So the harness carries structured state between stages: goal, current status, critique, constraints, and quality signals.
-
-That is what allows the next pass to be targeted rather than generic.
-
-Without state continuity, an iterative workflow is mostly theater.
+And state has to survive the loop. Goal, status, critique, constraints, all carried between stages. Without that continuity, each pass rediscovers the same context, and iteration becomes theater with a progress bar.
 
 ## The Knowledge OS
 
-If the harness is the execution layer, the Knowledge OS is the context layer.
+If the harness is execution, the Knowledge OS is context.
 
-I do not think a company knowledge system should be just a vector database with a chat box attached to it. Real operational knowledge is more complex than that. It contains documents, decisions, entities, relations, contradictions, history, and changing truth.
+A company's knowledge is not a folder with a chat box bolted on. It is documents, entities, relations, decisions, contradictions, and a truth that keeps changing.
 
-So the Knowledge OS is designed as a structured memory system rather than a search feature.
+So I **treat it as structure, not search.** At a high level it handles ingestion, retrieval, entity extraction, relation mapping, conflict detection, synthesis, and clean access for agents.
 
-At a high level, it handles:
+Documents are raw input, not the final form. Once content lands, it gets indexed, linked to entities, walked through relations, checked for conflicts, compiled into synthesis pages, then exposed again through tools. The knowledge base stops being an archive you query when stuck and becomes a substrate the rest of the system can reason on.
 
-- document ingestion and storage
-- indexing and retrieval
-- entity extraction
-- relation mapping
-- conflict detection
-- synthesis and compilation
-- tool and API access for agents
+Similarity search alone does not get you there. Useful retrieval is layered: query transformation, hybrid ranking, graph expansion, reranking, real citations. That is the difference between retrieving text and retrieving usable context.
 
-That is what turns knowledge into infrastructure instead of reference material.
+And versioning is core, not a convenience. Documents change, decisions change, teams change. A memory layer that cannot show that evolution loses trust fast.
 
-## Why Retrieval Alone Is Not Enough
+## Where I stop
 
-A lot of systems stop at similarity search. That is useful, but it is not sufficient if you want a system to reason across company context.
+I will describe the shape: the two layers, the roles, the reasoning.
 
-In practice, useful retrieval tends to be layered.
+I will not publish the prompts, the heuristics, the conventions that sit closest to production leverage.
 
-You start with search, but then you often need query transformation, hybrid ranking, graph expansion, reranking, citation building, and a way to expose the final context cleanly to the execution layer.
+Not to be mysterious. It is the line between sharing the design and handing over the machine.
 
-That is the difference between retrieving text and retrieving usable context.
+## One sentence
 
-## Why Versioning Is a Core Feature
+The harness helps the system **do**. The Knowledge OS helps it **know**.
 
-One thing that matters a lot in a knowledge system is time.
+Execution without structured context stays shallow. Context without execution stays passive.
 
-Documents change. Decisions change. Teams change. If the memory layer cannot represent that evolution cleanly, trust degrades fast.
-
-That is why I consider versioning part of the core architecture, not a secondary convenience. A memory system that supports execution needs traceability, not just storage.
-
-## How the Two Layers Connect
-
-These two layers solve different problems.
-
-The harness answers:
-
-> How does work progress?
-
-The Knowledge OS answers:
-
-> What context should that work progress against?
-
-Put together, they create a more useful base system:
-
-| Layer | Purpose |
-|---|---|
-| Harness | Drive execution through planning, generation, evaluation, and gating |
-| Knowledge OS | Supply structured, evolving, retrievable context |
-
-That combination is the part I care about most.
-
-Not because it looks impressive, but because it creates a much better foundation for real product work.
-
-## What I Am Not Sharing in Detail
-
-I am comfortable describing the architecture, the separation of roles, and the shape of the system.
-
-What I do not want to publish in full are the internal prompts, heuristics, conventions, and operational choices that sit closer to production leverage.
-
-That is not meant to be mysterious. It is simply the line I draw between sharing the design and open-sourcing every internal mechanism.
-
-## Final Thought
-
-If I reduce it to one sentence, it is this:
-
-The harness helps the system **do**.
-The Knowledge OS helps the system **know**.
-
-Execution without structured context stays shallow.
-
-Context without an execution system stays passive.
-
-The combination is where things start to become genuinely useful.
+Put together, they start to be worth building on.
 `.trim(),
       fr: `
-Dans mon précédent article, j'expliquais que l'IA devient réellement utile lorsqu'elle est intégrée dans un système, et non utilisée comme un simple outil isolé.
+_Mon précédent article défendait une idée : l'IA ne paie que dans un système. Voici la suite technique. Deux couches sous presque tout ce que je construis. Franc, mais gardé._
 
-Cet article en est la suite technique.
+---
 
-Je veux présenter, à un niveau volontairement élevé, les deux couches centrales sur lesquelles je m'appuie derrière la plupart des projets que je construis :
+Presque tout ce que je livre repose sur deux couches.
 
-- un **harness**, qui pilote l'exécution
-- un **Knowledge OS**, qui structure le contexte, la mémoire et l'information d'entreprise
+→ un **harness** qui pilote l'exécution
+→ un Knowledge OS qui fournit le contexte
 
-Je ne vais pas publier chaque détail d'implémentation, chaque prompt ou chaque convention interne. Ce serait inutile et, dans certains cas, peu responsable. En revanche, je peux expliquer l'architecture assez clairement pour qu'un lecteur technique comprenne la logique du système.
+Je les sépare volontairement. Je ne veux pas que planification, mémoire, retrieval et jugement s'écrasent dans un seul long prompt. Chaque couche a un seul rôle.
 
-La version courte est simple :
+Le harness fait avancer le travail. Le Knowledge OS s'assure que le système en sait assez pour bien le faire.
 
-> Le harness est le système d'exécution.
-> Le Knowledge OS est le système de mémoire.
+## Le harness
 
-Ensemble, ils forment la couche de base que j'utilise pour construire des produits, piloter des boucles de delivery et organiser l'information à l'échelle d'une entreprise.
+Le harness est une boucle, pas une simple étape de génération.
 
-## Pourquoi je sépare le problème en deux
+Quatre étapes, dans l'ordre :
 
-La plupart des systèmes IA mélangent trop de responsabilités dans une seule couche.
+→ Plan : transformer la demande en vraie spec.
+→ Generate : construire à partir de cette spec.
+→ Evaluate : inspecter le résultat réel.
+→ Gate : arrêter, itérer ou escalader.
 
-Ils demandent à un modèle de comprendre le contexte, planifier, exécuter, s'évaluer, se souvenir de ce qui s'est passé, et rester aligné avec les règles d'entreprise, le tout dans une conversation floue. Cela fonctionne pour des démos. Cela tient mal dans la durée.
+Tout est dans la **séparation entre construire et juger.** La couche qui produit n'est pas celle qui décide que c'est assez bon. Cet écart, c'est l'essentiel de la distance entre un agent de démo et quelque chose qui tient deux fois.
 
-Je préfère séparer les responsabilités.
+Il doit aussi savoir s'arrêter. Si les scores plafonnent, si le même correctif revient, si le generator se déclare bloqué, itérer encore ne fait que coûter. Changer d'approche ou escalader. C'est une décision système, pas un prompt.
 
-Un système est responsable de **faire avancer le travail**.
+Et l'état doit survivre à la boucle. Objectif, statut, critique, contraintes, tout se transporte entre les étapes. Sans cette continuité, chaque passe redécouvre le même contexte, et l'itération devient du théâtre avec une barre de progression.
 
-Un autre système est responsable de **rendre le bon contexte disponible**.
+## Le Knowledge OS
 
-Cette séparation paraît simple, mais elle change profondément la suite. L'exécution peut devenir itérative et mesurable. Le contexte peut devenir persistant et structuré. Et l'ensemble devient beaucoup plus facile à raisonner.
+Si le harness est l'exécution, le Knowledge OS est le contexte.
 
-## Le Harness : l'exécution comme boucle contrôlée
+La connaissance d'une entreprise n'est pas un dossier avec un chat greffé dessus. Ce sont des documents, des entités, des relations, des décisions, des contradictions, et une vérité qui change.
 
-Le harness est la partie qui transforme une demande produit assez brute en workflow de delivery itératif.
+Alors je le **traite comme une structure, pas une recherche.** À haut niveau : ingestion, retrieval, extraction d'entités, cartographie des relations, détection de conflits, synthèse, et accès propre pour les agents.
 
-Conceptuellement, ce n'est pas juste "générer du code". C'est une boucle avec des étapes distinctes et un gating explicite.
+Les documents sont une entrée brute, pas une forme finale. Une fois qu'un contenu entre, il est indexé, relié à des entités, parcouru via des relations, vérifié pour les conflits, compilé en pages de synthèse, puis réexposé via des outils. La base de connaissance cesse d'être une archive qu'on interroge quand on est bloqué et devient un substrat sur lequel le reste du système peut raisonner.
 
-À haut niveau, le flux ressemble à ceci :
+La recherche par similarité seule ne suffit pas. Un retrieval utile est en couches : transformation de requête, ranking hybride, expansion par graphe, reranking, vraies citations. C'est la différence entre récupérer du texte et récupérer du contexte exploitable.
 
-| Étape | Responsabilité |
-|---|---|
-| Plan | Étendre un prompt court en spécification produit structurée |
-| Generate | Construire ou améliorer l'application à partir de cette spécification |
-| Evaluate | Inspecter le résultat en cours d'exécution et le noter selon des critères explicites |
-| Gate | Décider si le système doit s'arrêter, itérer ou escalader |
+Et le versioning est central, pas un confort. Les documents changent, les décisions changent, les équipes changent. Une mémoire incapable de montrer cette évolution perd vite la confiance.
 
-Cette structure est importante, car elle évite qu'un même agent ne corrige et valide son propre travail sans contrôle réel.
+## Où je m'arrête
 
-Le planner crée une spec. Le generator construit à partir de cette spec. L'evaluator vérifie l'application réellement en cours d'exécution. Puis une porte déterministe décide si la qualité est suffisante.
+Je décris la forme : les deux couches, les rôles, le raisonnement.
 
-C'est une manière bien plus utile de penser le problème que "un agent construit une app".
+Je ne publie pas les prompts, les heuristiques, les conventions au plus près du levier de production.
 
-## Pourquoi la couche d'évaluation compte
+Pas pour faire mystère. C'est la frontière entre partager le design et livrer la machine.
 
-Le choix d'architecture le plus important dans le harness est la séparation entre génération et évaluation.
+## Une phrase
 
-Beaucoup de systèmes IA échouent parce qu'ils optimisent la complétion plutôt que la qualité. Ils produisent quelque chose qui a l'air terminé, puis s'arrêtent. Le problème, c'est que "fini" et "bon" ne sont pas synonymes.
+Le harness aide le système à **faire**. Le Knowledge OS l'aide à **savoir**.
 
-Dans mon setup, l'evaluator note le résultat sur plusieurs axes, notamment :
+Une exécution sans contexte structuré reste superficielle. Un contexte sans exécution reste passif.
 
-- qualité du design
-- originalité
-- craft
-- fonctionnalité
-
-Ce point est crucial, car la correction technique seule ne suffit pas pour un vrai travail produit. Un système peut compiler et malgré tout rester générique, fragile ou médiocre.
-
-Le harness force ces dimensions à exister dans la boucle au lieu de les traiter comme une finition facultative.
-
-## Une itération a besoin de règles, pas juste de retries
-
-Autre chose que je ne fais pas confiance : la répétition aveugle.
-
-Si un workflow se contente de réessayer jusqu'à avoir de la chance, ce n'est pas un système. C'est une dérive coûteuse.
-
-Le harness inclut donc une logique d'arrêt explicite. Si les scores passent le seuil, la boucle s'arrête. Si le système échoue sans amélioration réelle, il détecte la stagnation. Si le generator déclare qu'il est bloqué, le workflow escalade au lieu de simuler un faux progrès.
-
-C'est ce qui distingue une boucle gadget d'une boucle réellement exploitable.
-
-## L'état doit survivre à la boucle
-
-L'une des exigences pratiques de tout système itératif est la continuité de l'état.
-
-Chaque itération doit savoir quel est l'objectif, ce qui s'est déjà passé, ce qui a échoué, et ce que l'evaluator demande de changer ensuite. Sans cela, chaque cycle repart partiellement à zéro et la qualité devient instable.
-
-C'est pourquoi le harness transporte un état structuré entre les étapes. Cet état ne se limite pas aux artefacts produits. Il inclut aussi les signaux de qualité, les hints par étape, les contraintes et l'état courant.
-
-Cela permet au generator de revenir dans la boucle avec une critique ciblée, au lieu de reconstruire tout depuis le début.
-
-## Le Knowledge OS : le contexte comme système d'exploitation
-
-Si le harness concerne l'exécution, le Knowledge OS concerne tout ce dont l'exécution dépend.
-
-L'objectif n'est pas de créer un dossier de fichiers avec une recherche sémantique ajoutée par-dessus. L'objectif est de construire un système capable d'ingérer, organiser, retrouver, relier, compiler et maintenir la connaissance dans le temps.
-
-Autrement dit, la connaissance doit être traitée comme une couche active, pas comme un stockage passif.
-
-À haut niveau, le Knowledge OS combine plusieurs briques :
-
-- gestion documentaire
-- versioning
-- retrieval
-- extraction d'entités
-- cartographie des relations
-- détection de conflits
-- synthèse et compilation
-- accès agentique via outils et API
-
-La partie intéressante n'est pas une fonctionnalité isolée. C'est le fait que tout cela fonctionne ensemble dans un système scoped par workspace.
-
-## Pourquoi un RAG simple ne suffit pas
-
-Beaucoup d'équipes s'arrêtent à la recherche vectorielle et appellent cela une couche de connaissance.
-
-C'est utile, mais insuffisant si l'objectif est de soutenir de vraies opérations d'entreprise.
-
-La raison est simple : la connaissance d'entreprise n'est pas seulement une collection de chunks. Elle contient des entités, des relations, des décisions, des contradictions, des responsabilités et de l'historique. Si l'on ne récupère que des fragments par similarité, on perd trop de contexte opérant.
-
-C'est pourquoi le Knowledge OS est pensé comme un système de retrieval en plusieurs couches.
-
-Il commence par la recherche, mais ne s'arrête pas là.
-
-## Des documents vers une connaissance structurée
-
-Le Knowledge OS traite les documents comme une entrée brute, pas comme une forme finale.
-
-Une fois qu'un contenu entre dans le système, il peut être indexé, relié à des entités, parcouru via des relations, vérifié pour détecter des conflits, compilé en pages de synthèse, puis réexposé via API et outils.
-
-Cela change complètement le rôle de la base de connaissance.
-
-Au lieu d'être une archive que l'on interroge quand on est bloqué, elle devient un substrat sur lequel le reste du système peut raisonner.
-
-## Le versioning compte plus qu'on ne le pense
-
-Un choix d'architecture auquel je tiens beaucoup est le versioning.
-
-La connaissance change. Les décisions d'entreprise évoluent. Les documents sont réécrits. Les hypothèses deviennent obsolètes.
-
-Si un système de connaissance ne peut pas suivre proprement ces changements, il devient difficile à faire confiance. C'est pourquoi le Knowledge OS traite l'historique comme une fonctionnalité de premier plan, et non comme un détail secondaire.
-
-## L'accès multi-agents demande des outils structurés
-
-Autre point important : le Knowledge OS n'est pas seulement une interface pour les humains. C'est aussi une couche d'accès pour des agents.
-
-Cela signifie que les agents ont besoin de moyens structurés pour chercher, lire, créer, mettre à jour, compiler et récupérer du contexte depuis le système. Si cet accès reste ad hoc, la qualité globale chute très vite.
-
-C'est ainsi que le système commence à ressembler moins à un chatbot et davantage à de l'infrastructure.
-
-## Comment les deux couches travaillent ensemble
-
-Le harness et le Knowledge OS résolvent des problèmes différents, mais ils se renforcent mutuellement.
-
-Le harness répond à la question :
-
-> Comment le travail avance-t-il avec un vrai contrôle qualité ?
-
-Le Knowledge OS répond à la question :
-
-> Comment le système sait-il assez de choses pour faire ce travail avec contexte ?
-
-Autrement dit :
-
-| Couche | Rôle principal |
-|---|---|
-| Harness | Planifier, générer, évaluer, itérer et gate l'exécution |
-| Knowledge OS | Stocker, structurer, retrouver, compiler et faire évoluer le contexte |
-
-Quand ces deux couches sont reliées, on obtient bien plus qu'un agent avec un prompt.
-
-On obtient un système d'exécution capable d'opérer sur un contexte persistant.
-
-## Ce que je garde volontairement privé
-
-Il y a une différence entre expliquer une architecture et publier chaque levier interne.
-
-Je suis à l'aise pour partager le design général du système : séparation des étapes, itération gated, signaux de qualité, retrieval multicouche, graphes de connaissance, accès par outils, mémoire versionnée.
-
-Ce que je n'ai pas envie de publier en détail, ce sont la pile complète de prompts, chaque heuristique d'évaluation, chaque convention interne, ou les détails opératoires qui rendent le système robuste en usage réel.
-
-Ce n'est pas une façon d'être vague. C'est une manière de tracer une frontière raisonnable entre transparence technique utile et exposition inutile.
-
-## Dernière idée
-
-S'il fallait résumer l'architecture très simplement, je dirais ceci :
-
-Le harness aide le système à **faire**.
-Le Knowledge OS aide le système à **savoir**.
-
-Une exécution sans connaissance structurée devient superficielle.
-
-Une connaissance sans harness d'exécution reste passive.
-
-Assemblés, ces deux systèmes forment une base beaucoup plus solide pour construire des produits, piloter des workflows internes et organiser l'intelligence d'entreprise à une échelle réellement exploitable.
+Assemblés, ils commencent à valoir la peine qu'on construise dessus.
 `.trim(),
       nl: `
-In mijn vorige artikel stelde ik dat AI pas echt nuttig wordt wanneer het in een systeem zit, en niet wanneer het als losse tool wordt gebruikt.
+_Mijn vorige post stelde dat AI pas rendeert binnen een systeem. Dit is de technische opvolger: twee lagen onder bijna alles wat ik bouw. Openhartig, maar bewaakt._
 
-Dit artikel is de technische opvolger daarvan.
+---
 
-Ik wil op een bewust hoog niveau de twee kernlagen beschrijven waarop ik achter de meeste projecten die ik bouw vertrouw:
+Bijna alles wat ik uitlever, rust op twee lagen.
 
-- een **harness**, die uitvoering aanstuurt
-- een **Knowledge OS**, die context, geheugen en bedrijfsinformatie structureert
+→ een **harness** die uitvoering stuurt
+→ een Knowledge OS die context levert
 
-Ik ga niet elk implementatiedetail, elke prompt of elke interne conventie publiceren. Dat zou onnodig zijn en in sommige gevallen onverstandig. Maar ik kan de architectuur wel helder genoeg uitleggen zodat technische lezers begrijpen hoe het model erachter werkt.
+Ik houd ze bewust apart. Ik wil niet dat planning, geheugen, retrieval en oordeel samenklappen in één lange prompt. Elke laag krijgt één taak.
 
-De korte versie is deze:
+De harness duwt werk vooruit. De Knowledge OS zorgt dat het systeem genoeg weet om dat goed te doen.
 
-> De harness is het uitvoeringssysteem.
-> De Knowledge OS is het geheugensysteem.
+## De harness
 
-Samen vormen ze de basislaag die ik gebruik om producten te bouwen, delivery-loops aan te sturen en informatie op bedrijfsschaal te organiseren.
+De harness is een lus, geen losse generatiestap.
 
-## Waarom ik het probleem in twee splits
+Vier fasen, in volgorde:
 
-De meeste AI-systemen stoppen te veel verantwoordelijkheden in één laag.
+→ Plan: de vraag omzetten in een echte spec.
+→ Generate: bouwen tegen die spec.
+→ Evaluate: het echte resultaat inspecteren.
+→ Gate: stoppen, itereren of escaleren.
 
-Ze vragen een model om context te begrijpen, werk te plannen, uit te voeren, zichzelf te evalueren, te onthouden wat er gebeurd is en tegelijk afgestemd te blijven op bedrijfsregels, allemaal binnen één losse conversatie. Dat werkt voor demo's. Het houdt minder goed stand in herhaalbare delivery.
+De kern is de **scheiding tussen bouwen en beoordelen.** De laag die produceert, is niet de laag die beslist of het goed genoeg is. Die kloof is het grootste verschil tussen een demo-agent en iets dat je twee keer kunt draaien.
 
-Ik splits die verantwoordelijkheden liever op.
+Het moet ook weten wanneer te stoppen. Als scores plateauen, als dezelfde fix blijft terugkomen, als de generator zegt dat hij vastzit, dan is nog meer itereren gewoon duur. Verander van aanpak of escaleer. Dat is een systeembeslissing, geen prompt.
 
-Eén systeem is verantwoordelijk voor **werk vooruit te duwen**.
+En state moet de lus overleven. Doel, status, kritiek, constraints, allemaal meegedragen tussen de fasen. Zonder die continuiteit herontdekt elke passage dezelfde context, en wordt iteratie theater met een voortgangsbalk.
 
-Een ander systeem is verantwoordelijk voor **de juiste context beschikbaar te maken**.
+## De Knowledge OS
 
-Die scheiding klinkt eenvoudig, maar verandert alles. Uitvoering kan iteratief en meetbaar worden. Context kan persistent en gestructureerd worden. En het geheel wordt veel makkelijker om over na te denken.
+Als de harness uitvoering is, dan is de Knowledge OS context.
 
-## De Harness: uitvoering als gecontroleerde lus
+De kennis van een bedrijf is geen map met een chatvenster erop geschroefd. Het zijn documenten, entiteiten, relaties, beslissingen, contradicties, en een waarheid die blijft veranderen.
 
-De harness is het onderdeel dat een ruwe productvraag omzet in een iteratieve delivery-workflow.
+Dus **behandel ik het als structuur, niet als zoeken.** Op hoog niveau: ingestion, retrieval, entity-extractie, relation mapping, conflictdetectie, synthese, en nette toegang voor agents.
 
-Conceptueel is het niet gewoon "genereer code". Het is een lus met aparte fasen en expliciete gating.
+Documenten zijn ruwe input, geen eindvorm. Zodra content binnenkomt, wordt die geïndexeerd, gelinkt aan entiteiten, doorlopen via relaties, gecheckt op conflicten, gecompileerd tot synthesepagina's, en opnieuw blootgesteld via tools. De knowledge base stopt een archief te zijn waarin je zoekt als je vastzit en wordt een substraat waarop de rest van het systeem kan redeneren.
 
-Op hoog niveau ziet de flow er zo uit:
+Zoeken op similariteit alleen brengt je er niet. Nuttige retrieval is gelaagd: query-transformatie, hybride ranking, graafexpansie, reranking, echte citaties. Dat is het verschil tussen tekst ophalen en bruikbare context ophalen.
 
-| Fase | Verantwoordelijkheid |
-|---|---|
-| Plan | Een korte prompt uitbreiden naar een gestructureerde productspecificatie |
-| Generate | De applicatie bouwen of verbeteren vanuit die specificatie |
-| Evaluate | Het draaiende resultaat inspecteren en scoren op expliciete criteria |
-| Gate | Beslissen of het systeem moet stoppen, itereren of escaleren |
+En versiebeheer is kern, geen luxe. Documenten veranderen, beslissingen veranderen, teams veranderen. Een geheugenlaag die die evolutie niet kan tonen, verliest snel vertrouwen.
 
-Die structuur is belangrijk omdat ze voorkomt dat één agent zijn eigen werk ongecontroleerd beoordeelt.
+## Waar ik stop
 
-De planner maakt een spec. De generator bouwt tegen die spec. De evaluator controleert de echte draaiende applicatie. Daarna beslist een deterministische gate of de kwaliteit voldoende is.
+Ik beschrijf de vorm: de twee lagen, de rollen, de redenering.
 
-Dat is een nuttiger mentaal model dan "een agent bouwt een app".
+Ik publiceer niet de prompts, de heuristieken, de conventies die het dichtst bij de productiehefboom zitten.
 
-## Waarom de evaluatielaag telt
+Niet om mysterieus te doen. Het is de grens tussen het ontwerp delen en de machine weggeven.
 
-De belangrijkste ontwerpkeuze in de harness is de scheiding tussen generatie en evaluatie.
+## Eén zin
 
-Veel AI-systemen falen omdat ze optimaliseren voor afronding in plaats van kwaliteit. Ze produceren iets dat af lijkt en stoppen dan. Het probleem is dat "klaar" en "goed" niet hetzelfde zijn.
+De harness helpt het systeem **doen**. De Knowledge OS helpt het **weten**.
 
-In mijn setup scoort de evaluator het resultaat op meerdere assen, waaronder:
+Uitvoering zonder gestructureerde context blijft oppervlakkig. Context zonder uitvoering blijft passief.
 
-- designkwaliteit
-- originaliteit
-- craft
-- functionaliteit
-
-Dat is belangrijk omdat technische correctheid alleen niet volstaat voor productwerk. Een systeem kan compileren en toch generiek, fragiel of middelmatig aanvoelen.
-
-De harness dwingt die dimensies in de lus in plaats van ze te behandelen als optionele polish.
-
-## Iteratie heeft regels nodig, niet alleen retries
-
-Nog iets waar ik niet op vertrouw: blinde herhaling.
-
-Als een workflow gewoon opnieuw probeert tot het toevallig lukt, dan is dat geen systeem. Dan is het dure drift.
-
-Daarom bevat de harness expliciete stoplogica. Als scores de drempel halen, stopt de lus. Als het systeem faalt zonder echte verbetering, detecteert het stagnatie. Als de generator meldt dat hij vastzit, escaleert de workflow in plaats van te doen alsof er vooruitgang is.
-
-Dat is een van de belangrijkste verschillen tussen een speelgoedlus en een bruikbare.
-
-## State moet de lus overleven
-
-Een van de praktische vereisten van elk iteratief systeem is continuiteit van state.
-
-Elke iteratie moet weten wat het doel is, wat er al gebeurd is, wat gefaald heeft en wat de evaluator als volgende gewijzigd wil zien. Zonder dat reset elke cyclus gedeeltelijk en wordt kwaliteit instabiel.
-
-Daarom draagt de harness gestructureerde state tussen de fasen. Die state bevat niet alleen artefacten, maar ook quality signals, stage hints, constraints en de actuele status.
-
-Zo kan de generator opnieuw in de lus stappen met gerichte kritiek in plaats van telkens van nul te herbeginnen.
-
-## De Knowledge OS: context als operating system
-
-Als de harness over uitvoering gaat, dan gaat de Knowledge OS over alles waar uitvoering van afhangt.
-
-Het doel is niet om een map met bestanden te maken met semantische zoeklaag erbovenop. Het doel is om een systeem te bouwen dat kennis kan innemen, organiseren, ophalen, relateren, compileren en onderhouden in de tijd.
-
-Dat betekent dat kennis een actieve laag moet worden, geen passieve opslag.
-
-Op hoog niveau combineert de Knowledge OS verschillende bouwstenen:
-
-- documentbeheer
-- versiebeheer
-- retrieval
-- entity extractie
-- relation mapping
-- conflict detectie
-- synthese en compilatie
-- agenttoegang via tools en API's
-
-Het interessante deel is niet één feature op zich. Het is het feit dat ze samenwerken binnen één workspace-scoped systeem.
-
-## Waarom gewone RAG niet genoeg is
-
-Veel teams stoppen bij vector search en noemen dat een kennislaag.
-
-Dat is nuttig, maar niet genoeg als het doel is om echte bedrijfsoperaties te ondersteunen.
-
-De reden is eenvoudig: bedrijfskennis bestaat niet alleen uit tekstchunks. Ze bevat entiteiten, relaties, beslissingen, contradicties, ownership en historiek. Als je enkel fragmenten op similariteit terughaalt, mis je te veel operationele context.
-
-Daarom is de Knowledge OS opgezet als een gelaagd retrieval-systeem.
-
-Het begint met zoeken, maar stopt daar niet.
-
-## Van documenten naar gestructureerde kennis
-
-De Knowledge OS behandelt documenten als ruwe input, niet als eindvorm.
-
-Zodra content in het systeem komt, kan die geïndexeerd worden, gelinkt worden aan entiteiten, door relaties worden doorlopen, op conflicten worden gecontroleerd, naar synthese-pagina's worden gecompileerd en opnieuw worden blootgesteld via API's en tools.
-
-Dat verandert de rol van de knowledge base volledig.
-
-In plaats van een archief te zijn waarin je zoekt wanneer je vastzit, wordt het een substraat waarmee de rest van het systeem kan denken.
-
-## Versiebeheer is belangrijker dan mensen denken
-
-Een architectuurkeuze waar ik veel belang aan hecht is versiebeheer.
-
-Kennis verandert. Bedrijfsbeslissingen evolueren. Documenten worden herschreven. Aannames verouderen.
-
-Als een kennissysteem die veranderingen niet netjes kan volgen, wordt het moeilijk om het te vertrouwen. Daarom behandelt de Knowledge OS versiegeschiedenis als een first-class feature in plaats van als een detail achteraf.
-
-## Multi-agent toegang vraagt gestructureerde tools
-
-Nog een belangrijk punt: de Knowledge OS is niet alleen een UI voor mensen. Het is ook een toegangslaag voor agents.
-
-Dat betekent dat agents gestructureerde manieren nodig hebben om te zoeken, lezen, creëren, updaten, compileren en context op te halen uit het systeem. Als die toegang ad hoc is, daalt de kwaliteit van het geheel snel.
-
-Zo begint het systeem minder op een chatbot en meer op infrastructuur te lijken.
-
-## Hoe de twee lagen samenwerken
-
-De harness en de Knowledge OS lossen verschillende problemen op, maar versterken elkaar.
-
-De harness beantwoordt de vraag:
-
-> Hoe beweegt werk vooruit met echte kwaliteitscontrole?
-
-De Knowledge OS beantwoordt de vraag:
-
-> Hoe weet het systeem genoeg om dat werk in context te doen?
-
-Met andere woorden:
-
-| Laag | Primaire rol |
-|---|---|
-| Harness | Uitvoering plannen, genereren, evalueren, itereren en gaten |
-| Knowledge OS | Context opslaan, structureren, ophalen, compileren en laten evolueren |
-
-Wanneer die twee lagen verbonden zijn, krijg je iets dat veel nuttiger is dan een agent met een prompt.
-
-Je krijgt een uitvoeringssysteem dat kan werken tegen persistente context.
-
-## Wat ik bewust privé houd
-
-Er is een verschil tussen architectuur uitleggen en elke interne hefboom publiceren.
-
-Ik deel graag het brede systeemontwerp: fasescheiding, gated iteratie, quality signals, gelaagde retrieval, knowledge graphs, tool-based access en versioned memory.
-
-Wat ik niet publiek wil dumpen, is de volledige prompt stack, elke evaluatieheuristiek, elke interne conventie of operationele details die het systeem in productie robuust maken.
-
-Dat is geen vaagheid. Het is een redelijke grens tussen nuttige technische transparantie en onnodige blootstelling.
-
-## Slotgedachte
-
-Als ik de architectuur eenvoudig moet samenvatten, dan is het dit:
-
-De harness helpt het systeem **doen**.
-De Knowledge OS helpt het systeem **weten**.
-
-Uitvoering zonder gestructureerde kennis blijft oppervlakkig.
-
-Kennis zonder execution harness blijft passief.
-
-Zet je ze samen, dan krijg je een veel sterkere basis om producten te bouwen, interne workflows aan te sturen en bedrijfsintelligentie op een schaalbare manier te organiseren.
+Samen worden ze iets om op te bouwen.
 `.trim(),
     },
   },
@@ -4373,9 +2482,9 @@ Zet je ze samen, dan krijg je een veel sterkere basis om producten te bouwen, in
       nl: "Het Baton Pattern",
     },
     description: {
-      en: "A lightweight handoff protocol for multi-agent AI pipelines. A small JSON object that carries context between workflow stages.",
-      fr: "Un protocole de transmission léger pour les pipelines IA multi-agents. Un petit objet JSON qui transporte le contexte entre les étapes.",
-      nl: "Een lichtgewicht overdrachtsprotocol voor multi-agent AI-pipelines. Een klein JSON-object dat context meedraagt tussen workflowstappen.",
+      en: "A small JSON object that carries decisions and constraints between the stages of a multi-agent AI pipeline.",
+      fr: "Un petit objet JSON qui transporte décisions et contraintes entre les étapes d'un pipeline IA multi-agents.",
+      nl: "Een klein JSON-object dat beslissingen en beperkingen meedraagt tussen de stappen van een multi-agent AI-pipeline.",
     },
     category: {
       en: "Engineering",
@@ -4383,9 +2492,9 @@ Zet je ze samen, dan krijg je een veel sterkere basis om producten te bouwen, in
       nl: "Engineering",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["AI Agents","Design Patterns","Orchestration"],
@@ -4394,26 +2503,32 @@ Zet je ze samen, dan krijg je een veel sterkere basis om producten te bouwen, in
     },
     content: {
       en: `
-## The Problem
-
-When multiple AI agents work together in a pipeline — one plans, another builds, another reviews — they need context from each other. But:
-
-- Passing full artifacts (code, docs) between every stage **costs too many tokens**
-- Even with full artifacts, agents miss the *why* — the decisions and constraints behind the work
-
-Without a structured handoff, agents repeat work or contradict earlier decisions.
+_Three agents in a pipeline need to know what the others decided. The baton is how they find out, without re-sending the work._
 
 ---
 
-## The Solution
+## The problem
 
-The **baton** is a small JSON object (~1,000 tokens) that travels between stages. Each agent reads it before starting and patches it when done.
+Put three agents in a pipeline. One plans, one builds, one reviews. Each needs to know what the others did.
 
-Think of it like a relay race baton — except this one carries notes.
+Not the full transcript. The gist: what is decided, what is fixed, what is still open.
 
----
+Two ways this goes wrong.
 
-## Structure
+→ Pass the full artifacts between stages, and you **burn tokens** on context nobody reads twice.
+→ Pass nothing structured, and the next agent misses the _why_: the decisions, the constraints, the reasons behind the work.
+
+So agents repeat work. Or worse: they contradict a decision made two stages back, and nobody notices until it ships.
+
+## The baton
+
+The fix is small. A JSON object, around 1,000 tokens, that travels with the work.
+
+Each agent reads it before starting. Patches it when done. Passes it on.
+
+It's a relay baton that took notes.
+
+Small enough to always send. Structured enough to be worth reading. The fields:
 
 | Field | Purpose |
 |-------|---------|
@@ -4426,176 +2541,124 @@ Think of it like a relay race baton — except this one carries notes.
 | \`artifacts\` | References to produced outputs |
 | \`acceptance\` | Tests/checks that must pass |
 
----
+## How it moves
 
-## How It Works
+**Initialize** with a goal and a starting state. Inject it into each agent's prompt as markdown before the stage runs. After the stage, the agent returns a \`baton_patch\`: only the fields that changed. The merged baton feeds the next stage. Repeat until the workflow ends.
 
-### 1. Initialize
+That's the whole protocol. No message bus, no shared database, no framework.
 
-The baton starts with a goal and an initial state.
+## The choices that matter
 
-### 2. Inject
+\`decision_log\` is append-only. Earlier decisions never get erased, so a later agent can't quietly reverse them.
 
-Before each stage, the baton is injected into the agent's prompt as markdown.
+\`current_state\` is the opposite. Replaced on every patch, because it should read as true now, not as a diary.
 
-### 3. Patch
+Every patch is stamped with a stage ID and a timestamp. When the output is wrong, you can read exactly where the context bent.
 
-After executing, the agent returns a \`baton_patch\` — only the fields that changed get updated.
+At ~1,000 tokens, it always fits. The baton is the cheap part of the pipeline.
 
-### 4. Repeat
+## The honest limit
 
-The updated baton feeds into the next stage until the workflow completes.
+The baton carries context, not proof. It tells the next agent what happened and why. It does not tell you the work was any good. That is what \`acceptance\` and the artifacts themselves are for.
 
----
+No protocol makes a bad plan good. It just stops good context from getting lost.
 
-## Baton vs. Artifacts
+Use it when steps depend on each other, budgets are tight, and decisions have to hold across a chain.
 
-| | Baton | Artifacts |
-|---|---|---|
-| **Size** | ~1,000 tokens | 1k–100k+ tokens |
-| **Content** | Decisions, state, constraints | Actual code, plans, docs |
-| **Included** | Always | Selectively |
-| **Purpose** | *Why* and *what matters* | *What was produced* |
-
-The baton tells the next agent **what happened and why**. Artifacts are the actual work product.
-
----
-
-## Key Design Choices
-
-**Append-only decisions.** Earlier decisions are never erased. This prevents contradictions.
-
-**Replace semantics for state.** \`current_state\` is replaced each time — it reflects *current* truth, not history.
-
-**Budget-friendly.** At ~1,000 tokens, the baton always fits in context.
-
-**Full audit trail.** Every patch is recorded with timestamp and stage ID.
-
----
-
-## When to Use This
-
-The baton pattern works for any **multi-step AI pipeline** where:
-
-- Agents need context from previous steps
-- Token budgets are limited
-- Decisions must be consistent across stages
-- You need to trace how context evolved
-
-It's intentionally simple — just a JSON object with merge-patch updates.
+Small object. Merge-patch updates. One less way for a pipeline to lie to itself.
 `.trim(),
       fr: `
-## Le Problème
-
-Quand plusieurs agents IA travaillent ensemble dans un pipeline — l'un planifie, l'autre construit, un autre vérifie — ils ont besoin du contexte des étapes précédentes. Mais :
-
-- Transmettre tous les artefacts (code, docs) entre chaque étape **coûte trop de tokens**
-- Même avec les artefacts complets, les agents manquent le *pourquoi* — les décisions et contraintes derrière le travail
-
-Sans un mécanisme de transmission structuré, les agents répètent le travail ou contredisent des décisions antérieures.
+_Trois agents dans un pipeline doivent savoir ce que les autres ont décidé. Le baton est leur façon de l'apprendre, sans se renvoyer le travail._
 
 ---
 
-## La Solution
+## Le problème
 
-Le **baton** est un petit objet JSON (~1 000 tokens) qui voyage entre les étapes. Chaque agent le lit avant de commencer et le met à jour quand il a terminé.
+Mettez trois agents dans un pipeline. L'un planifie, l'autre construit, un autre vérifie. Chacun doit savoir ce que les autres ont fait.
 
-Pensez-y comme un témoin de course de relais — sauf que celui-ci porte des notes.
+Pas la transcription complète. L'essentiel : ce qui est décidé, ce qui est figé, ce qui reste ouvert.
 
----
+Deux façons de rater ça.
 
-## Structure
+→ Vous transmettez tous les artefacts entre les étapes, et vous **brûlez des tokens** sur du contexte que personne ne relit.
+→ Vous ne transmettez rien de structuré, et l'agent suivant rate le _pourquoi_ : les décisions, les contraintes, les raisons derrière le travail.
+
+Alors les agents répètent le travail. Ou pire : ils contredisent une décision prise deux étapes plus tôt, et personne ne le remarque avant la mise en prod.
+
+## Le baton
+
+La solution est petite. Un objet JSON, environ 1 000 tokens, qui voyage avec le travail.
+
+Chaque agent le lit avant de commencer. Le met à jour quand il a fini. Le passe au suivant.
+
+C'est un témoin de relais qui a pris des notes.
+
+Assez petit pour toujours l'envoyer. Assez structuré pour valoir la lecture. Les champs :
 
 | Champ | Objectif |
 |-------|----------|
 | \`goal\` | Objectif en une phrase |
 | \`current_state\` | Ce qui est vrai maintenant |
 | \`decision_log\` | Décisions prises (ajout uniquement) |
-| \`constraints\` | Règles à respecter |
+| \`constraints\` | Règles strictes à respecter |
 | \`open_questions\` | Questions non résolues |
 | \`work_scope\` | Fichiers/modules concernés |
 | \`artifacts\` | Références aux sorties produites |
 | \`acceptance\` | Tests/vérifications à passer |
 
----
+## Comment il circule
 
-## Comment ça marche
+**Initialiser** avec un objectif et un état de départ. L'injecter en markdown dans le prompt de chaque agent avant l'étape. Après l'étape, l'agent retourne un \`baton_patch\` : seuls les champs modifiés. Le baton fusionné alimente l'étape suivante. Répéter jusqu'à la fin du workflow.
 
-### 1. Initialiser
+Voilà tout le protocole. Pas de bus de messages, pas de base partagée, pas de framework.
 
-Le baton commence avec un objectif et un état initial.
+## Les choix qui comptent
 
-### 2. Injecter
+\`decision_log\` est en ajout uniquement. Les décisions antérieures ne sont jamais effacées, donc un agent plus tardif ne peut pas les inverser en douce.
 
-Avant chaque étape, le baton est injecté dans le prompt de l'agent en markdown.
+\`current_state\` est l'inverse. Remplacé à chaque patch, parce qu'il doit se lire comme vrai maintenant, pas comme un journal intime.
 
-### 3. Patcher
+Chaque patch est estampillé avec un identifiant d'étape et un horodatage. Quand la sortie est fausse, vous lisez exactement où le contexte a dévié.
 
-Après exécution, l'agent retourne un \`baton_patch\` — seuls les champs modifiés sont mis à jour.
+À ~1 000 tokens, il tient toujours. Le baton est la partie bon marché du pipeline.
 
-### 4. Répéter
+## La limite honnête
 
-Le baton mis à jour alimente l'étape suivante jusqu'à la fin du workflow.
+Le baton transporte du contexte, pas des preuves. Il dit à l'agent suivant ce qui s'est passé et pourquoi. Il ne dit pas que le travail était bon. C'est le rôle d'\`acceptance\` et des artefacts eux-mêmes.
 
----
+Aucun protocole ne rend bon un mauvais plan. Il empêche juste un bon contexte de se perdre.
 
-## Baton vs. Artefacts
+Utilisez-le quand les étapes dépendent les unes des autres, que les budgets sont serrés, et que les décisions doivent tenir sur toute la chaîne.
 
-| | Baton | Artefacts |
-|---|---|---|
-| **Taille** | ~1 000 tokens | 1k–100k+ tokens |
-| **Contenu** | Décisions, état, contraintes | Code, plans, docs |
-| **Inclus** | Toujours | Sélectivement |
-| **Objectif** | *Pourquoi* et *ce qui compte* | *Ce qui a été produit* |
-
-Le baton dit à l'agent suivant **ce qui s'est passé et pourquoi**. Les artefacts sont le produit du travail.
-
----
-
-## Choix de Conception
-
-**Décisions en ajout uniquement.** Les décisions antérieures ne sont jamais effacées. Cela évite les contradictions.
-
-**Remplacement pour l'état.** \`current_state\` est remplacé à chaque fois — il reflète la vérité *actuelle*, pas l'historique.
-
-**Économe en tokens.** À ~1 000 tokens, le baton tient toujours dans le contexte.
-
-**Traçabilité complète.** Chaque patch est enregistré avec un horodatage et un identifiant d'étape.
-
----
-
-## Quand l'utiliser
-
-Le baton pattern fonctionne pour tout **pipeline IA multi-étapes** où :
-
-- Les agents ont besoin du contexte des étapes précédentes
-- Les budgets de tokens sont limités
-- Les décisions doivent être cohérentes entre les étapes
-- Vous devez tracer l'évolution du contexte
-
-C'est volontairement simple — juste un objet JSON avec des mises à jour merge-patch.
+Petit objet. Mises à jour merge-patch. Une façon de moins pour un pipeline de se mentir à lui-même.
 `.trim(),
       nl: `
-## Het Probleem
-
-Wanneer meerdere AI-agents samenwerken in een pipeline — de ene plant, de andere bouwt, een andere controleert — hebben ze context van elkaar nodig. Maar:
-
-- Alle artefacten (code, docs) doorgeven tussen elke stap **kost te veel tokens**
-- Zelfs met volledige artefacten missen agents het *waarom* — de beslissingen en beperkingen achter het werk
-
-Zonder een gestructureerd overdrachtsmechanisme herhalen agents werk of spreken ze eerdere beslissingen tegen.
+_Drie agents in een pipeline moeten weten wat de anderen hebben beslist. De baton is hoe ze daar achter komen, zonder het werk opnieuw door te sturen._
 
 ---
 
-## De Oplossing
+## Het probleem
 
-De **baton** is een klein JSON-object (~1.000 tokens) dat meereist tussen stappen. Elke agent leest het voor aanvang en werkt het bij na afloop.
+Zet drie agents in een pipeline. De ene plant, de andere bouwt, een andere controleert. Elk moet weten wat de anderen deden.
 
-Denk eraan als een estafettestokje — maar dan eentje dat aantekeningen meedraagt.
+Niet de volledige transcriptie. De essentie: wat beslist is, wat vastligt, wat nog open staat.
 
----
+Twee manieren waarop dit misgaat.
 
-## Structuur
+→ Je stuurt alle artefacten tussen de stappen door, en je **verbrandt tokens** aan context die niemand een tweede keer leest.
+→ Je stuurt niets gestructureerds door, en de volgende agent mist het _waarom_: de beslissingen, de beperkingen, de redenen achter het werk.
+
+Dus herhalen agents het werk. Of erger: ze spreken een beslissing van twee stappen terug tegen, en niemand merkt het tot het live gaat.
+
+## De baton
+
+De oplossing is klein. Een JSON-object, zo'n 1.000 tokens, dat met het werk meereist.
+
+Elke agent leest het voor aanvang. Werkt het bij na afloop. Geeft het door.
+
+Het is een estafettestokje dat aantekeningen maakte.
+
+Klein genoeg om altijd te sturen. Gestructureerd genoeg om te lezen. De velden:
 
 | Veld | Doel |
 |------|------|
@@ -4608,63 +2671,31 @@ Denk eraan als een estafettestokje — maar dan eentje dat aantekeningen meedraa
 | \`artifacts\` | Verwijzingen naar geproduceerde outputs |
 | \`acceptance\` | Tests/controles die moeten slagen |
 
----
+## Hoe het beweegt
 
-## Hoe het werkt
+**Initialiseer** met een doel en een beginstatus. Injecteer het als markdown in de prompt van elke agent vóór de stap. Na de stap retourneert de agent een \`baton_patch\`: alleen de gewijzigde velden. De samengevoegde baton voedt de volgende stap. Herhaal tot de workflow eindigt.
 
-### 1. Initialiseren
+Dat is het hele protocol. Geen message bus, geen gedeelde database, geen framework.
 
-De baton begint met een doel en een beginstatus.
+## De keuzes die tellen
 
-### 2. Injecteren
+\`decision_log\` is alleen-toevoegen. Eerdere beslissingen worden nooit gewist, dus een latere agent kan ze niet stiekem terugdraaien.
 
-Voor elke stap wordt de baton als markdown in de prompt van de agent geïnjecteerd.
+\`current_state\` is het tegenovergestelde. Bij elke patch vervangen, want het moet nu als waar lezen, niet als een dagboek.
 
-### 3. Patchen
+Elke patch krijgt een stap-ID en een tijdstempel. Als de output fout is, lees je precies waar de context afboog.
 
-Na uitvoering retourneert de agent een \`baton_patch\` — alleen de gewijzigde velden worden bijgewerkt.
+Met ~1.000 tokens past het altijd. De baton is het goedkope deel van de pipeline.
 
-### 4. Herhalen
+## De eerlijke grens
 
-De bijgewerkte baton voedt de volgende stap totdat de workflow is voltooid.
+De baton draagt context, geen bewijs. Het vertelt de volgende agent wat er gebeurde en waarom. Het vertelt je niet dat het werk goed was. Daarvoor zijn \`acceptance\` en de artefacten zelf.
 
----
+Geen enkel protocol maakt een slecht plan goed. Het voorkomt alleen dat goede context verloren gaat.
 
-## Baton vs. Artefacten
+Gebruik het wanneer stappen van elkaar afhangen, budgetten krap zijn, en beslissingen over de hele keten moeten standhouden.
 
-| | Baton | Artefacten |
-|---|---|---|
-| **Grootte** | ~1.000 tokens | 1k–100k+ tokens |
-| **Inhoud** | Beslissingen, status, beperkingen | Code, plannen, docs |
-| **Meegestuurd** | Altijd | Selectief |
-| **Doel** | *Waarom* en *wat telt* | *Wat er is geproduceerd* |
-
-De baton vertelt de volgende agent **wat er is gebeurd en waarom**. Artefacten zijn het daadwerkelijke werkproduct.
-
----
-
-## Ontwerpkeuzes
-
-**Alleen toevoegen voor beslissingen.** Eerdere beslissingen worden nooit gewist. Dit voorkomt tegenspraak.
-
-**Vervangen voor status.** \`current_state\` wordt elke keer vervangen — het weerspiegelt de *huidige* waarheid, niet de geschiedenis.
-
-**Zuinig met tokens.** Met ~1.000 tokens past de baton altijd in de context.
-
-**Volledige audit trail.** Elke patch wordt opgeslagen met tijdstempel en stap-ID.
-
----
-
-## Wanneer gebruiken
-
-Het baton pattern werkt voor elke **multi-staps AI-pipeline** waar:
-
-- Agents context nodig hebben van eerdere stappen
-- Tokenbudgetten beperkt zijn
-- Beslissingen consistent moeten zijn tussen stappen
-- U moet kunnen traceren hoe de context evolueerde
-
-Het is bewust eenvoudig — gewoon een JSON-object met merge-patch updates.
+Klein object. Merge-patch updates. Eén manier minder waarop een pipeline tegen zichzelf liegt.
 `.trim(),
     },
   },

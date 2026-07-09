@@ -1,86 +1,72 @@
 ---
 slug: "the-company-is-an-api-call"
+image: "/illustrations/blog/the-company-is-an-api-call.jpg"
 date: "2026-07-09"
 icon: Factory
 authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
 title: "L'entreprise est un appel d'API"
-description: "Ce que je construis réellement n'est pas un ensemble d'outils. C'est une usine à entreprises : une plateforme où créer une entreprise provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services IA étroits — et où l'entreprise est ensuite opérée principalement par des agents."
+description: "Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande provisionne l'identité, le contexte, la mémoire, un budget IA et des services, puis des agents font tourner la boutique."
 category: "Vision"
 tags: ["Entreprise AI-native", "Agents", "Plateforme"]
-readTime: "6 min"
+readTime: "4 min"
 ---
 
-_Ce que je construis n'est pas un ensemble d'outils. C'est une usine à entreprises. La démo vers laquelle je travaille tient en une commande : créer une entreprise, et des agents produisent sa marque, son site web, son audit SEO et sa première campagne — avec chaque euro comptabilisé._
+_Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande crée une entreprise, et des agents produisent sa marque, son site, son audit SEO, sa première campagne. Chaque euro tracé._
 
 ---
 
 ## Le recadrage
 
-Depuis deux ans, je construis des produits : une plateforme de facturation pour les PME belges, un moniteur de conformité, une API de données d'entreprises belges, un studio de contenu IA, un moteur de connaissance. Chacun utile. Chacun construit presque entièrement from scratch. Chacun réimplémentant les cinq mêmes choses.
+Deux ans à construire des produits : de la facturation pour PME belges, un moniteur de conformité, une API de données d'entreprise, un studio de contenu, un moteur de connaissance. Chacun utile. Chacun reparti de zéro. Chacun réimplémentant les cinq mêmes choses.
 
-Quelque part autour de la quatrième réimplémentation de "l'identité de marque", je me suis arrêté et j'ai nommé le pattern.
+Vers la quatrième fois où j'ai reconstruit « l'identité de marque » à partir de rien, je me suis arrêté et j'ai nommé le motif.
 
-Ce que je construis n'est pas un ensemble d'outils. C'est une **usine à entreprises** — une plateforme où "créer une entreprise" est un appel d'API qui provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services IA étroits, et où l'entreprise est ensuite *opérée* principalement par des agents.
+Ce que je construis, ce n'est pas une boîte à outils. C'est une **usine à entreprises**. « Créer une entreprise » devient un appel d'API qui provisionne l'identité, le contexte, la mémoire, un budget IA et un ensemble de services étroits. L'entreprise est ensuite dirigée, en grande partie, par des agents.
 
 Toute entreprise digitale a besoin des cinq mêmes choses :
 
-1. **Identité** — qui existe : l'entreprise, ses workspaces, ses humains, ses agents, leurs clés.
-2. **Contexte** — ce que l'entreprise *est* : marque, ton, offre, contraintes. Curé, petit, versionné.
-3. **Mémoire** — ce que l'entreprise *sait* : historique, documents, décisions. Accumulée, volumineuse, retrouvée.
-4. **Intelligence** — l'accès aux modèles avec des budgets, du routing et un vrai ledger.
-5. **Capabilities** — des services étroits qui font le vrai travail : générer un site, auditer le SEO, produire du contenu, chercher une entreprise, envoyer une facture.
+→ **L'identité** (qui existe) : l'entreprise, ses gens, ses agents, leurs clés.
+→ **Le contexte** (ce qu'est l'entreprise) : marque, ton, offre. Petit, soigné, versionné.
+→ **La mémoire** (ce qu'elle sait) : historique, documents, décisions. Vaste, retrouvée à la demande.
+→ **L'intelligence** : l'accès aux modèles avec budgets, routage et un vrai grand livre.
+→ **Les capacités** : les services qui font le travail. Construire un site, auditer le SEO, envoyer une facture.
 
-Les produits que les gens voient — Feen, Syncco, la prochaine venture — deviennent des surfaces fines et brandées au-dessus de ces services. Grandir ne veut plus dire "reconstruire les fondations encore une fois". Grandir = ajouter des entreprises et des services.
-
----
+Les produits que les gens voient (Feen, Syncco, le prochain) deviennent de fines surfaces de marque posées sur ces services. Grandir ne veut plus dire « reconstruire les fondations encore une fois ». Ça veut dire ajouter des entreprises et des services.
 
 ## L'agent est un employé
 
-La décision la plus AI-native de ce modèle n'est pas un choix de modèle. C'est un choix d'organigramme.
+La décision la plus AI-native ici, ce n'est pas un choix de modèle. C'est un choix d'organigramme.
 
-Les agents sont des acteurs de premier rang, pas de l'automatisation anonyme. Un agent a une ligne d'identité dans la base, comme un humain. Il détient des credentials. Il a un budget. Il appelle les mêmes services via les mêmes contrats. Il laisse une trace auditable.
+Un agent reçoit une ligne d'identité, comme un humain. Il détient des identifiants. Il a un budget. Il appelle les mêmes services via les mêmes contrats, et laisse une trace. L'organigramme de la prochaine entreprise, ce sont littéralement des lignes dans une base de données.
 
-L'organigramme de la prochaine entreprise, ce sont littéralement des lignes dans une base de données.
+Ça sonne philosophique jusqu'à ce qu'on pose une question banale : quel agent a dépensé 4 €, sur la campagne de qui ? Dans la plupart des stacks, c'est sans réponse. Clé partagée, coût noyé dans un tableau de bord, personne d'attribué. Dans l'usine, c'est une seule requête.
 
-Cela sonne philosophique jusqu'à ce qu'on regarde ce que ça corrige. Aujourd'hui, quand une fonctionnalité IA tourne, la question "quel agent a dépensé 4 € sur la campagne de qui ?" est sans réponse dans la plupart des stacks — la clé d'API est partagée, le coût dort dans le dashboard d'un provider, l'action n'est pas attribuée. Dans le modèle usine, cette question tient en une requête sur un correlation id.
+Et l'agent tombe à court d'argent comme un employé, au lieu de vider discrètement le compte API à 3 h du matin. Budget épuisé, la passerelle dit non. La paie, mais pour du logiciel.
 
-Et les budgets cessent d'être une angoisse de tableur. L'agent *tombe à court d'argent comme un employé*, au lieu de brûler silencieusement le compte API à 3 h du matin. Quand le budget est épuisé, la gateway refuse l'appel. La paie, version logiciel.
+## Capacité d'abord, UI à la demande
 
----
+Deuxième règle : **réduire l'UI, faire grandir la capacité.** L'agent est l'utilisateur principal. Les écrans servent à la confiance et à la saisie, pas au travail.
 
-## Capability-first, UI à la demande
+Chaque service expose ses capacités de la même façon : en HTTP pour les produits, en MCP pour les agents. On définit une capacité une fois ; une app web, un terminal et une boucle d'agent l'appellent tous pareil.
 
-La deuxième doctrine : **réduire l'UI, renforcer les capabilities.** L'agent est l'utilisateur principal ; les écrans existent pour la confiance et la collecte d'informations, pas pour le travail.
+Je n'ai pas dessiné ça sur un tableau blanc. Je l'ai trouvé dans ma propre flotte. Un produit était déjà, en silence, l'implémentation de référence avant que la plateforme ait un nom. Je généralise, je n'invente pas.
 
-Chaque service expose ses capabilities de la même manière — même enveloppe, même auth, même health check, même catalogue d'erreurs — en HTTP pour les produits, en MCP pour les agents. Une capability, définie une fois comme un schéma plus un handler, appelable à l'identique par une web app, un terminal ou une boucle d'agent.
-
-Je n'ai pas dessiné ce pattern sur un tableau blanc. Je l'ai trouvé dans ma propre flotte. Bumpi, mon studio de contenu, a été construit avec un registre de capabilities qui expose automatiquement chaque capability en HTTP, en MCP et dans une boucle d'agent — et il s'est avéré être l'implémentation de référence de toute la plateforme avant même que la plateforme ait un nom. Chaque pattern porteur de la vision tourne déjà en production quelque part. Je généralise, je n'invente pas.
-
-La métrique de succès est brute : **le pourcentage de fonctionnalités appelables par un agent.** Aujourd'hui, sur l'ensemble de ma flotte, ce chiffre tourne autour de 20 %. L'objectif est de rendre banal de dire 100 %.
-
----
+La métrique est brute : le pourcentage de fonctionnalités qu'un agent peut appeler. Aujourd'hui, sur toute ma flotte, environ 20 %. L'objectif, c'est de rendre les 100 % ennuyeux.
 
 ## L'état honnête
 
-Ceci est un article de vision, donc voici exactement ce qui en existe au 2026-07-09 :
+C'est un billet de vision, alors voici la version honnête. Les services existent. La couche entre eux, non. La passerelle censée compter chaque euro existe à peine, donc mon système de budget croit actuellement que tout est gratuit. Une belle chose à croire. Une terrible chose à mettre en prod.
 
-- **Les services existent. La couche, non.** J'ai lancé un grep : zéro appel inter-services en production. La marque est réimplémentée quatre fois. L'identité, quatre fois. Les deux douleurs qui motivent la plateforme sont des faits mesurés, pas de la théorie.
-- **La gateway LLM — la pièce maîtresse — existe à peine.** Le seul vrai code de gateway dort dans un projet archivé, sous forme de librairie, avec `cost_usd=0.0` hardcodé. Mon système de budget croit actuellement que tout est gratuit.
-- **Le meilleur moteur est sous-adopté.** Mon service de connaissance est la pièce la plus solide de la flotte et presque rien ne le consomme encore.
-- **Deux produits prouvent le modèle manuellement.** Feen et Syncco fonctionnent — mais des humains les ont câblés, service par service.
+Feen et Syncco prouvent le modèle, mais ce sont des humains qui les ont câblés, service par service. Le prochain ne devrait pas en avoir besoin.
 
-Le plan du trimestre est strictement sériel, chaque chapitre conditionné par une démo : un kit de service standard qui transforme "une capability" en "un service déployé, protégé par clé, appelable par agent" en un après-midi ; puis l'identité et le contexte comme control plane ; puis recouler les services existants dans le moule ; puis la gateway avec un vrai ledger.
+La démo vers laquelle je construis tient en une ligne : `nuva co create testco`. Les agents produisent la marque, le site, l'audit SEO, la première campagne. De bout en bout. Le coût par artefact lisible depuis le grand livre.
 
-Le gate final est la démo fondatrice : `nuva co create testco` — et des agents produisent la marque, le site, l'audit SEO et la première campagne, de bout en bout, avec zéro fuite entre workspaces et un coût par artefact lisible dans le ledger.
+## Le point
 
----
+Feen et Syncco prouvent le modèle à la main. La prochaine entreprise naît sur la plateforme dès le premier jour.
 
-## L'essentiel
-
-Feen et Syncco prouvent le modèle manuellement. La prochaine entreprise naît sur la plateforme dès le premier jour.
-
-C'est toute la vision. Pas de plus gros modèles, pas plus de prompts — une usine où l'identité, le contexte, la mémoire, l'intelligence et les capabilities sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec un badge et un budget.
+Pas de plus gros modèles. Pas plus de prompts. Une usine où l'identité, le contexte, la mémoire, l'intelligence et les capacités sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec badges et budgets.
 
 L'entreprise est un appel d'API. Le reste, c'est de l'opérationnel.
