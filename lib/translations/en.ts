@@ -79,7 +79,7 @@ export const en = {
       description: "AI-powered accounting, invoicing, and contact management. Automate your financial workflows with 99% OCR accuracy.",
       seo: {
         title: "Feen — AI Accounting for Belgian SMEs",
-        description: "AI-powered accounting, invoicing, and contact management. Automate your financial workflows with 99% OCR accuracy. €19/month all-inclusive.",
+        description: "AI-powered accounting, invoicing, and contact management for Belgian SMEs. Automate financial workflows with 99% OCR accuracy. €19/month, all-inclusive.",
         keywords: ["AI accounting", "invoicing software", "Belgian SME", "OCR", "Peppol", "automated bookkeeping"],
       },
       content: {
@@ -216,7 +216,7 @@ export const en = {
       description: "Create and manage your brand identity. Logos, colors, typography, and brand guidelines in one place.",
       seo: {
         title: "Pixl Branding — Brand Book Studio",
-        description: "Create and manage your brand identity. AI-powered logos, colors, typography, and brand guidelines in one place.",
+        description: "Create and manage your brand identity with AI: logos, colors, typography, and brand guidelines in one place. A brand book studio built for consistency.",
         keywords: ["brand studio", "logo design", "brand identity", "AI branding", "brand guidelines"],
       },
       content: {
@@ -241,7 +241,7 @@ export const en = {
       description: "Build stunning websites without code. Modern templates, SEO-ready, connected to your Pixl ecosystem.",
       seo: {
         title: "Pixl Web — AI Website Builder",
-        description: "Build stunning websites without code. Modern templates, SEO-ready, connected to your Pixl ecosystem.",
+        description: "Build stunning websites without code. Modern templates, SEO-ready pages, and hosting included, all connected to your Pixl ecosystem in one workflow.",
         keywords: ["website builder", "no-code", "web design", "SEO websites", "business websites"],
       },
       content: {
@@ -267,7 +267,7 @@ export const en = {
       description: "Have a unique business need? Let's build your custom solution together. Contact us to discuss.",
       seo: {
         title: "Build with Pixl — Custom Solutions",
-        description: "Have a unique business need? Let's build your custom solution together. Contact us to discuss your project.",
+        description: "Have a unique business need? Let's build your custom software solution together. Belgian developers, transparent pricing, ongoing support. Contact us today.",
         keywords: ["custom development", "business solutions", "software development", "Belgian developers"],
       },
       content: {
