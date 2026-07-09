@@ -35,7 +35,7 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
   const tagline = (p: ProductStatic) => t(`${getProductTranslationKey(p.id)}.tagline`);
   const description = (p: ProductStatic) => t(`${getProductTranslationKey(p.id)}.description`);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 auto-rows-fr">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
       {/* Feen — featured brand cell */}
       {feen && (
         <Link
@@ -111,7 +111,7 @@ export function ProductBento({ products }: { products: ProductStatic[] }) {
       {custom && (
         <a
           href="mailto:hello@pixldev.be"
-          className="group sm:col-span-2 lg:col-span-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-dashed border-gold/30 bg-card/50 p-5 sm:p-6 pixel-card hover:border-gold/50"
+          className="group sm:col-span-2 lg:col-span-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl border border-dashed border-gold/30 bg-card/50 px-5 sm:px-6 py-4 pixel-card hover:border-gold/50"
         >
           <div className="w-10 h-10 rounded-lg border border-gold/25 bg-gold/10 flex items-center justify-center shrink-0">
             <MessageCircle className="w-5 h-5 text-gold" />

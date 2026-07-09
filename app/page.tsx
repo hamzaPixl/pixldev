@@ -103,19 +103,26 @@ export default function Home() {
 
       {/* From the blog */}
       <section className="border-t border-border px-4 sm:px-6 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto">
-          <Reveal className="flex items-end justify-between gap-4 mb-8">
-            <div className="eyebrow">{t("blog.title")}</div>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("blog.allPosts")}
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+          {/* Left: heading */}
+          <Reveal className="lg:col-span-1">
+            <div className="lg:sticky lg:top-24">
+              <div className="eyebrow mb-4">{t("blog.title")}</div>
+              <p className="text-lg text-muted-foreground leading-snug mb-5 max-w-xs">
+                {t("blog.subtitle")}
+              </p>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1.5 text-sm text-primary font-medium hover:gap-2.5 transition-all"
+              >
+                {t("blog.allPosts")}
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </Reveal>
 
-          <div className="flex flex-col gap-4">
+          {/* Right: article cards */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
             {latestPosts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 90}>
                 <ArticleCard post={post} locale={dateLocaleMap[currentLanguage]} />
