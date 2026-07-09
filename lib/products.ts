@@ -1,11 +1,10 @@
 import {
   Receipt,
-  Megaphone,
-  Users,
+  Sparkles,
   Search,
+  ShieldCheck,
   Palette,
   Globe,
-  BarChart3,
   MessageCircle,
   type LucideIcon,
 } from "lucide-react";
@@ -26,12 +25,11 @@ export interface ProductStatic {
 // Product IDs as const for type safety
 export const PRODUCT_IDS = [
   "feen",
-  "feen-marketing",
-  "feen-lookup",
-  "feen-lead",
-  "feen-branding",
-  "feen-web",
-  "feen-analytics",
+  "company-data",
+  "bumpi",
+  "syncco",
+  "pixl-web",
+  "pixl-branding",
   "custom",
 ] as const;
 
@@ -40,12 +38,11 @@ export type ProductId = (typeof PRODUCT_IDS)[number];
 // Map product id to translation key
 export const productTranslationKeys: Record<ProductId, string> = {
   feen: "products.feen",
-  "feen-marketing": "products.feenMarketing",
-  "feen-lookup": "products.feenLookup",
-  "feen-lead": "products.feenLead",
-  "feen-branding": "products.feenBranding",
-  "feen-web": "products.feenWeb",
-  "feen-analytics": "products.feenAnalytics",
+  "company-data": "products.companyData",
+  bumpi: "products.bumpi",
+  syncco: "products.syncco",
+  "pixl-web": "products.pixlWeb",
+  "pixl-branding": "products.pixlBranding",
   custom: "products.custom",
 };
 
@@ -61,42 +58,35 @@ export const productsStatic: ProductStatic[] = [
     color: "from-primary to-primary/80",
   },
   {
-    id: "feen-marketing",
-    icon: Megaphone,
-    status: "coming-soon",
-    color: "from-secondary to-secondary/80",
-  },
-  {
-    id: "feen-lookup",
+    id: "company-data",
     icon: Search,
-    logo: "/feen-icon.svg",
     status: "live",
     url: "https://www.feen.be/company-lookup",
     color: "from-cyan-500 to-cyan-600",
   },
   {
-    id: "feen-lead",
-    icon: Users,
+    id: "bumpi",
+    icon: Sparkles,
+    status: "coming-soon",
+    color: "from-secondary to-secondary/80",
+  },
+  {
+    id: "syncco",
+    icon: ShieldCheck,
     status: "coming-soon",
     color: "from-emerald-500 to-emerald-600",
   },
   {
-    id: "feen-branding",
-    icon: Palette,
-    status: "planned",
-    color: "from-purple-500 to-purple-600",
-  },
-  {
-    id: "feen-web",
+    id: "pixl-web",
     icon: Globe,
     status: "planned",
     color: "from-pink-500 to-pink-600",
   },
   {
-    id: "feen-analytics",
-    icon: BarChart3,
+    id: "pixl-branding",
+    icon: Palette,
     status: "planned",
-    color: "from-orange-500 to-orange-600",
+    color: "from-purple-500 to-purple-600",
   },
   {
     id: "custom",

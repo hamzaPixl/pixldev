@@ -15,11 +15,12 @@ export function ProductContent({ productId }: ProductContentProps) {
 }
 
 // Styled components for content
+// Renders h2: the page h1 is the product name in the banner (one h1 per page)
 function H1({ children }: { children: React.ReactNode }) {
   return (
-    <h1 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-foreground mb-4 sm:mb-6">
+    <h2 className="font-display font-semibold tracking-tight text-2xl sm:text-3xl text-foreground mb-4 sm:mb-6">
       {children}
-    </h1>
+    </h2>
   );
 }
 
@@ -103,12 +104,11 @@ function Highlight({ children }: { children: React.ReactNode }) {
 
 const contentMap: Record<string, React.FC> = {
   feen: FeenContent,
-  "feen-marketing": FeenMarketingContent,
-  "feen-lookup": FeenLookupContent,
-  "feen-lead": FeenLeadContent,
-  "feen-branding": FeenBrandingContent,
-  "feen-web": FeenWebContent,
-  "feen-analytics": FeenAnalyticsContent,
+  bumpi: FeenMarketingContent,
+  "company-data": FeenLookupContent,
+  syncco: FeenLeadContent,
+  "pixl-branding": FeenBrandingContent,
+  "pixl-web": FeenWebContent,
   custom: CustomContent,
 };
 
@@ -208,7 +208,7 @@ function FeenMarketingContent() {
     brandText: string;
     timeTitle: string;
     timeText: string;
-  }>("products.feenMarketing.content");
+  }>("products.bumpi.content");
 
   if (!content) return null;
 
@@ -216,8 +216,8 @@ function FeenMarketingContent() {
     <>
       <H1>{content.aboutTitle}</H1>
       <P>
-        {content.aboutText.split("AI-powered content engine").map((part, i) =>
-          i === 0 ? part : <React.Fragment key={i}><Strong>AI-powered content engine</Strong>{part}</React.Fragment>
+        {content.aboutText.split("AI-powered content studio").map((part, i) =>
+          i === 0 ? part : <React.Fragment key={i}><Strong>AI-powered content studio</Strong>{part}</React.Fragment>
         )}
       </P>
 
@@ -265,7 +265,7 @@ function FeenLookupContent() {
     useCases: FeatureItem[];
     dataSourcesTitle: string;
     dataSourcesText: string;
-  }>("products.feenLookup.content");
+  }>("products.companyData.content");
 
   if (!content) return null;
 
@@ -318,7 +318,7 @@ function FeenLeadContent() {
     currentStatusText: string;
     earlyAccessTitle: string;
     earlyAccessText: string;
-  }>("products.feenLead.content");
+  }>("products.syncco.content");
 
   if (!content) return null;
 
@@ -326,7 +326,7 @@ function FeenLeadContent() {
     <>
       <H1>{content.aboutTitle}</H1>
       <P>
-        {content.aboutText.split("intelligent prospection assistant").map((part, i) =>
+        {content.aboutText.split("compliance watchdog").map((part, i) =>
           i === 0 ? part : <React.Fragment key={i}><Strong>intelligent prospection assistant</Strong>{part}</React.Fragment>
         )}
       </P>
@@ -370,7 +370,7 @@ function FeenBrandingContent() {
     currentStatusText: string;
     haveIdeasTitle: string;
     haveIdeasText: string;
-  }>("products.feenBranding.content");
+  }>("products.pixlBranding.content");
 
   if (!content) return null;
 
@@ -411,7 +411,7 @@ function FeenWebContent() {
     ecosystemText: string;
     currentStatusTitle: string;
     currentStatusText: string;
-  }>("products.feenWeb.content");
+  }>("products.pixlWeb.content");
 
   if (!content) return null;
 
@@ -433,46 +433,6 @@ function FeenWebContent() {
 
       <H2>{content.ecosystemTitle}</H2>
       <P>{content.ecosystemText}</P>
-
-      <H2>{content.currentStatusTitle}</H2>
-      <P>{content.currentStatusText}</P>
-    </>
-  );
-}
-
-function FeenAnalyticsContent() {
-  const { tObject } = useLanguage();
-  const content = tObject<{
-    aboutTitle: string;
-    aboutText: string;
-    whatWillDoTitle: string;
-    features: FeatureItem[];
-    crossToolTitle: string;
-    crossToolText: string;
-    currentStatusTitle: string;
-    currentStatusText: string;
-  }>("products.feenAnalytics.content");
-
-  if (!content) return null;
-
-  return (
-    <>
-      <H1>{content.aboutTitle}</H1>
-      <P>
-        {content.aboutText.split("unified business intelligence dashboard").map((part, i) =>
-          i === 0 ? part : <React.Fragment key={i}><Strong>unified business intelligence dashboard</Strong>{part}</React.Fragment>
-        )}
-      </P>
-
-      <H2>{content.whatWillDoTitle}</H2>
-      <UL>
-        {content.features?.map((feature, i) => (
-          <LI key={i}><Strong>{feature.title}</Strong> — {feature.text}</LI>
-        ))}
-      </UL>
-
-      <H2>{content.crossToolTitle}</H2>
-      <P>{content.crossToolText}</P>
 
       <H2>{content.currentStatusTitle}</H2>
       <P>{content.currentStatusText}</P>

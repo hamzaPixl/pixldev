@@ -18,6 +18,17 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    // Old "Feen ___" module URLs → real product names
+    return [
+      { source: "/product/feen-marketing", destination: "/product/bumpi", permanent: true },
+      { source: "/product/feen-lookup", destination: "/product/company-data", permanent: true },
+      { source: "/product/feen-lead", destination: "/product/syncco", permanent: true },
+      { source: "/product/feen-branding", destination: "/product/pixl-branding", permanent: true },
+      { source: "/product/feen-web", destination: "/product/pixl-web", permanent: true },
+      { source: "/product/feen-analytics", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

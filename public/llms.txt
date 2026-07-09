@@ -23,12 +23,21 @@ Financial intelligence and invoicing platform for Belgian SMEs and freelancers.
 - Free tools: company lookup, Peppol readiness check
 - URL: https://feen.be
 
-### Company Lookup (Live)
-Belgian company intelligence: search by name or VAT, director and financial data from official sources (BCE/KBO, National Bank of Belgium).
+### Company Data (Live)
+Belgian company intelligence: search by name or VAT, director and financial data from official sources (BCE/KBO, National Bank of Belgium, Moniteur Belge, Peppol directory). Free lookup plus an API.
 - URL: https://feen.be/company-lookup
+- Product page: https://pixldev.be/product/company-data
 
-### Other modules
-Additional modules (marketing content, lead generation, branding, web, analytics) are in various stages between prototype and planned. See https://pixldev.be for current status per module — statuses on that page are kept honest: live, coming soon, or planned.
+### Bumpi (Private beta)
+Brand-locked AI content studio: generates on-brand visuals, posts, and campaigns in EN/FR/NL with guardrails against off-brand output.
+- Product page: https://pixldev.be/product/bumpi
+
+### Syncco (Coming soon)
+Compliance monitoring for Belgian companies: reconciles BCE/KBO records with Moniteur Belge publications and flags mismatches.
+- Product page: https://pixldev.be/product/syncco
+
+### Planned
+Pixl Web (AI website builder) and Pixl Branding (brand book studio) exist as internal prototypes; public products are planned, not scheduled. Statuses on pixldev.be are kept honest: live, coming soon, or planned.
 
 ## Blog
 Essays and experiment logs on AI systems, agents, and building in public: https://pixldev.be/blog

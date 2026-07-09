@@ -1,9 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { Menu } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useLanguage } from "@/lib/language-context";
 import { getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
 
@@ -37,11 +44,32 @@ export function SharedLayout({ children, showEcosystemLabel = false }: SharedLay
               </Link>
             </nav>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <LanguageSwitcher variant="dark" />
             <Button asChild size="sm" className="hidden sm:inline-flex">
               <a href="/#contact">{t("common.buildWithUs")}</a>
             </Button>
+            {/* Mobile menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild className="md:hidden">
+                <Button variant="outline" size="icon" aria-label="Menu" className="h-8 w-8">
+                  <Menu />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[180px] md:hidden">
+                <DropdownMenuItem asChild>
+                  <Link href="/#modules">{t("footer.productsTitle")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/blog">{t("blog.footerLink")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="/#contact" className="text-primary">
+                    {t("common.buildWithUs")}
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>

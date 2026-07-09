@@ -59,9 +59,9 @@ interface WebsiteSchemaProps {
 }
 
 export function WebsiteSchema({
-  name = "Pixl Ecosystem",
+  name = "Pixl",
   url = baseUrl,
-  description = "Discover the Pixl ecosystem - interconnected business tools for accounting, marketing, leads, branding, and more.",
+  description = "Pixl is a Belgian AI studio building interconnected business tools — accounting, company data, content — and writing openly about the AI systems behind them.",
 }: WebsiteSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
@@ -176,23 +176,20 @@ export function ProductPageStructuredData({
       category: "BusinessApplication, FinanceSoftware",
       offers: { price: "19", priceCurrency: "EUR" },
     },
-    "feen-marketing": {
+    bumpi: {
       category: "BusinessApplication, MarketingSoftware",
     },
-    "feen-lookup": {
+    "company-data": {
       category: "BusinessApplication, DataSoftware",
     },
-    "feen-lead": {
-      category: "BusinessApplication, SalesSoftware",
+    syncco: {
+      category: "BusinessApplication, ComplianceSoftware",
     },
-    "feen-branding": {
+    "pixl-branding": {
       category: "BusinessApplication, DesignSoftware",
     },
-    "feen-web": {
+    "pixl-web": {
       category: "BusinessApplication, WebsiteBuilder",
-    },
-    "feen-analytics": {
-      category: "BusinessApplication, AnalyticsSoftware",
     },
   };
 

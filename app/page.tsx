@@ -105,13 +105,22 @@ export default function Home() {
               <div className="eyebrow mb-3">{t("home.modulesTitle")}</div>
               <div className="flex items-center gap-5 font-mono text-xs text-muted-foreground">
                 <span>
-                  <span className="text-primary font-medium">2</span> {t("home.stats.online")}
+                  <span className="text-primary font-medium">
+                    {products.filter((p) => p.status === "live").length}
+                  </span>{" "}
+                  {t("home.stats.online")}
                 </span>
                 <span>
-                  <span className="text-gold font-medium">2</span> {t("home.stats.coming")}
+                  <span className="text-gold font-medium">
+                    {products.filter((p) => p.status === "coming-soon").length}
+                  </span>{" "}
+                  {t("home.stats.coming")}
                 </span>
                 <span>
-                  <span className="text-foreground/70 font-medium">3+</span> {t("home.stats.planned")}
+                  <span className="text-foreground/70 font-medium">
+                    {products.filter((p) => p.status === "planned").length}
+                  </span>{" "}
+                  {t("home.stats.planned")}
                 </span>
               </div>
             </div>

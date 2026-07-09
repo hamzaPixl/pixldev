@@ -44,8 +44,9 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+    <section id="contact" className="border-t border-border px-4 sm:px-6 py-14 sm:py-20">
       <div className="max-w-2xl mx-auto">
+        <div className="eyebrow mb-6">{t("footer.contactTitle")}</div>
         {/* Terminal header */}
         <div className="rounded-lg bg-card border border-border overflow-hidden shadow-lg">
           {/* Title bar */}
