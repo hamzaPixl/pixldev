@@ -49,8 +49,9 @@ export function HeroBackground() {
       {/* Pixel-dissolve overlay — denser at the edges, animates subtly */}
       <div className="pointer-events-none absolute inset-0 hero-pixels" aria-hidden />
 
-      {/* Film grain */}
-      <div className="pointer-events-none absolute inset-0 hero-grain opacity-[0.06]" aria-hidden />
+      {/* Film grain — oversized past the drift amplitude so the stepped jitter
+          never uncovers an edge (parent clips the overflow). */}
+      <div className="pointer-events-none absolute -inset-[12%] hero-grain opacity-[0.06]" aria-hidden />
 
       {/* Contrast scrims: radial behind text + edges */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_45%,rgba(8,9,10,0.72),transparent_70%)]" />
