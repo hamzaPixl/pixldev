@@ -142,60 +142,66 @@ export const illustrations = [
     tags: ["scene", "desk", "terminal", "layers", "green"],
   },
 
-  // ── Products (each in its brand accent) ──────────────────────
+  // ── Products (recognizable subject, each in its brand accent) ──
   {
     id: "feen",
     kind: "product",
     accent: "#5C7CFF",
     aspect: "16:9",
+    archetype: "still-life",
     concept:
-      "Streams of blue light resolving out of chaos into calm, ordered financial ledgers and reconciled rows, a sense of automated accounting settling into place.",
-    tags: ["abstract", "finance", "order", "blue"],
+      "Top-down view of a dark desk where scattered paper receipts and invoices slide into neat, aligned, reconciled stacks under a cool blue light — accounting settling itself into order.",
+    tags: ["desk", "receipts", "invoices", "order", "blue"],
   },
   {
     id: "company-data",
     kind: "product",
     accent: "#22D3EE",
     aspect: "16:9",
+    archetype: "map",
     concept:
-      "A cyan constellation of official records and registries connecting into one clear, authoritative graph of a Belgian company.",
-    tags: ["abstract", "data", "graph", "cyan"],
+      "A glowing cyan map of Belgium on a dark surface, fine data-lines linking official building facades and registry documents into one clear authoritative graph.",
+    tags: ["map", "belgium", "registry", "data", "cyan"],
   },
   {
     id: "bumpi",
     kind: "product",
     accent: "#A78BFA",
     aspect: "16:9",
+    archetype: "still-life",
     concept:
-      "Violet brand-light locking into one consistent form while off-brand fragments are repelled and fade to black — a guardrail holding a brand together.",
-    tags: ["abstract", "brand", "guardrail", "violet"],
+      "A neat fan of on-brand social media cards and posts laid on a dark studio surface, all locked to one consistent look, lit in violet — an AI content studio's output.",
+    tags: ["social-cards", "content", "brand", "studio", "violet"],
   },
   {
     id: "syncco",
     kind: "product",
     accent: "#34D399",
     aspect: "16:9",
+    archetype: "still-life",
     concept:
-      "Two emerald record-streams flowing toward each other and reconciling, small mismatches flaring red then snapping into aligned green.",
-    tags: ["abstract", "compliance", "reconcile", "emerald"],
+      "Two official documents on a dark surface sliding toward each other and aligning line by line under emerald light, one mismatch flaring then snapping into a clean checkmark — continuous compliance.",
+    tags: ["documents", "reconcile", "compliance", "checkmark", "emerald"],
   },
   {
     id: "pixl-web",
     kind: "product",
     accent: "#F472B6",
     aspect: "16:9",
+    archetype: "object",
     concept:
-      "A website assembling itself from blocks of pink light, agent-built, sections snapping into a clean layout across a dark field.",
-    tags: ["abstract", "web", "assembly", "pink"],
+      "A browser window floating on a dark screen where a clean website assembles itself section by section from blocks of pink light — an AI website builder at work.",
+    tags: ["browser", "website", "assembly", "builder", "pink"],
   },
   {
     id: "pixl-branding",
     kind: "product",
     accent: "#FBBF24",
     aspect: "16:9",
+    archetype: "still-life",
     concept:
-      "An amber identity system radiating consistent design tokens outward from a single source, a brand book coming into being.",
-    tags: ["abstract", "brand", "tokens", "amber"],
+      "An open brand book on a dark desk radiating amber light, its spread pages showing a logo grid, color swatches and type specimens — a brand identity system coming into being.",
+    tags: ["brand-book", "swatches", "logo-grid", "identity", "amber"],
   },
 ];
 
