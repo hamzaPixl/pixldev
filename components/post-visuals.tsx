@@ -1,9 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { BlogPost } from "@/lib/blog";
+
+// Author name → photo. A missing or broken image falls back to initials.
+const AUTHOR_AVATARS: Record<string, string> = {
+  "Hamza Mounir": "/authors/hamza-mounir.jpg",
+};
 
 export function formatPostDate(date: string, locale: string) {
   return new Date(date).toLocaleDateString(locale, {
@@ -13,7 +19,25 @@ export function formatPostDate(date: string, locale: string) {
   });
 }
 
-export function AuthorAvatar({ name }: { name: string }) {
+export function AuthorAvatar({ name, size = 32 }: { name: string; size?: number }) {
+  const [failed, setFailed] = useState(false);
+  const src = AUTHOR_AVATARS[name];
+
+  if (src && !failed) {
+    return (
+      <img
+        src={src}
+        alt={name}
+        width={size}
+        height={size}
+        style={{ width: size, height: size, flex: `0 0 ${size}px` }}
+        className="self-center rounded-full object-cover border border-border bg-elevated"
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+
   const initials = name
     .split(" ")
     .map((part) => part[0])
@@ -22,8 +46,8 @@ export function AuthorAvatar({ name }: { name: string }) {
     .toUpperCase();
   return (
     <span
-      style={{ width: 32, height: 32, flex: "0 0 32px" }}
-      className="self-center rounded-full bg-elevated border border-border inline-flex items-center justify-center font-mono text-[10px] text-muted-foreground"
+      style={{ width: size, height: size, flex: `0 0 ${size}px`, fontSize: Math.round(size * 0.3125) }}
+      className="self-center rounded-full bg-elevated border border-border inline-flex items-center justify-center font-mono text-muted-foreground"
     >
       {initials}
     </span>
