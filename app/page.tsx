@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { getVisibleProductsStatic } from "@/lib/products";
 import { getAllBlogPosts } from "@/lib/blog";
 import { ArticleCard } from "@/components/post-visuals";
+import { HeroBackground } from "@/components/hero-background";
+import { Reveal } from "@/components/reveal";
 import { SharedLayout } from "@/components/shared-layout";
 import { useLanguage } from "@/lib/language-context";
 import { HomePageStructuredData } from "@/components/structured-data";
@@ -24,16 +26,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative isolate overflow-hidden -mt-[60px] sm:-mt-[68px] min-h-[100svh] flex flex-col">
-        <img
-          src="/hero-horizon.jpg"
-          alt=""
-          fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Readability + blend overlays */}
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/30" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background/70 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent" />
+        <HeroBackground />
 
         <div className="relative flex-1 flex items-center justify-center px-4 sm:px-6 pt-32 pb-24">
           <div className="max-w-3xl mx-auto text-center">
@@ -47,26 +40,26 @@ export default function Home() {
                 <span className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-primary-foreground font-medium">
                   New
                 </span>
-                <span className="text-sm text-foreground/90 truncate max-w-[240px] sm:max-w-md">
+                <span className="text-sm text-white/90 truncate max-w-[240px] sm:max-w-md">
                   {latestPosts[0].title}
                 </span>
-                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                <ArrowRight className="w-3.5 h-3.5 text-white/60 shrink-0" />
               </Link>
             )}
 
-            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.06] mb-6">
+            <h1 className="font-display font-semibold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.06] mb-6 [text-shadow:0_2px_30px_rgba(0,0,0,0.55)]">
               <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "100ms" }}>
                 {t("home.heroTitle1")}
               </span>
               <br />
               <span className="inline-block animate-fade-in opacity-0" style={{ animationDelay: "220ms" }}>
-                <span className="text-primary">{t("home.heroTitle2")}</span>
-                <span className="animate-blink ml-1.5 font-mono font-normal">_</span>
+                {t("home.heroTitle2")}
+                <span className="animate-blink ml-1.5 font-mono font-normal text-primary">_</span>
               </span>
             </h1>
 
             <p
-              className="text-base sm:text-lg text-foreground/75 leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-in opacity-0"
+              className="text-base sm:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto mb-10 animate-fade-in opacity-0 [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]"
               style={{ animationDelay: "340ms" }}
             >
               {t("home.heroSubtitle")}
@@ -86,11 +79,11 @@ export default function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="rounded-full px-6 bg-white/5 border-white/15 backdrop-blur-md hover:bg-white/10"
+                className="rounded-full px-6 bg-white/5 border-white/15 backdrop-blur-md hover:bg-white/10 text-white"
               >
                 <a href="https://feen.be" target="_blank" rel="noopener noreferrer">
                   {t("common.tryFeen")}
-                  <ExternalLink className="text-muted-foreground" />
+                  <ExternalLink className="text-white/60" />
                 </a>
               </Button>
             </div>
@@ -99,17 +92,19 @@ export default function Home() {
       </section>
 
       {/* Modules */}
-      <main id="modules" className="px-4 sm:px-6 py-14 sm:py-20">
+      <main id="modules" className="px-4 sm:px-6 py-16 sm:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className="eyebrow mb-8">{t("home.modulesTitle")}</div>
-          <ProductBento products={products} />
+          <Reveal className="eyebrow mb-8">{t("home.modulesTitle")}</Reveal>
+          <Reveal delay={80}>
+            <ProductBento products={products} />
+          </Reveal>
         </div>
       </main>
 
       {/* From the blog */}
-      <section className="border-t border-border px-4 sm:px-6 py-14 sm:py-20">
+      <section className="border-t border-border px-4 sm:px-6 py-16 sm:py-24">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between gap-4 mb-8">
+          <Reveal className="flex items-end justify-between gap-4 mb-8">
             <div className="eyebrow">{t("blog.title")}</div>
             <Link
               href="/blog"
@@ -118,11 +113,13 @@ export default function Home() {
               {t("blog.allPosts")}
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
-          </div>
+          </Reveal>
 
           <div className="flex flex-col gap-4">
-            {latestPosts.map((post) => (
-              <ArticleCard key={post.slug} post={post} locale={dateLocaleMap[currentLanguage]} />
+            {latestPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 90}>
+                <ArticleCard post={post} locale={dateLocaleMap[currentLanguage]} />
+              </Reveal>
             ))}
           </div>
         </div>
