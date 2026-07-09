@@ -21,26 +21,40 @@ export function ContactForm() {
     setMounted(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
-    // Build mailto link
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:hello@pixldev.be?subject=${subject}&body=${body}`;
+    const form = e.currentTarget as HTMLFormElement;
 
-    setTimeout(() => {
-      window.location.href = mailtoLink;
+    try {
+      // Netlify Forms: POST urlencoded to the static form definition
+      const body = new URLSearchParams({ "form-name": "contact" });
+      new FormData(form).forEach((value, key) => {
+        if (typeof value === "string") body.append(key, value);
+      });
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
+
       setStatus("sent");
-
       setTimeout(() => {
         setStatus("idle");
         setFormData({ name: "", email: "", message: "" });
-      }, 2000);
-    }, 500);
+      }, 4000);
+    } catch {
+      // Fallback: open the visitor's mail client instead of dropping the message
+      const subject = encodeURIComponent(`Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:hello@pixldev.be?subject=${subject}&body=${body}`;
+      setStatus("sent");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   return (
@@ -75,13 +89,17 @@ export function ContactForm() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot for Netlify spam filtering */}
+              <input type="text" name="bot-field" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
               {/* Name field */}
               <div>
-                <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
+                <label htmlFor="contact-name" className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.name")}
                 </label>
                 <Input
+                  id="contact-name"
                   type="text"
+                  name="name"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -91,11 +109,13 @@ export function ContactForm() {
 
               {/* Email field */}
               <div>
-                <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
+                <label htmlFor="contact-email" className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.email")}
                 </label>
                 <Input
+                  id="contact-email"
                   type="email"
+                  name="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -105,10 +125,12 @@ export function ContactForm() {
 
               {/* Message field */}
               <div>
-                <label className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
+                <label htmlFor="contact-message" className="block text-[10px] sm:text-xs text-muted-foreground mb-2">
                   <span className="text-primary">{">"}</span> {t("contact.form.message")}
                 </label>
                 <Textarea
+                  id="contact-message"
+                  name="message"
                   required
                   rows={4}
                   value={formData.message}

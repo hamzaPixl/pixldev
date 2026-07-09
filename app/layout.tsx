@@ -88,6 +88,14 @@ export const metadata: Metadata = {
     { rel: "icon", type: "image/png", url: "/favicon-16x16.png", sizes: "16x16" },
   ],
   manifest: "/site.webmanifest",
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    }),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION && {
+      other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION },
+    }),
+  },
   alternates: {
     canonical: BASE_URL,
     types: {
