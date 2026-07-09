@@ -10,16 +10,23 @@
 
 export const PIXL_GREEN = "#30CB77";
 
-/** Shared style suffix appended to every prompt (the "house style"). */
+/**
+ * Shared style suffix — the Pixl "house style" applied to a RECOGNIZABLE
+ * subject (a face, a hand, an object, a landscape), not to abstract shapes.
+ * The signature stays constant (near-black, one green light, motion blur, grain,
+ * pixel grid, editorial); the subject changes per post so the set has variety.
+ * Deliberately does NOT ban humans/objects/robots — that ban is what flattened
+ * the first pass into interchangeable light-blobs.
+ */
 export const STYLE_BASE = [
-  "Cinematic editorial illustration, abstract and conceptual.",
-  "Near-black background (#08090A) with deep negative space.",
-  "A single {ACCENT} light source with soft bloom, and horizontal motion-blur",
-  "light-trail streaks crossing the frame.",
-  "Subtle film grain and a faint fine pixel grid texture.",
-  "High contrast, premium and engineered mood, shallow depth, one dominant hue.",
-  "No text, no words, no watermark, no logos, no UI, no literal robots,",
-  "no brains, no circuit-board clichés, no stock 3D. 8k, photographic light.",
+  "Shot as a cinematic editorial photograph, high-end art direction.",
+  "Near-black background (#08090A), deep negative space, one clear subject.",
+  "Lit by a single {ACCENT} light source with soft bloom and horizontal",
+  "motion-blur light streaks; the rest falls into shadow.",
+  "Subtle film grain, a faint fine pixel-grid texture, shallow depth of field,",
+  "high contrast. Premium, engineered, quietly cinematic — never stocky,",
+  "never a gradient blob, never an 'AI brain' or circuit-board cliché.",
+  "No text, no words, no watermark, no logo, no UI. Photographic light, 8k.",
 ].join(" ");
 
 /** Default model (OpenRouter). Fallback used if the primary returns no image. */
@@ -33,96 +40,106 @@ export const MODEL_FALLBACK = "google/gemini-2.5-flash-image";
  * aspect: target ratio (prompt hint; see README for the canvas trick).
  */
 export const illustrations = [
-  // ── Blog posts ───────────────────────────────────────────────
+  // ── Blog posts (each a recognizable subject, not an abstract blob) ──
   {
     id: "the-company-is-an-api-call",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "hand+object",
     concept:
-      "A factory made of light: geometric modules assembling themselves along one bright green horizon line, provisioning streams flowing outward, as if a company is being instantiated from a single call.",
-    tags: ["abstract", "systems", "horizon", "assembly", "green"],
+      "A single human hand pressing one glowing key on a dark mechanical keyboard; from that keystroke a stream of green light shoots to the right and assembles into the faint silhouette of a factory floor — one command instantiating a whole company.",
+    tags: ["hand", "keyboard", "factory", "instantiation", "green"],
   },
   {
     id: "i-changed-my-mind-three-times",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "portrait",
     concept:
-      "Three overlapping horizon arcs shifting position, motion-blur showing a path being revised over time, with one continuous bright green current surviving through all three.",
-    tags: ["abstract", "iteration", "arcs", "revision", "green"],
+      "A conceptual editorial portrait of one thoughtful person, their head captured in three overlapping motion-blur exposures as if turning to reconsider a decision, cool dark tones with a single bright green light streak crossing horizontally at eye level.",
+    tags: ["portrait", "motion-blur", "editorial", "revision", "green"],
   },
   {
     id: "no-consumer-no-build",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "figure+scene",
     concept:
-      "A single brightly-lit node on a dark grid, surrounded by unused connectors fading into black, with one taut green thread of light pulled toward it — value with no caller.",
-    tags: ["abstract", "node", "grid", "restraint", "green"],
+      "A lone human silhouette standing small in a vast empty dark hall, facing one distant green light glowing across the void — something fully built, waiting, with no one there to call it.",
+    tags: ["figure", "silhouette", "emptiness", "restraint", "green"],
   },
   {
     id: "the-baton-pattern",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "hands+object",
     concept:
-      "A small luminous token passed along a relay line of light between glowing stations, a motion-blur trail marking the handoff across a dark field.",
-    tags: ["abstract", "relay", "handoff", "token", "green"],
+      "Extreme close-up of two hands at the exact moment of a relay handoff, passing a small glowing green baton-token between them, motion-blur trailing the pass across a dark background.",
+    tags: ["hands", "relay", "handoff", "token", "green"],
   },
   {
     id: "simulating-my-whatsapp-group-with-llm-personas",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "portraits",
     concept:
-      "Five distinct points of light in conversation, their threads crossing and balancing on a dark stage, none dominating — a simulated group as a constellation of currents.",
-    tags: ["abstract", "multi-agent", "constellation", "balance", "green"],
+      "Five distinct human faces in profile emerging from darkness at different depths, each rim-lit by its own green glow as if mid-conversation — a simulated group chat rendered as a row of editorial portraits.",
+    tags: ["portraits", "profiles", "conversation", "personas", "green"],
   },
   {
     id: "a-practical-map-of-the-next-tech-decade",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "landscape",
     concept:
-      "A layered stack of horizon lines receding into depth, each one a brighter green than the last, mapping a sequence of eras.",
-    tags: ["abstract", "layers", "roadmap", "depth", "green"],
+      "A layered mountain-range landscape at night receding into fog, each successive ridge rimmed with a brighter green light than the one before, mapping a sequence of eras marching toward the horizon.",
+    tags: ["landscape", "mountains", "layers", "roadmap", "green"],
   },
   {
     id: "ai-is-not-about-models-its-about-systems",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "architecture",
     concept:
-      "A small bright model-core dwarfed by the operating structure of light rails around it, the system visibly larger and more important than the core.",
-    tags: ["abstract", "systems", "structure", "core", "green"],
+      "A vast dark engine room in dramatic perspective, its architecture of gantries and rails dwarfing a single small bright green core glowing at the center — the operating system visibly larger than the model.",
+    tags: ["architecture", "engine-room", "scale", "core", "green"],
   },
   {
     id: "fine-tuned-local-models-are-the-next-layer",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "object",
     concept:
-      "Small sharp specialized light-nodes crystallizing out of a broad diffuse green glow, specialization emerging from generality.",
-    tags: ["abstract", "specialization", "crystallize", "nodes", "green"],
+      "A glass prism resting on a dark reflective surface, taking a broad diffuse green glow entering from one side and focusing it into a few sharp precise beams exiting the other — general capability refined into specialized local models.",
+    tags: ["object", "prism", "focus", "specialization", "green"],
   },
   {
     id: "robotics-is-where-agentic-systems-become-real",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "object/robot",
     concept:
-      "An abstract embodied form emerging from a field of green light, agentic motion-blur suggesting a system stepping into the physical world.",
-    tags: ["abstract", "embodiment", "emergence", "motion", "green"],
+      "A sleek robotic hand emerging from darkness into a shaft of green rim-light, fingertips just making contact with a real physical surface — agentic systems stepping into the physical world.",
+    tags: ["robotics", "robotic-hand", "embodiment", "contact", "green"],
   },
   {
     id: "the-technical-stack-behind-my-ai-projects",
     kind: "blog",
     accent: PIXL_GREEN,
     aspect: "16:9",
+    archetype: "scene",
     concept:
-      "Two luminous interlocking layers — an execution loop and a knowledge field — bound together by green light over a dark ground.",
-    tags: ["abstract", "layers", "harness", "knowledge", "green"],
+      "A developer's dark desk at night lit only by a glowing terminal, with two translucent layers of green light — an execution loop and a knowledge field — hovering interlocked in the air above the keyboard.",
+    tags: ["scene", "desk", "terminal", "layers", "green"],
   },
 
   // ── Products (each in its brand accent) ──────────────────────

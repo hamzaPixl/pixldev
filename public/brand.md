@@ -73,9 +73,12 @@ Everything generated should look like it came from the same studio. The spec and
 generator live in `illustrations/` (manifest + OpenRouter pipeline); this is the
 direction they implement.
 
-**Reference feel:** cinematic editorial — motion-blur portraits, neon light
-trails on dark slate, high-contrast profiles. Abstract and conceptual, premium,
-photographic light. Never a gradient blob, never an "AI brain" or robot.
+**Reference feel:** cinematic editorial photography — a motion-blur portrait, a
+pair of hands, a single object, a night landscape — each a *recognizable*
+subject lit in our green, not an abstract blob. Premium, photographic, a little
+cinematic. The 2026 read is human-centred and tactile, not AI-polished. Never a
+gradient blob, never an "AI brain" or circuit-board cliché. Topical robotics
+(a robotic hand for a robotics post) is fine; generic sci-fi robots are not.
 
 **Shared recipe**
 - Canvas: near-black `#08090A`. Deep, matte, lots of negative space.
@@ -94,12 +97,22 @@ photographic light. Never a gradient blob, never an "AI brain" or robot.
 - Keep it readable at small sizes: high contrast, ≤ 2 lines of title.
 
 **Blog illustrations (≈16:9)**
-- Abstract, conceptual, matching the post's idea (e.g. a baton = a small object
-  passed along a line of light). Dark, one accent colour, pixel/grain texture.
+- Pick ONE archetype per post so the set stays varied, and depict a real,
+  recognizable subject in it — never repeat the same abstract shape:
+  - **portrait** — an editorial motion-blur face (e.g. "changed my mind" = one
+    head in three overlapping exposures).
+  - **hands + object** — close-up hands with a glowing token (e.g. a relay baton).
+  - **object / still-life** — a prism, a keyboard key, a device.
+  - **landscape** — a night mountain range, a horizon (e.g. a decade of eras as
+    receding ridges).
+  - **scene / architecture** — a dark engine room, a developer's desk at night.
+- Always the Pixl signature over it: near-black, one green light + motion blur,
+  film grain, pixel grid. Green `#30CB77` unless the post is product-specific.
 
 **Product illustrations**
-- One per module, in that module's accent hue, sitting in the bento illustration
-  slot. Abstract product metaphor over black, same grain + grid treatment.
+- One per module, in that module's accent hue, sitting in the bento slot and
+  washing the product-page header. Prefer a recognizable object/scene tied to the
+  product over pure abstraction; same near-black + grain + grid treatment.
 
 ## 8. Don'ts
 No pure neon green. No multi-colour gradients on text. No drop shadows on type.
