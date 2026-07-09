@@ -8,6 +8,7 @@ export interface BlogPost {
   icon: BlogPostData["icon"];
   date: string;
   authors: { name: string; linkedin: string }[];
+  image?: string;
   title: string;
   description: string;
   category: string;
@@ -22,6 +23,7 @@ function resolve(post: BlogPostData, lang: SupportedLanguages): BlogPost {
     icon: post.icon,
     date: post.date,
     authors: post.authors,
+    image: post.image,
     title: post.title[lang],
     description: post.description[lang],
     category: post.category[lang],

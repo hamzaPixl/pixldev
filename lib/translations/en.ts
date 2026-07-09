@@ -306,6 +306,7 @@ export const en = {
     subtitle: "Engineering insights, design patterns, and lessons from building AI-powered tools at Pixl.",
     noPosts: "No posts yet. Check back soon.",
     allPosts: "All posts",
+    readPost: "Read post",
     home: "Home",
     blog: "Blog",
     by: "By",

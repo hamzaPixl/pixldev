@@ -308,6 +308,7 @@ export const fr = {
     subtitle: "Insights d'ingénierie, design patterns et leçons tirées de la construction d'outils propulsés par l'IA chez Pixl.",
     noPosts: "Aucun article pour le moment. Revenez bientôt.",
     allPosts: "Tous les articles",
+    readPost: "Lire l'article",
     home: "Accueil",
     blog: "Blog",
     by: "Par",

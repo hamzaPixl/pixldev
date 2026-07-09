@@ -11,6 +11,7 @@ export interface BlogPostData {
   icon: LucideIcon;
   date: string;
   authors: { name: string; linkedin: string }[];
+  image?: string;
   title: Localized;
   description: Localized;
   category: Localized;

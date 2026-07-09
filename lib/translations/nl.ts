@@ -308,6 +308,7 @@ export const nl = {
     subtitle: "Engineering inzichten, design patterns en lessen uit het bouwen van AI-gestuurde tools bij Pixl.",
     noPosts: "Nog geen artikelen. Kom snel terug.",
     allPosts: "Alle artikelen",
+    readPost: "Lees het artikel",
     home: "Home",
     blog: "Blog",
     by: "Door",

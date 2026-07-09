@@ -35,6 +35,7 @@ const posts = slugs.map((slug) => {
     icon: base.icon,
     date: base.date,
     authors: base.authors,
+    image: base.image,
     title: Object.fromEntries(LANGS.map((l) => [l, perLang[l].title])),
     description: Object.fromEntries(LANGS.map((l) => [l, perLang[l].description])),
     category: Object.fromEntries(LANGS.map((l) => [l, perLang[l].category])),
@@ -61,6 +62,7 @@ out += `  slug: string;\n`;
 out += `  icon: LucideIcon;\n`;
 out += `  date: string;\n`;
 out += `  authors: { name: string; linkedin: string }[];\n`;
+out += `  image?: string;\n`;
 out += `  title: Localized;\n`;
 out += `  description: Localized;\n`;
 out += `  category: Localized;\n`;
@@ -76,6 +78,7 @@ for (const p of posts) {
   out += `    icon: ${p.icon},\n`;
   out += `    date: ${JSON.stringify(p.date)},\n`;
   out += `    authors: ${JSON.stringify(p.authors)},\n`;
+  if (p.image) out += `    image: ${JSON.stringify(p.image)},\n`;
   for (const field of ["title", "description", "category", "readTime"]) {
     out += `    ${field}: {\n`;
     for (const lang of LANGS) {
