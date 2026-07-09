@@ -70,14 +70,6 @@ export function SharedLayout({ children }: SharedLayoutProps) {
               <p className="text-sm text-muted-foreground">
                 {t("footer.company")}
               </p>
-              <a
-                href="https://www.feen.be/company-lookup?vat=BE0805449693"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pixel-link text-xs text-muted-foreground/70 mt-2 hover:text-foreground transition-colors"
-              >
-                {t("footer.vat")}
-              </a>
             </div>
 
             {/* Products */}
@@ -136,18 +128,6 @@ export function SharedLayout({ children }: SharedLayoutProps) {
                 >
                   {t("footer.linkedin")}
                 </a>
-                <a
-                  href="/feed.xml"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  RSS
-                </a>
-                <a
-                  href="/llms.txt"
-                  className="pixel-link text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  llms.txt
-                </a>
               </div>
             </div>
           </div>
@@ -155,7 +135,16 @@ export function SharedLayout({ children }: SharedLayoutProps) {
           {/* Bottom bar */}
           <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="font-mono text-xs text-muted-foreground/70">
-              © {new Date().getFullYear()} Pixl SRL · BE 0805.449.693 · Belgium
+              © {new Date().getFullYear()} Pixl SRL ·{" "}
+              <a
+                href="https://www.feen.be/company-lookup?vat=BE0805449693"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                BE 0805.449.693
+              </a>{" "}
+              · Belgium
             </p>
             <div className="flex items-center gap-4 font-mono text-xs">
               <a href="/sitemap.xml" className="text-muted-foreground/70 hover:text-foreground transition-colors">
