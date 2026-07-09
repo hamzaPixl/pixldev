@@ -69,15 +69,21 @@ feature lists without a workflow, and — in prose — the em-dash tic.
 Honesty rule: never present a planned/dormant/archived thing as live.
 
 ## 7. Art direction for generated visuals (OG cards, illustrations)
-Everything generated should look like it came from the same studio.
+Everything generated should look like it came from the same studio. The spec and
+generator live in `illustrations/` (manifest + OpenRouter pipeline); this is the
+direction they implement.
+
+**Reference feel:** cinematic editorial — motion-blur portraits, neon light
+trails on dark slate, high-contrast profiles. Abstract and conceptual, premium,
+photographic light. Never a gradient blob, never an "AI brain" or robot.
 
 **Shared recipe**
 - Canvas: near-black `#08090A`. Deep, matte, lots of negative space.
-- Light: one green light source (`#30CB77`), soft bloom, coming from one edge —
-  echo the horizon. For a product visual, tint the light with that product's hue.
-- Texture: subtle film grain + faint pixel/dot grid. Never glossy or stocky.
-- Mood: engineered, quiet, premium. Think "instrument panel at night", not "SaaS
-  gradient blob". No literal robots, no glowing brains, no stock 3D.
+- Light: one accent light source (green `#30CB77` by default), soft bloom, with
+  horizontal motion-blur light trails crossing the frame. Product visuals tint
+  the light with that product's hue.
+- Texture: subtle film grain + a faint pixel/dot grid. Never glossy or stocky.
+- Mood: engineered, quiet, premium. "Instrument panel at night."
 - Type on visuals: Space Grotesk display in `#F7F8F8`, mono eyebrow in the accent.
 
 **OG / social cards (1200×630)**
