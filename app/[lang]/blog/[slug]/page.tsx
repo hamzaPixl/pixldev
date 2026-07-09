@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return { title: "Post not found" };
 
   const localizedPath = `/${locale}/blog/${post.slug}`;
-  const ogImage = ogImageUrl(post.title, { eyebrow: post.category });
+  const ogImage = ogImageUrl(post.title, { eyebrow: post.category, image: post.image });
   const description =
     post.description.length > 160
       ? `${post.description.slice(0, 157).replace(/\s+\S*$/, "")}…`
@@ -62,7 +62,9 @@ export default async function LangBlogPostPage({ params }: PageProps) {
     datePublished: post.date,
     dateModified: post.date,
     inLanguage: locale,
-    image: absoluteUrl(ogImageUrl(post.title, { eyebrow: post.category })),
+    image: post.image
+      ? absoluteUrl(post.image)
+      : absoluteUrl(ogImageUrl(post.title, { eyebrow: post.category })),
     author: post.authors.map((a) => ({ "@type": "Person", name: a.name, sameAs: a.linkedin })),
     publisher: { "@id": ORGANIZATION_ID },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },

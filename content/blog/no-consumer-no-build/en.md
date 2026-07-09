@@ -1,5 +1,6 @@
 ---
 slug: "no-consumer-no-build"
+image: "/illustrations/blog/no-consumer-no-build.jpg"
 date: "2026-07-09"
 icon: Gauge
 authors:

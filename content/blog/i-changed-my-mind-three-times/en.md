@@ -1,5 +1,6 @@
 ---
 slug: "i-changed-my-mind-three-times"
+image: "/illustrations/blog/i-changed-my-mind-three-times.jpg"
 date: "2026-07-09"
 icon: Compass
 authors:

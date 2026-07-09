@@ -1,5 +1,6 @@
 ---
 slug: "the-baton-pattern"
+image: "/illustrations/blog/the-baton-pattern.jpg"
 date: "2026-02-16"
 icon: Workflow
 authors:

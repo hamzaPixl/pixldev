@@ -1,5 +1,6 @@
 ---
 slug: "simulating-my-whatsapp-group-with-llm-personas"
+image: "/illustrations/blog/simulating-my-whatsapp-group-with-llm-personas.jpg"
 date: "2026-04-19"
 icon: Users
 authors:

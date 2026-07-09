@@ -1,5 +1,6 @@
 ---
 slug: "fine-tuned-local-models-are-the-next-layer"
+image: "/illustrations/blog/fine-tuned-local-models-are-the-next-layer.jpg"
 date: "2026-04-08"
 icon: BrainCircuit
 authors:

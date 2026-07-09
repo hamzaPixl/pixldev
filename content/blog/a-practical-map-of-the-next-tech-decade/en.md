@@ -1,5 +1,6 @@
 ---
 slug: "a-practical-map-of-the-next-tech-decade"
+image: "/illustrations/blog/a-practical-map-of-the-next-tech-decade.jpg"
 date: "2026-04-08"
 icon: Network
 authors:

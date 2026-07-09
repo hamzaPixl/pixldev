@@ -85,6 +85,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const ogImage = ogImageUrl(productName, {
     eyebrow: "Product",
     accent: getProductBrand(id).ogAccent,
+    image: `/illustrations/product/${id}.jpg`,
   });
 
   return {

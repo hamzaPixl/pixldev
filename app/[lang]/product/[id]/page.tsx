@@ -43,7 +43,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!product || product.status === "hidden") return { title: "Product not found" };
 
   const seo = localizedSeo(id, locale);
-  const og = ogImageUrl(seo.name, { eyebrow: "Product", accent: getProductBrand(id).ogAccent });
+  const og = ogImageUrl(seo.name, {
+    eyebrow: "Product",
+    accent: getProductBrand(id).ogAccent,
+    image: `/illustrations/product/${id}.jpg`,
+  });
 
   return {
     title: seo.title,

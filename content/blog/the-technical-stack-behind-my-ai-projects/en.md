@@ -1,5 +1,6 @@
 ---
 slug: "the-technical-stack-behind-my-ai-projects"
+image: "/illustrations/blog/the-technical-stack-behind-my-ai-projects.jpg"
 date: "2026-04-08"
 icon: Cog
 authors:

@@ -1,5 +1,6 @@
 ---
 slug: "robotics-is-where-agentic-systems-become-real"
+image: "/illustrations/blog/robotics-is-where-agentic-systems-become-real.jpg"
 date: "2026-04-08"
 icon: BrainCircuit
 authors:

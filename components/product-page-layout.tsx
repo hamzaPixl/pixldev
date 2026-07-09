@@ -39,8 +39,18 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
         url={product.url}
       />
       {/* Banner */}
-      <section className={cn("px-4 sm:px-6 py-10 sm:py-14 border-b border-border bg-gradient-to-br", b.gradient)}>
-        <div className="max-w-4xl mx-auto">
+      <section className={cn("relative overflow-hidden px-4 sm:px-6 py-10 sm:py-14 border-b border-border bg-gradient-to-br", b.gradient)}>
+        {/* Product illustration wash — accent matches the brand, scrim keeps text legible */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url(/illustrations/product/${product.id}.jpg)` }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/85 via-background/45 to-background/10"
+        />
+        <div className="relative max-w-4xl mx-auto">
           {/* Back button */}
           <Link
             href="/"

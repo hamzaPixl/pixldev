@@ -26,6 +26,7 @@ export const blogPosts: BlogPostData[] = [
     icon: Compass,
     date: "2026-07-09",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/i-changed-my-mind-three-times.jpg",
     title: {
       en: "I Changed My Mind (Three Times)",
       fr: "J'ai changé d'avis (trois fois)",
@@ -248,6 +249,7 @@ Sterke meningen, geversioneerd. Dat is de hele methode.
     icon: Gauge,
     date: "2026-07-09",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/no-consumer-no-build.jpg",
     title: {
       en: "No Consumer, No Build",
       fr: "Pas de consommateur, pas de build",
@@ -479,6 +481,7 @@ Groei is bedrijven en services toevoegen — niet fundamenten herbouwen, en geen
     icon: Factory,
     date: "2026-07-09",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/the-company-is-an-api-call.jpg",
     title: {
       en: "The Company Is an API Call",
       fr: "L'entreprise est un appel d'API",
@@ -734,6 +737,7 @@ Het bedrijf is een API-call. De rest is operations.
     icon: Users,
     date: "2026-04-19",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/simulating-my-whatsapp-group-with-llm-personas.jpg",
     title: {
       en: "I simulated my WhatsApp group for 16 runs",
       fr: "J'ai simulé mon groupe WhatsApp pendant 16 runs",
@@ -1106,6 +1110,7 @@ _Open source, offline, geen WhatsApp-integratie. Audit trail in \`world/state/*.
     icon: Network,
     date: "2026-04-08",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/a-practical-map-of-the-next-tech-decade.jpg",
     title: {
       en: "A Practical Map of the Next Tech Decade",
       fr: "Une carte pratique de la prochaine décennie technologique",
@@ -1694,6 +1699,7 @@ Daar denk ik dat het echte decennium naartoe gaat.
     icon: Network,
     date: "2026-04-08",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/ai-is-not-about-models-its-about-systems.jpg",
     title: {
       en: "AI Is Not About Models. It's About Systems.",
       fr: "L'IA n'est pas une affaire de modèles. C'est une affaire de systèmes.",
@@ -2216,6 +2222,7 @@ Het draait om hoe je organisatie is gestructureerd om het te gebruiken.
     icon: BrainCircuit,
     date: "2026-04-08",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/fine-tuned-local-models-are-the-next-layer.jpg",
     title: {
       en: "Fine-Tuned Local Models Are the Next Layer",
       fr: "Les modèles locaux fine-tunés sont la couche suivante",
@@ -2816,6 +2823,7 @@ Maar betere specialisatie, betere training en beter systeemontwerp rond de plaat
     icon: BrainCircuit,
     date: "2026-04-08",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/robotics-is-where-agentic-systems-become-real.jpg",
     title: {
       en: "Robotics Is Where Agentic Systems Become Real",
       fr: "La robotique est l'endroit où les systèmes agentiques deviennent réels",
@@ -3434,6 +3442,7 @@ Dan betreedt het de fysieke wereld.
     icon: Cog,
     date: "2026-04-08",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"}],
+    image: "/illustrations/blog/the-technical-stack-behind-my-ai-projects.jpg",
     title: {
       en: "Under the Hood: Harness + Knowledge OS",
       fr: "La stack technique derrière mes projets IA : Harness + Knowledge OS",
@@ -3999,6 +4008,7 @@ Zet je ze samen, dan krijg je een veel sterkere basis om producten te bouwen, in
     icon: Workflow,
     date: "2026-02-16",
     authors: [{"name":"Hamza Mounir","linkedin":"https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"},{"name":"Sanawar Syed Azor Ali","linkedin":"https://www.linkedin.com/in/sanawar-syed/"}],
+    image: "/illustrations/blog/the-baton-pattern.jpg",
     title: {
       en: "The Baton Pattern",
       fr: "Le Baton Pattern",

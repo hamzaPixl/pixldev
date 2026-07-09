@@ -1,5 +1,6 @@
 ---
 slug: "the-company-is-an-api-call"
+image: "/illustrations/blog/the-company-is-an-api-call.jpg"
 date: "2026-07-09"
 icon: Factory
 authors:

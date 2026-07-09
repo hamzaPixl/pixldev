@@ -1,5 +1,6 @@
 ---
 slug: "ai-is-not-about-models-its-about-systems"
+image: "/illustrations/blog/ai-is-not-about-models-its-about-systems.jpg"
 date: "2026-04-08"
 icon: Network
 authors:

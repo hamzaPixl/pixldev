@@ -14,7 +14,14 @@ export async function GET(req: NextRequest) {
   const { searchParams, origin } = new URL(req.url);
   const title = (searchParams.get("title") ?? "Pixl").slice(0, 120);
   const eyebrow = searchParams.get("eyebrow") ?? "";
-  const image = searchParams.get("image") ?? `${origin}/hero-horizon.jpg`;
+  // Accept an absolute URL or a site-relative path; resolve relatives against
+  // the request origin so it works in dev and prod. Defaults to the hero image.
+  const imageParam = searchParams.get("image");
+  const image = imageParam
+    ? imageParam.startsWith("http")
+      ? imageParam
+      : `${origin}${imageParam.startsWith("/") ? "" : "/"}${imageParam}`
+    : `${origin}/hero-horizon.jpg`;
   let accent = searchParams.get("accent") ?? GREEN;
   if (!accent.startsWith("#")) accent = `#${accent}`;
 
