@@ -126,8 +126,39 @@ export function ProductPageLayout({ product, children }: ProductPageLayoutProps)
       <main className="px-4 sm:px-6 py-8 sm:py-12">
         <div className="max-w-4xl mx-auto">
           {children}
+          <ProductFaq productId={product.id} accentText={b.accentText} />
         </div>
       </main>
     </SharedLayout>
+  );
+}
+
+function ProductFaq({ productId, accentText }: { productId: string; accentText: string }) {
+  const { t, tObject } = useLanguage();
+  const faq = tObject<{ q: string; a: string }[]>(`productFaq.${productId}`);
+  if (!faq?.length) return null;
+
+  return (
+    <section className="mt-12 sm:mt-16">
+      <h2 className="font-display font-semibold tracking-tight text-xl sm:text-2xl text-foreground mb-6 flex items-center gap-3">
+        <span className={cn("w-2 h-2 rounded-sm bg-current shrink-0", accentText)} />
+        {t("productFaq.title")}
+      </h2>
+      <div className="divide-y divide-border rounded-lg border border-border overflow-hidden">
+        {faq.map((item, i) => (
+          <details key={i} className="group bg-card open:bg-elevated">
+            <summary className="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none text-foreground font-medium text-sm sm:text-base [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <span className="text-muted-foreground transition-transform duration-200 group-open:rotate-45 shrink-0 text-lg leading-none">
+                +
+              </span>
+            </summary>
+            <p className="px-5 pb-5 -mt-1 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              {item.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
   );
 }

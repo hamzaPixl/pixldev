@@ -1,6 +1,19 @@
 // Dutch translations
 
 export const nl = {
+  productFaq: {
+    title: "Veelgestelde vragen",
+    feen: [
+      { q: "Is Feen klaar voor de Belgische Peppol-verplichting voor e-facturatie?", a: "Ja. Feen verstuurt en ontvangt Peppol-facturen en voldoet aan de Belgische B2B-verplichting die sinds januari 2026 van kracht is." },
+      { q: "Hoeveel kost Feen?", a: "19 EUR per maand, alles inbegrepen. Geen kosten per transactie en geen verborgen kosten." },
+      { q: "Voor wie is Feen bedoeld?", a: "Voor Belgische kmo's, zelfstandigen en boekhouders die facturatie, documentverwerking en bankreconciliatie willen automatiseren." },
+    ],
+    "company-data": [
+      { q: "Waar haalt Company Data zijn gegevens vandaan?", a: "Uit officiële Belgische bronnen: de Kruispuntbank van Ondernemingen (KBO/BCE), de Nationale Bank van België, het Belgisch Staatsblad en de Peppol-directory. Elk gegeven vermeldt zijn bron en datum." },
+      { q: "Is er een gratis versie?", a: "Ja. Een gratis opzoeking op naam of btw-nummer, plus een API voor programmatische toegang." },
+      { q: "Kan ik de Peppol-gereedheid van een bedrijf controleren?", a: "Ja. Company Data geeft de Peppol-registratiestatus per schema terug, zodat je weet of een bedrijf e-facturen kan ontvangen." },
+    ],
+  },
   common: {
     backToEcosystem: "Terug naar Ecosysteem",
     launchProduct: "Starten",

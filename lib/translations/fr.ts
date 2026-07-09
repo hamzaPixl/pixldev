@@ -1,6 +1,19 @@
 // French translations
 
 export const fr = {
+  productFaq: {
+    title: "Questions fréquentes",
+    feen: [
+      { q: "Feen est-il prêt pour l'obligation belge de facturation électronique Peppol ?", a: "Oui. Feen envoie et reçoit des factures Peppol et respecte l'obligation B2B belge en vigueur depuis janvier 2026." },
+      { q: "Combien coûte Feen ?", a: "19 EUR par mois, tout compris. Aucun frais par transaction, aucun coût caché." },
+      { q: "À qui s'adresse Feen ?", a: "Aux PME belges, indépendants et comptables qui veulent automatiser la facturation, le traitement des documents et la réconciliation bancaire." },
+    ],
+    "company-data": [
+      { q: "D'où proviennent les données de Company Data ?", a: "De sources belges officielles : la Banque-Carrefour des Entreprises (BCE), la Banque Nationale de Belgique, le Moniteur Belge et l'annuaire Peppol. Chaque donnée est accompagnée de sa source et de sa date." },
+      { q: "Existe-t-il une version gratuite ?", a: "Oui. Une recherche gratuite par nom ou numéro de TVA, plus une API pour l'accès programmatique." },
+      { q: "Puis-je vérifier la disponibilité Peppol d'une entreprise ?", a: "Oui. Company Data renvoie le statut d'enregistrement Peppol par schéma, pour savoir si une entreprise peut recevoir des factures électroniques." },
+    ],
+  },
   common: {
     backToEcosystem: "Retour à l'Écosystème",
     launchProduct: "Lancer",

@@ -136,12 +136,31 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ],
   };
 
+  const faq = (en.productFaq as unknown as Record<string, { q: string; a: string }[]>)[id];
+  const faqSchema = faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      ) : null}
       <ProductPageClient productId={id} />
     </>
   );

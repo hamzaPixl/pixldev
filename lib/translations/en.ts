@@ -1,4 +1,17 @@
 export const en = {
+  productFaq: {
+    title: "Frequently asked questions",
+    feen: [
+      { q: "Is Feen ready for the Belgian Peppol e-invoicing mandate?", a: "Yes. Feen sends and receives Peppol e-invoices and is compliant with the Belgian B2B mandate in force since January 2026." },
+      { q: "How much does Feen cost?", a: "19 EUR per month, all-inclusive. No per-transaction fees and no hidden costs." },
+      { q: "Who is Feen for?", a: "Belgian SMEs, freelancers, and accountants who want to automate invoicing, document processing, and bank reconciliation." },
+    ],
+    "company-data": [
+      { q: "Where does Company Data get its information?", a: "Official Belgian sources: the Crossroads Bank for Enterprises (BCE/KBO), the National Bank of Belgium, the Moniteur Belge, and the Peppol directory. Every fact carries its source and date." },
+      { q: "Is there a free version?", a: "Yes. A free lookup by company name or VAT number, plus an API for programmatic access." },
+      { q: "Can I check a company's Peppol readiness?", a: "Yes. Company Data returns Peppol registration status per scheme, so you know whether a company can receive e-invoices." },
+    ],
+  },
   common: {
     backToEcosystem: "Back to Ecosystem",
     launchProduct: "Launch",
