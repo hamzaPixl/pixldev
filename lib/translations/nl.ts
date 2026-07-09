@@ -1,10 +1,6 @@
 // Dutch translations
 
 export const nl = {
-  meta: {
-    title: "Pixl Ecosystem | Van Idee naar Business",
-    description: "Alles wat u nodig heeft om uw bedrijf te lanceren, te runnen en te laten groeien. Boekhouding, marketing, leads, branding, analytics — allemaal verbonden. Uw visie, onze tools.",
-  },
   common: {
     backToEcosystem: "Terug naar Ecosysteem",
     launchProduct: "Starten",
@@ -58,7 +54,7 @@ export const nl = {
     successMessage: "Bericht klaar. E-mailclient openen...",
   },
   footer: {
-    company: "Pixl SRL: Innovatie voor Uw Toekomst",
+    company: "Modellen zijn niet het product. Systemen wel.",
     vat: "BTW: BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "VOLG ONS",
@@ -308,7 +304,7 @@ export const nl = {
     tryProduct: "Probeer {product}",
   },
   blog: {
-    title: "BLOG",
+    title: "Blog",
     subtitle: "Engineering inzichten, design patterns en lessen uit het bouwen van AI-gestuurde tools bij Pixl.",
     noPosts: "Nog geen artikelen. Kom snel terug.",
     allPosts: "Alle artikelen",

@@ -1,10 +1,6 @@
 // French translations
 
 export const fr = {
-  meta: {
-    title: "Pixl Ecosystem | Transformez Votre Idée en Business",
-    description: "Tout ce dont vous avez besoin pour lancer, gérer et développer votre entreprise. Comptabilité, marketing, prospection, branding, analytics — tout connecté. Votre vision, nos outils.",
-  },
   common: {
     backToEcosystem: "Retour à l'Écosystème",
     launchProduct: "Lancer",
@@ -58,7 +54,7 @@ export const fr = {
     successMessage: "Message prêt. Ouverture du client mail...",
   },
   footer: {
-    company: "Pixl SRL : Innover Votre Avenir",
+    company: "Les modèles ne sont pas le produit. Les systèmes, oui.",
     vat: "TVA : BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "SUIVEZ-NOUS",
@@ -308,7 +304,7 @@ export const fr = {
     tryProduct: "Essayer {product}",
   },
   blog: {
-    title: "BLOG",
+    title: "Blog",
     subtitle: "Insights d'ingénierie, design patterns et leçons tirées de la construction d'outils propulsés par l'IA chez Pixl.",
     noPosts: "Aucun article pour le moment. Revenez bientôt.",
     allPosts: "Tous les articles",

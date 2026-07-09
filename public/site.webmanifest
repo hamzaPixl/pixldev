@@ -1,11 +1,11 @@
 {
-  "name": "Pixl Ecosystem - All-in-One Business Tools",
+  "name": "Pixl — AI systems and business tools",
   "short_name": "Pixl",
-  "description": "Interconnected business tools for accounting, marketing, leads, and more.",
+  "description": "Belgian AI studio building interconnected business tools — accounting, company data, content — for SMEs, freelancers, and accountants.",
   "start_url": "/?source=pwa",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#00ff00",
+  "background_color": "#08090A",
+  "theme_color": "#08090A",
   "orientation": "portrait-primary",
   "categories": ["business", "productivity", "finance"],
   "icons": [
@@ -26,15 +26,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/og-image.png",
-      "sizes": "1536x1024",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Pixl Ecosystem Homepage"
     }
   ]
 }

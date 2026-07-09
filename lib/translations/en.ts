@@ -1,8 +1,4 @@
 export const en = {
-  meta: {
-    title: "Pixl Ecosystem | Turn Your Idea Into a Business",
-    description: "Everything you need to launch, run, and grow your business. Accounting, marketing, leads, branding, analytics — all connected. Your vision, our tools.",
-  },
   common: {
     backToEcosystem: "Back to Ecosystem",
     launchProduct: "Launch",
@@ -56,7 +52,7 @@ export const en = {
     successMessage: "Message ready. Opening mail client...",
   },
   footer: {
-    company: "Pixl SRL: Innovating Your Future",
+    company: "Models are not the product. Systems are.",
     vat: "VAT: BE 0805.449.693",
     contactTitle: "CONTACT",
     connectTitle: "CONNECT",
@@ -306,7 +302,7 @@ export const en = {
     tryProduct: "Try {product}",
   },
   blog: {
-    title: "BLOG",
+    title: "Blog",
     subtitle: "Engineering insights, design patterns, and lessons from building AI-powered tools at Pixl.",
     noPosts: "No posts yet. Check back soon.",
     allPosts: "All posts",
