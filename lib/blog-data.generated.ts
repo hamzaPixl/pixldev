@@ -494,7 +494,7 @@ Sterke meningen, geversioneerd. Dat is de hele methode.
       nl: "Geen consumer, geen build",
     },
     description: {
-      en: "I audited my own fleet and found the most expensive thing in software: working code with zero callers. The one rule that came out of it, and the discipline that makes it stick.",
+      en: "I audited my own fleet and found the most expensive thing in software: working code with zero callers. Here's the one rule that came out of it.",
       fr: "J'ai audité ma propre flotte et trouvé la chose la plus coûteuse du logiciel : du code qui marche, avec zéro appelant. La règle qui en est sortie, et la discipline qui la fait tenir.",
       nl: "Ik auditeerde mijn eigen vloot en vond het duurste in software: werkende code met nul callers. De ene regel die eruit voortkwam, en de discipline die ze doet standhouden.",
     },
@@ -1058,7 +1058,7 @@ Het storyboard is de video. De rest is rendering.
       nl: "Het bedrijf is een API-call",
     },
     description: {
-      en: "What I'm building isn't a set of tools. It's a company factory: one command provisions identity, context, memory, an AI budget, and services, then agents run the place.",
+      en: "What I'm building isn't a set of tools. It's a company factory: one command provisions identity, context, memory, budget and services. Then agents run it.",
       fr: "Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande provisionne l'identité, le contexte, la mémoire, un budget IA et des services, puis des agents font tourner la boutique.",
       nl: "Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando levert identiteit, context, geheugen, een AI-budget en diensten, en daarna runnen agents de zaak.",
     },
@@ -2627,7 +2627,7 @@ Eerst leert het systeem redeneren. Dan handelen. Dan komt het de kamer binnen.
       nl: "Onder de motorkap: harness + Knowledge OS",
     },
     description: {
-      en: "Two layers sit under almost everything I build: a harness that drives execution and a Knowledge OS that structures context. The shape and the reasoning, not the blueprint.",
+      en: "Two layers sit under almost everything I build: a harness that drives execution and a Knowledge OS that structures context. The shape, not the blueprint.",
       fr: "Deux couches sous presque tout ce que je construis : un harness qui pilote l'exécution et un Knowledge OS qui structure le contexte. La forme et le raisonnement, pas le plan détaillé.",
       nl: "Twee lagen onder bijna alles wat ik bouw: een harness die uitvoering stuurt en een Knowledge OS die context structureert. De vorm en de redenering, niet de blauwdruk.",
     },

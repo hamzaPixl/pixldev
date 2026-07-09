@@ -7,7 +7,7 @@ authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
 title: "The Company Is an API Call"
-description: "What I'm building isn't a set of tools. It's a company factory: one command provisions identity, context, memory, an AI budget, and services, then agents run the place."
+description: "What I'm building isn't a set of tools. It's a company factory: one command provisions identity, context, memory, budget and services. Then agents run it."
 category: "Vision"
 tags: ["AI-Native Company", "Agents", "Platform"]
 readTime: "4 min"

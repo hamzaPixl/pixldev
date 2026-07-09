@@ -7,7 +7,7 @@ authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
 title: "Under the Hood: Harness + Knowledge OS"
-description: "Two layers sit under almost everything I build: a harness that drives execution and a Knowledge OS that structures context. The shape and the reasoning, not the blueprint."
+description: "Two layers sit under almost everything I build: a harness that drives execution and a Knowledge OS that structures context. The shape, not the blueprint."
 category: "Engineering"
 tags: ["Harness", "Knowledge OS", "AI Architecture"]
 readTime: "3 min"

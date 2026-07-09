@@ -7,7 +7,7 @@ authors:
   - name: "Hamza Mounir"
     linkedin: "https://www.linkedin.com/in/hamza-mounir-0a7bb6139/"
 title: "No Consumer, No Build"
-description: "I audited my own fleet and found the most expensive thing in software: working code with zero callers. The one rule that came out of it, and the discipline that makes it stick."
+description: "I audited my own fleet and found the most expensive thing in software: working code with zero callers. Here's the one rule that came out of it."
 category: "Strategy"
 tags: ["Operating Doctrine", "Solo Builder", "Focus"]
 readTime: "2 min"
