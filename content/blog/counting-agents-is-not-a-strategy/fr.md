@@ -10,81 +10,53 @@ title: "Compter ses agents n'est pas une stratégie"
 description: "Le nombre d'agents dit combien de choses une entreprise peut démarrer. Il ne dit rien sur sa capacité à en finir une, intention, preuves et traçabilité intactes."
 category: "Vision"
 tags: ["Agents", "Systèmes", "Orchestration"]
-readTime: "5 min"
+readTime: "2 min"
 ---
 
-_Il existe une façon familière de paraître AI-native. On énumère les spécialistes qu'on a connectés, et on les compte. Le nombre grandit, et le nombre donne une sensation de progrès. Ce n'en est pas un._
+_Compter ses agents dit combien de choses on peut démarrer. Ça ne dit rien sur sa capacité à en finir une, son sens intact._
 
 ---
 
-## Ce qu'un catalogue cache
+## Le nombre qui ment
 
-Le nombre d'agents dit combien de choses une entreprise peut démarrer. Il ne dit rien sur sa capacité à en finir une avec son intention, ses preuves et sa traçabilité intactes. Ce sont des questions différentes, et seule la seconde décrit une entreprise AI-native.
+Le compte mesure combien de choses on peut démarrer. Pas si on peut en finir une avec son intention, ses preuves et sa traçabilité intactes. Seule la seconde décrit une entreprise AI-native.
 
-Un catalogue d'agents est facile à assembler et facile à admirer. Chaque spécialiste est compétent seul. Chacun produit une réponse propre quand on lui demande quelque chose.
+Un catalogue est facile à assembler et facile à admirer. Chaque spécialiste est compétent seul. Le problème vit dans l'espace entre eux.
 
-Le problème apparaît dans l'espace entre eux.
+## Le handoff, c'est là que le sens meurt
 
-Quand on passe d'un spécialiste au suivant, on transporte le contexte à la main. On colle le constat. On réexplique l'entreprise. On décide quelles parties de la réponse précédente comptent encore. On espère que le spécialiste suivant a compris le même objectif qu'on avait en tête. Rien dans le passage de relais n'est garanti, parce que rien dans ce passage n'est structuré. Il vit dans votre mémoire et dans le presse-papiers.
+Passez d'un spécialiste au suivant et vous portez le contexte à la main. Vous collez le constat. Vous réexpliquez l'entreprise. Vous espérez que le suivant a compris l'objectif que vous aviez en tête. Rien du handoff n'est garanti, parce que rien n'y est structuré. Il vit dans votre mémoire et votre presse-papiers.
 
-Alors le catalogue grandit, et votre charge de coordination grandit avec lui. Chaque nouveau spécialiste est une chose de plus à connecter à tout le reste. Un menu d'agents plus long ne réduit pas le travail. Il multiplie le nombre de coutures dont vous êtes personnellement responsable.
+Alors le catalogue grandit, et votre charge de coordination grandit avec lui. Un menu plus long ne réduit pas le travail. Il multiplie les coutures que **vous** êtes personnellement chargé de recoudre.
 
-C'est pourquoi "combien d'agents avez-vous" est la mauvaise question. Une entreprise ne vit pas le travail comme un ensemble de réponses isolées. Elle vit une séquence de décisions, chacune dépendant du raisonnement de la précédente. Si ce raisonnement ne survit pas au passage de relais, les réponses n'ont jamais vraiment été connectées. Elles semblaient connectées seulement parce que vous vous teniez entre elles.
+## Trois choses doivent survivre
 
-## Trois choses qui doivent survivre
+La vraie question, c'est de savoir si un workflow préserve trois choses d'un spécialiste au suivant.
 
-La question utile est de savoir si un workflow peut préserver trois choses d'un spécialiste au suivant.
+→ **L'intention.** Quand un spécialiste SEO signale une page faible, la raison est une raison business. Si elle ne voyage pas avec le constat, le spécialiste suivant optimise quelque chose de correct isolément et faux pour l'entreprise.
+→ **Les preuves.** Une recommandation sans ses preuves est une opinion bien tournée. Si le spécialiste suivant ne voit pas ce qui a été observé et pourquoi, il ne peut que deviner et produire quelque chose de plausible.
+→ **La traçabilité.** Quelqu'un doit pouvoir regarder en arrière et voir ce que le système a vu, ce qu'il a proposé, ce qu'un humain a approuvé, et ce qui a changé. Sans cette trace, impossible de lui faire confiance, de le déboguer ou de le répéter.
 
-La première est l'intention. Quand un spécialiste SEO signale une page faible, la raison pour laquelle cela compte est une raison métier, pas une raison technique. Cette raison doit voyager avec le constat. Sinon, un spécialiste en aval optimisera une chose correcte prise isolément et fausse pour l'entreprise.
+Une fenêtre de chat n'en préserve aucune. Une couche opérationnelle les préserve exprès.
 
-La deuxième est la preuve. Une recommandation sans sa preuve n'est qu'une opinion à la grammaire soignée. Si le spécialiste suivant ne peut pas voir ce qui a été observé, ce qui a été déduit et pourquoi une priorité a été assignée, il ne peut pas agir fidèlement sur la recommandation. Il ne peut que deviner ce que vous vouliez dire et produire quelque chose de plausible.
+## Un coin d'entrée, rendu concret
 
-La troisième est la traçabilité. Quelqu'un doit pouvoir revenir en arrière et comprendre ce que le système a vu, ce qu'il a proposé, ce qu'un humain a approuvé et ce qui a réellement changé. Sans cette trace, vous ne pouvez pas faire confiance au résultat, vous ne pouvez pas le déboguer quand il dérive, et vous ne pouvez pas le reproduire. Vous ne pouvez qu'espérer qu'il avait raison.
+Nuva ne le prouve pas avec un grand catalogue. Il le prouve avec un seul workflow, de bout en bout.
 
-Une fenêtre de chat pleine de spécialistes n'en préserve aucune par défaut. Une couche opérationnelle est ce qui les préserve à dessein.
+Saoul est le spécialiste SEO. Il inspecte votre présence numérique et renvoie des constats avec preuves, pas un score générique. Vous les passez en revue et sélectionnez ce qui vaut la peine d'être traité. Cette sélection est la frontière d'approbation, et elle est visible.
 
-## La différence entre une fenêtre et une couche
-
-Une fenêtre de chat est un endroit où des spécialistes répondent. Une couche opérationnelle est un endroit où les spécialistes travaillent autour du même contexte métier, se transmettent des résultats via des contrats typés, et passent par une approbation visible avant que quoi que ce soit ne change.
-
-La distinction est concrète.
-
-Dans une fenêtre, un constat est un paragraphe. Dans une couche, un constat est un objet structuré avec une preuve, une priorité, une provenance et une identité stable, de sorte qu'un autre spécialiste peut agir dessus sans que vous ayez à le réexpliquer.
-
-Dans une fenêtre, le passage de relais est un copier-coller. Dans une couche, le passage de relais est un contrat. Le spécialiste qui produit le travail et celui qui le consomme s'accordent sur une forme, ce qui veut dire que la transition peut être inspectée, rejouée et éprouvée plutôt que reconstruite chaque fois de mémoire.
-
-Dans une fenêtre, l'approbation est un moment informel qui survient quelque part dans la conversation puis disparaît. Dans une couche, l'approbation est une frontière explicite. Le système vous montre ce qu'il compte faire, vous décidez, et cette décision devient partie de l'enregistrement.
-
-Rien de tout cela n'écarte l'humain. C'est l'inverse. L'approbation humaine n'est pas une limitation qu'un meilleur modèle finira par effacer. C'est la fonctionnalité qui rend le levier sûr à utiliser. Le but est un levier coordonné, pas une autonomie incontrôlée, et une entreprise ne gagne le droit de coordonner davantage qu'après avoir prouvé qu'on peut lui faire confiance avec moins.
-
-## Un coin, rendu concret
-
-Nuva n'essaie pas de le prouver avec un grand catalogue. Il le prouve avec un seul workflow, de bout en bout.
-
-Saoul est le spécialiste SEO. Il inspecte la présence numérique d'une entreprise et renvoie des constats avec preuves, pas un score générique. Chaque constat porte ce qui a été observé et pourquoi cela compte.
-
-Vous passez ces constats en revue et sélectionnez ceux qui méritent qu'on agisse. Cette sélection est la frontière d'approbation, et elle est visible.
-
-À partir des preuves approuvées, Nuva prépare un brief de changement et le transmet à PERI, le spécialiste site web, via un contrat plutôt qu'un paragraphe. PERI prépare le travail sur le site et produit une prévisualisation. Vous la passez en revue avant que quoi que ce soit ne parte.
-
-Le chemin de la première observation au changement final est préservé. Plus tard, vous pouvez voir pourquoi un changement a été fait, sur quoi il reposait et qui l'a approuvé.
-
-La séquence est délibérément petite :
+À partir des preuves approuvées, Nuva prépare un brief de changement et le passe à PERI, le spécialiste site web, par un contrat plutôt qu'un paragraphe. PERI produit un aperçu. Vous le revoyez avant que quoi que ce soit ne parte.
 
 ```text
-preuve → recommandation → approbation → exécution → mesure
+preuves → recommandation → approbation → exécution → mesure
 ```
 
-Cette boucle n'est pas impressionnante parce qu'elle implique deux spécialistes. Deux agents dans une fenêtre de chat seraient aussi deux spécialistes. Elle est impressionnante parce que l'intention, la preuve et la traçabilité survivent tout du long, sans que vous serviez de couche de transport entre eux.
-
-C'est tout l'enjeu. Les spécialistes sont la partie facile. Garder le sens intact quand le travail circule entre eux est la partie difficile, et c'est la partie qui mérite d'être construite.
+Cette boucle n'est pas impressionnante parce qu'elle a deux spécialistes. Deux agents dans une fenêtre de chat seraient aussi deux spécialistes. Elle est impressionnante parce que **l'intention, les preuves et la traçabilité survivent tout du long** — sans que vous serviez de couche de transport entre eux.
 
 ## Ce qu'il faut mesurer à la place
 
-Si le nombre d'agents est la mauvaise mesure, en voici une meilleure. Pouvez-vous confier un workflow complet au système, approuver les parties qui demandent votre jugement, et faire confiance à la trace de ce qui s'est passé ensuite ?
+Laissez tomber le nombre de têtes. Posez une question plus dure : pouvez-vous confier un workflow complet au système, approuver les parties qui exigent votre jugement, et faire confiance au registre ensuite ?
 
-C'est une chose plus dure à revendiquer qu'un effectif de spécialistes. C'est aussi la seule version d'AI-native qui survit au contact d'une vraie entreprise.
+C'est la seule version d'AI-native qui survit au contact d'une vraie entreprise. Nuva Operations commence là, avec un workflow que vous pouvez suivre de la preuve au changement. Nuva Intelligence approfondit la même idée plus tard. D'abord un résultat digne de confiance, puis des spécialistes autour, puis un système que l'on peut opérer.
 
-Nuva Operations commence là, avec un workflow qu'une entreprise peut suivre de la preuve au changement. Nuva Intelligence approfondit la même idée plus tard, à mesure que la recherche, la planification et la compréhension financière rejoignent le même contexte. L'ordre compte. D'abord un résultat auquel on peut faire confiance, puis une équipe de spécialistes autour, puis un système qu'une entreprise peut opérer.
-
-Un catalogue d'agents est un inventaire de départ. Une couche opérationnelle est ce qui transforme cet inventaire en une entreprise qui peut réellement avancer.
+Un catalogue est un inventaire de départ. Une couche opérationnelle est ce qui le transforme en une entreprise qui peut vraiment bouger.

@@ -33,9 +33,9 @@ export const blogPosts: BlogPostData[] = [
       nl: "We lanceren geen bedrijf. We bewijzen één loop.",
     },
     description: {
-      en: "The honest version of Nuva: not a platform launch, just one audit-to-website loop, working end to end. Come break it.",
-      fr: "La version honnête de Nuva : pas un lancement de plateforme, juste une boucle audit-vers-site, fonctionnelle de bout en bout. Venez la casser.",
-      nl: "De eerlijke versie van Nuva: geen platformlancering, gewoon één audit-naar-website loop, werkend van begin tot eind. Kom ze breken.",
+      en: "Not a platform launch. One audit-to-website loop, working end to end. Come break it.",
+      fr: "Pas un lancement de plateforme. Une boucle audit-vers-site, fonctionnelle de bout en bout. Venez la casser.",
+      nl: "Geen platformlancering. Eén audit-naar-website loop, werkend van begin tot eind. Kom ze breken.",
     },
     category: {
       en: "Strategy",
@@ -43,9 +43,9 @@ export const blogPosts: BlogPostData[] = [
       nl: "Strategie",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Building in Public","Wedge","Focus"],
@@ -54,257 +54,167 @@ export const blogPosts: BlogPostData[] = [
     },
     content: {
       en: `
-_I could write the grand version of Nuva. It would sound good._
+_I could write the grand version of Nuva. It would sound good. So I'm not opening with it._
 
 ---
 
-A company where specialists handle SEO, websites, content, research, finance and strategy. A single operating layer that understands your business and moves work from analysis to action. The founder freed from holding everything together by hand.
-
-I believe in that version. But I am not going to open with it, because I have watched too many people open with the vision and never ship the first useful thing.
-
-So this is the honest account of where Nuva actually comes from, and why we are starting much smaller than the vision would suggest.
-
 ## Every piece started as personal help
 
-None of this began as a company plan.
+None of this began as a company plan. It began because I kept hitting the same walls in my own work.
 
-It began because I kept hitting the same walls while trying to run my own work. I needed to understand why a site was underperforming, so I built an SEO audit that returned evidence instead of a vague score. That became Saoul. I needed to turn direction into a real website instead of a one-off generated page, so I built an engine for that. That became PERI. Later the same thing happened around knowledge, research and financial questions.
+→ I needed to know why a site underperformed, so I built an audit that returns evidence, not a score. That became **Saoul**.
+→ I needed direction to become a real website, not a one-off page. That became **PERI**.
+→ Knowledge, research, finance followed the same way.
 
-Each one started as a way to increase my own capacity. Nothing more.
+Each one raised my own capacity. Nothing more. Then, out of habit, each got an API and an interface — so a friend could call it and form their own opinion. Private helpers quietly turned into products.
 
-## Then each one got a real API and interface
+## I was rebuilding a company, one utility at a time
 
-I have never been good at building a disposable script.
+For a long time I thought I was collecting tools. Then I looked at them by capability.
 
-When something helped me, my instinct was to give it clear boundaries. An API. An interface. A way for a friend or another builder to call it and form their own opinion. Part of that is engineering habit. Part of it is that I like sharing tools that changed how I saw a problem.
+Saoul wasn't a feature — it behaved like an SEO specialist. PERI behaved like a production team. The knowledge work behaved like organizational memory. I hadn't been building tools. I'd been **rebuilding the functions of a company** without building the organization around them.
 
-So each piece of help quietly turned into a product. Saoul could be pointed at a site and return structured findings. PERI could take direction and prepare a working site. They stopped being my private helpers and became things other people could actually test.
-
-That felt like progress. It also created a mess.
-
-## Only later did I see they were business functions
-
-For a long time I thought I was collecting useful tools.
-
-Then I looked at them by capability instead of by interface, and the picture changed. Saoul was not a feature. It behaved like an SEO specialist that inspects a presence, gathers evidence and recommends priorities. PERI behaved like a production team that turns direction into a working experience. The knowledge work behaved like organizational memory. The financial work behaved like the start of a finance function.
-
-I had not been building tools. I had been rebuilding the functions of a company, one utility at a time, without ever building the organization around them.
-
-And I was the organization. I ran every audit, decided what mattered, translated it into a brief, explained the business again, and checked that the result still matched the original problem. The tools got better. I stayed the bottleneck between them.
+And I was the organization. I ran every audit, wrote every brief, re-explained the business, checked the result still matched the problem. The tools got better. I stayed the bottleneck between them.
 
 ## The missing product was continuity
 
-The obvious next move would be to build a tenth tool. That would have been the wrong move.
+The obvious next move was a tenth tool. Wrong move.
 
-The thing I was missing was not another specialist. It was continuity. A shared context every specialist could work from. Clear responsibilities so each one stayed narrow enough to be good. Outputs that carried evidence and priority instead of collapsing into a paragraph. A visible transition from recommendation to action, with my approval as a required step rather than an afterthought.
+What I lacked wasn't another specialist. It was **continuity** — a shared context every specialist works from, clear responsibilities, outputs that carry evidence and priority, and a visible step from recommendation to action with my approval required.
 
-That is what Nuva is becoming: an operating layer where specialists work around the same business context, help a person decide, and carry that decision into controlled execution. Nuva Operations is the layer that does the work. Nuva Intelligence is the layer that helps you understand and direct it. Nuva Workspace is where you sit while it happens.
-
-Written out like that, it is still a big claim. Which is exactly why I am not asking anyone to believe the whole thing yet.
+That is what Nuva is becoming. Nuva Operations does the work. Nuva Intelligence helps you understand and direct it. Nuva Workspace is where you sit while it happens. Still a big claim — which is exactly why I'm not asking you to believe the whole thing yet.
 
 ## So we start with one complete loop
 
-The vision can get dangerously broad in a single sentence. SEO, websites, content, research, finance and strategy can quickly sound like a promise to run your entire business. That is not a credible first claim, and it is not a good place to start.
-
-So Nuva begins with one workflow, end to end.
-
-You give a site and some context. Saoul audits the digital presence and returns findings with evidence. Nuva helps prioritize them. You approve the changes worth making. PERI prepares the website work. You review the preview. The history keeps the path from observation to action.
+"SEO, websites, content, research, finance and strategy" quickly sounds like a promise to run your entire business. Not a credible first claim. So Nuva begins with one workflow, end to end.
 
 \`\`\`text
 audit → evidence → priorities → your approval → website changes → review
 \`\`\`
 
+You give a site and context. Saoul audits and returns findings with evidence. Nuva helps prioritize. You approve what's worth doing. PERI prepares the website work. You review the preview. The history keeps the path from observation to action.
+
 One specialist understands. Another executes. You stay in control. Nuva holds the continuity between them.
 
-That is deliberately smaller than everything I described above. It is also the only part real enough to prove whether the rest deserves to exist.
+## Why one loop beats a big launch
 
-## Why proving one loop beats a big launch
+A big launch is easier to promote and harder to trust. Announce the full platform and I'm asking you to believe a story instead of use a result — and I learn nothing, because a broad promise never tells you which part works.
 
-A big launch would be easier to promote and harder to trust.
+One loop tells the truth. Either the audit-to-website path saves real time and earns enough trust to repeat, or it doesn't. If it doesn't, I'd rather find out on one workflow than on twelve.
 
-If I announced the full platform today, I would be asking people to believe a story instead of use a result. And I would learn almost nothing, because a broad promise never tells you which specific part actually works.
+To be clear about what this is **not**: not full autonomy, not a replacement for your team, not an ERP. Human approval is a feature, not an apology.
 
-One complete loop tells you the truth. Either the audit-to-website path saves real time, produces better decisions and earns enough trust to repeat, or it does not. If it does, the larger idea has a foundation and I can add the next specialist without asking anyone to rebuild their context. If it does not, I would rather find out on one workflow than on twelve.
-
-I also want to be clear about what this is not. Nuva is not full autonomy. It is not a replacement for your team. It is not an ERP. Human approval is a feature, not a limitation I am apologizing for. The goal is coordinated leverage, with a person still choosing what deserves action.
-
-## Come test the loop
-
-This is the part where building in public actually means something.
-
-I am not showing a finished company. I am showing the first loop working, and I would rather have you poke at it than admire a roadmap. If you are a builder, I want you to call the APIs, push on the boundaries and tell me where the continuity breaks. If you run a small studio, a young SaaS or your own technical project, I want you to run a real audit through to a real website change and tell me whether it saved you anything.
-
-I learned how to build the product I wanted. Now I am building the team I wish I had when the real work began, and I am doing it one proven loop at a time.
+So come test it. If you build, call the APIs and tell me where the continuity breaks. If you run a small studio or a young SaaS, run a real audit through to a real website change and tell me whether it saved you anything.
 
 Follow along. Better yet, break the first one.
 `.trim(),
       fr: `
-_Je pourrais écrire la version grandiose de Nuva. Elle sonnerait bien._
+_Je pourrais écrire la version grandiose de Nuva. Elle sonnerait bien. Donc je n'ouvre pas avec._
 
 ---
 
-Une entreprise où des spécialistes gèrent le SEO, les sites web, le contenu, la recherche, la finance et la stratégie. Une seule couche opérationnelle qui comprend votre business et fait passer le travail de l'analyse à l'action. Le fondateur libéré de la charge de tout tenir à la main.
+## Chaque pièce a commencé comme une aide perso
 
-Je crois en cette version. Mais je ne vais pas ouvrir avec elle, parce que j'ai vu trop de gens ouvrir avec la vision et ne jamais livrer la première chose utile.
+Rien de tout ça n'a débuté comme un plan d'entreprise. Ça a débuté parce que je me heurtais aux mêmes murs dans mon propre travail.
 
-Alors voici le récit honnête d'où vient vraiment Nuva, et pourquoi on démarre bien plus petit que la vision ne le laisserait croire.
+→ Il me fallait savoir pourquoi un site sous-performait, alors j'ai construit un audit qui rend des preuves, pas un score. C'est devenu **Saoul**.
+→ Il me fallait qu'une direction devienne un vrai site, pas une page générée une fois. C'est devenu **PERI**.
+→ La connaissance, la recherche, la finance ont suivi le même chemin.
 
-## Chaque pièce a commencé comme une aide personnelle
+Chacune augmentait ma propre capacité. Rien de plus. Puis, par habitude, chacune a reçu une API et une interface — pour qu'un ami puisse l'appeler et se faire son propre avis. Des aides privées sont devenues des produits sans bruit.
 
-Rien de tout ça n'a commencé comme un plan d'entreprise.
+## Je reconstruisais une entreprise, un utilitaire à la fois
 
-Ça a commencé parce que je butais sans arrêt sur les mêmes murs en essayant de faire tourner mon propre travail. J'avais besoin de comprendre pourquoi un site sous-performait, alors j'ai construit un audit SEO qui renvoyait des preuves plutôt qu'un score flou. C'est devenu Saoul. J'avais besoin de transformer une direction en un vrai site web plutôt qu'en une page générée à usage unique, alors j'ai construit un moteur pour ça. C'est devenu PERI. Plus tard, la même chose s'est produite autour de la connaissance, de la recherche et des questions financières.
+Longtemps j'ai cru collectionner des outils. Puis je les ai regardés par capacité.
 
-Chacun a commencé comme un moyen d'augmenter ma propre capacité. Rien de plus.
+Saoul n'était pas une fonctionnalité — il se comportait comme un spécialiste SEO. PERI se comportait comme une équipe de production. Le travail sur la connaissance se comportait comme une mémoire organisationnelle. Je n'avais pas construit des outils. J'avais **reconstruit les fonctions d'une entreprise** sans construire l'organisation autour.
 
-## Puis chacun a eu une vraie API et une interface
-
-Je n'ai jamais été bon pour construire un script jetable.
-
-Quand quelque chose m'aidait, mon instinct était de lui donner des frontières claires. Une API. Une interface. Un moyen pour un ami ou un autre builder de l'appeler et de se faire sa propre opinion. En partie une habitude d'ingénieur. En partie parce que j'aime partager les outils qui ont changé ma façon de voir un problème.
-
-Alors chaque bout d'aide s'est discrètement transformé en produit. On pouvait pointer Saoul sur un site et récupérer des résultats structurés. PERI pouvait prendre une direction et préparer un site fonctionnel. Ils ont cessé d'être mes assistants privés pour devenir des choses que d'autres pouvaient réellement tester.
-
-Ça ressemblait à du progrès. Ça a aussi créé un bazar.
-
-## Ce n'est que plus tard que j'ai vu que c'étaient des fonctions d'entreprise
-
-Longtemps, j'ai cru que je collectionnais des outils utiles.
-
-Puis je les ai regardés par capacité plutôt que par interface, et le tableau a changé. Saoul n'était pas une fonctionnalité. Il se comportait comme un spécialiste SEO qui inspecte une présence, rassemble des preuves et recommande des priorités. PERI se comportait comme une équipe de production qui transforme une direction en une expérience fonctionnelle. Le travail de connaissance se comportait comme une mémoire organisationnelle. Le travail financier se comportait comme le début d'une fonction finance.
-
-Je n'avais pas construit des outils. J'avais reconstruit les fonctions d'une entreprise, un utilitaire à la fois, sans jamais construire l'organisation autour d'eux.
-
-Et l'organisation, c'était moi. Je lançais chaque audit, décidais de ce qui comptait, le traduisais en brief, réexpliquais le business, et vérifiais que le résultat correspondait toujours au problème d'origine. Les outils s'amélioraient. Je restais le goulot d'étranglement entre eux.
+Et l'organisation, c'était moi. Je lançais chaque audit, écrivais chaque brief, réexpliquais l'activité, vérifiais que le résultat collait toujours au problème. Les outils s'amélioraient. Je restais le goulot entre eux.
 
 ## Le produit manquant, c'était la continuité
 
-Le prochain mouvement évident aurait été de construire un dixième outil. Ç'aurait été le mauvais mouvement.
+Le prochain geste évident : un dixième outil. Mauvais geste.
 
-Ce qui me manquait, ce n'était pas un spécialiste de plus. C'était la continuité. Un contexte partagé sur lequel chaque spécialiste pouvait travailler. Des responsabilités claires pour que chacun reste assez étroit pour être bon. Des sorties qui portaient preuve et priorité au lieu de s'effondrer en un paragraphe. Une transition visible de la recommandation à l'action, avec mon approbation comme étape obligatoire plutôt qu'après coup.
+Ce qui me manquait, ce n'était pas un spécialiste de plus. C'était de la **continuité** — un contexte partagé dont part chaque spécialiste, des responsabilités claires, des sorties qui portent preuve et priorité, et un passage visible de la recommandation à l'action avec mon approbation requise.
 
-C'est ce que Nuva est en train de devenir : une couche opérationnelle où des spécialistes travaillent autour du même contexte business, aident une personne à décider, et portent cette décision vers une exécution contrôlée. Nuva Operations est la couche qui fait le travail. Nuva Intelligence est la couche qui vous aide à comprendre et à diriger. Nuva Workspace est là où vous vous tenez pendant que ça se passe.
+C'est ce que Nuva devient. Nuva Operations fait le travail. Nuva Intelligence t'aide à comprendre et à diriger. Nuva Workspace, c'est là que tu es assis pendant que ça se passe. Toujours une grande promesse — et c'est exactement pour ça que je ne te demande pas encore de croire au tout.
 
-Écrit comme ça, ça reste une grosse affirmation. C'est précisément pour ça que je ne demande à personne de croire l'ensemble pour l'instant.
+## Alors on démarre avec une seule boucle complète
 
-## Alors on commence par une seule boucle complète
-
-La vision peut devenir dangereusement large en une seule phrase. SEO, sites web, contenu, recherche, finance et stratégie peuvent vite ressembler à une promesse de faire tourner toute votre entreprise. Ce n'est pas une première affirmation crédible, et ce n'est pas un bon point de départ.
-
-Alors Nuva commence par un seul workflow, de bout en bout.
-
-Vous donnez un site et un peu de contexte. Saoul audite la présence digitale et renvoie des résultats avec preuves. Nuva aide à les prioriser. Vous approuvez les changements qui valent la peine. PERI prépare le travail sur le site. Vous relisez la preview. L'historique conserve le chemin de l'observation à l'action.
+"SEO, sites, contenu, recherche, finance et stratégie" sonne vite comme une promesse de gérer toute ton activité. Pas une première affirmation crédible. Alors Nuva commence par un seul workflow, de bout en bout.
 
 \`\`\`text
-audit → preuves → priorités → votre approbation → changements du site → relecture
+audit → preuves → priorités → ton approbation → changements du site → revue
 \`\`\`
 
-Un spécialiste comprend. Un autre exécute. Vous gardez le contrôle. Nuva tient la continuité entre eux.
+Tu donnes un site et du contexte. Saoul audite et rend des constats avec preuves. Nuva aide à prioriser. Tu approuves ce qui vaut le coup. PERI prépare le travail du site. Tu revois la preview. L'historique garde le chemin de l'observation à l'action.
 
-C'est délibérément plus petit que tout ce que j'ai décrit plus haut. C'est aussi la seule partie assez réelle pour prouver si le reste mérite d'exister.
+Un spécialiste comprend. Un autre exécute. Tu gardes le contrôle. Nuva tient la continuité entre eux.
 
-## Pourquoi prouver une boucle vaut mieux qu'un grand lancement
+## Pourquoi une boucle bat un grand lancement
 
-Un grand lancement serait plus facile à promouvoir et plus difficile à croire.
+Un grand lancement est plus facile à promouvoir et plus dur à faire confiance. Annonce la plateforme entière et je te demande de croire une histoire au lieu d'utiliser un résultat — et je n'apprends rien, car une promesse large ne dit jamais quelle partie marche.
 
-Si j'annonçais la plateforme complète aujourd'hui, je demanderais aux gens de croire une histoire au lieu d'utiliser un résultat. Et je n'apprendrais presque rien, parce qu'une promesse large ne vous dit jamais quelle partie précise fonctionne vraiment.
+Une boucle dit la vérité. Soit le chemin audit-vers-site fait gagner un vrai temps et gagne assez de confiance pour être répété, soit non. Sinon, je préfère l'apprendre sur un workflow que sur douze.
 
-Une boucle complète vous dit la vérité. Soit le chemin audit-vers-site fait gagner du temps réel, produit de meilleures décisions et gagne assez de confiance pour être répété, soit non. Si c'est le cas, la plus grande idée a une fondation et je peux ajouter le spécialiste suivant sans demander à qui que ce soit de reconstruire son contexte. Sinon, je préfère le découvrir sur un workflow que sur douze.
+Pour être clair sur ce que ce **n'est pas** : pas de l'autonomie totale, pas un remplacement de ton équipe, pas un ERP. L'approbation humaine est une fonctionnalité, pas une excuse.
 
-Je veux aussi être clair sur ce que ce n'est pas. Nuva n'est pas l'autonomie totale. Ce n'est pas un remplacement de votre équipe. Ce n'est pas un ERP. L'approbation humaine est une fonctionnalité, pas une limitation dont je m'excuse. Le but est un levier coordonné, avec une personne qui choisit encore ce qui mérite une action.
+Alors viens le tester. Si tu construis, appelle les APIs et dis-moi où la continuité casse. Si tu tiens un petit studio ou un jeune SaaS, fais passer un vrai audit jusqu'à un vrai changement de site et dis-moi si ça t'a fait gagner quelque chose.
 
-## Venez tester la boucle
-
-C'est ici que le building in public prend vraiment un sens.
-
-Je ne montre pas une entreprise finie. Je montre la première boucle en marche, et je préfère que vous la titilliez plutôt que d'admirer une roadmap. Si vous êtes builder, je veux que vous appeliez les APIs, que vous poussiez sur les frontières et que vous me disiez où la continuité casse. Si vous faites tourner un petit studio, un jeune SaaS ou votre propre projet technique, je veux que vous fassiez passer un vrai audit jusqu'à un vrai changement de site et que vous me disiez si ça vous a fait gagner quoi que ce soit.
-
-J'ai appris à construire le produit que je voulais. Maintenant je construis l'équipe que j'aurais aimé avoir quand le vrai travail a commencé, et je le fais une boucle prouvée à la fois.
-
-Suivez le fil. Mieux encore : cassez la première.
+Suis le fil. Mieux : casse la première boucle.
 `.trim(),
       nl: `
-_Ik zou de grootse versie van Nuva kunnen schrijven. Ze zou goed klinken._
+_Ik zou de grootse versie van Nuva kunnen schrijven. Ze zou goed klinken. Dus open ik er niet mee._
 
 ---
 
-Een bedrijf waar specialisten SEO, websites, content, research, finance en strategie behartigen. Eén operationele laag die je business begrijpt en werk van analyse naar actie brengt. De oprichter bevrijd van het met de hand bijeenhouden van alles.
-
-Ik geloof in die versie. Maar ik ga er niet mee openen, want ik heb te veel mensen zien openen met de visie en nooit het eerste nuttige ding zien opleveren.
-
-Dus dit is het eerlijke relaas van waar Nuva echt vandaan komt, en waarom we veel kleiner beginnen dan de visie zou doen vermoeden.
-
 ## Elk stuk begon als persoonlijke hulp
 
-Niets hiervan begon als een bedrijfsplan.
+Niets hiervan begon als een bedrijfsplan. Het begon omdat ik in mijn eigen werk tegen dezelfde muren botste.
 
-Het begon omdat ik telkens tegen dezelfde muren botste terwijl ik mijn eigen werk probeerde te runnen. Ik moest begrijpen waarom een site onderpresteerde, dus bouwde ik een SEO-audit die bewijs teruggaf in plaats van een vage score. Dat werd Saoul. Ik moest een richting omzetten in een echte website in plaats van een eenmalig gegenereerde pagina, dus bouwde ik daar een engine voor. Dat werd PERI. Later gebeurde hetzelfde rond kennis, research en financiële vragen.
+→ Ik moest weten waarom een site onderpresteerde, dus bouwde ik een audit die bewijs teruggeeft, geen score. Dat werd **Saoul**.
+→ Ik moest een richting tot een echte website maken, geen eenmalige pagina. Dat werd **PERI**.
+→ Kennis, research en finance volgden dezelfde weg.
 
-Elk ervan begon als een manier om mijn eigen capaciteit te vergroten. Niets meer.
+Elk stuk verhoogde mijn eigen capaciteit. Meer niet. Toen kreeg elk stuk, uit gewoonte, een API en een interface — zodat een vriend het kon aanroepen en zijn eigen mening kon vormen. Private hulpjes werden geruisloos producten.
 
-## Toen kreeg elk een echte API en interface
+## Ik herbouwde een bedrijf, één utility per keer
 
-Ik ben nooit goed geweest in het bouwen van een wegwerpscript.
+Lang dacht ik dat ik tools verzamelde. Toen bekeek ik ze per capaciteit.
 
-Als iets me hielp, was mijn instinct om het duidelijke grenzen te geven. Een API. Een interface. Een manier voor een vriend of een andere builder om het aan te roepen en zich een eigen oordeel te vormen. Deels een ingenieursgewoonte. Deels omdat ik graag tools deel die veranderd hebben hoe ik een probleem zag.
+Saoul was geen feature — het gedroeg zich als een SEO-specialist. PERI gedroeg zich als een productieteam. Het kenniswerk gedroeg zich als organisatiegeheugen. Ik had geen tools gebouwd. Ik had **de functies van een bedrijf herbouwd** zonder de organisatie eromheen te bouwen.
 
-Zo werd elk stukje hulp stilletjes een product. Je kon Saoul op een site richten en gestructureerde bevindingen terugkrijgen. PERI kon een richting nemen en een werkende site voorbereiden. Ze hielden op mijn privéhelpers te zijn en werden dingen die anderen echt konden testen.
-
-Dat voelde als vooruitgang. Het creëerde ook een rommel.
-
-## Pas later zag ik dat het bedrijfsfuncties waren
-
-Lang dacht ik dat ik nuttige tools aan het verzamelen was.
-
-Toen bekeek ik ze per capaciteit in plaats van per interface, en het beeld veranderde. Saoul was geen feature. Het gedroeg zich als een SEO-specialist die een aanwezigheid inspecteert, bewijs verzamelt en prioriteiten aanbeveelt. PERI gedroeg zich als een productieteam dat een richting omzet in een werkende ervaring. Het kenniswerk gedroeg zich als organisatorisch geheugen. Het financiële werk gedroeg zich als het begin van een finance-functie.
-
-Ik had geen tools gebouwd. Ik had de functies van een bedrijf herbouwd, één utility per keer, zonder ooit de organisatie eromheen te bouwen.
-
-En de organisatie, dat was ik. Ik draaide elke audit, besliste wat ertoe deed, vertaalde het naar een brief, legde de business opnieuw uit, en controleerde of het resultaat nog steeds overeenkwam met het oorspronkelijke probleem. De tools werden beter. Ik bleef het knelpunt ertussen.
+En de organisatie, dat was ik. Ik draaide elke audit, schreef elke brief, legde de business telkens opnieuw uit, checkte of het resultaat nog bij het probleem paste. De tools werden beter. Ik bleef de flessenhals ertussen.
 
 ## Het ontbrekende product was continuïteit
 
-De voor de hand liggende volgende zet zou zijn om een tiende tool te bouwen. Dat zou de verkeerde zet zijn geweest.
+De voor de hand liggende volgende zet: een tiende tool. Verkeerde zet.
 
-Wat ik miste was geen extra specialist. Het was continuïteit. Een gedeelde context waaruit elke specialist kon werken. Duidelijke verantwoordelijkheden zodat elk smal genoeg bleef om goed te zijn. Output die bewijs en prioriteit meedroeg in plaats van in te storten tot een paragraaf. Een zichtbare overgang van aanbeveling naar actie, met mijn goedkeuring als een vereiste stap in plaats van een bijzaak.
+Wat ik miste was geen specialist erbij. Het was **continuïteit** — een gedeelde context waar elke specialist van vertrekt, duidelijke verantwoordelijkheden, output die bewijs en prioriteit draagt, en een zichtbare stap van aanbeveling naar actie met mijn goedkeuring als vereiste.
 
-Dat is wat Nuva aan het worden is: een operationele laag waar specialisten rond dezelfde business-context werken, een persoon helpen beslissen, en die beslissing meedragen naar gecontroleerde uitvoering. Nuva Operations is de laag die het werk doet. Nuva Intelligence is de laag die je helpt begrijpen en sturen. Nuva Workspace is waar je zit terwijl het gebeurt.
+Dat is wat Nuva wordt. Nuva Operations doet het werk. Nuva Intelligence helpt je het begrijpen en sturen. Nuva Workspace is waar je zit terwijl het gebeurt. Nog steeds een grote claim — en net daarom vraag ik je nog niet om het geheel te geloven.
 
-Zo uitgeschreven blijft het een grote claim. Precies daarom vraag ik nog niemand om het geheel te geloven.
+## Dus we starten met één volledige loop
 
-## Dus we beginnen met één volledige loop
-
-De visie kan in één zin gevaarlijk breed worden. SEO, websites, content, research, finance en strategie kunnen al snel klinken als een belofte om je hele business te runnen. Dat is geen geloofwaardige eerste claim, en het is geen goed startpunt.
-
-Dus Nuva begint met één workflow, van begin tot eind.
-
-Je geeft een site en wat context. Saoul auditeert de digitale aanwezigheid en geeft bevindingen met bewijs terug. Nuva helpt ze te prioriteren. Jij keurt de veranderingen goed die de moeite waard zijn. PERI bereidt het websitewerk voor. Jij bekijkt de preview. De historiek bewaart het pad van observatie naar actie.
+"SEO, websites, content, research, finance en strategie" klinkt snel als een belofte om je hele business te runnen. Geen geloofwaardige eerste claim. Dus Nuva begint met één workflow, van begin tot eind.
 
 \`\`\`text
-audit → bewijs → prioriteiten → jouw goedkeuring → wijzigingen aan de site → review
+audit → bewijs → prioriteiten → jouw goedkeuring → websitewijzigingen → review
 \`\`\`
 
-Eén specialist begrijpt. Een andere voert uit. Jij houdt de controle. Nuva houdt de continuïteit ertussen.
+Je geeft een site en context. Saoul auditeert en geeft bevindingen met bewijs terug. Nuva helpt prioriteren. Jij keurt goed wat de moeite waard is. PERI bereidt het websitewerk voor. Jij bekijkt de preview. De historie houdt het pad van observatie naar actie vast.
 
-Dat is bewust kleiner dan alles wat ik hierboven beschreef. Het is ook het enige deel dat echt genoeg is om te bewijzen of de rest verdient te bestaan.
+Eén specialist begrijpt. Een andere voert uit. Jij houdt de controle. Nuva houdt de continuïteit ertussen vast.
 
-## Waarom één loop bewijzen beter is dan een grote lancering
+## Waarom één loop een grote lancering verslaat
 
-Een grote lancering zou makkelijker te promoten en moeilijker te vertrouwen zijn.
+Een grote lancering is makkelijker te promoten en moeilijker te vertrouwen. Kondig het volledige platform aan en ik vraag je een verhaal te geloven in plaats van een resultaat te gebruiken — en ik leer niets, want een brede belofte zegt nooit welk deel werkt.
 
-Als ik vandaag het volledige platform aankondigde, zou ik mensen vragen een verhaal te geloven in plaats van een resultaat te gebruiken. En ik zou bijna niets leren, want een brede belofte vertelt je nooit welk specifiek deel echt werkt.
+Eén loop zegt de waarheid. Ofwel bespaart het audit-naar-website pad echte tijd en wint het genoeg vertrouwen om herhaald te worden, ofwel niet. Zo niet, dan kom ik dat liever te weten op één workflow dan op twaalf.
 
-Eén volledige loop vertelt je de waarheid. Ofwel bespaart het audit-naar-website pad echte tijd, levert het betere beslissingen op en verdient het genoeg vertrouwen om te herhalen, ofwel niet. Als het lukt, heeft het grotere idee een fundament en kan ik de volgende specialist toevoegen zonder iemand te vragen zijn context te herbouwen. Als het niet lukt, kom ik dat liever te weten op één workflow dan op twaalf.
+Om duidelijk te zijn over wat dit **niet** is: geen volledige autonomie, geen vervanging van je team, geen ERP. Menselijke goedkeuring is een feature, geen excuus.
 
-Ik wil ook duidelijk zijn over wat dit niet is. Nuva is geen volledige autonomie. Het is geen vervanging voor je team. Het is geen ERP. Menselijke goedkeuring is een feature, geen beperking waarvoor ik me verontschuldig. Het doel is gecoördineerde hefboom, met een persoon die nog steeds kiest wat actie verdient.
-
-## Kom de loop testen
-
-Dit is het deel waar building in public echt iets betekent.
-
-Ik toon geen afgewerkt bedrijf. Ik toon de eerste loop die werkt, en ik heb liever dat je eraan prikt dan dat je een roadmap bewondert. Als je een builder bent, wil ik dat je de APIs aanroept, op de grenzen duwt en me vertelt waar de continuïteit breekt. Als je een klein studio, een jonge SaaS of je eigen technische project runt, wil ik dat je een echte audit doorloopt tot een echte websitewijziging en me vertelt of het je iets bespaard heeft.
-
-Ik heb geleerd hoe ik het product bouw dat ik wilde. Nu bouw ik het team dat ik gewild had toen het echte werk begon, en ik doe het één bewezen loop per keer.
+Dus kom het testen. Bouw je? Roep de APIs aan en zeg me waar de continuïteit breekt. Run je een klein studio of een jonge SaaS? Draai een echte audit door tot een echte websitewijziging en zeg me of het je iets bespaarde.
 
 Volg mee. Beter nog: breek de eerste.
 `.trim(),
@@ -322,8 +232,8 @@ Volg mee. Beter nog: breek de eerste.
       nl: "Goedkeuring is een feature, geen beperking",
     },
     description: {
-      en: "The AI that acts on its own looks powerful in a demo and is impossible to trust with a real company. Control isn't the tax on the value. It is the value.",
-      fr: "L'IA qui agit seule impressionne en démo et devient impossible à confier à une vraie entreprise. Le contrôle n'est pas la taxe sur la valeur. C'est la valeur.",
+      en: "AI that acts on its own demos beautifully and is impossible to trust with a real company. Control isn't the tax on the value. It is the value.",
+      fr: "Une IA qui agit seule fait une superbe démo et devient impossible à confier à une vraie entreprise. Le contrôle n'est pas la taxe sur la valeur. C'est la valeur.",
       nl: "AI die op eigen houtje handelt oogt krachtig in een demo en is onmogelijk toe te vertrouwen aan een echt bedrijf. Controle is niet de tol op de waarde. Ze is de waarde.",
     },
     category: {
@@ -332,9 +242,9 @@ Volg mee. Beter nog: breek de eerste.
       nl: "Strategie",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Governance","Trust","Human-in-the-loop"],
@@ -343,205 +253,145 @@ Volg mee. Beter nog: breek de eerste.
     },
     content: {
       en: `
-_There is a version of AI for business that sounds impressive and is quietly unusable._
+_There's a version of AI for business that demos beautifully and is quietly unusable._
 
 ---
 
-In that version, you describe a goal and the system goes off and does the work. It changes the website, sends the emails, updates the records and reports back that everything is handled. It feels powerful in a demo. It is very hard to trust with a real company.
+## The powerful demo, the unusable product
 
-The problem is not that the system acts. The problem is that you cannot see what it knew, what it decided, what it changed and why. When something goes wrong, and something always goes wrong, there is no thread to pull.
+You describe a goal. The system goes off and does the work — changes the site, sends the emails, updates the records, reports back that it's handled. Powerful in a demo. Impossible to trust with a real company.
 
-Nuva takes the opposite position. The point is not to remove the human from the loop. The point is to make the loop legible. Every important action passes through a boundary the person controls, and every step leaves evidence behind.
+The problem isn't that it acts. It's that you can't see what it knew, what it decided, what it changed, or why. When something breaks — and something always breaks — there's no thread to pull.
+
+Nuva takes the opposite position. Not remove the human from the loop. **Make the loop legible.** Every important action passes through a boundary the person controls, and every step leaves evidence.
 
 ## Speed without accountability is a liability
 
-Small companies are told they should move fast. That is good advice until it is applied to decisions that are hard to reverse.
+Small companies are told to move fast. Good advice, until it hits decisions that are hard to reverse.
 
-Publishing a change to a live site, spending a budget, contacting a customer or deleting a record are not the same class of action as drafting a paragraph. They have consequences that outlast the moment. A system that treats every action as equally safe is not fast. It is reckless with a nice interface.
+Publishing to a live site, spending a budget, contacting a customer, deleting a record — not the same class of action as drafting a paragraph. A system that treats every action as equally safe isn't fast. It's **reckless with a nice interface**.
 
-The useful distinction is between work you want done automatically and work you want proposed for a decision. Nuva makes that distinction first-class. Analysis, drafting and preparation can run freely, because they produce a recommendation, not a consequence. The transition from recommendation to a real, outward action is where a person is asked to approve.
+So Nuva splits work you want done automatically from work you want proposed for a decision. Analysis, drafting and preparation run freely — they produce a recommendation, not a consequence. The jump from recommendation to real, outward action is where a person approves. Not friction on top of the product. The shape of the product.
 
-This is not friction added on top of the product. It is the shape of the product.
+## Accountable execution, in five guarantees
 
-## What accountable execution actually means
+→ **Evidence before confidence.** Saoul, the SEO specialist, returns findings with the pages, signals and measurements behind them. You see why before you act.
+→ **Approval before impact.** PERI, the website specialist, prepares a change and a preview. It becomes real only when you approve — a recorded event, not a nod in a chat.
+→ **A durable history.** Observation, recommendation, approval, result — the whole path survives the conversation. Come back weeks later and reconstruct exactly what happened.
+→ **Clear boundaries.** A person acts inside a workspace, with a role, against the capabilities they're allowed. A specialist can't reach outside that scope.
+→ **Human override.** When you disagree, you win — and that's captured too. Override is expected, not an error.
 
-Accountable execution is a specific set of guarantees, not a slogan. In practice it means five things.
+None of this is exotic. It's the discipline any serious company already expects from the people it works with. Nuva holds AI specialists to the same standard.
 
-First, evidence before confidence. A specialist does not simply assert that something is wrong. Saoul, the SEO specialist, returns findings with the pages, signals and measurements behind them. You can see why a recommendation exists before you act on it.
+## Trust unlocks the next capability
 
-Second, approval before impact. A prepared change waits at an explicit boundary. PERI, the website specialist, can prepare a website change and a preview, but the change becomes real only when the person approves it. The approval is a recorded event, not an informal nod in a chat.
+No company hands its most sensitive work to a new system on day one. It starts small and visible, watches, and extends trust as the system earns it. That's why the audit-to-website loop goes first: understandable stakes, concrete evidence, an obvious approval point.
 
-Third, a durable history. The path from observation to recommendation to approval to result survives after the conversation ends. You can return weeks later and reconstruct what happened and on what basis.
-
-Fourth, clear boundaries on who can do what. A person acts inside a workspace, with a role, against the capabilities they are allowed to use. A specialist cannot reach data or actions outside that scope.
-
-Fifth, human override. When a person disagrees with the system, the person wins, and that decision is captured too. Override is expected, not an error state.
-
-None of this is exotic. It is the ordinary discipline that any serious company already expects from the people it works with. Nuva simply holds AI specialists to the same standard.
-
-## Trust is what makes the next capability possible
-
-There is a strategic reason this matters beyond the first workflow.
-
-A company does not hand its most sensitive work to a new system on day one. It starts with something visible and low risk, watches how the system behaves, and extends trust only as the system earns it. The audit to website workflow is deliberately chosen for this. The stakes are understandable, the evidence is concrete and the approval point is obvious.
-
-If that first loop is honest about what it observed, clear about what it recommends and reliable about waiting for approval, it earns the right to do more. Every added specialist inherits the same guarantees, so trust compounds instead of resetting.
-
-This is also why control cannot be an afterthought bolted on later. A system that learns to act without accountability is very hard to make accountable retroactively. A system that is accountable from its first action can safely grow into work that matters more. The boundary is cheaper to keep than to add.
+Get that loop honest, and every added specialist inherits the same guarantees. Trust compounds instead of resetting. Which is why control can't be bolted on later — a system accountable from its first action can grow into work that matters more. The boundary is cheaper to keep than to add.
 
 ## The founder stays a decision-maker
 
-There is a common fear that keeping a human in the loop just recreates the bottleneck the founder was trying to escape. It would, if approval meant re-doing the work by hand.
+The fear: keeping a human in the loop just rebuilds the bottleneck. It would — if approval meant redoing the work by hand.
 
-It does not. The founder is not asked to gather the evidence, write the brief and translate it into a change. The specialists do that. The founder is asked to make the decision that only a person with the full picture of the company should make. Approve these priorities. Publish this change. Hold that one.
+It doesn't. The specialists gather the evidence, write the brief, prepare the change. The founder makes the one call only a person with the full picture should make. Approve these priorities. Publish this. Hold that.
 
-That is a good use of a founder's attention, and a bad use of a founder's time is exactly what Nuva is built to remove. The goal is to take away the manual transport of context between tools, not the judgment about what the company should actually do.
+Removing the founder as an integration layer and removing the founder as a decision-maker are opposite goals. Nuva does the first and protects the second.
 
-Removing the founder as an integration layer and removing the founder as a decision-maker are opposite goals. Nuva pursues the first and protects the second.
-
-## Control is the product, not a constraint on it
-
-It is tempting to present approval, audit and permissions as the boring part, the compliance tax you pay to sell to larger customers. That framing undersells them.
-
-For a company deciding whether to let software touch its website, its data and its customers, the ability to see and control what happens is not a constraint on the value. It is the value. Autonomy that cannot be inspected is not a feature anyone responsible can buy.
-
-Nuva is built so that a person can always answer four questions about any result. What did the system observe. What did it recommend. What did I approve. What actually changed. A company that can answer those questions can move quickly and still sleep at night.
-
-That is the whole idea. Not an assistant that acts on your behalf in the dark. An operating layer that does the work in the open and asks before it matters.
+Autonomy that can't be inspected isn't a feature anyone responsible can buy. **Control isn't the tax on the value. It is the value.**
 `.trim(),
       fr: `
-_Il existe une version de l'IA pour l'entreprise qui impressionne et qui est, en silence, inutilisable._
+_Il existe une version de l'IA pour l'entreprise qui fait une superbe démo et reste discrètement inutilisable._
 
 ---
 
-Dans cette version, vous décrivez un objectif et le système part faire le travail. Il modifie le site, envoie les e-mails, met à jour les données et rapporte que tout est réglé. Ça semble puissant en démo. C'est très dur à confier à une vraie entreprise.
+## La démo puissante, le produit inutilisable
 
-Le problème n'est pas que le système agisse. Le problème, c'est que vous ne pouvez pas voir ce qu'il savait, ce qu'il a décidé, ce qu'il a changé et pourquoi. Quand quelque chose tourne mal, et quelque chose tourne toujours mal, il n'y a aucun fil à tirer.
+Vous décrivez un objectif. Le système part et fait le travail — modifie le site, envoie les e-mails, met à jour les données, rapporte que tout est réglé. Puissant en démo. Impossible à confier à une vraie entreprise.
 
-Nuva prend la position inverse. Le but n'est pas de retirer l'humain de la boucle. Le but est de rendre la boucle lisible. Chaque action importante passe par une frontière que la personne contrôle, et chaque étape laisse une trace derrière elle.
+Le problème n'est pas qu'il agisse. C'est que vous ne voyez pas ce qu'il savait, ce qu'il a décidé, ce qu'il a changé, ni pourquoi. Quand quelque chose casse — et quelque chose casse toujours — il n'y a aucun fil à tirer.
+
+Nuva prend la position inverse. Pas retirer l'humain de la boucle. **Rendre la boucle lisible.** Chaque action importante passe par une frontière que la personne contrôle, et chaque étape laisse une trace.
 
 ## La vitesse sans responsabilité est un risque
 
-On dit aux petites entreprises qu'elles doivent aller vite. C'est un bon conseil, jusqu'à ce qu'on l'applique à des décisions difficiles à annuler.
+On dit aux petites entreprises d'aller vite. Bon conseil, jusqu'à ce qu'il touche des décisions difficiles à annuler.
 
-Publier une modification sur un site en ligne, dépenser un budget, contacter un client ou supprimer un enregistrement ne sont pas de la même classe d'action que rédiger un paragraphe. Elles ont des conséquences qui survivent à l'instant. Un système qui traite chaque action comme aussi sûre n'est pas rapide. Il est imprudent avec une belle interface.
+Publier sur un site en ligne, dépenser un budget, contacter un client, supprimer un enregistrement — pas la même classe d'action que rédiger un paragraphe. Un système qui traite chaque action comme aussi sûre n'est pas rapide. Il est **imprudent avec une belle interface**.
 
-La distinction utile se situe entre le travail que vous voulez fait automatiquement et le travail que vous voulez proposé à une décision. Nuva fait de cette distinction un élément de premier plan. L'analyse, la rédaction et la préparation peuvent tourner librement, parce qu'elles produisent une recommandation, pas une conséquence. Le passage de la recommandation à une action réelle et tournée vers l'extérieur, c'est là qu'on demande à une personne d'approuver.
+Alors Nuva sépare le travail que vous voulez fait automatiquement du travail que vous voulez proposé à une décision. L'analyse, la rédaction et la préparation tournent librement — elles produisent une recommandation, pas une conséquence. Le passage de la recommandation à une action réelle, tournée vers l'extérieur, c'est là qu'une personne approuve. Pas une friction posée sur le produit. La forme du produit.
 
-Ce n'est pas une friction ajoutée par-dessus le produit. C'est la forme du produit.
+## L'exécution responsable, en cinq garanties
 
-## Ce que veut vraiment dire une exécution responsable
+→ **La preuve avant la confiance.** Saoul, le spécialiste SEO, renvoie ses constats avec les pages, les signaux et les mesures derrière. Vous voyez pourquoi avant d'agir.
+→ **L'approbation avant l'impact.** PERI, le spécialiste du site, prépare une modification et un aperçu. Elle ne devient réelle que quand vous approuvez — un événement enregistré, pas un accord de couloir dans un chat.
+→ **Un historique durable.** Observation, recommandation, approbation, résultat — tout le chemin survit à la conversation. Revenez des semaines plus tard et reconstituez exactement ce qui s'est passé.
+→ **Des frontières claires.** Une personne agit dans un espace de travail, avec un rôle, contre les capacités qui lui sont autorisées. Un spécialiste ne peut rien atteindre hors de ce périmètre.
+→ **Le dernier mot humain.** Quand vous n'êtes pas d'accord, vous l'emportez — et c'est capturé aussi. Le passage outre est attendu, pas une erreur.
 
-L'exécution responsable est un ensemble précis de garanties, pas un slogan. En pratique, elle signifie cinq choses.
+Rien de tout cela n'est exotique. C'est la discipline que toute entreprise sérieuse attend déjà des gens avec qui elle travaille. Nuva tient les spécialistes IA au même standard.
 
-D'abord, la preuve avant la confiance. Un spécialiste n'affirme pas simplement que quelque chose ne va pas. Saoul, le spécialiste SEO, renvoie des constats avec les pages, les signaux et les mesures qui les fondent. Vous pouvez voir pourquoi une recommandation existe avant d'agir dessus.
+## La confiance débloque la capacité suivante
 
-Ensuite, l'approbation avant l'impact. Une modification préparée attend à une frontière explicite. PERI, le spécialiste du site, peut préparer une modification et un aperçu, mais la modification ne devient réelle que lorsque la personne l'approuve. L'approbation est un événement enregistré, pas un accord informel dans un chat.
+Aucune entreprise ne confie son travail le plus sensible à un nouveau système dès le premier jour. Elle commence petit et visible, observe, et étend sa confiance à mesure que le système la mérite. C'est pourquoi la boucle audit-vers-site passe en premier : des enjeux compréhensibles, des preuves concrètes, un point d'approbation évident.
 
-Troisième, un historique durable. Le chemin de l'observation à la recommandation, à l'approbation, au résultat survit après la fin de la conversation. Vous pouvez revenir des semaines plus tard et reconstituer ce qui s'est passé et sur quelle base.
-
-Quatrième, des frontières claires sur qui peut faire quoi. Une personne agit dans un espace de travail, avec un rôle, contre les capacités qu'elle est autorisée à utiliser. Un spécialiste ne peut pas atteindre des données ou des actions hors de ce périmètre.
-
-Cinquième, le contrôle humain. Quand une personne est en désaccord avec le système, la personne l'emporte, et cette décision est elle aussi capturée. Le passage outre est attendu, ce n'est pas un état d'erreur.
-
-Rien de tout cela n'est exotique. C'est la discipline ordinaire que toute entreprise sérieuse attend déjà des gens avec qui elle travaille. Nuva tient simplement les spécialistes IA au même standard.
-
-## La confiance est ce qui rend la capacité suivante possible
-
-Il y a une raison stratégique qui compte au-delà du premier workflow.
-
-Une entreprise ne confie pas son travail le plus sensible à un nouveau système dès le premier jour. Elle commence par quelque chose de visible et à faible risque, observe comment le système se comporte, et n'étend sa confiance qu'à mesure que le système la mérite. Le workflow de l'audit au site est délibérément choisi pour cela. Les enjeux sont compréhensibles, la preuve est concrète et le point d'approbation est évident.
-
-Si cette première boucle est honnête sur ce qu'elle a observé, claire sur ce qu'elle recommande et fiable dans son attente de l'approbation, elle gagne le droit d'en faire plus. Chaque spécialiste ajouté hérite des mêmes garanties, alors la confiance se compose au lieu de repartir de zéro.
-
-C'est aussi pourquoi le contrôle ne peut pas être une réflexion après coup, boulonnée plus tard. Un système qui apprend à agir sans responsabilité est très difficile à rendre responsable rétroactivement. Un système responsable dès sa première action peut grandir en toute sécurité vers un travail qui compte davantage. La frontière coûte moins cher à garder qu'à ajouter.
+Rendez cette boucle honnête, et chaque spécialiste ajouté hérite des mêmes garanties. La confiance se compose au lieu de repartir de zéro. C'est pourquoi le contrôle ne peut pas être boulonné après coup — un système responsable dès sa première action peut grandir vers un travail qui compte davantage. La frontière coûte moins cher à garder qu'à ajouter.
 
 ## Le fondateur reste décideur
 
-Il y a une crainte courante : garder un humain dans la boucle ne ferait que recréer le goulot d'étranglement que le fondateur cherchait à fuir. Ce serait le cas, si approuver voulait dire refaire le travail à la main.
+La crainte : garder un humain dans la boucle ne ferait que recréer le goulot d'étranglement. Ce serait le cas — si approuver voulait dire refaire le travail à la main.
 
-Ce n'est pas le cas. On ne demande pas au fondateur de rassembler la preuve, d'écrire le brief et de le traduire en une modification. Les spécialistes le font. On demande au fondateur de prendre la décision que seule une personne ayant la vue d'ensemble de l'entreprise devrait prendre. Approuvez ces priorités. Publiez cette modification. Retenez celle-là.
+Ce n'est pas le cas. Les spécialistes rassemblent la preuve, écrivent le brief, préparent la modification. Le fondateur prend la seule décision que seule une personne ayant la vue d'ensemble devrait prendre. Approuvez ces priorités. Publiez ceci. Retenez cela.
 
-C'est un bon usage de l'attention d'un fondateur, et le mauvais usage du temps d'un fondateur est exactement ce que Nuva est fait pour retirer. Le but est de supprimer le transport manuel du contexte entre les outils, pas le jugement sur ce que l'entreprise devrait réellement faire.
+Retirer le fondateur comme couche d'intégration et le retirer comme décideur sont des objectifs opposés. Nuva fait le premier et protège le second.
 
-Retirer le fondateur comme couche d'intégration et retirer le fondateur comme décideur sont des objectifs opposés. Nuva poursuit le premier et protège le second.
-
-## Le contrôle est le produit, pas une contrainte sur lui
-
-Il est tentant de présenter l'approbation, l'audit et les permissions comme la partie ennuyeuse, la taxe de conformité qu'on paie pour vendre à des clients plus gros. Ce cadrage les sous-estime.
-
-Pour une entreprise qui décide si elle laisse un logiciel toucher son site, ses données et ses clients, la capacité à voir et à contrôler ce qui se passe n'est pas une contrainte sur la valeur. C'est la valeur. Une autonomie qu'on ne peut pas inspecter n'est pas une fonctionnalité que quiconque de responsable peut acheter.
-
-Nuva est construit pour qu'une personne puisse toujours répondre à quatre questions sur n'importe quel résultat. Qu'est-ce que le système a observé. Qu'est-ce qu'il a recommandé. Qu'est-ce que j'ai approuvé. Qu'est-ce qui a réellement changé. Une entreprise qui peut répondre à ces questions peut aller vite et dormir tranquille.
-
-C'est toute l'idée. Pas un assistant qui agit en votre nom dans le noir. Une couche opérationnelle qui fait le travail au grand jour et demande avant que ça compte.
+Une autonomie qu'on ne peut pas inspecter n'est pas une fonctionnalité qu'un responsable peut acheter. **Le contrôle n'est pas la taxe sur la valeur. C'est la valeur.**
 `.trim(),
       nl: `
-_Er bestaat een versie van AI voor bedrijven die indrukwekkend klinkt en stilletjes onbruikbaar is._
+_Er bestaat een versie van AI voor bedrijven die schitterend demoot en stilletjes onbruikbaar is._
 
 ---
 
-In die versie beschrijf je een doel en gaat het systeem het werk doen. Het wijzigt de website, verstuurt de e-mails, werkt de gegevens bij en meldt terug dat alles geregeld is. Het voelt krachtig in een demo. Het is heel moeilijk toe te vertrouwen aan een echt bedrijf.
+## De krachtige demo, het onbruikbare product
 
-Het probleem is niet dat het systeem handelt. Het probleem is dat je niet kan zien wat het wist, wat het besliste, wat het veranderde en waarom. Wanneer er iets misgaat, en er gaat altijd iets mis, is er geen draad om aan te trekken.
+Je beschrijft een doel. Het systeem gaat op pad en doet het werk — wijzigt de site, verstuurt de e-mails, werkt de gegevens bij, meldt terug dat alles geregeld is. Krachtig in een demo. Onmogelijk toe te vertrouwen aan een echt bedrijf.
 
-Nuva neemt het tegenovergestelde standpunt in. Het punt is niet om de mens uit de lus te halen. Het punt is om de lus leesbaar te maken. Elke belangrijke actie passeert een grens die de persoon beheert, en elke stap laat bewijs achter.
+Het probleem is niet dat het handelt. Het is dat je niet kan zien wat het wist, wat het besliste, wat het veranderde, of waarom. Wanneer er iets breekt — en er breekt altijd iets — is er geen draad om aan te trekken.
+
+Nuva neemt het tegenovergestelde standpunt in. Niet de mens uit de lus halen. **De lus leesbaar maken.** Elke belangrijke actie passeert een grens die de persoon beheert, en elke stap laat bewijs achter.
 
 ## Snelheid zonder verantwoording is een risico
 
-Kleine bedrijven krijgen te horen dat ze snel moeten bewegen. Dat is goed advies, tot het wordt toegepast op beslissingen die moeilijk terug te draaien zijn.
+Kleine bedrijven krijgen te horen dat ze snel moeten bewegen. Goed advies, tot het beslissingen raakt die moeilijk terug te draaien zijn.
 
-Een wijziging publiceren op een live site, een budget uitgeven, een klant contacteren of een record verwijderen zijn niet dezelfde klasse van actie als een paragraaf opstellen. Ze hebben gevolgen die het moment overleven. Een systeem dat elke actie als even veilig behandelt is niet snel. Het is roekeloos met een mooie interface.
+Een wijziging publiceren op een live site, een budget uitgeven, een klant contacteren, een record verwijderen — niet dezelfde klasse van actie als een paragraaf opstellen. Een systeem dat elke actie als even veilig behandelt is niet snel. Het is **roekeloos met een mooie interface**.
 
-Het nuttige onderscheid ligt tussen werk dat je automatisch gedaan wil en werk dat je voorgesteld wil zien voor een beslissing. Nuva maakt van dat onderscheid een eersteklas gegeven. Analyse, opstellen en voorbereiding mogen vrij lopen, want ze produceren een aanbeveling, geen gevolg. De overgang van aanbeveling naar een echte, naar buiten gerichte actie is waar aan een persoon gevraagd wordt om goed te keuren.
+Dus Nuva splitst werk dat je automatisch gedaan wil van werk dat je voorgesteld wil zien voor een beslissing. Analyse, opstellen en voorbereiding lopen vrij — ze produceren een aanbeveling, geen gevolg. De sprong van aanbeveling naar een echte, naar buiten gerichte actie is waar een persoon goedkeurt. Geen wrijving bovenop het product. De vorm van het product.
 
-Dit is geen wrijving die bovenop het product is gelegd. Het is de vorm van het product.
+## Verantwoorde uitvoering, in vijf garanties
 
-## Wat verantwoorde uitvoering echt betekent
+→ **Bewijs voor vertrouwen.** Saoul, de SEO-specialist, geeft bevindingen terug met de pagina's, signalen en metingen erachter. Je ziet waarom voor je handelt.
+→ **Goedkeuring voor impact.** PERI, de website-specialist, bereidt een wijziging en een preview voor. Ze wordt pas echt wanneer je goedkeurt — een geregistreerde gebeurtenis, geen knikje in een chat.
+→ **Een duurzame geschiedenis.** Observatie, aanbeveling, goedkeuring, resultaat — het hele pad overleeft het gesprek. Kom weken later terug en reconstrueer precies wat er gebeurde.
+→ **Duidelijke grenzen.** Een persoon handelt binnen een workspace, met een rol, tegen de mogelijkheden die hij mag gebruiken. Een specialist kan niets bereiken buiten dat bereik.
+→ **Menselijke override.** Wanneer je het oneens bent, win jij — en dat wordt ook vastgelegd. Override wordt verwacht, geen foutstatus.
 
-Verantwoorde uitvoering is een specifieke reeks garanties, geen slogan. In de praktijk betekent ze vijf dingen.
+Niets hiervan is exotisch. Het is de discipline die elk serieus bedrijf al verwacht van de mensen met wie het werkt. Nuva houdt AI-specialisten aan dezelfde standaard.
 
-Ten eerste, bewijs voor vertrouwen. Een specialist beweert niet zomaar dat er iets mis is. Saoul, de SEO-specialist, geeft bevindingen terug met de pagina's, signalen en metingen die eraan ten grondslag liggen. Je kan zien waarom een aanbeveling bestaat voor je erop handelt.
+## Vertrouwen ontgrendelt de volgende capaciteit
 
-Ten tweede, goedkeuring voor impact. Een voorbereide wijziging wacht aan een expliciete grens. PERI, de website-specialist, kan een websitewijziging en een preview voorbereiden, maar de wijziging wordt pas echt wanneer de persoon ze goedkeurt. De goedkeuring is een geregistreerde gebeurtenis, geen informeel knikje in een chat.
+Geen enkel bedrijf geeft zijn meest gevoelige werk op dag één uit handen aan een nieuw systeem. Het begint klein en zichtbaar, kijkt toe, en breidt vertrouwen uit naarmate het systeem het verdient. Daarom gaat de lus van audit naar website eerst: begrijpelijke inzet, concreet bewijs, een duidelijk goedkeuringspunt.
 
-Ten derde, een duurzame geschiedenis. Het pad van observatie naar aanbeveling, naar goedkeuring, naar resultaat overleeft nadat het gesprek eindigt. Je kan weken later terugkeren en reconstrueren wat er gebeurde en op welke basis.
-
-Ten vierde, duidelijke grenzen over wie wat mag. Een persoon handelt binnen een workspace, met een rol, tegen de mogelijkheden die hij mag gebruiken. Een specialist kan geen data of acties bereiken buiten dat bereik.
-
-Ten vijfde, menselijke override. Wanneer een persoon het oneens is met het systeem, wint de persoon, en die beslissing wordt ook vastgelegd. Override wordt verwacht, het is geen foutstatus.
-
-Niets hiervan is exotisch. Het is de gewone discipline die elk serieus bedrijf al verwacht van de mensen met wie het werkt. Nuva houdt AI-specialisten simpelweg aan dezelfde standaard.
-
-## Vertrouwen is wat de volgende capaciteit mogelijk maakt
-
-Er is een strategische reden waarom dit telt, voorbij het eerste workflow.
-
-Een bedrijf geeft zijn meest gevoelige werk niet op dag één uit handen aan een nieuw systeem. Het begint met iets zichtbaars en met laag risico, kijkt hoe het systeem zich gedraagt, en breidt vertrouwen alleen uit naarmate het systeem het verdient. Het workflow van audit naar website is daar bewust voor gekozen. De inzet is begrijpelijk, het bewijs is concreet en het goedkeuringspunt is duidelijk.
-
-Als die eerste lus eerlijk is over wat ze observeerde, duidelijk over wat ze aanbeveelt en betrouwbaar in het wachten op goedkeuring, verdient ze het recht om meer te doen. Elke toegevoegde specialist erft dezelfde garanties, dus vertrouwen stapelt zich op in plaats van opnieuw te beginnen.
-
-Dit is ook waarom controle geen bijgedachte kan zijn die er later op wordt geschroefd. Een systeem dat leert te handelen zonder verantwoording is heel moeilijk achteraf verantwoordelijk te maken. Een systeem dat verantwoordelijk is vanaf zijn eerste actie kan veilig doorgroeien naar werk dat meer telt. De grens is goedkoper om te behouden dan om toe te voegen.
+Maak die lus eerlijk, en elke toegevoegde specialist erft dezelfde garanties. Vertrouwen stapelt zich op in plaats van opnieuw te beginnen. Daarom kan controle er niet later op geschroefd worden — een systeem dat verantwoordelijk is vanaf zijn eerste actie kan doorgroeien naar werk dat meer telt. De grens is goedkoper om te behouden dan om toe te voegen.
 
 ## De oprichter blijft beslisser
 
-Er is een veelvoorkomende angst dat een mens in de lus houden gewoon het knelpunt herschept dat de oprichter probeerde te ontvluchten. Dat zou zo zijn, als goedkeuren betekende het werk met de hand opnieuw doen.
+De angst: een mens in de lus houden herschept gewoon het knelpunt. Dat zou zo zijn — als goedkeuren betekende het werk met de hand opnieuw doen.
 
-Dat is niet zo. De oprichter wordt niet gevraagd om het bewijs te verzamelen, de brief te schrijven en die te vertalen naar een wijziging. De specialisten doen dat. De oprichter wordt gevraagd om de beslissing te nemen die alleen een persoon met het volledige beeld van het bedrijf zou moeten nemen. Keur deze prioriteiten goed. Publiceer deze wijziging. Houd die tegen.
+Dat is niet zo. De specialisten verzamelen het bewijs, schrijven de brief, bereiden de wijziging voor. De oprichter neemt de ene beslissing die alleen een persoon met het volledige beeld zou moeten nemen. Keur deze prioriteiten goed. Publiceer dit. Houd dat tegen.
 
-Dat is een goed gebruik van de aandacht van een oprichter, en een slecht gebruik van de tijd van een oprichter is precies wat Nuva gebouwd is om weg te nemen. Het doel is om het handmatig verslepen van context tussen tools weg te nemen, niet het oordeel over wat het bedrijf werkelijk zou moeten doen.
+De oprichter wegnemen als integratielaag en hem wegnemen als beslisser zijn tegengestelde doelen. Nuva doet het eerste en beschermt het tweede.
 
-De oprichter wegnemen als integratielaag en de oprichter wegnemen als beslisser zijn tegengestelde doelen. Nuva streeft het eerste na en beschermt het tweede.
-
-## Controle is het product, geen beperking erop
-
-Het is verleidelijk om goedkeuring, audit en permissies voor te stellen als het saaie deel, de compliance-tol die je betaalt om aan grotere klanten te verkopen. Dat kader onderschat ze.
-
-Voor een bedrijf dat beslist of het software zijn website, zijn data en zijn klanten laat aanraken, is het vermogen om te zien en te beheren wat er gebeurt geen beperking op de waarde. Het is de waarde. Autonomie die niet geïnspecteerd kan worden is geen feature die iemand met verantwoordelijkheid kan kopen.
-
-Nuva is zo gebouwd dat een persoon altijd vier vragen kan beantwoorden over elk resultaat. Wat heeft het systeem geobserveerd. Wat heeft het aanbevolen. Wat heb ik goedgekeurd. Wat is er werkelijk veranderd. Een bedrijf dat die vragen kan beantwoorden kan snel bewegen en toch rustig slapen.
-
-Dat is het hele idee. Geen assistent die in het donker namens jou handelt. Een operationele laag die het werk in de open lucht doet en vraagt voor het telt.
+Autonomie die niet geïnspecteerd kan worden is geen feature die iemand met verantwoordelijkheid kan kopen. **Controle is niet de tol op de waarde. Ze is de waarde.**
 `.trim(),
     },
   },
@@ -567,9 +417,9 @@ Dat is het hele idee. Geen assistent die in het donker namens jou handelt. Een o
       nl: "Visie",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Agents","Systems","Orchestration"],
@@ -578,235 +428,151 @@ Dat is het hele idee. Geen assistent die in het donker namens jou handelt. Een o
     },
     content: {
       en: `
-_There is a familiar way to sound AI-native. You list the specialists you have connected, and you count them. The number grows, and the number feels like progress. It is not._
+_Counting your agents tells you how many things you can start. It says nothing about whether you can finish one with its meaning intact._
 
 ---
 
-## What a catalog hides
+## The number that lies
 
-The number of agents tells you how many things a company can start. It says nothing about whether the company can finish any of them with its intent, its evidence and its accountability intact. Those are different questions, and only the second one describes an AI-native company.
+The count measures how many things you can start. Not whether you can finish one with its intent, its evidence and its accountability intact. Only the second describes an AI-native company.
 
-A catalog of agents is easy to assemble and easy to admire. Each specialist is competent on its own. Each one produces a clean answer when you ask it something.
+A catalog is easy to assemble and easy to admire. Each specialist is competent on its own. The problem lives in the space between them.
 
-The problem appears in the space between them.
+## The handoff is where meaning dies
 
-When you move from one specialist to the next, you carry the context by hand. You paste the finding. You explain the company again. You decide which parts of the previous answer still matter. You hope the next specialist understood the same objective you had in mind. Nothing about the handoff is guaranteed, because nothing about the handoff is structured. It lives in your memory and in the clipboard.
+Move from one specialist to the next and you carry the context by hand. You paste the finding. You explain the company again. You hope the next one understood the objective you had in mind. Nothing about the handoff is guaranteed, because nothing about it is structured. It lives in your memory and your clipboard.
 
-So the catalog grows, and your coordination burden grows with it. Every new specialist is one more thing you have to connect to everything else. A longer menu of agents does not reduce the work. It multiplies the number of seams you are personally responsible for stitching.
+So the catalog grows, and your coordination burden grows with it. A longer menu doesn't reduce the work. It multiplies the seams **you** are personally responsible for stitching.
 
-This is why "how many agents do you have" is the wrong question. A company does not experience work as a set of isolated answers. It experiences a sequence of decisions, each one depending on the reasoning behind the last. If that reasoning does not survive the handoff, the answers were never really connected. They only looked connected because you were standing between them.
+## Three things have to survive
 
-## Three things that have to survive
+The real question is whether a workflow preserves three things from one specialist to the next.
 
-The useful question is whether a workflow can preserve three things from one specialist to the next.
+→ **Intent.** When an SEO specialist flags a weak page, the reason is a business reason. If it doesn't travel with the finding, the next specialist optimizes something correct in isolation and wrong for the company.
+→ **Evidence.** A recommendation without its evidence is an opinion with good grammar. If the next specialist can't see what was observed and why, it can only guess and produce something plausible.
+→ **Accountability.** Someone has to look back and see what the system saw, what it proposed, what a human approved, and what changed. Without that trail you can't trust it, debug it, or repeat it.
 
-The first is intent. When an SEO specialist flags a weak page, the reason it matters is a business reason, not a technical one. That reason has to travel with the finding. If it does not, a downstream specialist will optimize something that is correct in isolation and wrong for the company.
-
-The second is evidence. A recommendation without its evidence is just an opinion with good grammar. If the next specialist cannot see what was observed, what was inferred and why a priority was assigned, it cannot act on the recommendation faithfully. It can only guess at what you meant and produce something plausible.
-
-The third is accountability. Someone has to be able to look back and understand what the system saw, what it proposed, what a human approved and what actually changed. Without that trail, you cannot trust the output, you cannot debug it when it drifts, and you cannot repeat it. You can only hope it was right.
-
-A chat window full of specialists preserves none of these by default. An operating layer is the thing that preserves them on purpose.
-
-## The difference between a window and a layer
-
-A chat window is a place where specialists answer. An operating layer is a place where specialists work around the same business context, hand results to each other through typed contracts, and pass through a visible approval before anything changes.
-
-The distinction is concrete.
-
-In a window, a finding is a paragraph. In a layer, a finding is a structured object with evidence, a priority, a provenance and a stable identity, so another specialist can act on it without you re-explaining it.
-
-In a window, the handoff is a copy and paste. In a layer, the handoff is a contract. The specialist that produces work and the specialist that consumes it agree on a shape, which means the transition can be inspected, replayed and trusted instead of reconstructed each time from memory.
-
-In a window, approval is an informal moment that happens somewhere in the conversation and then disappears. In a layer, approval is an explicit boundary. The system shows you what it intends to do, you decide, and that decision becomes part of the record.
-
-None of this removes the human. It does the opposite. Human approval is not a limitation that a better model will eventually erase. It is the feature that makes the leverage safe to use. The goal is coordinated leverage, not uncontrolled autonomy, and a company earns the right to coordinate more only after it has proven it can be trusted with less.
+A chat window preserves none of these. An operating layer preserves them on purpose.
 
 ## One wedge, made concrete
 
-Nuva does not try to prove this with a large catalog. It proves it with one workflow, end to end.
+Nuva doesn't prove this with a large catalog. It proves it with one workflow, end to end.
 
-Saoul is the SEO specialist. It inspects a company's digital presence and returns findings with evidence, not a generic score. Each finding carries what was observed and why it matters.
+Saoul is the SEO specialist. It inspects your digital presence and returns findings with evidence, not a generic score. You review them and select what's worth acting on. That selection is the approval boundary, and it's visible.
 
-You review those findings and select the ones worth acting on. That selection is the approval boundary, and it is visible.
-
-From the approved evidence, Nuva prepares a change brief and hands it to PERI, the website specialist, through a contract rather than a paragraph. PERI prepares the website work and produces a preview. You review it before anything ships.
-
-The path from the first observation to the final change is preserved. Later, you can see why a change was made, what it was based on and who approved it.
-
-The sequence is deliberately small:
+From the approved evidence, Nuva prepares a change brief and hands it to PERI, the website specialist, through a contract rather than a paragraph. PERI produces a preview. You review it before anything ships.
 
 \`\`\`text
 evidence → recommendation → approval → execution → measurement
 \`\`\`
 
-That loop is not impressive because it involves two specialists. Two agents in a chat window would also be two specialists. It is impressive because the intent, the evidence and the accountability survive the whole way through, without you acting as the transport layer between them.
-
-That is the entire point. The specialists are the easy part. Keeping the meaning intact as work moves between them is the hard part, and it is the part worth building.
+That loop isn't impressive because it has two specialists. Two agents in a chat window would also be two specialists. It's impressive because **intent, evidence and accountability survive the whole way through** — without you acting as the transport layer between them.
 
 ## What to measure instead
 
-If the number of agents is the wrong measure, here is a better one. Can you hand a complete workflow to the system, approve the parts that need your judgment, and trust the record of what happened afterward?
+Drop the headcount. Ask a harder question: can you hand a complete workflow to the system, approve the parts that need your judgment, and trust the record afterward?
 
-That is a harder thing to claim than a headcount of specialists. It is also the only version of AI-native that survives contact with a real company.
+That's the only version of AI-native that survives contact with a real company. Nuva Operations starts there, with one workflow you can watch from evidence to change. Nuva Intelligence deepens the same idea later. First a result you can trust, then specialists around it, then a system you can operate on.
 
-Nuva Operations begins there, with one workflow that a company can watch from evidence to change. Nuva Intelligence deepens the same idea later, as research, planning and financial understanding join the same context. The order matters. First a result you can trust, then a team of specialists around it, then a system a company can operate on.
-
-A catalog of agents is a starting inventory. An operating layer is what turns that inventory into a company that can actually move.
+A catalog is a starting inventory. An operating layer is what turns it into a company that can actually move.
 `.trim(),
       fr: `
-_Il existe une façon familière de paraître AI-native. On énumère les spécialistes qu'on a connectés, et on les compte. Le nombre grandit, et le nombre donne une sensation de progrès. Ce n'en est pas un._
+_Compter ses agents dit combien de choses on peut démarrer. Ça ne dit rien sur sa capacité à en finir une, son sens intact._
 
 ---
 
-## Ce qu'un catalogue cache
+## Le nombre qui ment
 
-Le nombre d'agents dit combien de choses une entreprise peut démarrer. Il ne dit rien sur sa capacité à en finir une avec son intention, ses preuves et sa traçabilité intactes. Ce sont des questions différentes, et seule la seconde décrit une entreprise AI-native.
+Le compte mesure combien de choses on peut démarrer. Pas si on peut en finir une avec son intention, ses preuves et sa traçabilité intactes. Seule la seconde décrit une entreprise AI-native.
 
-Un catalogue d'agents est facile à assembler et facile à admirer. Chaque spécialiste est compétent seul. Chacun produit une réponse propre quand on lui demande quelque chose.
+Un catalogue est facile à assembler et facile à admirer. Chaque spécialiste est compétent seul. Le problème vit dans l'espace entre eux.
 
-Le problème apparaît dans l'espace entre eux.
+## Le handoff, c'est là que le sens meurt
 
-Quand on passe d'un spécialiste au suivant, on transporte le contexte à la main. On colle le constat. On réexplique l'entreprise. On décide quelles parties de la réponse précédente comptent encore. On espère que le spécialiste suivant a compris le même objectif qu'on avait en tête. Rien dans le passage de relais n'est garanti, parce que rien dans ce passage n'est structuré. Il vit dans votre mémoire et dans le presse-papiers.
+Passez d'un spécialiste au suivant et vous portez le contexte à la main. Vous collez le constat. Vous réexpliquez l'entreprise. Vous espérez que le suivant a compris l'objectif que vous aviez en tête. Rien du handoff n'est garanti, parce que rien n'y est structuré. Il vit dans votre mémoire et votre presse-papiers.
 
-Alors le catalogue grandit, et votre charge de coordination grandit avec lui. Chaque nouveau spécialiste est une chose de plus à connecter à tout le reste. Un menu d'agents plus long ne réduit pas le travail. Il multiplie le nombre de coutures dont vous êtes personnellement responsable.
+Alors le catalogue grandit, et votre charge de coordination grandit avec lui. Un menu plus long ne réduit pas le travail. Il multiplie les coutures que **vous** êtes personnellement chargé de recoudre.
 
-C'est pourquoi "combien d'agents avez-vous" est la mauvaise question. Une entreprise ne vit pas le travail comme un ensemble de réponses isolées. Elle vit une séquence de décisions, chacune dépendant du raisonnement de la précédente. Si ce raisonnement ne survit pas au passage de relais, les réponses n'ont jamais vraiment été connectées. Elles semblaient connectées seulement parce que vous vous teniez entre elles.
+## Trois choses doivent survivre
 
-## Trois choses qui doivent survivre
+La vraie question, c'est de savoir si un workflow préserve trois choses d'un spécialiste au suivant.
 
-La question utile est de savoir si un workflow peut préserver trois choses d'un spécialiste au suivant.
+→ **L'intention.** Quand un spécialiste SEO signale une page faible, la raison est une raison business. Si elle ne voyage pas avec le constat, le spécialiste suivant optimise quelque chose de correct isolément et faux pour l'entreprise.
+→ **Les preuves.** Une recommandation sans ses preuves est une opinion bien tournée. Si le spécialiste suivant ne voit pas ce qui a été observé et pourquoi, il ne peut que deviner et produire quelque chose de plausible.
+→ **La traçabilité.** Quelqu'un doit pouvoir regarder en arrière et voir ce que le système a vu, ce qu'il a proposé, ce qu'un humain a approuvé, et ce qui a changé. Sans cette trace, impossible de lui faire confiance, de le déboguer ou de le répéter.
 
-La première est l'intention. Quand un spécialiste SEO signale une page faible, la raison pour laquelle cela compte est une raison métier, pas une raison technique. Cette raison doit voyager avec le constat. Sinon, un spécialiste en aval optimisera une chose correcte prise isolément et fausse pour l'entreprise.
+Une fenêtre de chat n'en préserve aucune. Une couche opérationnelle les préserve exprès.
 
-La deuxième est la preuve. Une recommandation sans sa preuve n'est qu'une opinion à la grammaire soignée. Si le spécialiste suivant ne peut pas voir ce qui a été observé, ce qui a été déduit et pourquoi une priorité a été assignée, il ne peut pas agir fidèlement sur la recommandation. Il ne peut que deviner ce que vous vouliez dire et produire quelque chose de plausible.
+## Un coin d'entrée, rendu concret
 
-La troisième est la traçabilité. Quelqu'un doit pouvoir revenir en arrière et comprendre ce que le système a vu, ce qu'il a proposé, ce qu'un humain a approuvé et ce qui a réellement changé. Sans cette trace, vous ne pouvez pas faire confiance au résultat, vous ne pouvez pas le déboguer quand il dérive, et vous ne pouvez pas le reproduire. Vous ne pouvez qu'espérer qu'il avait raison.
+Nuva ne le prouve pas avec un grand catalogue. Il le prouve avec un seul workflow, de bout en bout.
 
-Une fenêtre de chat pleine de spécialistes n'en préserve aucune par défaut. Une couche opérationnelle est ce qui les préserve à dessein.
+Saoul est le spécialiste SEO. Il inspecte votre présence numérique et renvoie des constats avec preuves, pas un score générique. Vous les passez en revue et sélectionnez ce qui vaut la peine d'être traité. Cette sélection est la frontière d'approbation, et elle est visible.
 
-## La différence entre une fenêtre et une couche
-
-Une fenêtre de chat est un endroit où des spécialistes répondent. Une couche opérationnelle est un endroit où les spécialistes travaillent autour du même contexte métier, se transmettent des résultats via des contrats typés, et passent par une approbation visible avant que quoi que ce soit ne change.
-
-La distinction est concrète.
-
-Dans une fenêtre, un constat est un paragraphe. Dans une couche, un constat est un objet structuré avec une preuve, une priorité, une provenance et une identité stable, de sorte qu'un autre spécialiste peut agir dessus sans que vous ayez à le réexpliquer.
-
-Dans une fenêtre, le passage de relais est un copier-coller. Dans une couche, le passage de relais est un contrat. Le spécialiste qui produit le travail et celui qui le consomme s'accordent sur une forme, ce qui veut dire que la transition peut être inspectée, rejouée et éprouvée plutôt que reconstruite chaque fois de mémoire.
-
-Dans une fenêtre, l'approbation est un moment informel qui survient quelque part dans la conversation puis disparaît. Dans une couche, l'approbation est une frontière explicite. Le système vous montre ce qu'il compte faire, vous décidez, et cette décision devient partie de l'enregistrement.
-
-Rien de tout cela n'écarte l'humain. C'est l'inverse. L'approbation humaine n'est pas une limitation qu'un meilleur modèle finira par effacer. C'est la fonctionnalité qui rend le levier sûr à utiliser. Le but est un levier coordonné, pas une autonomie incontrôlée, et une entreprise ne gagne le droit de coordonner davantage qu'après avoir prouvé qu'on peut lui faire confiance avec moins.
-
-## Un coin, rendu concret
-
-Nuva n'essaie pas de le prouver avec un grand catalogue. Il le prouve avec un seul workflow, de bout en bout.
-
-Saoul est le spécialiste SEO. Il inspecte la présence numérique d'une entreprise et renvoie des constats avec preuves, pas un score générique. Chaque constat porte ce qui a été observé et pourquoi cela compte.
-
-Vous passez ces constats en revue et sélectionnez ceux qui méritent qu'on agisse. Cette sélection est la frontière d'approbation, et elle est visible.
-
-À partir des preuves approuvées, Nuva prépare un brief de changement et le transmet à PERI, le spécialiste site web, via un contrat plutôt qu'un paragraphe. PERI prépare le travail sur le site et produit une prévisualisation. Vous la passez en revue avant que quoi que ce soit ne parte.
-
-Le chemin de la première observation au changement final est préservé. Plus tard, vous pouvez voir pourquoi un changement a été fait, sur quoi il reposait et qui l'a approuvé.
-
-La séquence est délibérément petite :
+À partir des preuves approuvées, Nuva prépare un brief de changement et le passe à PERI, le spécialiste site web, par un contrat plutôt qu'un paragraphe. PERI produit un aperçu. Vous le revoyez avant que quoi que ce soit ne parte.
 
 \`\`\`text
-preuve → recommandation → approbation → exécution → mesure
+preuves → recommandation → approbation → exécution → mesure
 \`\`\`
 
-Cette boucle n'est pas impressionnante parce qu'elle implique deux spécialistes. Deux agents dans une fenêtre de chat seraient aussi deux spécialistes. Elle est impressionnante parce que l'intention, la preuve et la traçabilité survivent tout du long, sans que vous serviez de couche de transport entre eux.
-
-C'est tout l'enjeu. Les spécialistes sont la partie facile. Garder le sens intact quand le travail circule entre eux est la partie difficile, et c'est la partie qui mérite d'être construite.
+Cette boucle n'est pas impressionnante parce qu'elle a deux spécialistes. Deux agents dans une fenêtre de chat seraient aussi deux spécialistes. Elle est impressionnante parce que **l'intention, les preuves et la traçabilité survivent tout du long** — sans que vous serviez de couche de transport entre eux.
 
 ## Ce qu'il faut mesurer à la place
 
-Si le nombre d'agents est la mauvaise mesure, en voici une meilleure. Pouvez-vous confier un workflow complet au système, approuver les parties qui demandent votre jugement, et faire confiance à la trace de ce qui s'est passé ensuite ?
+Laissez tomber le nombre de têtes. Posez une question plus dure : pouvez-vous confier un workflow complet au système, approuver les parties qui exigent votre jugement, et faire confiance au registre ensuite ?
 
-C'est une chose plus dure à revendiquer qu'un effectif de spécialistes. C'est aussi la seule version d'AI-native qui survit au contact d'une vraie entreprise.
+C'est la seule version d'AI-native qui survit au contact d'une vraie entreprise. Nuva Operations commence là, avec un workflow que vous pouvez suivre de la preuve au changement. Nuva Intelligence approfondit la même idée plus tard. D'abord un résultat digne de confiance, puis des spécialistes autour, puis un système que l'on peut opérer.
 
-Nuva Operations commence là, avec un workflow qu'une entreprise peut suivre de la preuve au changement. Nuva Intelligence approfondit la même idée plus tard, à mesure que la recherche, la planification et la compréhension financière rejoignent le même contexte. L'ordre compte. D'abord un résultat auquel on peut faire confiance, puis une équipe de spécialistes autour, puis un système qu'une entreprise peut opérer.
-
-Un catalogue d'agents est un inventaire de départ. Une couche opérationnelle est ce qui transforme cet inventaire en une entreprise qui peut réellement avancer.
+Un catalogue est un inventaire de départ. Une couche opérationnelle est ce qui le transforme en une entreprise qui peut vraiment bouger.
 `.trim(),
       nl: `
-_Er is een vertrouwde manier om AI-native te klinken. Je somt de specialisten op die je hebt aangesloten, en je telt ze. Het getal groeit, en het getal voelt als vooruitgang. Dat is het niet._
+_Je agents tellen zegt hoeveel dingen je kunt starten. Het zegt niets over of je er één kunt afmaken met de betekenis intact._
 
 ---
 
-## Wat een catalogus verbergt
+## Het getal dat liegt
 
-Het aantal agents zegt hoeveel dingen een bedrijf kan starten. Het zegt niets over of het bedrijf er ook maar één kan afmaken met zijn intentie, zijn bewijs en zijn verantwoording intact. Dat zijn verschillende vragen, en alleen de tweede beschrijft een AI-native bedrijf.
+Het tellen meet hoeveel dingen je kunt starten. Niet of je er één kunt afmaken met zijn intentie, zijn bewijs en zijn verantwoording intact. Alleen het tweede beschrijft een AI-native bedrijf.
 
-Een catalogus van agents is makkelijk samen te stellen en makkelijk te bewonderen. Elke specialist is op zichzelf competent. Elk produceert een net antwoord als je iets vraagt.
+Een catalogus is makkelijk samen te stellen en makkelijk te bewonderen. Elke specialist is op zichzelf competent. Het probleem leeft in de ruimte ertussen.
 
-Het probleem verschijnt in de ruimte ertussen.
+## De handoff is waar betekenis sterft
 
-Wanneer je van de ene specialist naar de volgende gaat, draag je de context met de hand mee. Je plakt de bevinding. Je legt het bedrijf opnieuw uit. Je beslist welke delen van het vorige antwoord er nog toe doen. Je hoopt dat de volgende specialist hetzelfde doel begreep dat jij voor ogen had. Niets aan de overdracht is gegarandeerd, want niets aan de overdracht is gestructureerd. Ze leeft in jouw geheugen en in het klembord.
+Ga van de ene specialist naar de volgende en je draagt de context met de hand. Je plakt de bevinding. Je legt het bedrijf opnieuw uit. Je hoopt dat de volgende het doel begreep dat jij voor ogen had. Niets aan de handoff is gegarandeerd, omdat niets eraan gestructureerd is. Ze leeft in je geheugen en je klembord.
 
-Dus de catalogus groeit, en je coördinatielast groeit mee. Elke nieuwe specialist is één ding meer dat je aan al de rest moet verbinden. Een langer menu van agents vermindert het werk niet. Het vermenigvuldigt het aantal naden dat jij persoonlijk moet stikken.
+Dus de catalogus groeit, en je coördinatielast groeit mee. Een langer menu vermindert het werk niet. Het vermenigvuldigt de naden die **jij** persoonlijk moet stikken.
 
-Daarom is "hoeveel agents heb je" de verkeerde vraag. Een bedrijf ervaart werk niet als een reeks losse antwoorden. Het ervaart een opeenvolging van beslissingen, elk afhankelijk van de redenering achter de vorige. Als die redenering de overdracht niet overleeft, waren de antwoorden nooit echt verbonden. Ze leken alleen verbonden omdat jij ertussen stond.
+## Drie dingen moeten overleven
 
-## Drie dingen die moeten overleven
+De echte vraag is of een workflow drie dingen bewaart van de ene specialist naar de volgende.
 
-De nuttige vraag is of een workflow drie dingen kan bewaren van de ene specialist naar de volgende.
+→ **Intentie.** Wanneer een SEO-specialist een zwakke pagina aanmerkt, is de reden een business-reden. Reist ze niet mee met de bevinding, dan optimaliseert de volgende specialist iets dat op zichzelf correct is en fout voor het bedrijf.
+→ **Bewijs.** Een aanbeveling zonder haar bewijs is een mening met goede grammatica. Ziet de volgende specialist niet wat er is waargenomen en waarom, dan kan hij enkel gokken en iets plausibels produceren.
+→ **Verantwoording.** Iemand moet kunnen terugkijken en zien wat het systeem zag, wat het voorstelde, wat een mens goedkeurde, en wat er veranderde. Zonder dat spoor kun je het niet vertrouwen, niet debuggen, niet herhalen.
 
-Het eerste is intentie. Wanneer een SEO-specialist een zwakke pagina aanmerkt, is de reden waarom dat ertoe doet een businessreden, geen technische. Die reden moet met de bevinding meereizen. Zo niet, dan optimaliseert een specialist verderop iets dat op zichzelf correct is en fout voor het bedrijf.
-
-Het tweede is bewijs. Een aanbeveling zonder haar bewijs is niet meer dan een mening met goede grammatica. Als de volgende specialist niet kan zien wat er is waargenomen, wat er is afgeleid en waarom een prioriteit is toegekend, kan hij niet trouw op de aanbeveling handelen. Hij kan enkel gissen naar wat je bedoelde en iets plausibels produceren.
-
-Het derde is verantwoording. Iemand moet kunnen terugkijken en begrijpen wat het systeem zag, wat het voorstelde, wat een mens goedkeurde en wat er werkelijk veranderde. Zonder dat spoor kun je de output niet vertrouwen, kun je ze niet debuggen wanneer ze afdrijft, en kun je ze niet herhalen. Je kunt enkel hopen dat ze juist was.
-
-Een chatvenster vol specialisten bewaart geen van deze standaard. Een operating layer is wat ze doelbewust bewaart.
-
-## Het verschil tussen een venster en een laag
-
-Een chatvenster is een plek waar specialisten antwoorden. Een operating layer is een plek waar specialisten rond dezelfde businesscontext werken, resultaten aan elkaar doorgeven via getypeerde contracten, en door een zichtbare goedkeuring passeren voordat er iets verandert.
-
-Het onderscheid is concreet.
-
-In een venster is een bevinding een paragraaf. In een laag is een bevinding een gestructureerd object met bewijs, een prioriteit, een herkomst en een stabiele identiteit, zodat een andere specialist erop kan handelen zonder dat jij het opnieuw uitlegt.
-
-In een venster is de overdracht een kopiëren en plakken. In een laag is de overdracht een contract. De specialist die werk produceert en de specialist die het consumeert komen een vorm overeen, wat betekent dat de overgang kan worden geïnspecteerd, herspeeld en vertrouwd in plaats van telkens uit het geheugen gereconstrueerd.
-
-In een venster is goedkeuring een informeel moment dat ergens in het gesprek plaatsvindt en dan verdwijnt. In een laag is goedkeuring een expliciete grens. Het systeem toont je wat het van plan is te doen, jij beslist, en die beslissing wordt deel van het register.
-
-Niets hiervan verwijdert de mens. Het doet het tegenovergestelde. Menselijke goedkeuring is geen beperking die een beter model uiteindelijk zal uitwissen. Het is de functie die de hefboom veilig maakt om te gebruiken. Het doel is gecoördineerde hefboomwerking, geen ongecontroleerde autonomie, en een bedrijf verdient het recht om meer te coördineren pas nadat het heeft bewezen dat het met minder te vertrouwen is.
+Een chatvenster bewaart geen van deze. Een operationele laag bewaart ze met opzet.
 
 ## Eén wig, concreet gemaakt
 
-Nuva probeert dit niet te bewijzen met een grote catalogus. Het bewijst het met één workflow, van begin tot eind.
+Nuva bewijst dit niet met een grote catalogus. Het bewijst het met één workflow, van begin tot eind.
 
-Saoul is de SEO-specialist. Hij inspecteert de digitale aanwezigheid van een bedrijf en geeft bevindingen met bewijs terug, geen generieke score. Elke bevinding draagt wat er is waargenomen en waarom het ertoe doet.
+Saoul is de SEO-specialist. Hij inspecteert je digitale aanwezigheid en geeft bevindingen met bewijs terug, geen generieke score. Je bekijkt ze en selecteert wat het waard is om aan te pakken. Die selectie is de goedkeuringsgrens, en ze is zichtbaar.
 
-Jij bekijkt die bevindingen en selecteert diegene waarop het waard is te handelen. Die selectie is de goedkeuringsgrens, en ze is zichtbaar.
-
-Uit het goedgekeurde bewijs bereidt Nuva een wijzigingsbriefing voor en geeft ze door aan PERI, de websitespecialist, via een contract in plaats van een paragraaf. PERI bereidt het websitewerk voor en produceert een preview. Jij bekijkt ze voordat er iets live gaat.
-
-Het pad van de eerste waarneming tot de uiteindelijke wijziging blijft bewaard. Later kun je zien waarom een wijziging is gemaakt, waarop ze gebaseerd was en wie ze goedkeurde.
-
-De sequentie is bewust klein:
+Vanuit het goedgekeurde bewijs bereidt Nuva een change-brief voor en geeft die aan PERI, de website-specialist, via een contract in plaats van een paragraaf. PERI produceert een preview. Je bekijkt die voor er iets shipt.
 
 \`\`\`text
 bewijs → aanbeveling → goedkeuring → uitvoering → meting
 \`\`\`
 
-Die lus is niet indrukwekkend omdat ze twee specialisten omvat. Twee agents in een chatvenster zouden ook twee specialisten zijn. Ze is indrukwekkend omdat de intentie, het bewijs en de verantwoording de hele weg overleven, zonder dat jij als de transportlaag ertussen fungeert.
+Die loop is niet indrukwekkend omdat ze twee specialisten heeft. Twee agents in een chatvenster zouden ook twee specialisten zijn. Ze is indrukwekkend omdat **intentie, bewijs en verantwoording de hele weg overleven** — zonder dat jij de transportlaag ertussen bent.
 
-Dat is het hele punt. De specialisten zijn het makkelijke deel. De betekenis intact houden terwijl werk tussen hen beweegt is het moeilijke deel, en het is het deel dat de moeite waard is om te bouwen.
+## Wat je in de plaats moet meten
 
-## Wat je in plaats daarvan moet meten
+Laat de koppentelling vallen. Stel een hardere vraag: kun je een volledige workflow aan het systeem geven, de delen goedkeuren die je oordeel vragen, en het register achteraf vertrouwen?
 
-Als het aantal agents de verkeerde maat is, hier is een betere. Kun je een volledige workflow aan het systeem overdragen, de delen goedkeuren die jouw oordeel vereisen, en het register vertrouwen van wat er daarna gebeurde?
+Dat is de enige versie van AI-native die het contact met een echt bedrijf overleeft. Nuva Operations begint daar, met één workflow die je kunt volgen van bewijs tot verandering. Nuva Intelligence verdiept hetzelfde idee later. Eerst een resultaat dat je kunt vertrouwen, dan specialisten eromheen, dan een systeem dat je kunt bedienen.
 
-Dat is een moeilijker ding om te claimen dan een hoofdtelling van specialisten. Het is ook de enige versie van AI-native die het contact met een echt bedrijf overleeft.
-
-Nuva Operations begint daar, met één workflow die een bedrijf van bewijs tot wijziging kan volgen. Nuva Intelligence verdiept later hetzelfde idee, naarmate onderzoek, planning en financieel inzicht zich bij dezelfde context voegen. De volgorde doet ertoe. Eerst een resultaat dat je kunt vertrouwen, dan een team van specialisten eromheen, dan een systeem dat een bedrijf kan bedienen.
-
-Een catalogus van agents is een startinventaris. Een operating layer is wat die inventaris omzet in een bedrijf dat echt vooruit kan.
+Een catalogus is een startinventaris. Een operationele laag is wat het omtovert tot een bedrijf dat echt kan bewegen.
 `.trim(),
     },
   },
@@ -822,9 +588,9 @@ Een catalogus van agents is een startinventaris. Een operating layer is wat die 
       nl: "Een antwoord is niet de eindstreep",
     },
     description: {
-      en: "Most software celebrates the answer. But an answer that never survives to a measured result isn't a win — it's unfinished work waiting for a human to carry it.",
-      fr: "La plupart des logiciels célèbrent la réponse. Mais une réponse qui ne survit jamais jusqu'à un résultat mesuré n'est pas une victoire — c'est du travail inachevé qui attend qu'un humain le porte.",
-      nl: "De meeste software viert het antwoord. Maar een antwoord dat nooit standhoudt tot een gemeten resultaat is geen overwinning — het is onafgewerkt werk dat wacht tot een mens het draagt.",
+      en: "Most software celebrates the answer. But an answer is not a decision, and a decision is worthless until it survives to a measured result.",
+      fr: "La plupart des logiciels célèbrent la réponse. Mais une réponse n'est pas une décision, et une décision ne vaut rien tant qu'elle ne survit pas jusqu'à un résultat mesuré.",
+      nl: "De meeste software viert het antwoord. Maar een antwoord is geen beslissing, en een beslissing is niets waard tot ze overleeft tot een gemeten resultaat.",
     },
     category: {
       en: "Strategy",
@@ -832,9 +598,9 @@ Een catalogus van agents is een startinventaris. Een operating layer is wat die 
       nl: "Strategie",
     },
     readTime: {
-      en: "6 min",
-      fr: "6 min",
-      nl: "6 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["Decisions","Continuity","Workflow"],
@@ -843,241 +609,187 @@ Een catalogus van agents is een startinventaris. Een operating layer is wat die 
     },
     content: {
       en: `
-_Most business software is proud of the wrong moment. It celebrates the answer, when the answer is barely the middle._
+_Most software celebrates the answer. The answer is barely the middle._
 
 ---
 
-It celebrates the answer. The audit that lists forty problems. The dashboard that finally shows the number. The generated page that appears on screen. Each of these feels like an ending. In practice, it is barely the middle.
+## An answer is not a decision
 
-A company does not experience its work as a set of outputs. It experiences a sequence of decisions. Something is understood, something is recommended, someone approves, work is executed, and the result is measured. That sequence is the real unit of value. An answer that never enters the sequence is not a small win. It is unfinished work that now needs a human to carry it forward.
+The audit that lists forty problems. The dashboard that finally shows the number. The generated page on screen. Each feels like an ending. It's the middle.
 
-## The loop, stated plainly
+A company doesn't run on outputs. It runs on a **sequence of decisions**. Something is understood, something is recommended, someone approves, work is executed, the result is measured. An answer that never enters that sequence isn't a small win. It's unfinished work waiting for a human to carry it.
 
-The complete shape of useful business work looks like this:
+## The loop
 
 \`\`\`text
 understand → recommend → approve → execute → measure
 \`\`\`
 
-Each step depends on the one before it. Understanding without a recommendation is trivia. A recommendation without approval is noise. Approval without execution is a meeting. Execution without measurement is guesswork. The value is not in any single step. It is in the fact that the steps stay connected.
+Each step depends on the one before it.
 
-This is easy to say and hard to keep. Most tools own one part of the loop and hand the rest back to a person. The person becomes the connective tissue, moving context from one step to the next, hoping nothing important is lost in the transfer.
+→ Understanding without a recommendation is trivia.
+→ A recommendation without approval is noise.
+→ Approval without execution is a meeting.
+→ Execution without measurement is guesswork.
 
-## Why an audit that never becomes action is wasted
+The value isn't any single step. It's that the steps stay connected. Most tools own one and hand the rest back to a person. The person becomes the connective tissue, moving context across handoffs, hoping nothing important leaks.
 
-Consider a familiar case. An SEO audit runs and returns strong findings. Weak page structure. Unclear positioning. Missing technical signals. The report is accurate and detailed.
+An SEO audit returns strong findings, then waits. Someone reads it, picks what matters, writes a brief, re-explains the site to whoever ships the change, and later checks if anything improved. Each handoff thins the evidence. **A precise diagnosis that never reaches treatment isn't half a cure. It's a cost with no return.**
 
-Then the report waits.
+## Why chatbots and software both drop it
 
-Someone has to read it, decide which findings matter, translate the important ones into a brief, explain the website again to whichever tool or person will make the change, and later check whether anything actually improved. Each of those steps is manual, and each is a place where the original evidence gets thinner. By the time a change ships, it may only loosely reflect what the audit found.
+Two kinds of tools fail here, for opposite reasons.
 
-The audit was not wrong. It simply stopped at the answer. Its value leaked out across every handoff that followed. A precise diagnosis that never reaches treatment is not half a cure. It is a cost with no return.
+→ A **chatbot** thinks but doesn't remember. Ask it to understand and it answers well. Close the window and the reasoning is gone. It produces answers, not continuity. Each conversation is an island.
+→ **Traditional software** remembers but doesn't think. A CRM, an analytics tool, an accounting system: a faithful memory of the past. They store state. They don't move it.
 
-The same is true in the other direction. A generated website is not valuable because it exists. It is valuable if it expresses the right strategy and solves the right problem. An output that arrives with no connection to the reasoning behind it is a thing you now have to evaluate from scratch, which is most of the work you were trying to avoid.
-
-## Why chatbots and traditional software each drop the loop
-
-Two common kinds of software fail here, for opposite reasons.
-
-A chatbot is good at the first two steps and forgets everything. You can ask it to understand a situation and suggest what to do. It will answer well. But it holds no durable context. Close the window and the reasoning is gone. The next session starts cold. It cannot approve, execute, or measure across time, because it does not persist across time. It produces answers, not continuity. Each conversation is an island.
-
-Traditional business software has the opposite problem. It is excellent at durability and terrible at forward motion. A CRM, an analytics tool, an accounting system: these record what already happened with great reliability. They are a faithful memory of the past. But they do not understand the current situation, form a recommendation, or carry a decision into action. They store state. They do not move it.
-
-So one kind of tool can think but not remember, and the other can remember but not think. Neither holds the whole loop. In both cases a person has to stand in the gaps, supplying the memory the chatbot lacks and the judgment the database lacks.
-
-Continuity is the thing that is actually missing. Not more intelligence, not more storage. The ability to keep intent intact as work moves from understanding to action.
+One thinks and can't remember. The other remembers and can't think. In both cases a person stands in the gap. What's missing isn't more intelligence or more storage. It's **continuity** — keeping intent intact as work moves from understanding to action.
 
 ## Continuity is the product
 
-This reframes what the software is for.
+The point isn't a better answer. Answers are cheap. The point is to preserve the link between the answer and everything that has to happen after it. A finding keeps its evidence as it becomes a recommendation, then an approved decision, then an executed change, then a measured result.
 
-The point is not to produce a better answer. Answers are increasingly cheap. The point is to preserve the connection between the answer and everything that has to happen after it. A finding should keep its evidence, its priority, and its origin as it becomes a recommendation. A recommendation should keep its link to the finding as it becomes an approved decision. An approved decision should keep its link to the evidence as it becomes an executed change. And the change should be measurable against the problem that started it.
-
-When that chain holds, the company gains something it usually cannot buy: a memory of why work happened, not just a record that it did.
+When that chain holds, a company gains something it usually can't buy: **a memory of why work happened, not just a record that it did.**
 
 ## What this looks like in Nuva
 
-Nuva is built around the loop rather than around the answer. Its job is to hold continuity while specialists do the work and the person stays in control.
+Nuva is built around the loop, not the answer.
 
-Take the concrete wedge. A company gives Nuva its site and its context. Saoul, the SEO specialist, audits the digital presence and returns findings with evidence attached. This is the understand step, and it produces structured results, not a static report.
-
-Nuva helps prioritize those findings so the important ones are visible. This is the recommend step. The findings keep their evidence and provenance, so nothing has to be reconstructed later.
-
-Then the person decides. They select which changes are worth making. This is the approve step, and it is deliberately a human one. Important actions require approval. That is a feature, not a limitation. Removing the founder as a manual relay between tools does not mean removing human judgment from the company. It means putting judgment at the point where it matters and taking it out of the dozen handoffs where it was only doing data entry.
-
-PERI, the website specialist, then prepares the website changes from the approved evidence and produces a preview. This is the execute step, and it stays connected to the exact findings that justified it. The person can see the line from the original problem to the proposed result.
-
-Finally, the change can be measured against the situation Saoul first observed. This is the measure step, and because the context survived the whole way through, measurement is meaningful. You are checking the change against the problem it was meant to solve, not against a vague memory of it.
+→ **Saoul**, the SEO specialist, audits the site and returns findings with evidence attached. (understand)
+→ Nuva surfaces what matters, evidence and provenance intact. (recommend)
+→ You decide which changes are worth making. Important actions require approval — a feature, not a limitation. (approve)
+→ **PERI**, the website specialist, prepares the changes from the approved evidence and shows a preview. (execute)
+→ The change is measured against what Saoul first observed. (measure)
 
 \`\`\`text
 Saoul understands → Nuva recommends → you approve → PERI executes → the result is measured
 \`\`\`
 
-One specialist understands. Another executes. The person stays in control. Nuva keeps the loop intact between them.
+This isn't full autonomy, and it isn't meant to be. Nuva isn't running the company. It's closing one loop, end to end, with a human at the approval point.
 
-## The claim, kept honest
-
-This is not full autonomy, and it is not meant to be. Nuva is not running the company, and it is not an ERP. It is closing one loop, end to end, with a human at the approval point. That is a smaller promise than "an AI that runs your business," and it is a more useful one, because it is the actual shape of how work gets done.
-
-The lesson is simple. Stop treating the answer as the finish line. The answer is the start of a decision, and a decision is only worth anything if it survives all the way to a measured result. Software that holds that loop together is doing the part that was always hardest to keep.
+Stop treating the answer as the finish line. The answer is the start of a decision — and a decision is only worth anything if it survives to a measured result.
 `.trim(),
       fr: `
-_La plupart des logiciels d'entreprise sont fiers du mauvais moment. Ils célèbrent la réponse, alors que la réponse n'est que le milieu._
+_La plupart des logiciels célèbrent la réponse. La réponse, c'est à peine le milieu._
 
 ---
 
-Ils célèbrent la réponse. L'audit qui liste quarante problèmes. Le dashboard qui affiche enfin le chiffre. La page générée qui apparaît à l'écran. Chacun de ces moments ressemble à une fin. En pratique, c'est à peine le milieu.
+## Une réponse n'est pas une décision
 
-Une entreprise ne vit pas son travail comme un ensemble d'outputs. Elle le vit comme une séquence de décisions. Quelque chose est compris, quelque chose est recommandé, quelqu'un approuve, le travail est exécuté, et le résultat est mesuré. Cette séquence est la vraie unité de valeur. Une réponse qui n'entre jamais dans la séquence n'est pas une petite victoire. C'est du travail inachevé qui a désormais besoin d'un humain pour le porter plus loin.
+L'audit qui liste quarante problèmes. Le dashboard qui affiche enfin le chiffre. La page générée à l'écran. Chacun ressemble à une fin. C'est le milieu.
 
-## La boucle, dite simplement
+Une entreprise ne tourne pas sur des outputs. Elle tourne sur une **séquence de décisions**. Quelque chose est compris, quelque chose est recommandé, quelqu'un approuve, le travail est exécuté, le résultat est mesuré. Une réponse qui n'entre jamais dans cette séquence n'est pas une petite victoire. C'est du travail inachevé qui attend qu'un humain le porte.
 
-La forme complète d'un travail d'entreprise utile ressemble à ceci :
+## La boucle
 
 \`\`\`text
 comprendre → recommander → approuver → exécuter → mesurer
 \`\`\`
 
-Chaque étape dépend de celle qui la précède. Comprendre sans recommandation, c'est de la trivia. Une recommandation sans approbation, c'est du bruit. Une approbation sans exécution, c'est une réunion. Une exécution sans mesure, c'est de la devinette. La valeur n'est dans aucune étape isolée. Elle est dans le fait que les étapes restent connectées.
+Chaque étape dépend de la précédente.
 
-C'est facile à dire et difficile à tenir. La plupart des outils possèdent une partie de la boucle et rendent le reste à une personne. La personne devient le tissu conjonctif, transportant le contexte d'une étape à la suivante, en espérant que rien d'important ne se perde dans le transfert.
+→ Comprendre sans recommandation, c'est de la trivia.
+→ Une recommandation sans approbation, c'est du bruit.
+→ Une approbation sans exécution, c'est une réunion.
+→ Une exécution sans mesure, c'est de la devinette.
 
-## Pourquoi un audit qui ne devient jamais action est du gâchis
+La valeur n'est dans aucune étape isolée. Elle est dans le fait que les étapes restent connectées. La plupart des outils possèdent une seule étape et rendent le reste à une personne. La personne devient le tissu conjonctif, transportant le contexte à travers les handoffs, en espérant que rien d'important ne fuit.
 
-Prenons un cas familier. Un audit SEO tourne et renvoie des constats solides. Structure de page faible. Positionnement flou. Signaux techniques manquants. Le rapport est précis et détaillé.
+Un audit SEO renvoie de solides constats, puis attend. Quelqu'un le lit, choisit ce qui compte, rédige un brief, réexplique le site à celui qui shippera le changement, et vérifie plus tard si quelque chose s'est amélioré. Chaque handoff amincit les preuves. **Un diagnostic précis qui n'atteint jamais le traitement n'est pas une demi-guérison. C'est un coût sans retour.**
 
-Puis le rapport attend.
+## Pourquoi chatbots et logiciels lâchent tous les deux la boucle
 
-Quelqu'un doit le lire, décider quels constats comptent, traduire les plus importants en un brief, réexpliquer le site à l'outil ou à la personne qui fera le changement, et vérifier plus tard si quoi que ce soit s'est réellement amélioré. Chacune de ces étapes est manuelle, et chacune est un endroit où la preuve d'origine s'amincit. Au moment où un changement est livré, il ne reflète peut-être plus que vaguement ce que l'audit avait trouvé.
+Deux types d'outils échouent ici, pour des raisons opposées.
 
-L'audit n'avait pas tort. Il s'est simplement arrêté à la réponse. Sa valeur a fui à travers chaque passation qui a suivi. Un diagnostic précis qui n'atteint jamais le traitement n'est pas une demi-guérison. C'est un coût sans retour.
+→ Un **chatbot** pense mais ne se souvient pas. Demande-lui de comprendre et il répond bien. Ferme la fenêtre et le raisonnement a disparu. Il produit des réponses, pas de la continuité. Chaque conversation est une île.
+→ Le **logiciel traditionnel** se souvient mais ne pense pas. Un CRM, un outil d'analytics, un système comptable : une mémoire fidèle du passé. Ils stockent un état. Ils ne le déplacent pas.
 
-C'est vrai dans l'autre sens aussi. Un site généré n'a pas de valeur parce qu'il existe. Il a de la valeur s'il exprime la bonne stratégie et résout le bon problème. Un output qui arrive sans lien avec le raisonnement qui l'a produit est une chose que vous devez maintenant évaluer de zéro, ce qui représente l'essentiel du travail que vous cherchiez à éviter.
-
-## Pourquoi chatbots et logiciels traditionnels lâchent chacun la boucle
-
-Deux types de logiciels courants échouent ici, pour des raisons opposées.
-
-Un chatbot est bon aux deux premières étapes et oublie tout. Vous pouvez lui demander de comprendre une situation et de suggérer quoi faire. Il répondra bien. Mais il ne retient aucun contexte durable. Fermez la fenêtre et le raisonnement a disparu. La session suivante repart à froid. Il ne peut pas approuver, exécuter ou mesurer dans le temps, parce qu'il ne persiste pas dans le temps. Il produit des réponses, pas de la continuité. Chaque conversation est une île.
-
-Le logiciel d'entreprise traditionnel a le problème inverse. Il est excellent en durabilité et exécrable en mise en mouvement. Un CRM, un outil d'analytics, un logiciel de comptabilité : ceux-ci enregistrent ce qui s'est déjà passé avec une grande fiabilité. Ils sont une mémoire fidèle du passé. Mais ils ne comprennent pas la situation actuelle, ne formulent pas de recommandation et ne portent pas une décision jusqu'à l'action. Ils stockent l'état. Ils ne le déplacent pas.
-
-Donc un type d'outil peut penser mais pas se souvenir, et l'autre peut se souvenir mais pas penser. Aucun ne tient la boucle entière. Dans les deux cas, une personne doit se tenir dans les trous, fournissant la mémoire qui manque au chatbot et le jugement qui manque à la base de données.
-
-La continuité est la chose qui manque réellement. Pas plus d'intelligence, pas plus de stockage. La capacité à garder l'intention intacte à mesure que le travail passe de la compréhension à l'action.
+L'un pense et ne peut pas se souvenir. L'autre se souvient et ne peut pas penser. Dans les deux cas, une personne se tient dans le vide. Ce qui manque, ce n'est pas plus d'intelligence ni plus de stockage. C'est de la **continuité** — garder l'intention intacte à mesure que le travail passe de la compréhension à l'action.
 
 ## La continuité est le produit
 
-Cela recadre ce à quoi sert le logiciel.
+Le but n'est pas une meilleure réponse. Les réponses sont bon marché. Le but est de préserver le lien entre la réponse et tout ce qui doit se passer après. Un constat garde ses preuves en devenant recommandation, puis décision approuvée, puis changement exécuté, puis résultat mesuré.
 
-Le but n'est pas de produire une meilleure réponse. Les réponses sont de plus en plus bon marché. Le but est de préserver le lien entre la réponse et tout ce qui doit se passer après elle. Un constat devrait garder sa preuve, sa priorité et son origine à mesure qu'il devient une recommandation. Une recommandation devrait garder son lien avec le constat à mesure qu'elle devient une décision approuvée. Une décision approuvée devrait garder son lien avec la preuve à mesure qu'elle devient un changement exécuté. Et le changement devrait être mesurable face au problème qui l'a déclenché.
+Quand cette chaîne tient, l'entreprise gagne une chose qu'elle ne peut d'habitude pas acheter : **une mémoire de pourquoi le travail a eu lieu, pas juste une trace qu'il a eu lieu.**
 
-Quand cette chaîne tient, l'entreprise gagne quelque chose qu'elle ne peut généralement pas acheter : une mémoire du pourquoi le travail a eu lieu, pas seulement une trace qu'il a eu lieu.
+## À quoi ça ressemble dans Nuva
 
-## À quoi cela ressemble dans Nuva
+Nuva est construit autour de la boucle, pas de la réponse.
 
-Nuva est construit autour de la boucle plutôt qu'autour de la réponse. Son rôle est de tenir la continuité pendant que les spécialistes font le travail et que la personne garde le contrôle.
-
-Prenons le wedge concret. Une entreprise donne à Nuva son site et son contexte. Saoul, le spécialiste SEO, audite la présence numérique et renvoie des constats avec la preuve attachée. C'est l'étape comprendre, et elle produit des résultats structurés, pas un rapport statique.
-
-Nuva aide à prioriser ces constats pour que les plus importants soient visibles. C'est l'étape recommander. Les constats gardent leur preuve et leur provenance, donc rien n'a besoin d'être reconstruit plus tard.
-
-Puis la personne décide. Elle sélectionne quels changements valent la peine d'être faits. C'est l'étape approuver, et elle est délibérément humaine. Les actions importantes exigent une approbation. C'est une fonctionnalité, pas une limitation. Retirer le fondateur comme relais manuel entre les outils ne signifie pas retirer le jugement humain de l'entreprise. Cela signifie mettre le jugement au point où il compte et le sortir de la douzaine de passations où il ne faisait que de la saisie de données.
-
-PERI, le spécialiste site web, prépare ensuite les changements du site à partir de la preuve approuvée et produit un aperçu. C'est l'étape exécuter, et elle reste connectée aux constats exacts qui l'ont justifiée. La personne peut voir la ligne qui va du problème d'origine au résultat proposé.
-
-Enfin, le changement peut être mesuré face à la situation que Saoul a d'abord observée. C'est l'étape mesurer, et parce que le contexte a survécu tout le long du chemin, la mesure a du sens. Vous vérifiez le changement face au problème qu'il était censé résoudre, pas face à un souvenir vague de celui-ci.
+→ **Saoul**, le spécialiste SEO, audite le site et renvoie des constats avec les preuves attachées. (comprendre)
+→ Nuva fait remonter ce qui compte, preuves et provenance intactes. (recommander)
+→ Vous décidez quels changements valent la peine. Les actions importantes exigent une approbation — une fonctionnalité, pas une limite. (approuver)
+→ **PERI**, le spécialiste site web, prépare les changements à partir des preuves approuvées et montre un aperçu. (exécuter)
+→ Le changement est mesuré face à ce que Saoul a d'abord observé. (mesurer)
 
 \`\`\`text
 Saoul comprend → Nuva recommande → vous approuvez → PERI exécute → le résultat est mesuré
 \`\`\`
 
-Un spécialiste comprend. Un autre exécute. La personne garde le contrôle. Nuva maintient la boucle intacte entre eux.
+Ce n'est pas de l'autonomie totale, et ce n'est pas censé l'être. Nuva ne dirige pas l'entreprise. Il ferme une boucle, de bout en bout, avec un humain au point d'approbation.
 
-## La promesse, tenue honnête
-
-Ce n'est pas de l'autonomie complète, et ce n'est pas censé l'être. Nuva ne pilote pas l'entreprise, et ce n'est pas un ERP. Il ferme une boucle, de bout en bout, avec un humain au point d'approbation. C'est une promesse plus petite qu'« une IA qui pilote votre entreprise », et c'en est une plus utile, parce que c'est la forme réelle de la façon dont le travail se fait.
-
-La leçon est simple. Arrêtez de traiter la réponse comme la ligne d'arrivée. La réponse est le début d'une décision, et une décision ne vaut quelque chose que si elle survit jusqu'à un résultat mesuré. Un logiciel qui tient cette boucle ensemble fait la partie qui a toujours été la plus difficile à préserver.
+Arrêtez de traiter la réponse comme la ligne d'arrivée. La réponse est le début d'une décision — et une décision ne vaut quelque chose que si elle survit jusqu'à un résultat mesuré.
 `.trim(),
       nl: `
-_De meeste bedrijfssoftware is trots op het verkeerde moment. Ze viert het antwoord, terwijl het antwoord amper het midden is._
+_De meeste software viert het antwoord. Het antwoord is amper het midden._
 
 ---
 
-Ze viert het antwoord. De audit die veertig problemen opsomt. Het dashboard dat eindelijk het cijfer toont. De gegenereerde pagina die op het scherm verschijnt. Elk van deze voelt als een einde. In de praktijk is het amper het midden.
+## Een antwoord is geen beslissing
 
-Een bedrijf ervaart zijn werk niet als een verzameling outputs. Het ervaart een reeks beslissingen. Iets wordt begrepen, iets wordt aanbevolen, iemand keurt goed, werk wordt uitgevoerd, en het resultaat wordt gemeten. Die reeks is de echte eenheid van waarde. Een antwoord dat nooit in de reeks binnenkomt is geen kleine overwinning. Het is onafgewerkt werk dat nu een mens nodig heeft om het verder te dragen.
+De audit die veertig problemen oplijst. Het dashboard dat eindelijk het cijfer toont. De gegenereerde pagina op het scherm. Elk voelt als een einde. Het is het midden.
 
-## De lus, simpel gesteld
+Een bedrijf draait niet op outputs. Het draait op een **reeks beslissingen**. Iets wordt begrepen, iets wordt aanbevolen, iemand keurt goed, werk wordt uitgevoerd, het resultaat wordt gemeten. Een antwoord dat nooit in die reeks terechtkomt is geen kleine overwinning. Het is onafgewerkt werk dat wacht tot een mens het draagt.
 
-De volledige vorm van nuttig bedrijfswerk ziet er zo uit:
+## De loop
 
 \`\`\`text
 begrijpen → aanbevelen → goedkeuren → uitvoeren → meten
 \`\`\`
 
-Elke stap hangt af van de stap ervoor. Begrijpen zonder aanbeveling is trivia. Een aanbeveling zonder goedkeuring is ruis. Goedkeuring zonder uitvoering is een vergadering. Uitvoering zonder meting is gokken. De waarde zit in geen enkele afzonderlijke stap. Ze zit in het feit dat de stappen verbonden blijven.
+Elke stap hangt af van de vorige.
 
-Dat is makkelijk gezegd en moeilijk vol te houden. De meeste tools bezitten één deel van de lus en geven de rest terug aan een persoon. De persoon wordt het bindweefsel, dat context van de ene stap naar de volgende verplaatst, hopend dat niets belangrijks verloren gaat in de overdracht.
+→ Begrijpen zonder aanbeveling is trivia.
+→ Een aanbeveling zonder goedkeuring is ruis.
+→ Een goedkeuring zonder uitvoering is een vergadering.
+→ Een uitvoering zonder meting is gokken.
 
-## Waarom een audit die nooit actie wordt verspild is
+De waarde zit in geen enkele losse stap. Ze zit erin dat de stappen verbonden blijven. De meeste tools bezitten er één en geven de rest terug aan een persoon. Die persoon wordt het bindweefsel, dat context over de handoffs sleept, hopend dat niets belangrijks weglekt.
 
-Neem een vertrouwd geval. Een SEO-audit draait en geeft sterke bevindingen terug. Zwakke paginastructuur. Onduidelijke positionering. Ontbrekende technische signalen. Het rapport is accuraat en gedetailleerd.
+Een SEO-audit levert sterke bevindingen op en wacht dan. Iemand leest ze, kiest wat telt, schrijft een brief, legt de site opnieuw uit aan wie het wijzigt, en checkt later of er iets verbeterd is. Elke handoff maakt het bewijs dunner. **Een precieze diagnose die de behandeling nooit bereikt is geen halve genezing. Het is een kost zonder rendement.**
 
-Dan wacht het rapport.
+## Waarom chatbots en software de loop allebei laten vallen
 
-Iemand moet het lezen, beslissen welke bevindingen ertoe doen, de belangrijke vertalen naar een brief, de website opnieuw uitleggen aan welke tool of persoon ook de wijziging zal maken, en later nagaan of er echt iets verbeterd is. Elk van die stappen is manueel, en elk is een plek waar het oorspronkelijke bewijs dunner wordt. Tegen de tijd dat een wijziging live gaat, weerspiegelt ze misschien nog maar vaag wat de audit vond.
+Twee soorten tools falen hier, om tegengestelde redenen.
 
-De audit had geen ongelijk. Ze stopte gewoon bij het antwoord. Haar waarde lekte weg over elke overdracht die volgde. Een precieze diagnose die de behandeling nooit bereikt is geen halve genezing. Het is een kost zonder rendement.
+→ Een **chatbot** denkt maar onthoudt niet. Vraag hem iets te begrijpen en hij antwoordt goed. Sluit het venster en de redenering is weg. Hij produceert antwoorden, geen continuïteit. Elk gesprek is een eiland.
+→ **Traditionele software** onthoudt maar denkt niet. Een CRM, een analytics-tool, een boekhoudsysteem: een trouw geheugen van het verleden. Ze bewaren een toestand. Ze verplaatsen ze niet.
 
-Hetzelfde geldt in de andere richting. Een gegenereerde website is niet waardevol omdat ze bestaat. Ze is waardevol als ze de juiste strategie uitdrukt en het juiste probleem oplost. Een output die aankomt zonder verband met de redenering erachter is iets dat je nu vanaf nul moet beoordelen, wat het meeste is van het werk dat je probeerde te vermijden.
-
-## Waarom chatbots en traditionele software elk de lus laten vallen
-
-Twee courante soorten software falen hier, om tegengestelde redenen.
-
-Een chatbot is goed in de eerste twee stappen en vergeet alles. Je kan hem vragen een situatie te begrijpen en voor te stellen wat te doen. Hij zal goed antwoorden. Maar hij houdt geen duurzame context vast. Sluit het venster en de redenering is weg. De volgende sessie start koud. Hij kan niet goedkeuren, uitvoeren of meten doorheen de tijd, omdat hij niet persisteert doorheen de tijd. Hij produceert antwoorden, geen continuïteit. Elk gesprek is een eiland.
-
-Traditionele bedrijfssoftware heeft het omgekeerde probleem. Ze is uitstekend in duurzaamheid en waardeloos in voorwaartse beweging. Een CRM, een analytics-tool, een boekhoudsysteem: die leggen met grote betrouwbaarheid vast wat al gebeurd is. Ze zijn een trouw geheugen van het verleden. Maar ze begrijpen de huidige situatie niet, vormen geen aanbeveling en dragen geen beslissing tot in de actie. Ze bewaren de staat. Ze verplaatsen ze niet.
-
-Dus het ene soort tool kan denken maar niet onthouden, en het andere kan onthouden maar niet denken. Geen van beide houdt de hele lus vast. In beide gevallen moet een persoon in de gaten gaan staan, het geheugen leverend dat de chatbot mist en het oordeel dat de database mist.
-
-Continuïteit is wat er werkelijk ontbreekt. Niet meer intelligentie, niet meer opslag. Het vermogen om de intentie intact te houden terwijl het werk van begrijpen naar actie beweegt.
+De ene denkt en kan niet onthouden. De andere onthoudt en kan niet denken. In beide gevallen staat een persoon in de kloof. Wat ontbreekt is niet meer intelligentie of meer opslag. Het is **continuïteit** — de intentie intact houden terwijl werk van begrijpen naar actie beweegt.
 
 ## Continuïteit is het product
 
-Dit herkadert waar de software voor dient.
+Het gaat niet om een beter antwoord. Antwoorden zijn goedkoop. Het gaat om het bewaren van de link tussen het antwoord en alles wat erna moet gebeuren. Een bevinding houdt haar bewijs bij terwijl ze een aanbeveling wordt, dan een goedgekeurde beslissing, dan een uitgevoerde wijziging, dan een gemeten resultaat.
 
-Het punt is niet een beter antwoord te produceren. Antwoorden worden steeds goedkoper. Het punt is het verband te bewaren tussen het antwoord en alles wat erna moet gebeuren. Een bevinding zou haar bewijs, haar prioriteit en haar oorsprong moeten behouden terwijl ze een aanbeveling wordt. Een aanbeveling zou haar link met de bevinding moeten behouden terwijl ze een goedgekeurde beslissing wordt. Een goedgekeurde beslissing zou haar link met het bewijs moeten behouden terwijl ze een uitgevoerde wijziging wordt. En de wijziging zou meetbaar moeten zijn tegen het probleem dat ze startte.
+Als die ketting houdt, wint een bedrijf iets dat het meestal niet kan kopen: **een geheugen van waarom het werk gebeurde, niet alleen een spoor dat het gebeurde.**
 
-Wanneer die keten standhoudt, wint het bedrijf iets dat het meestal niet kan kopen: een geheugen van waarom werk gebeurde, niet alleen een registratie dat het gebeurde.
+## Hoe dit eruitziet in Nuva
 
-## Hoe dit er in Nuva uitziet
+Nuva is gebouwd rond de loop, niet rond het antwoord.
 
-Nuva is gebouwd rond de lus in plaats van rond het antwoord. Zijn taak is de continuïteit vast te houden terwijl specialisten het werk doen en de persoon de controle behoudt.
-
-Neem de concrete wedge. Een bedrijf geeft Nuva zijn site en zijn context. Saoul, de SEO-specialist, auditeert de digitale aanwezigheid en geeft bevindingen terug met bewijs eraan gehecht. Dit is de stap begrijpen, en ze produceert gestructureerde resultaten, geen statisch rapport.
-
-Nuva helpt die bevindingen te prioriteren zodat de belangrijke zichtbaar zijn. Dit is de stap aanbevelen. De bevindingen behouden hun bewijs en herkomst, dus niets hoeft later gereconstrueerd te worden.
-
-Dan beslist de persoon. Hij selecteert welke wijzigingen de moeite waard zijn. Dit is de stap goedkeuren, en ze is bewust een menselijke. Belangrijke acties vereisen goedkeuring. Dat is een functie, geen beperking. De oprichter weghalen als manuele doorgeefluik tussen tools betekent niet het menselijke oordeel uit het bedrijf halen. Het betekent het oordeel plaatsen op het punt waar het ertoe doet en het weghalen uit de tientallen overdrachten waar het enkel data-invoer deed.
-
-PERI, de website-specialist, bereidt vervolgens de websitewijzigingen voor uit het goedgekeurde bewijs en produceert een preview. Dit is de stap uitvoeren, en ze blijft verbonden met de exacte bevindingen die haar rechtvaardigden. De persoon kan de lijn zien van het oorspronkelijke probleem naar het voorgestelde resultaat.
-
-Ten slotte kan de wijziging gemeten worden tegen de situatie die Saoul eerst waarnam. Dit is de stap meten, en omdat de context de hele weg heeft overleefd, heeft de meting betekenis. Je toetst de wijziging aan het probleem dat ze moest oplossen, niet aan een vage herinnering eraan.
+→ **Saoul**, de SEO-specialist, auditeert de site en levert bevindingen met bewijs eraan vast. (begrijpen)
+→ Nuva brengt naar boven wat telt, bewijs en herkomst intact. (aanbevelen)
+→ Jij beslist welke wijzigingen de moeite waard zijn. Belangrijke acties vereisen goedkeuring — een feature, geen beperking. (goedkeuren)
+→ **PERI**, de website-specialist, bereidt de wijzigingen voor op basis van het goedgekeurde bewijs en toont een preview. (uitvoeren)
+→ De wijziging wordt gemeten tegen wat Saoul eerst observeerde. (meten)
 
 \`\`\`text
 Saoul begrijpt → Nuva beveelt aan → jij keurt goed → PERI voert uit → het resultaat wordt gemeten
 \`\`\`
 
-Eén specialist begrijpt. Een andere voert uit. De persoon behoudt de controle. Nuva houdt de lus intact tussen hen.
+Dit is geen volledige autonomie, en dat is ook niet de bedoeling. Nuva runt het bedrijf niet. Het sluit één loop, van begin tot eind, met een mens op het goedkeuringspunt.
 
-## De claim, eerlijk gehouden
-
-Dit is geen volledige autonomie, en dat is ook niet de bedoeling. Nuva runt het bedrijf niet, en het is geen ERP. Het sluit één lus, van begin tot eind, met een mens op het goedkeuringspunt. Dat is een kleinere belofte dan "een AI die je bedrijf runt", en het is een nuttigere, omdat het de werkelijke vorm is van hoe werk gedaan wordt.
-
-De les is simpel. Stop met het antwoord te behandelen als de eindstreep. Het antwoord is het begin van een beslissing, en een beslissing is pas iets waard als ze standhoudt tot een gemeten resultaat. Software die die lus samenhoudt doet het deel dat altijd het moeilijkst vast te houden was.
+Stop met het antwoord als de eindstreep te behandelen. Het antwoord is het begin van een beslissing — en een beslissing is pas iets waard als ze overleeft tot een gemeten resultaat.
 `.trim(),
     },
   },
@@ -1103,9 +815,9 @@ De les is simpel. Stop met het antwoord te behandelen als de eindstreep. Het ant
       nl: "Visie",
     },
     readTime: {
-      en: "5 min",
-      fr: "5 min",
-      nl: "5 min",
+      en: "2 min",
+      fr: "2 min",
+      nl: "2 min",
     },
     tags: {
       en: ["AI-Native","Operations","Platform"],
@@ -1114,235 +826,163 @@ De les is simpel. Stop met het antwoord te behandelen als de eindstreep. Het ant
     },
     content: {
       en: `
-_Most companies are adding AI the way they added every tool before it._
+_Most companies are adding AI the way they added every tool before it. One assistant per system, none of them sharing what the others know._
 
 ---
 
-They keep the systems they already have, then attach an assistant to each one. The CMS gets a writer. The analytics tool gets a summary. The support inbox gets a draft reply. Each addition is useful on its own. None of them share what the others know.
+## Bolted-on AI never fixes the seam
 
-This is AI bolted onto a fragmented company. It makes individual tasks faster while leaving the real problem untouched: the company still has no shared place where work is understood, decided and carried out.
+The CMS gets a writer. Analytics gets a summary. The inbox gets a draft reply. Each is useful. None of them share context.
 
-An AI-native operating layer starts from the opposite assumption. It treats coordination as the product, not the leftover.
+So the context lives in the person switching tabs. A human re-explains the company to every system, copies output from one into the next, and checks nothing was lost. The AI got faster. **The seams didn't move.**
 
-## The difference is where context lives
+An AI-native layer starts from the opposite assumption: coordination is the product, not the leftover.
 
-In the bolted-on model, context lives in the person switching between tools.
+## Five things it treats as first-class
 
-The website assistant does not know what the SEO tool found. The content assistant does not know which positioning was agreed last month. So a human re-explains the company to each system, copies output from one into another and checks that nothing important was lost along the way. The AI got faster. The seams did not move.
+Design a layer for human and AI specialists from day one, and five things stop being afterthoughts.
 
-An AI-native layer makes the shared company context first-class from day one. There is one place that knows which company this is, what it sells, who it serves, what constraints it faces and what outcome it is pursuing. Every specialist reads from that same context instead of being told the story again.
+→ **Shared context.** One durable description of the company every specialist reads from. No blank page.
+→ **Specialist boundaries.** SEO stays deep in SEO. Web stays excellent at web. Narrow is what keeps each one good.
+→ **Typed evidence handoffs.** A specialist passes structured findings with priority and provenance, not a paragraph to re-interpret.
+→ **Explicit approval.** The move from recommendation to action is gated. You see what was observed, inferred, recommended, and about to change. Approval is a feature, not a delay.
+→ **Durable history.** The reasoning survives the conversation. Reuse evidence instead of rediscovering it.
 
-That single decision changes everything downstream. When context is shared, a handoff stops being a translation and becomes a reference.
-
-## Five things an AI-native layer treats as first-class
-
-If you design an operating layer for both human and AI specialists from the start, five things stop being afterthoughts.
-
-Shared context. One durable description of the company that every specialist works against, so no one starts from a blank page.
-
-Clear specialist boundaries. An SEO specialist stays deep in SEO. A website specialist stays excellent at producing and changing websites. Neither pretends to run the whole business. Narrow boundaries are what keep each specialist good.
-
-Typed evidence handoffs. When one specialist passes work to another, it does not send a paragraph to be re-interpreted. It sends structured evidence with priority, provenance and a stable identity. The receiving specialist acts on the finding itself, not on a summary of it.
-
-Explicit approval points. The move from recommendation to action is visible and gated. A person sees what was observed, what was inferred, what is recommended and what is about to change, then decides. Approval is a feature, not a delay.
-
-Durable decision history. The reasoning behind a decision survives after the conversation ends. The company can see why work happened, reuse evidence instead of rediscovering it and avoid repeating a recommendation that was already considered and rejected.
-
-None of these are model features. They are structural choices. You either build them in at the start or you spend forever gluing them on by hand.
+None of these are model features. They're structural. You build them in at the start or you glue them on by hand forever.
 
 ## Nuva Operations is the layer that does the work
 
-This is what Nuva Operations is: the layer that does operational work around one shared context, with the person in control.
+Nuva Operations does operational work around one shared context, with the person in control. SEO, web, design, content, campaigns. Not five tools with five memories. Specialists that read the same context, hand typed evidence to each other, and stop at the approval points you set.
 
-It covers the concrete parts of running a company's presence. SEO, web, design, content and campaigns. These are not five disconnected tools with five separate memories. They are specialists that read from the same context, hand typed evidence to each other and stop at the approval points a person sets.
+The value is coordinated output, not a longer menu of agents. The point isn't how many specialists there are. It's whether intent survives from the first observation to the final change. Nuva Workspace is where that happens.
 
-The value shows up as coordinated output, not as a longer menu of agents. The number of specialists is not the point. Whether intent survives from the first observation to the final change is the point.
+## Saoul to PERI, concretely
 
-Nuva Workspace is where this happens. The person gives the company its context once, then works with specialists that already share it.
+Watch one loop. A company gives its site and its objectives. **Saoul**, the SEO specialist, audits and returns findings with evidence, each with priority and provenance, not a flat report.
 
-## The Saoul to PERI wedge, concretely
+Nuva helps the person prioritize. They approve what's worth doing. Nothing executes without that.
 
-The clearest way to see an AI-native layer is to watch one complete loop.
-
-A company provides its site and its objectives. Saoul, the SEO specialist, audits the digital presence and returns findings with evidence. Weak page structure, unclear positioning, missing technical signals, each with priority and provenance rather than a flat report.
-
-Nuva helps the person prioritize. The person selects which findings matter and approves the changes worth making. Nothing moves to execution without that decision.
-
-The approved evidence becomes a change brief. PERI, the website specialist, prepares the website work and produces a preview. The person reviews it and can trace the proposed change back to the original finding that justified it. The history keeps the whole path, from observation to action, so the next cycle starts from what was learned in this one.
-
-Look at what did not happen. No one copied an audit into a separate tool. No one re-explained the website. No one guessed whether the generated change reflected the original problem. The workflow held its meaning across the handoff:
+The approved evidence becomes a brief. **PERI**, the website specialist, prepares the work and produces a preview. The person can trace every proposed change back to the finding that justified it.
 
 \`\`\`text
 context → evidence → prioritization → approval → execution → history
 \`\`\`
 
-That sequence looks ordinary. Preserving it end to end is the hard part, and it is the part the operating layer is responsible for.
+Nobody copied an audit into another tool. Nobody re-explained the website. The workflow held its meaning across the handoff. That's the hard part, and it's the layer's job.
 
-## Where this goes, without over-promising
+## Where this goes
 
-Operations is the entry point because it produces visible results quickly. It is deliberately narrower than the full ambition, and that is the correct place to start.
+Operations is the entry point because it ships visible results fast. The longer trajectory is **Nuva Intelligence**, the layer that helps a company understand its situation and choose its direction.
 
-The longer trajectory is Nuva Intelligence: the layer that helps a company understand its situation and choose its direction, drawing on research, product planning and financial understanding. That is where the shared context and durable history eventually pay off in decisions, not just execution.
+Be exact: Intelligence is a direction, not a shipped claim. Nuva today does operational work with a person approving the important moves. It doesn't run the company, replace a team, or pretend to be an ERP. Full autonomy isn't the goal. Keeping the person in control while removing the manual coordination between specialists is.
 
-It is worth being exact here. Nuva Intelligence is a direction, not a shipped claim. Nuva today does operational work with a person approving the important moves. It does not run the company on its own, it does not replace a team and it is not an ERP. Full autonomy is not the goal. Keeping the person in control while removing the manual coordination between specialists is.
-
-The distinction between bolted-on AI and an AI-native layer is not about how capable any single model is. It is about whether the company keeps its meaning when work moves from one specialist to the next.
-
-Most software is only now adding assistants to tools that were never designed to cooperate. The more useful question, and the one an operating layer is built to answer, is simpler. Can the company understand, decide and act as one thing, even as the work passes through many hands.
+The difference was never how capable one model is. It's whether the company keeps its meaning when work passes through many hands.
 `.trim(),
       fr: `
-_La plupart des entreprises ajoutent de l'IA comme elles ont ajouté chaque outil avant elle._
+_La plupart des entreprises ajoutent l'IA comme elles ont ajouté chaque outil avant elle. Un assistant par système, et aucun ne partage ce que les autres savent._
 
 ---
 
-Elles gardent les systèmes qu'elles ont déjà, puis greffent un assistant sur chacun. Le CMS reçoit un rédacteur. L'outil d'analytics reçoit un résumé. La boîte de support reçoit un brouillon de réponse. Chaque ajout est utile en soi. Aucun ne partage ce que les autres savent.
+## L'IA greffée par-dessus ne règle jamais la couture
 
-C'est de l'IA greffée sur une entreprise fragmentée. Ça accélère les tâches individuelles tout en laissant le vrai problème intact : l'entreprise n'a toujours aucun endroit partagé où le travail est compris, décidé et exécuté.
+Le CMS reçoit un rédacteur. L'analytics, un résumé. L'inbox, un brouillon de réponse. Chacun est utile. Aucun ne partage de contexte.
 
-Une couche opérationnelle AI-native part de l'hypothèse inverse. Elle traite la coordination comme le produit, pas comme le reste.
+Alors le contexte vit dans la personne qui change d'onglet. Un humain ré-explique l'entreprise à chaque système, copie la sortie de l'un dans l'autre, et vérifie que rien ne s'est perdu. L'IA est devenue plus rapide. **Les coutures n'ont pas bougé.**
 
-## La différence, c'est où vit le contexte
+Une couche AI-native part de l'hypothèse inverse : la coordination est le produit, pas le reste.
 
-Dans le modèle greffé, le contexte vit dans la personne qui passe d'un outil à l'autre.
+## Cinq choses qu'elle traite comme première classe
 
-L'assistant du site ne sait pas ce que l'outil SEO a trouvé. L'assistant de contenu ne sait pas quel positionnement a été acté le mois dernier. Alors un humain ré-explique l'entreprise à chaque système, copie la sortie de l'un dans l'autre et vérifie que rien d'important ne s'est perdu en route. L'IA est devenue plus rapide. Les coutures n'ont pas bougé.
+Concevez une couche pour spécialistes humains et IA dès le premier jour, et cinq choses cessent d'être des seconds rôles.
 
-Une couche AI-native fait du contexte partagé de l'entreprise un citoyen de première classe dès le premier jour. Il existe un seul endroit qui sait de quelle entreprise il s'agit, ce qu'elle vend, qui elle sert, quelles contraintes elle affronte et quel résultat elle poursuit. Chaque spécialiste lit ce même contexte au lieu de se faire raconter l'histoire à nouveau.
+→ **Contexte partagé.** Une description durable de l'entreprise dans laquelle chaque spécialiste lit. Pas de page blanche.
+→ **Frontières de spécialistes.** Le SEO reste au fond du SEO. Le web reste excellent en web. C'est l'étroitesse qui garde chacun bon.
+→ **Handoffs de preuves typées.** Un spécialiste passe des constats structurés, avec priorité et provenance, pas un paragraphe à réinterpréter.
+→ **Approbation explicite.** Le passage de la recommandation à l'action est sous condition. Vous voyez ce qui a été observé, inféré, recommandé, et sur le point de changer. L'approbation est une fonctionnalité, pas un délai.
+→ **Historique durable.** Le raisonnement survit à la conversation. On réutilise les preuves au lieu de les redécouvrir.
 
-Cette seule décision change tout en aval. Quand le contexte est partagé, un handoff cesse d'être une traduction et devient une référence.
-
-## Cinq choses qu'une couche AI-native traite comme première classe
-
-Si l'on conçoit dès le départ une couche opérationnelle pour des spécialistes humains et IA, cinq choses cessent d'être des seconds rôles.
-
-Le contexte partagé. Une description durable de l'entreprise contre laquelle chaque spécialiste travaille, pour que personne ne parte d'une page blanche.
-
-Des frontières de spécialistes claires. Un spécialiste SEO reste au fond du SEO. Un spécialiste site reste excellent à produire et modifier des sites. Aucun ne prétend piloter toute l'entreprise. Ce sont les frontières étroites qui gardent chaque spécialiste bon.
-
-Des handoffs de preuves typées. Quand un spécialiste passe le travail à un autre, il n'envoie pas un paragraphe à réinterpréter. Il envoie une preuve structurée avec priorité, provenance et une identité stable. Le spécialiste qui reçoit agit sur le constat lui-même, pas sur un résumé de celui-ci.
-
-Des points d'approbation explicites. Le passage de la recommandation à l'action est visible et sous condition. Une personne voit ce qui a été observé, ce qui a été inféré, ce qui est recommandé et ce qui est sur le point de changer, puis décide. L'approbation est une fonctionnalité, pas un délai.
-
-Un historique de décisions durable. Le raisonnement derrière une décision survit après la fin de la conversation. L'entreprise peut voir pourquoi un travail a eu lieu, réutiliser des preuves au lieu de les redécouvrir et éviter de répéter une recommandation déjà considérée et rejetée.
-
-Rien de tout cela n'est une fonctionnalité de modèle. Ce sont des choix structurels. Soit on les intègre dès le départ, soit on passe une éternité à les coller à la main.
+Rien de tout ça n'est une fonctionnalité de modèle. Ce sont des choix structurels. Vous les intégrez au départ, ou vous les collez à la main pour toujours.
 
 ## Nuva Operations est la couche qui fait le travail
 
-C'est ça, Nuva Operations : la couche qui fait le travail opérationnel autour d'un seul contexte partagé, avec la personne aux commandes.
+Nuva Operations fait le travail opérationnel autour d'un seul contexte partagé, avec la personne aux commandes. SEO, web, design, contenu, campagnes. Pas cinq outils avec cinq mémoires. Des spécialistes qui lisent le même contexte, se passent des preuves typées, et s'arrêtent aux points d'approbation que vous fixez.
 
-Elle couvre les parties concrètes de la gestion de la présence d'une entreprise. SEO, web, design, contenu et campagnes. Ce ne sont pas cinq outils déconnectés avec cinq mémoires séparées. Ce sont des spécialistes qui lisent le même contexte, se passent des preuves typées et s'arrêtent aux points d'approbation qu'une personne fixe.
+La valeur, c'est une sortie coordonnée, pas un menu d'agents plus long. Le sujet n'est pas combien il y a de spécialistes. C'est de savoir si l'intention survit de la première observation au changement final. Nuva Workspace, c'est là que ça se passe.
 
-La valeur apparaît comme une sortie coordonnée, pas comme un menu d'agents plus long. Le nombre de spécialistes n'est pas le sujet. La question, c'est de savoir si l'intention survit de la première observation au changement final.
+## De Saoul à PERI, concrètement
 
-Nuva Workspace est l'endroit où cela se passe. La personne donne son contexte à l'entreprise une seule fois, puis travaille avec des spécialistes qui le partagent déjà.
+Regardez une boucle. Une entreprise donne son site et ses objectifs. **Saoul**, le spécialiste SEO, audite et renvoie des constats avec preuves, chacun avec priorité et provenance, pas un rapport plat.
 
-## Le pont de Saoul à PERI, concrètement
+Nuva aide la personne à prioriser. Elle approuve ce qui vaut la peine. Rien ne s'exécute sans ça.
 
-La façon la plus claire de voir une couche AI-native, c'est de regarder une boucle complète.
-
-Une entreprise fournit son site et ses objectifs. Saoul, le spécialiste SEO, audite la présence digitale et renvoie des constats avec preuves. Structure de page faible, positionnement flou, signaux techniques manquants, chacun avec priorité et provenance plutôt qu'un rapport plat.
-
-Nuva aide la personne à prioriser. La personne sélectionne quels constats comptent et approuve les changements qui valent la peine. Rien ne passe à l'exécution sans cette décision.
-
-La preuve approuvée devient un brief de changement. PERI, le spécialiste site, prépare le travail sur le site et produit un aperçu. La personne le relit et peut retracer le changement proposé jusqu'au constat d'origine qui le justifiait. L'historique garde tout le chemin, de l'observation à l'action, pour que le cycle suivant reparte de ce qui a été appris dans celui-ci.
-
-Regardez ce qui n'a pas eu lieu. Personne n'a copié un audit dans un outil séparé. Personne n'a ré-expliqué le site. Personne n'a deviné si le changement généré reflétait le problème d'origine. Le workflow a gardé son sens à travers le handoff :
+Les preuves approuvées deviennent un brief. **PERI**, le spécialiste site, prépare le travail et produit un aperçu. La personne peut retracer chaque changement proposé jusqu'au constat qui le justifiait.
 
 \`\`\`text
 contexte → preuve → priorisation → approbation → exécution → historique
 \`\`\`
 
-Cette séquence a l'air ordinaire. La préserver de bout en bout, c'est la partie difficile, et c'est la partie dont la couche opérationnelle est responsable.
+Personne n'a copié un audit dans un autre outil. Personne n'a ré-expliqué le site. Le workflow a gardé son sens à travers le handoff. C'est ça, la partie difficile, et c'est le boulot de la couche.
 
-## Où cela mène, sans surpromettre
+## Où cela mène
 
-Les opérations sont le point d'entrée parce qu'elles produisent des résultats visibles rapidement. C'est délibérément plus étroit que l'ambition complète, et c'est le bon endroit pour commencer.
+Les opérations sont le point d'entrée parce qu'elles livrent des résultats visibles vite. La trajectoire plus longue, c'est **Nuva Intelligence**, la couche qui aide une entreprise à comprendre sa situation et à choisir sa direction.
 
-La trajectoire plus longue, c'est Nuva Intelligence : la couche qui aide une entreprise à comprendre sa situation et à choisir sa direction, en s'appuyant sur la recherche, la planification produit et la compréhension financière. C'est là que le contexte partagé et l'historique durable finissent par payer en décisions, pas seulement en exécution.
+Soyons exacts : Intelligence est une direction, pas une promesse livrée. Nuva fait aujourd'hui du travail opérationnel avec une personne qui approuve les mouvements importants. Elle ne pilote pas l'entreprise, ne remplace pas une équipe et n'est pas un ERP. L'autonomie totale n'est pas l'objectif. Garder la personne aux commandes tout en supprimant la coordination manuelle entre spécialistes, si.
 
-Il vaut la peine d'être exact ici. Nuva Intelligence est une direction, pas une promesse livrée. Nuva fait aujourd'hui du travail opérationnel avec une personne qui approuve les mouvements importants. Il ne pilote pas l'entreprise tout seul, il ne remplace pas une équipe et ce n'est pas un ERP. L'autonomie totale n'est pas l'objectif. Garder la personne aux commandes tout en supprimant la coordination manuelle entre spécialistes, si.
-
-La distinction entre l'IA greffée et une couche AI-native ne porte pas sur la capacité d'un modèle isolé. Elle porte sur le fait que l'entreprise garde ou non son sens quand le travail passe d'un spécialiste au suivant.
-
-La plupart des logiciels ne font qu'ajouter maintenant des assistants à des outils jamais conçus pour coopérer. La question la plus utile, et celle à laquelle une couche opérationnelle est faite pour répondre, est plus simple. L'entreprise peut-elle comprendre, décider et agir comme une seule chose, même quand le travail passe par de nombreuses mains.
+La différence n'a jamais tenu à la puissance d'un seul modèle. Elle tient à savoir si l'entreprise garde son sens quand le travail passe entre de nombreuses mains.
 `.trim(),
       nl: `
-_De meeste bedrijven voegen AI toe zoals ze elk tool ervoor hebben toegevoegd._
+_De meeste bedrijven voegen AI toe zoals ze elk tool ervoor hebben toegevoegd. Eén assistent per systeem, en geen ervan deelt wat de andere weten._
 
 ---
 
-Ze houden de systemen die ze al hebben, en plakken er dan een assistent op. De CMS krijgt een schrijver. Het analytics-tool krijgt een samenvatting. De support-inbox krijgt een concept-antwoord. Elke toevoeging is op zich nuttig. Geen ervan deelt wat de andere weten.
+## AI erop geplakt lost de naad nooit op
 
-Dit is AI geplakt op een gefragmenteerd bedrijf. Het versnelt individuele taken terwijl het echte probleem onaangeroerd blijft: het bedrijf heeft nog steeds geen gedeelde plek waar werk begrepen, beslist en uitgevoerd wordt.
+De CMS krijgt een schrijver. Analytics krijgt een samenvatting. De inbox krijgt een concept-antwoord. Elk is nuttig. Geen ervan deelt context.
 
-Een AI-native operationele laag vertrekt vanuit de omgekeerde aanname. Ze behandelt coördinatie als het product, niet als de rest.
+Dus de context leeft in de persoon die tussen tabs schakelt. Een mens legt het bedrijf opnieuw uit aan elk systeem, kopieert output van het ene naar het andere, en controleert dat niets verloren ging. De AI werd sneller. **De naden verschoven niet.**
 
-## Het verschil is waar de context leeft
+Een AI-native laag vertrekt vanuit de omgekeerde aanname: coördinatie is het product, niet de rest.
 
-In het geplakte model leeft de context in de persoon die tussen tools schakelt.
+## Vijf dingen die ze als eersteklas behandelt
 
-De website-assistent weet niet wat het SEO-tool vond. De content-assistent weet niet welke positionering vorige maand afgesproken werd. Dus legt een mens het bedrijf opnieuw uit aan elk systeem, kopieert output van het ene naar het andere en controleert dat niets belangrijks onderweg verloren ging. De AI werd sneller. De naden verschoven niet.
+Ontwerp een laag voor menselijke en AI-specialisten vanaf dag één, en vijf dingen houden op bijzaken te zijn.
 
-Een AI-native laag maakt de gedeelde bedrijfscontext eersteklas vanaf dag één. Er is één plek die weet welk bedrijf dit is, wat het verkoopt, wie het bedient, welke beperkingen het kent en welk resultaat het nastreeft. Elke specialist leest diezelfde context in plaats van het verhaal opnieuw te horen.
-
-Die ene beslissing verandert alles stroomafwaarts. Wanneer context gedeeld is, houdt een handoff op een vertaling te zijn en wordt hij een verwijzing.
-
-## Vijf dingen die een AI-native laag als eersteklas behandelt
-
-Als je een operationele laag vanaf het begin ontwerpt voor zowel menselijke als AI-specialisten, houden vijf dingen op bijzaken te zijn.
-
-Gedeelde context. Eén duurzame beschrijving van het bedrijf waartegen elke specialist werkt, zodat niemand vanaf een blanco pagina start.
-
-Duidelijke specialistgrenzen. Een SEO-specialist blijft diep in SEO. Een website-specialist blijft uitstekend in het maken en wijzigen van websites. Geen van beide doet alsof hij het hele bedrijf runt. Het zijn de smalle grenzen die elke specialist goed houden.
-
-Getypeerde bewijs-handoffs. Wanneer een specialist werk doorgeeft aan een andere, stuurt hij geen paragraaf om te herinterpreteren. Hij stuurt gestructureerd bewijs met prioriteit, herkomst en een stabiele identiteit. De ontvangende specialist handelt op de bevinding zelf, niet op een samenvatting ervan.
-
-Expliciete goedkeuringspunten. De stap van aanbeveling naar actie is zichtbaar en afgeschermd. Een persoon ziet wat er waargenomen is, wat er afgeleid is, wat er aanbevolen wordt en wat er op het punt staat te veranderen, en beslist dan. Goedkeuring is een feature, geen vertraging.
-
-Een duurzame beslissingsgeschiedenis. De redenering achter een beslissing overleeft nadat het gesprek eindigt. Het bedrijf kan zien waarom werk gebeurde, bewijs hergebruiken in plaats van het opnieuw te ontdekken en vermijden een aanbeveling te herhalen die al overwogen en verworpen werd.
+→ **Gedeelde context.** Eén duurzame beschrijving van het bedrijf waaruit elke specialist leest. Geen blanco pagina.
+→ **Specialistgrenzen.** SEO blijft diep in SEO. Web blijft uitstekend in web. Het is de smalheid die elkeen goed houdt.
+→ **Getypeerde bewijs-handoffs.** Een specialist geeft gestructureerde bevindingen door, met prioriteit en herkomst, geen paragraaf om te herinterpreteren.
+→ **Expliciete goedkeuring.** De stap van aanbeveling naar actie is afgeschermd. Je ziet wat er waargenomen, afgeleid, aanbevolen en op het punt van veranderen is. Goedkeuring is een feature, geen vertraging.
+→ **Duurzame geschiedenis.** De redenering overleeft het gesprek. Hergebruik bewijs in plaats van het opnieuw te ontdekken.
 
 Niets hiervan is een modelfeature. Het zijn structurele keuzes. Je bouwt ze in vanaf het begin, of je bent een eeuwigheid bezig ze met de hand aan elkaar te lijmen.
 
 ## Nuva Operations is de laag die het werk doet
 
-Dit is wat Nuva Operations is: de laag die operationeel werk doet rond één gedeelde context, met de persoon aan het roer.
+Nuva Operations doet operationeel werk rond één gedeelde context, met de persoon aan het roer. SEO, web, design, content, campagnes. Geen vijf tools met vijf geheugens. Specialisten die dezelfde context lezen, elkaar getypeerd bewijs doorgeven, en stoppen bij de goedkeuringspunten die jij instelt.
 
-Ze dekt de concrete delen van het beheren van de aanwezigheid van een bedrijf. SEO, web, design, content en campagnes. Dit zijn geen vijf losstaande tools met vijf aparte geheugens. Het zijn specialisten die dezelfde context lezen, elkaar getypeerd bewijs doorgeven en stoppen bij de goedkeuringspunten die een persoon instelt.
+De waarde is gecoördineerde output, geen langer menu van agents. Het punt is niet hoeveel specialisten er zijn. Het is of de intentie overleeft van de eerste observatie tot de laatste wijziging. Nuva Workspace is waar dat gebeurt.
 
-De waarde verschijnt als gecoördineerde output, niet als een langer menu van agents. Het aantal specialisten is niet het punt. Of de intentie overleeft van de eerste observatie tot de laatste wijziging, dat is het punt.
+## Van Saoul naar PERI, concreet
 
-Nuva Workspace is waar dit gebeurt. De persoon geeft het bedrijf zijn context één keer, en werkt dan met specialisten die ze al delen.
+Bekijk één lus. Een bedrijf geeft zijn site en zijn doelstellingen. **Saoul**, de SEO-specialist, auditeert en geeft bevindingen terug met bewijs, elk met prioriteit en herkomst, geen vlak rapport.
 
-## De brug van Saoul naar PERI, concreet
+Nuva helpt de persoon prioriteren. Die keurt goed wat de moeite waard is. Niets voert uit zonder dat.
 
-De duidelijkste manier om een AI-native laag te zien, is één volledige lus te bekijken.
-
-Een bedrijf levert zijn site en zijn doelstellingen. Saoul, de SEO-specialist, auditeert de digitale aanwezigheid en geeft bevindingen terug met bewijs. Zwakke paginastructuur, onduidelijke positionering, ontbrekende technische signalen, elk met prioriteit en herkomst in plaats van een vlak rapport.
-
-Nuva helpt de persoon prioriteren. De persoon selecteert welke bevindingen ertoe doen en keurt de wijzigingen goed die de moeite waard zijn. Niets gaat naar uitvoering zonder die beslissing.
-
-Het goedgekeurde bewijs wordt een wijzigingsbrief. PERI, de website-specialist, bereidt het websitewerk voor en produceert een preview. De persoon bekijkt het en kan de voorgestelde wijziging terugleiden naar de oorspronkelijke bevinding die ze rechtvaardigde. De geschiedenis bewaart het hele pad, van observatie tot actie, zodat de volgende cyclus vertrekt vanuit wat in deze geleerd werd.
-
-Kijk naar wat er niet gebeurde. Niemand kopieerde een audit naar een apart tool. Niemand legde de website opnieuw uit. Niemand gokte of de gegenereerde wijziging het oorspronkelijke probleem weerspiegelde. De workflow behield zijn betekenis over de handoff heen:
+Het goedgekeurde bewijs wordt een brief. **PERI**, de website-specialist, bereidt het werk voor en produceert een preview. De persoon kan elke voorgestelde wijziging terugleiden naar de bevinding die ze rechtvaardigde.
 
 \`\`\`text
 context → bewijs → prioritering → goedkeuring → uitvoering → geschiedenis
 \`\`\`
 
-Die sequentie ziet er gewoon uit. Ze van begin tot eind bewaren is het moeilijke deel, en het is het deel waarvoor de operationele laag verantwoordelijk is.
+Niemand kopieerde een audit naar een ander tool. Niemand legde de website opnieuw uit. De workflow behield zijn betekenis over de handoff heen. Dat is het moeilijke deel, en het is de taak van de laag.
 
-## Waar dit heen gaat, zonder te veel te beloven
+## Waar dit heen gaat
 
-Operaties is het instappunt omdat het snel zichtbare resultaten oplevert. Het is bewust smaller dan de volledige ambitie, en dat is de juiste plek om te beginnen.
+Operaties is het instappunt omdat het snel zichtbare resultaten oplevert. Het langere traject is **Nuva Intelligence**, de laag die een bedrijf helpt zijn situatie te begrijpen en zijn richting te kiezen.
 
-Het langere traject is Nuva Intelligence: de laag die een bedrijf helpt zijn situatie te begrijpen en zijn richting te kiezen, steunend op onderzoek, productplanning en financieel inzicht. Dat is waar de gedeelde context en de duurzame geschiedenis uiteindelijk lonen in beslissingen, niet alleen in uitvoering.
+Wees precies: Intelligence is een richting, geen geleverde claim. Nuva doet vandaag operationeel werk met een persoon die de belangrijke bewegingen goedkeurt. Het runt het bedrijf niet, vervangt geen team en is geen ERP. Volledige autonomie is niet het doel. De persoon aan het roer houden terwijl de manuele coördinatie tussen specialisten verdwijnt, dat wel.
 
-Het loont hier om precies te zijn. Nuva Intelligence is een richting, geen geleverde claim. Nuva doet vandaag operationeel werk met een persoon die de belangrijke bewegingen goedkeurt. Het runt het bedrijf niet op eigen kracht, het vervangt geen team en het is geen ERP. Volledige autonomie is niet het doel. De persoon aan het roer houden terwijl de manuele coördinatie tussen specialisten verdwijnt, dat wel.
-
-Het onderscheid tussen geplakte AI en een AI-native laag gaat niet over hoe capabel een afzonderlijk model is. Het gaat erover of het bedrijf zijn betekenis behoudt wanneer werk van de ene specialist naar de volgende gaat.
-
-De meeste software voegt nu pas assistenten toe aan tools die nooit ontworpen werden om samen te werken. De nuttigere vraag, en degene die een operationele laag moet beantwoorden, is eenvoudiger. Kan het bedrijf begrijpen, beslissen en handelen als één ding, ook terwijl het werk door veel handen gaat.
+Het verschil zat nooit in hoe capabel één model is. Het zit erin of het bedrijf zijn betekenis behoudt wanneer werk door veel handen gaat.
 `.trim(),
     },
   },
