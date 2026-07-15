@@ -77,3 +77,7 @@ Aucun protocole ne rend bon un mauvais plan. Il empêche juste un bon contexte d
 Utilisez-le quand les étapes dépendent les unes des autres, que les budgets sont serrés, et que les décisions doivent tenir sur toute la chaîne.
 
 Petit objet. Mises à jour merge-patch. Une façon de moins pour un pipeline de se mentir à lui-même.
+
+Si ce fil t'intéresse :
+
+→ [Compter ses agents n'est pas une stratégie](/blog/counting-agents-is-not-a-strategy)

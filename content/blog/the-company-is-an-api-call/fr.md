@@ -70,3 +70,8 @@ Feen et Syncco prouvent le modèle à la main. La prochaine entreprise naît sur
 Pas de plus gros modèles. Pas plus de prompts. Une usine où l'identité, le contexte, la mémoire, l'intelligence et les capacités sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec badges et budgets.
 
 L'entreprise est un appel d'API. Le reste, c'est de l'opérationnel.
+
+Si ce fil t'intéresse :
+
+→ [À quoi ressemblent vraiment des opérations AI-native](/blog/what-ai-native-operations-look-like)
+→ [Une réponse n'est pas la ligne d'arrivée](/blog/an-answer-is-not-the-finish-line)

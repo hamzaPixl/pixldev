@@ -62,3 +62,8 @@ Les boîtes qui gagneront avec l'IA ne seront pas celles qui tournent sur le mod
 **Les modèles ne sont pas le produit. Les systèmes, oui.**
 
 Je le répète parce que je n'arrête pas de le voir se confirmer.
+
+Si ce fil t'intéresse :
+
+→ [Compter ses agents n'est pas une stratégie](/blog/counting-agents-is-not-a-strategy)
+→ [À quoi ressemblent vraiment des opérations AI-native](/blog/what-ai-native-operations-look-like)

@@ -67,3 +67,7 @@ Code with no callers isn't an asset. It's a claim about the future that compound
 The fix isn't better architecture. Mine was fine. The fix is a sequencing rule with teeth: no consumer, no build.
 
 Growth is adding companies and services. Not rebuilding foundations. Not building cathedrals ahead of the congregation.
+
+If this thread interests you:
+
+→ [We are not launching a company. We are proving one loop.](/blog/proving-one-loop)

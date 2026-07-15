@@ -62,3 +62,8 @@ De bedrijven die met AI winnen, zijn niet die op het model van deze week draaien
 **Modellen zijn niet het product. Systemen wel.**
 
 Ik blijf het zeggen omdat ik het steeds weer waar zie worden.
+
+Als deze lijn je interesseert:
+
+→ [Agents tellen is geen strategie](/blog/counting-agents-is-not-a-strategy)
+→ [Hoe AI-native operaties er echt uitzien](/blog/what-ai-native-operations-look-like)

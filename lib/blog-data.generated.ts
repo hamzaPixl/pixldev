@@ -1630,6 +1630,10 @@ Code with no callers isn't an asset. It's a claim about the future that compound
 The fix isn't better architecture. Mine was fine. The fix is a sequencing rule with teeth: no consumer, no build.
 
 Growth is adding companies and services. Not rebuilding foundations. Not building cathedrals ahead of the congregation.
+
+If this thread interests you:
+
+→ [We are not launching a company. We are proving one loop.](/blog/proving-one-loop)
 `.trim(),
       fr: `
 _J'ai lancé un audit vérifié par le code sur mon propre écosystème. La chose la plus coûteuse que j'ai trouvée n'était pas un bug. C'était du logiciel fonctionnel avec zéro appelant._
@@ -1686,6 +1690,10 @@ Du code sans appelant n'est pas un actif. C'est une promesse sur le futur qui ac
 Le fix n'est pas une meilleure architecture. La mienne était très bien. Le fix est une règle de séquencement avec des dents : pas de consommateur, pas de build.
 
 La croissance, c'est ajouter des entreprises et des services. Pas reconstruire les fondations. Pas bâtir des cathédrales avant d'avoir les fidèles.
+
+Si ce fil t'intéresse :
+
+→ [On ne lance pas une entreprise. On prouve une seule boucle.](/blog/proving-one-loop)
 `.trim(),
       nl: `
 _Ik draaide een code-geverifieerde audit van mijn eigen ecosysteem. Het duurste dat ik vond was geen bug. Het was werkende software met nul callers._
@@ -1742,6 +1750,10 @@ Code zonder callers is geen actief. Het is een claim op de toekomst die rente op
 De oplossing is geen betere architectuur. De mijne was prima. De oplossing is een volgorde-regel met tanden: geen consumer, geen build.
 
 Groei is bedrijven en services toevoegen. Geen fundamenten herbouwen. Geen kathedralen bouwen voor de parochie er is.
+
+Als deze lijn je interesseert:
+
+→ [We lanceren geen bedrijf. We bewijzen één loop.](/blog/proving-one-loop)
 `.trim(),
     },
   },
@@ -2197,6 +2209,11 @@ Feen and Syncco prove the model by hand. The next company is born on the platfor
 Not bigger models. Not more prompts. A factory where identity, context, memory, intelligence, and capabilities are provisioned like infrastructure, and the first employees are agents with badges and budgets.
 
 The company is an API call. The rest is operations.
+
+If this thread interests you:
+
+→ [What AI-native operations actually look like](/blog/what-ai-native-operations-look-like)
+→ [An answer is not the finish line](/blog/an-answer-is-not-the-finish-line)
 `.trim(),
       fr: `
 _Ce que je construis, ce n'est pas une boîte à outils. C'est une usine à entreprises : une commande crée une entreprise, et des agents produisent sa marque, son site, son audit SEO, sa première campagne. Chaque euro tracé._
@@ -2256,6 +2273,11 @@ Feen et Syncco prouvent le modèle à la main. La prochaine entreprise naît sur
 Pas de plus gros modèles. Pas plus de prompts. Une usine où l'identité, le contexte, la mémoire, l'intelligence et les capacités sont provisionnés comme de l'infrastructure, et où les premiers employés sont des agents avec badges et budgets.
 
 L'entreprise est un appel d'API. Le reste, c'est de l'opérationnel.
+
+Si ce fil t'intéresse :
+
+→ [À quoi ressemblent vraiment des opérations AI-native](/blog/what-ai-native-operations-look-like)
+→ [Une réponse n'est pas la ligne d'arrivée](/blog/an-answer-is-not-the-finish-line)
 `.trim(),
       nl: `
 _Wat ik bouw is geen set tools. Het is een bedrijfsfabriek: één commando maakt een bedrijf, en agents produceren het merk, de site, de SEO-audit, de eerste campagne. Elke euro verantwoord._
@@ -2315,6 +2337,11 @@ Feen en Syncco bewijzen het model met de hand. Het volgende bedrijf wordt vanaf 
 Geen grotere modellen. Niet meer prompts. Een fabriek waar identiteit, context, geheugen, intelligentie en capaciteiten geleverd worden als infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
 
 Het bedrijf is een API-call. De rest is operations.
+
+Als deze lijn je interesseert:
+
+→ [Hoe AI-native operaties er echt uitzien](/blog/what-ai-native-operations-look-like)
+→ [Een antwoord is niet de eindstreep](/blog/an-answer-is-not-the-finish-line)
 `.trim(),
     },
   },
@@ -3047,6 +3074,11 @@ The companies that win with AI won't be the ones on this week's model. Everyone 
 **Models are not the product. Systems are.**
 
 I keep saying it because I keep watching it be true.
+
+If this thread interests you:
+
+→ [Counting agents is not a strategy](/blog/counting-agents-is-not-a-strategy)
+→ [What AI-native operations actually look like](/blog/what-ai-native-operations-look-like)
 `.trim(),
       fr: `
 _Tout le monde demande quel modèle acheter. C'est la mauvaise question._
@@ -3098,6 +3130,11 @@ Les boîtes qui gagneront avec l'IA ne seront pas celles qui tournent sur le mod
 **Les modèles ne sont pas le produit. Les systèmes, oui.**
 
 Je le répète parce que je n'arrête pas de le voir se confirmer.
+
+Si ce fil t'intéresse :
+
+→ [Compter ses agents n'est pas une stratégie](/blog/counting-agents-is-not-a-strategy)
+→ [À quoi ressemblent vraiment des opérations AI-native](/blog/what-ai-native-operations-look-like)
 `.trim(),
       nl: `
 _Iedereen vraagt welk model hij moet kopen. Het is de verkeerde vraag._
@@ -3149,6 +3186,11 @@ De bedrijven die met AI winnen, zijn niet die op het model van deze week draaien
 **Modellen zijn niet het product. Systemen wel.**
 
 Ik blijf het zeggen omdat ik het steeds weer waar zie worden.
+
+Als deze lijn je interesseert:
+
+→ [Agents tellen is geen strategie](/blog/counting-agents-is-not-a-strategy)
+→ [Hoe AI-native operaties er echt uitzien](/blog/what-ai-native-operations-look-like)
 `.trim(),
     },
   },
@@ -3989,6 +4031,10 @@ No protocol makes a bad plan good. It just stops good context from getting lost.
 Use it when steps depend on each other, budgets are tight, and decisions have to hold across a chain.
 
 Small object. Merge-patch updates. One less way for a pipeline to lie to itself.
+
+If this thread interests you:
+
+→ [Counting agents is not a strategy](/blog/counting-agents-is-not-a-strategy)
 `.trim(),
       fr: `
 _Trois agents dans un pipeline doivent savoir ce que les autres ont décidé. Le baton est leur façon de l'apprendre, sans se renvoyer le travail._
@@ -4054,6 +4100,10 @@ Aucun protocole ne rend bon un mauvais plan. Il empêche juste un bon contexte d
 Utilisez-le quand les étapes dépendent les unes des autres, que les budgets sont serrés, et que les décisions doivent tenir sur toute la chaîne.
 
 Petit objet. Mises à jour merge-patch. Une façon de moins pour un pipeline de se mentir à lui-même.
+
+Si ce fil t'intéresse :
+
+→ [Compter ses agents n'est pas une stratégie](/blog/counting-agents-is-not-a-strategy)
 `.trim(),
       nl: `
 _Drie agents in een pipeline moeten weten wat de anderen hebben beslist. De baton is hoe ze daar achter komen, zonder het werk opnieuw door te sturen._
@@ -4119,6 +4169,10 @@ Geen enkel protocol maakt een slecht plan goed. Het voorkomt alleen dat goede co
 Gebruik het wanneer stappen van elkaar afhangen, budgetten krap zijn, en beslissingen over de hele keten moeten standhouden.
 
 Klein object. Merge-patch updates. Eén manier minder waarop een pipeline tegen zichzelf liegt.
+
+Als deze lijn je interesseert:
+
+→ [Agents tellen is geen strategie](/blog/counting-agents-is-not-a-strategy)
 `.trim(),
     },
   },

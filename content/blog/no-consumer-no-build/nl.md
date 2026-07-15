@@ -66,3 +66,7 @@ Code zonder callers is geen actief. Het is een claim op de toekomst die rente op
 De oplossing is geen betere architectuur. De mijne was prima. De oplossing is een volgorde-regel met tanden: geen consumer, geen build.
 
 Groei is bedrijven en services toevoegen. Geen fundamenten herbouwen. Geen kathedralen bouwen voor de parochie er is.
+
+Als deze lijn je interesseert:
+
+→ [We lanceren geen bedrijf. We bewijzen één loop.](/blog/proving-one-loop)

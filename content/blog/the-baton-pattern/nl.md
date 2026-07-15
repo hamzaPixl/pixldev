@@ -77,3 +77,7 @@ Geen enkel protocol maakt een slecht plan goed. Het voorkomt alleen dat goede co
 Gebruik het wanneer stappen van elkaar afhangen, budgetten krap zijn, en beslissingen over de hele keten moeten standhouden.
 
 Klein object. Merge-patch updates. Eén manier minder waarop een pipeline tegen zichzelf liegt.
+
+Als deze lijn je interesseert:
+
+→ [Agents tellen is geen strategie](/blog/counting-agents-is-not-a-strategy)

@@ -70,3 +70,8 @@ Feen en Syncco bewijzen het model met de hand. Het volgende bedrijf wordt vanaf 
 Geen grotere modellen. Niet meer prompts. Een fabriek waar identiteit, context, geheugen, intelligentie en capaciteiten geleverd worden als infrastructuur, en waar de eerste werknemers agents zijn met badges en budgetten.
 
 Het bedrijf is een API-call. De rest is operations.
+
+Als deze lijn je interesseert:
+
+→ [Hoe AI-native operaties er echt uitzien](/blog/what-ai-native-operations-look-like)
+→ [Een antwoord is niet de eindstreep](/blog/an-answer-is-not-the-finish-line)

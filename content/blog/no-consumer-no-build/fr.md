@@ -66,3 +66,7 @@ Du code sans appelant n'est pas un actif. C'est une promesse sur le futur qui ac
 Le fix n'est pas une meilleure architecture. La mienne était très bien. Le fix est une règle de séquencement avec des dents : pas de consommateur, pas de build.
 
 La croissance, c'est ajouter des entreprises et des services. Pas reconstruire les fondations. Pas bâtir des cathédrales avant d'avoir les fidèles.
+
+Si ce fil t'intéresse :
+
+→ [On ne lance pas une entreprise. On prouve une seule boucle.](/blog/proving-one-loop)

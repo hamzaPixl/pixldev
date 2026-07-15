@@ -70,3 +70,8 @@ Feen and Syncco prove the model by hand. The next company is born on the platfor
 Not bigger models. Not more prompts. A factory where identity, context, memory, intelligence, and capabilities are provisioned like infrastructure, and the first employees are agents with badges and budgets.
 
 The company is an API call. The rest is operations.
+
+If this thread interests you:
+
+→ [What AI-native operations actually look like](/blog/what-ai-native-operations-look-like)
+→ [An answer is not the finish line](/blog/an-answer-is-not-the-finish-line)

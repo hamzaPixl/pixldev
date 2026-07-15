@@ -78,3 +78,7 @@ No protocol makes a bad plan good. It just stops good context from getting lost.
 Use it when steps depend on each other, budgets are tight, and decisions have to hold across a chain.
 
 Small object. Merge-patch updates. One less way for a pipeline to lie to itself.
+
+If this thread interests you:
+
+→ [Counting agents is not a strategy](/blog/counting-agents-is-not-a-strategy)

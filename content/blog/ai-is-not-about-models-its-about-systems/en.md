@@ -62,3 +62,8 @@ The companies that win with AI won't be the ones on this week's model. Everyone 
 **Models are not the product. Systems are.**
 
 I keep saying it because I keep watching it be true.
+
+If this thread interests you:
+
+→ [Counting agents is not a strategy](/blog/counting-agents-is-not-a-strategy)
+→ [What AI-native operations actually look like](/blog/what-ai-native-operations-look-like)
