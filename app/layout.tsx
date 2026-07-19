@@ -82,6 +82,7 @@ export const metadata: Metadata = {
     site: "@pixl_be",
   },
   icons: [
+    { rel: "icon", type: "image/svg+xml", url: "/favicon.svg" },
     { rel: "icon", url: "/favicon.ico" },
     { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
     { rel: "icon", type: "image/png", url: "/favicon-32x32.png", sizes: "32x32" },
