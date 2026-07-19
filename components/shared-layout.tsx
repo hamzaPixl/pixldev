@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LocaleLink as Link } from "@/components/locale-link";
 import { ArrowUpRight, Linkedin, Mail, Phone, Rss } from "lucide-react";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { AnimatedPixlLockup } from "@/components/brand/pixl-pictogram-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language-context";
 import { getVisibleProductsStatic, getProductTranslationKey } from "@/lib/products";
@@ -40,8 +41,8 @@ export function SharedLayout({ children }: SharedLayoutProps) {
           )}
         >
           {/* Left: logo */}
-          <Link href="/" className="flex items-center pl-1 shrink-0">
-            <img src="/logo.svg" alt="Pixl" className="h-5 w-auto" />
+          <Link href="/" className="flex items-center pl-1 shrink-0" aria-label="Pixl home">
+            <AnimatedPixlLockup size="nav" tone="white" />
           </Link>
 
           {/* Right: language + CTA */}
@@ -65,8 +66,8 @@ export function SharedLayout({ children }: SharedLayoutProps) {
           {/* Top: wordmark + status/clock */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mb-14">
             <div>
-              <Link href="/" className="inline-block">
-                <img src="/logo.svg" alt="Pixl" className="h-14 sm:h-20 w-auto" />
+              <Link href="/" className="inline-block" aria-label="Pixl home">
+                <AnimatedPixlLockup size="footer" tone="white" />
               </Link>
               <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-sm">
                 {t("footer.company")}

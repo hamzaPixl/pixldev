@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "blog:build": "node scripts/build-blog.mjs",
+    "brand:gifs": "node scripts/export-brand-gifs.mjs",
     "predev": "npm run blog:build",
     "prebuild": "npm run blog:build"
   },
@@ -20,6 +21,7 @@
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.468.0",
+    "motion": "^12.42.2",
     "next": "16.1.1",
     "playwright": "^1.58.2",
     "pptxgenjs": "^4.0.1",
